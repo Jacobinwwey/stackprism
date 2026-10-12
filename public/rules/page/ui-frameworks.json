@@ -54,6 +54,13 @@
             ]
           },
           {
+            "name": "Sax Design Vue",
+            "url": "https://github.com/adoin/sax-design-vue",
+            "confidence": "中",
+            "patterns": ["sax-design-vue", "(?:^|/)sax-icon_[a-z]+_3A"],
+            "cssVariables": ["--sax-primary", "--sax-theme-bg", "--sax-border-color"]
+          },
+          {
             "defaults": {
               "confidence": "中"
             },
@@ -231,6 +238,99 @@
           "(?:^|/)RadioGroup(?:Item)?\\.vue_vue_type_script_setup",
           "(?:^|/)Table(?:Head|Header|Body|Row|Cell|Pagination)?\\.vue_vue_type_script_setup",
           "(?:^|/)Textarea\\.vue_vue_type_script_setup"
+        ]
+      },
+      {
+        "defaults": {
+          "category": "UI / CSS 框架",
+          "confidence": "中"
+        },
+        "rules": [
+          {
+            "name": "Radix UI",
+            "url": "https://www.radix-ui.com/",
+            "patterns": ["@radix-ui\\/(?:react-|themes|colors)"]
+          },
+          {
+            "name": "Headless UI",
+            "url": "https://headlessui.com/",
+            "patterns": ["@headlessui\\/(?:react|vue)(?:[@/])"],
+            "selectors": ["[data-headlessui-state]"]
+          },
+          {
+            "name": "Ark UI",
+            "url": "https://ark-ui.com/",
+            "patterns": ["@ark-ui\\/(?:react|vue|solid)(?:[@/])"],
+            "selectors": ["[data-scope][data-part]"]
+          },
+          {
+            "name": "Park UI",
+            "url": "https://park-ui.com/",
+            "patterns": ["@park-ui\\/(?:tailwind-plugin|panda-plugin)(?:[@/])"]
+          },
+          {
+            "name": "Kobalte",
+            "url": "https://kobalte.dev/",
+            "patterns": ["@kobalte\\/(?:core|tailwindcss)(?:[@/])"]
+          },
+          {
+            "name": "Reka UI",
+            "url": "https://reka-ui.com/",
+            "patterns": ["(?:^|[/@_-])reka-ui(?:[@/])"]
+          },
+          {
+            "name": "Anu UI",
+            "url": "https://anu-vue.netlify.app/",
+            "patterns": ["(?:^|[/@_-])anu-vue(?:[@/])"],
+            "classPrefixes": ["a-"]
+          },
+          {
+            "name": "Oruga UI",
+            "url": "https://oruga.io/",
+            "patterns": ["@oruga-ui\\/oruga(?:-next)?(?:[@/])"],
+            "classPrefixes": ["o-"]
+          },
+          {
+            "name": "Vuesax",
+            "url": "https://lusaxweb.github.io/vuesax/",
+            "patterns": ["(?:^|[/@_-])vuesax(?:[@/])"],
+            "classPrefixes": ["vs-"]
+          },
+          {
+            "name": "AgnosticUI",
+            "url": "https://www.agnosticui.com/",
+            "patterns": ["(?:^|[/@_-])agnostic-(?:vue|react|svelte|angular)(?:[@/])"],
+            "classPrefixes": ["agnostic-"]
+          }
+        ]
+      },
+      {
+        "defaults": {
+          "category": "UI / CSS 框架",
+          "confidence": "高"
+        },
+        "rules": [
+          {
+            "name": "Shoelace / Web Awesome",
+            "url": "https://shoelace.style/",
+            "patterns": ["@shoelace-style\\/shoelace(?:[@/])"],
+            "selectors": ["sl-button", "sl-input", "sl-dialog", "sl-dropdown"],
+            "cssVariables": ["--sl-color-primary-600", "--sl-border-radius-medium", "--sl-font-sans"]
+          },
+          {
+            "name": "Spectrum Web Components",
+            "url": "https://opensource.adobe.com/spectrum-web-components/",
+            "patterns": ["@spectrum-web-components\\/(?:button|dialog|overlay|theme)(?:[@/])"],
+            "selectors": ["sp-button", "sp-dialog", "sp-overlay", "sp-theme"],
+            "cssVariables": ["--spectrum-global-color-blue-400", "--spectrum-alias-border-color"]
+          },
+          {
+            "name": "Fluent UI Web Components",
+            "url": "https://fluent2.microsoft.design/",
+            "patterns": ["@fluentui\\/web-components(?:[@/])"],
+            "selectors": ["fluent-button", "fluent-text-field", "fluent-dialog", "fluent-select"],
+            "cssVariables": ["--neutral-fill-rest", "--accent-fill-rest", "--neutral-foreground-rest"]
+          }
         ]
       }
     ]
