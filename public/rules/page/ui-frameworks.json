@@ -301,6 +301,35 @@
             "url": "https://www.agnosticui.com/",
             "patterns": ["(?:^|[/@_-])agnostic-(?:vue|react|svelte|angular)(?:[@/])"],
             "classPrefixes": ["agnostic-"]
+          },
+          {
+            "name": "Ariakit",
+            "url": "https://ariakit.org/",
+            "patterns": ["(?:^|/)@ariakit/react(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"]
+          },
+          {
+            "name": "React Aria Components",
+            "url": "https://react-spectrum.adobe.com/react-aria/",
+            "patterns": ["(?:^|/)@react-aria/[^/\\s\"'<>]+(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"]
+          },
+          {
+            "name": "Tremor",
+            "url": "https://www.tremor.so/",
+            "patterns": ["(?:^|/)@tremor/react(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"],
+            "classPrefixes": ["tremor-"]
+          },
+          {
+            "name": "Skeleton UI",
+            "url": "https://www.skeleton.dev/",
+            "patterns": ["(?:^|/)@skeletonlabs/skeleton(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"]
+          },
+          {
+            "name": "Franken UI",
+            "url": "https://www.franken-ui.dev/",
+            "patterns": [
+              "(?:^|/)franken-ui(?:\\.min)?\\.(?:js|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)",
+              "(?:^|/)franken-ui(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"
+            ]
           }
         ]
       },
