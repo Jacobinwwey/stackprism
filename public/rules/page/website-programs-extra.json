@@ -154,7 +154,7 @@
               "name": "NodeBB",
               "url": "https://nodebb.org",
               "matchType": "regex",
-              "patterns": ["nodebb-plugin-", "nodebb-theme-", "/assets/src/modules/translator", "data-template-name", "data-fa-i2svg"],
+              "patterns": ["nodebb-plugin-", "nodebb-theme-", "/assets/src/modules/translator"],
               "matchIn": ["html", "resources"]
             },
             {
@@ -222,7 +222,7 @@
               "name": "PHPWind",
               "url": "http://www.phpwind.com",
               "matchType": "regex",
-              "patterns": ["<meta[^>]+name=['\"]?generator['\"]?[^>]+(?:PHPWind|phpwind)", "/res/style/", "/cache/imageGlobal\\.js"],
+              "patterns": ["<meta[^>]+name=['\"]?generator['\"]?[^>]+(?:PHPWind|phpwind)", "/cache/imageGlobal\\.js"],
               "matchIn": ["html", "resources"]
             },
             {
@@ -240,7 +240,7 @@
               "name": "BBSXP",
               "url": "https://www.bbsxp.com",
               "matchType": "regex",
-              "patterns": ["<meta[^>]+name=['\"]?generator['\"]?[^>]+BBSXP", "bbsxp", "/skins/default/"],
+              "patterns": ["<meta[^>]+name=['\"]?generator['\"]?[^>]+BBSXP", "bbsxp"],
               "matchIn": ["html"]
             },
             {

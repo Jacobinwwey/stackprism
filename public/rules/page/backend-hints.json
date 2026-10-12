@@ -16,7 +16,7 @@
           },
           {
             "name": "Laravel",
-            "patterns": ["laravel-mix", "livewire", "wire:click", "x-csrf-token"]
+            "patterns": ["laravel-mix", "livewire", "wire:click"]
           }
         ]
       },

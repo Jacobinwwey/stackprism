@@ -13,7 +13,7 @@
         {
           "name": "ASP.NET MVC / Core",
           "confidence": "中",
-          "patterns": ["aspnet|asp-action=|asp-controller=|\\.aspnetcore\\."]
+          "patterns": ["asp-action=|asp-controller=|\\.aspnetcore\\."]
         },
         {
           "name": "Blazor",
@@ -65,12 +65,12 @@
         {
           "name": "ThinkPHP",
           "confidence": "中",
-          "patterns": ["thinkphp", "index\\.php\\?s=", "(?:^|/)index/(?:index|home|pay|user|api)/[a-z0-9_-]+(?:[?#\\s\"'<>]|$)"]
+          "patterns": ["index\\.php\\?s=", "(?:^|/)index/(?:index|home|pay|user|api)/[a-z0-9_-]+(?:[?#\\s\"'<>]|$)"]
         },
         {
           "name": "CakePHP",
           "confidence": "低",
-          "patterns": ["cakephp|csrfToken.*cake"]
+          "patterns": ["csrfToken.*cake"]
         },
         {
           "name": "CodeIgniter",
@@ -121,11 +121,11 @@
             },
             {
               "name": "Struts",
-              "patterns": ["struts|dojo\\/struts|\\.action(?:\\?|\")"]
+              "patterns": ["dojo\\/struts|\\.action(?:\\?|\")"]
             },
             {
               "name": "Grails",
-              "patterns": ["grails|g:javascript|\\/assets\\/grails"]
+              "patterns": ["g:javascript|\\/assets\\/grails"]
             },
             {
               "name": "Play Framework",

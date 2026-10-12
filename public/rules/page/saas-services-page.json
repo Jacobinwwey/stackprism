@@ -366,7 +366,7 @@
             },
             {
               "name": "Freshchat",
-              "patterns": ["wchat\\.freshchat\\.com|freshchat"],
+              "patterns": ["wchat\\.freshchat\\.com"],
               "globals": ["fcWidget"]
             },
             {

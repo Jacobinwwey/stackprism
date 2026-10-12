@@ -17,7 +17,7 @@
             },
             {
               "name": "Vue",
-              "patterns": ["vue(?:\\.runtime)?(?:\\.global)?(?:\\.prod)?(?:\\.min)?\\.js", "vue-router", "pinia"],
+              "patterns": ["vue(?:\\.runtime)?(?:\\.global)?(?:\\.prod)?(?:\\.min)?\\.js", "vue-router"],
               "globals": ["Vue", "__VUE_DEVTOOLS_GLOBAL_HOOK__"],
               "selectors": ["[data-v-app]", "#app.__vue__"]
             },
@@ -34,7 +34,7 @@
             },
             {
               "name": "Next.js",
-              "patterns": ["/_next/", "next-static", "nextjs"],
+              "patterns": ["/_next/", "next-static"],
               "globals": ["__NEXT_DATA__"],
               "selectors": ["#__next"]
             },
@@ -46,7 +46,7 @@
             },
             {
               "name": "Gatsby",
-              "patterns": ["/page-data/", "gatsby"],
+              "patterns": ["/page-data/"],
               "globals": ["___gatsby"],
               "selectors": ["#___gatsby"]
             }
@@ -108,7 +108,6 @@
             {
               "name": "Stimulus",
               "patterns": [
-                "stimulus",
                 "data-action=[\"'][^\"'>]*#[^\"'>]+[\"'][^>]*data-target=[\"'][^\"'>]+\\.[^\"'>]+",
                 "data-target=[\"'][^\"'>]+\\.[^\"'>]+[\"'][^>]*data-action=[\"'][^\"'>]*#[^\"'>]+"
               ],

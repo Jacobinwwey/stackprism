@@ -28,7 +28,7 @@
           {
             "name": "Baidu Tongji / 百度统计",
             "kind": "商用 / 国内知名统计",
-            "patterns": ["hm\\.baidu\\.com/hm\\.js", "hm\\.baidu\\.com/hm\\.gif", "hm\\.src", "_hmt", "baidu\\.com/hm"],
+            "patterns": ["hm\\.baidu\\.com/hm\\.js", "hm\\.baidu\\.com/hm\\.gif", "_hmt", "baidu\\.com/hm"],
             "globals": ["_hmt"]
           },
           {
@@ -146,7 +146,7 @@
       {
         "name": "Yandex Metrica",
         "kind": "商用 / 知名统计",
-        "patterns": ["mc\\.yandex\\.ru/metrika", "yandex\\.ru/metrika", "ym\\(", "Ya\\.Metrika"],
+        "patterns": ["mc\\.yandex\\.ru/metrika", "yandex\\.ru/metrika", "Ya\\.Metrika"],
         "globals": ["ym", "Ya"]
       },
       {
@@ -392,7 +392,7 @@
       {
         "name": "Hotjar",
         "kind": "商用 / 热力图与行为分析",
-        "patterns": ["static\\.hotjar\\.com", "script\\.hotjar\\.com", "hotjar\\.com", "hj\\("],
+        "patterns": ["static\\.hotjar\\.com", "script\\.hotjar\\.com", "hotjar\\.com"],
         "globals": ["hj"]
       },
       {
@@ -556,7 +556,7 @@
           {
             "name": "Magnite / Rubicon Project",
             "kind": "广告联盟 / SSP",
-            "patterns": ["rubiconproject\\.com", "fastlane\\.rubiconproject\\.com", "magnite\\.com", "rubicon"]
+            "patterns": ["rubiconproject\\.com", "fastlane\\.rubiconproject\\.com", "magnite\\.com"]
           },
           {
             "name": "Index Exchange",

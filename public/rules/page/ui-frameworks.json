@@ -26,7 +26,7 @@
               },
               {
                 "name": "shadcn/ui",
-                "patterns": ["shadcn", "@shadcn\\/ui", "components\\/ui", "class-variance-authority"],
+                "patterns": ["@shadcn\\/ui", "class-variance-authority"],
                 "cssVariables": [
                   "--background",
                   "--foreground",
@@ -82,7 +82,7 @@
           {
             "name": "Vuetify",
             "confidence": "高",
-            "patterns": ["vuetify"],
+            "globals": ["Vuetify"],
             "selectors": [".v-application"]
           },
           {
@@ -153,7 +153,6 @@
             "rules": [
               {
                 "name": "Quasar",
-                "patterns": ["quasar"],
                 "globals": ["Quasar"],
                 "classPrefixes": ["q-"]
               },

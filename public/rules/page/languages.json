@@ -17,7 +17,7 @@
         "name": "Node.js",
         "kind": "后端运行时",
         "confidence": "低",
-        "patterns": ["express-session", "connect.sid", "nestjs"]
+        "patterns": ["express-session", "connect.sid"]
       },
       {
         "defaults": {
@@ -26,11 +26,11 @@
         "rules": [
           {
             "name": "PHP",
-            "patterns": ["\\.php(?:\\?|#|$)", "index\\.php", "phpsessid", "PHPSESSID", "laravel", "symfony", "thinkphp", "discuz_uid"]
+            "patterns": ["\\.php(?:\\?|#|$)", "index\\.php", "phpsessid", "PHPSESSID", "thinkphp", "discuz_uid"]
           },
           {
             "name": "Python",
-            "patterns": ["django", "flask", "fastapi", "csrfmiddlewaretoken", "/static/admin/"]
+            "patterns": ["fastapi", "csrfmiddlewaretoken", "/static/admin/"]
           },
           {
             "name": "Ruby",
@@ -41,7 +41,15 @@
       {
         "name": "Java / JVM",
         "kind": "后端语言 / 平台",
-        "patterns": ["jsessionid", "\\.jsp(?:\\?|#|$)", "javax.faces", "jakarta.faces", "spring-security", "wicket"]
+        "patterns": [
+          "jsessionid",
+          "\\.jsp(?:\\?|#|$)",
+          "javax.faces",
+          "jakarta.faces",
+          "spring-security",
+          "wicket:id",
+          "wicket(?::|[-/]ajax|[/-]resource)"
+        ]
       },
       {
         "name": "JSP / JavaServer Pages",
@@ -110,7 +118,7 @@
         "rules": [
           {
             "name": "Go",
-            "patterns": ["gorilla.csrf", "go-http-client", "gin-gonic", "fiber"]
+            "patterns": ["gorilla.csrf", "go-http-client", "gin-gonic"]
           },
           {
             "name": "Rust",
@@ -119,12 +127,7 @@
               "powered by (?:actix(?:-web)?|axum|warp|poem|salvo|tide)",
               "powered by rocket(?:\\s*(?:rs|framework)|/\\d|\\s|<|$)",
               "\\bactix-web\\b",
-              "\\bactix_web\\b",
-              "\\baxum\\b",
-              "\\bwarp\\b",
-              "\\bpoem\\b",
-              "\\bsalvo\\b",
-              "\\btide\\b"
+              "\\bactix_web\\b"
             ]
           },
           {

@@ -46,7 +46,11 @@
             "rules": [
               {
                 "name": "Svelte",
-                "patterns": ["svelte", "svelte-"]
+                "patterns": [
+                  "(?:^|/)svelte(?:@[\\d.]+)?(?:/.+?)?\\.(?:m?js|cjs)(?:[?#\"'<>\\s]|$)",
+                  "(?:^|/)@sveltejs/",
+                  "/_app/immutable/"
+                ]
               },
               {
                 "name": "Astro",

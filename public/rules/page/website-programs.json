@@ -47,7 +47,8 @@
       {
         "name": "Joomla",
         "kind": "CMS",
-        "patterns": ["com_content", "/media/system/js/", "joomla"]
+        "patterns": ["com_content", "/media/system/js/"],
+        "globals": ["Joomla"]
       },
       {
         "name": "Magento / Adobe Commerce",
@@ -82,7 +83,7 @@
           },
           {
             "name": "Shopware",
-            "patterns": ["shopware", "widgets/emotion", "storefront/js"]
+            "patterns": ["shopware", "widgets/emotion"]
           }
         ]
       },
@@ -129,9 +130,7 @@
             "patterns": [
               "<meta[^>]+name=[\"']?generator[\"']?[^>]+content=[\"'][^\"']*vbulletin",
               "powered by vbulletin",
-              "clientscript/vbulletin",
-              "showthread\\.php",
-              "forumdisplay\\.php"
+              "clientscript/vbulletin"
             ]
           },
           {
@@ -139,7 +138,6 @@
             "patterns": [
               "<meta[^>]+name=[\"']?generator[\"']?[^>]+content=[\"'][^\"']*xenforo",
               "forum software by xenforo",
-              "data-template=",
               "js/xf/",
               "xenforo\\.js"
             ]
@@ -194,7 +192,7 @@
       {
         "name": "Moodle",
         "kind": "学习管理系统",
-        "patterns": ["moodle", "moodledata", "theme/yui_combo.php"]
+        "patterns": ["moodledata", "theme/yui_combo.php"]
       },
       {
         "defaults": {
@@ -228,15 +226,15 @@
         "rules": [
           {
             "name": "DedeCMS",
-            "patterns": ["dedecms", "/templets/", "/plus/"]
+            "patterns": ["dedecms", "/templets/"]
           },
           {
             "name": "PHPCMS",
-            "patterns": ["phpcms", "/statics/js/", "content=\"phpcms"]
+            "patterns": ["phpcms", "content=\"phpcms"]
           },
           {
             "name": "EmpireCMS",
-            "patterns": ["empirecms", "/e/data/", "/e/public/"]
+            "patterns": ["empirecms", "/e/public/"]
           },
           {
             "name": "Craft CMS",
@@ -252,12 +250,12 @@
       {
         "name": "Strapi",
         "kind": "Headless CMS",
-        "patterns": ["strapi", "strapi\\.io", "strapi-admin", "powered by strapi", "__strapi"]
+        "patterns": ["strapi\\.io", "strapi-admin", "powered by strapi", "__strapi"]
       },
       {
         "name": "Directus",
         "kind": "Headless CMS",
-        "patterns": ["directus", "directus.io"]
+        "patterns": ["directus.io", "(?:^|/)directus/"]
       },
       {
         "name": "Hexo",
@@ -272,7 +270,7 @@
       {
         "name": "Jekyll",
         "kind": "静态站点生成器",
-        "patterns": ["jekyll", "generator\" content=\"jekyll"]
+        "patterns": ["generator\" content=\"jekyll"]
       },
       {
         "defaults": {
@@ -303,25 +301,20 @@
           },
           {
             "name": "VuePress",
-            "patterns": ["<meta[^>]+name=[\"']?generator[\"']?[^>]+content=[\"'][^\"']*VuePress", "vuepress", "__VUEPRESS__"]
+            "patterns": ["<meta[^>]+name=[\"']?generator[\"']?[^>]+content=[\"'][^\"']*VuePress", "__VUEPRESS__"]
           },
           {
             "name": "Docsify",
-            "patterns": ["docsify", "window.$docsify"],
+            "patterns": ["window.$docsify"],
             "globals": ["$docsify"]
           },
           {
             "name": "GitBook",
-            "patterns": ["gitbook", "gitbook.page.hasChanged"]
+            "patterns": ["gitbook.page.hasChanged"]
           },
           {
             "name": "MkDocs",
-            "patterns": [
-              "mkdocs",
-              "mkdocs_page_name",
-              "material for mkdocs",
-              "<meta[^>]+name=[\"']?generator[\"']?[^>]+content=[\"'][^\"']*mkdocs"
-            ]
+            "patterns": ["mkdocs_page_name", "material for mkdocs", "<meta[^>]+name=[\"']?generator[\"']?[^>]+content=[\"'][^\"']*mkdocs"]
           },
           {
             "name": "Material for MkDocs",
@@ -341,7 +334,7 @@
           },
           {
             "name": "ShopXO",
-            "patterns": ["shopxo", "public/static/index", "shopxo.net"]
+            "patterns": ["shopxo", "shopxo.net"]
           },
           {
             "name": "Niushop",

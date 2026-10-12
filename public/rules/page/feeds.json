@@ -11,7 +11,7 @@
       },
       {
         "name": "JSON Feed",
-        "patterns": ["jsonfeed|feed\\.json", "application/feed\\+json", "application/json\\+feed"]
+        "patterns": ["jsonfeed|(?:^|/)feed\\.json(?:$|\\?)", "application/feed\\+json", "application/json\\+feed"]
       }
     ]
   }

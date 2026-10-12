@@ -9,7 +9,6 @@
           "name": "Webpack",
           "confidence": "中",
           "patterns": [
-            "webpack",
             "__webpack_require__",
             "(?:^|/)wp-runtime-[^\\s\"'<>/]+\\.js(?:[?#]|[\"'<>\\s]|$)",
             "(?:^|/)runtime-helpers-[^\\s\"'<>/]+\\.js(?:[?#]|[\"'<>\\s]|$)",
@@ -29,7 +28,7 @@
           "rules": [
             {
               "name": "Parcel",
-              "patterns": ["parcel", "__parcel__"]
+              "patterns": ["__parcel__", "parcelRequire"]
             },
             {
               "name": "RequireJS / AMD",

@@ -4,7 +4,7 @@
       {
         "name": "RSSHub",
         "kind": "RSS 服务",
-        "patterns": ["rsshub", "rsshub.app"]
+        "patterns": ["rsshub.app"]
       },
       {
         "name": "Substack",
