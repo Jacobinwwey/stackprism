@@ -40,8 +40,8 @@
             },
             {
               "name": "Nuxt",
-              "patterns": ["/_nuxt/", "nuxt"],
-              "globals": ["__NUXT__"],
+              "patterns": ["/_nuxt/"],
+              "globals": ["__NUXT__", "__nuxt_async_data"],
               "selectors": ["#__nuxt"]
             },
             {
