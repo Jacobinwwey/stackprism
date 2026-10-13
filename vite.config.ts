@@ -1,11 +1,10 @@
 import { defineConfig, type Plugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { crx } from '@crxjs/vite-plugin'
-import tsconfigPaths from 'vite-tsconfig-paths'
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
-import manifest from './src/manifest.config'
-import { buildRuleHintFields } from './src/utils/rule-hints'
+import manifest from './src/manifest.config.ts'
+import { buildRuleHintFields } from './src/utils/rule-hints.ts'
 
 const REGEX_ESCAPE = /[.*+?^${}()|[\]\\]/g
 
@@ -63,7 +62,7 @@ const precompileRulesPlugin = (): Plugin => ({
   apply: 'build',
   enforce: 'post',
   closeBundle() {
-    const rulesDir = path.resolve(__dirname, 'dist/rules')
+    const rulesDir = path.resolve(import.meta.dirname, 'dist/rules')
     let dirStat
     try {
       dirStat = statSync(rulesDir)
@@ -102,7 +101,7 @@ const minifyJsonAssets = (): Plugin => ({
   apply: 'build',
   enforce: 'post',
   closeBundle() {
-    const distDir = path.resolve(__dirname, 'dist')
+    const distDir = path.resolve(import.meta.dirname, 'dist')
     const walk = (dir: string): string[] => {
       const out: string[] = []
       for (const name of readdirSync(dir)) {
@@ -131,10 +130,11 @@ const minifyJsonAssets = (): Plugin => ({
 })
 
 export default defineConfig({
-  plugins: [vue(), crx({ manifest }), tsconfigPaths(), precompileRulesPlugin(), minifyJsonAssets()],
+  plugins: [vue(), crx({ manifest }), precompileRulesPlugin(), minifyJsonAssets()],
   resolve: {
+    tsconfigPaths: true,
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@': path.resolve(import.meta.dirname, 'src'),
       vue: 'vue/dist/vue.runtime.esm-bundler.js'
     }
   },
@@ -144,7 +144,7 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        help: path.resolve(__dirname, 'src/ui/help/index.html')
+        help: path.resolve(import.meta.dirname, 'src/ui/help/index.html')
       }
     }
   }
