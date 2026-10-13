@@ -104,16 +104,16 @@ Chrome-Erweiterungen haben vier Ausführungsumgebungen, von denen StackPrism all
 
 Alle 8 Nachrichtentypen sind in `src/types/messages.ts` als Discriminated Union typisiert; alle Aufrufe verwenden den `sendMessage<M>()`-Wrapper in `src/utils/messaging.ts`.
 
-| Nachricht | Richtung | Zweck |
-| --------- | -------- | ----- |
-| `GET_HEADER_DATA` | popup → bg | Antwortheader-Einträge abrufen |
-| `GET_POPUP_RESULT` | popup → bg | Kompakten Cache abrufen (Haupt-Popup-Anzeige) |
-| `GET_POPUP_RAW_RESULT` | popup → bg | Vollständige Rohdaten abrufen (Rohdaten / Fehlerkorrektur) |
-| `GET_TECH_LINK` | popup → bg | Offizielle Website einer Technologie als Fallback nachschlagen |
-| `START_BACKGROUND_DETECTION` | popup → bg | Aktive Erkennung durch „Aktualisieren"-Schaltfläche auslösen |
-| `GET_WORDPRESS_THEME_DETAILS` | bg intern | Theme-style.css-Header abrufen |
-| `DYNAMIC_PAGE_SNAPSHOT` | content → bg | Content Script meldet kontinuierlich dynamische Snapshots |
-| `PAGE_DETECTION_RESULT` | injected → bg | page-detector gibt nach der Injektion Ergebnis zurück |
+| Nachricht                     | Richtung      | Zweck                                                          |
+| ----------------------------- | ------------- | -------------------------------------------------------------- |
+| `GET_HEADER_DATA`             | popup → bg    | Antwortheader-Einträge abrufen                                 |
+| `GET_POPUP_RESULT`            | popup → bg    | Kompakten Cache abrufen (Haupt-Popup-Anzeige)                  |
+| `GET_POPUP_RAW_RESULT`        | popup → bg    | Vollständige Rohdaten abrufen (Rohdaten / Fehlerkorrektur)     |
+| `GET_TECH_LINK`               | popup → bg    | Offizielle Website einer Technologie als Fallback nachschlagen |
+| `START_BACKGROUND_DETECTION`  | popup → bg    | Aktive Erkennung durch „Aktualisieren"-Schaltfläche auslösen   |
+| `GET_WORDPRESS_THEME_DETAILS` | bg intern     | Theme-style.css-Header abrufen                                 |
+| `DYNAMIC_PAGE_SNAPSHOT`       | content → bg  | Content Script meldet kontinuierlich dynamische Snapshots      |
+| `PAGE_DETECTION_RESULT`       | injected → bg | page-detector gibt nach der Injektion Ergebnis zurück          |
 
 ## Das Dual-Track-Problem bei injizierten Skripten
 

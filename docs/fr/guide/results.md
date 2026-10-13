@@ -4,11 +4,11 @@
 
 Chaque technologie est accompagnée d'une pastille de confiance à trois niveaux :
 
-| Niveau     | Couleur | Signification                                                                                                         |
-| ---------- | ------- | --------------------------------------------------------------------------------------------------------------------- |
-| **Haute**  | Vert    | Signal fort détecté : variable globale (ex. `window.React`), sélecteur DOM exclusif, URL de ressource explicite (ex. `/_next/`) |
-| **Moyenne**| Jaune   | Signal moyen : correspondance floue d'en-tête de réponse, préfixe de classe CSS, ensemble de variables CSS            |
-| **Faible** | Gris    | Signal faible : nom de fichier script générique en dernier recours (ex. `*.min.js`), expression régulière floue       |
+| Niveau      | Couleur | Signification                                                                                                                   |
+| ----------- | ------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **Haute**   | Vert    | Signal fort détecté : variable globale (ex. `window.React`), sélecteur DOM exclusif, URL de ressource explicite (ex. `/_next/`) |
+| **Moyenne** | Jaune   | Signal moyen : correspondance floue d'en-tête de réponse, préfixe de classe CSS, ensemble de variables CSS                      |
+| **Faible**  | Gris    | Signal faible : nom de fichier script générique en dernier recours (ex. `*.min.js`), expression régulière floue                 |
 
 Dans l'onglet « Essentiels », seuls les résultats à haute confiance sont affichés par défaut.
 
@@ -28,14 +28,14 @@ En cas de faux positif, commencez par examiner les preuves. Elles indiquent gén
 
 L'étiquette de source indique d'où provient ce résultat :
 
-| Étiquette de source             | Provenance                                                              |
-| ------------------------------- | ----------------------------------------------------------------------- |
-| `En-têtes de réponse`           | En-têtes HTTP du document principal (server / x-powered-by / set-cookie, etc.) |
-| `En-têtes de réponse · API`     | En-têtes de réponse d'une requête XHR / fetch de la page courante       |
-| `En-têtes de réponse · iframe`  | En-têtes de réponse du document principal d'un iframe imbriqué          |
-| `Surveillance dynamique`        | Ressources / scripts chargés dynamiquement collectés par le content script + MutationObserver |
-| `Surveillance dynamique · après interaction` | Ressources chargées après une action utilisateur (popup, connexion, paiement) |
-| `Thème WordPress`               | Reconstruction depuis le header style.css du thème                      |
+| Étiquette de source                          | Provenance                                                                                    |
+| -------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `En-têtes de réponse`                        | En-têtes HTTP du document principal (server / x-powered-by / set-cookie, etc.)                |
+| `En-têtes de réponse · API`                  | En-têtes de réponse d'une requête XHR / fetch de la page courante                             |
+| `En-têtes de réponse · iframe`               | En-têtes de réponse du document principal d'un iframe imbriqué                                |
+| `Surveillance dynamique`                     | Ressources / scripts chargés dynamiquement collectés par le content script + MutationObserver |
+| `Surveillance dynamique · après interaction` | Ressources chargées après une action utilisateur (popup, connexion, paiement)                 |
+| `Thème WordPress`                            | Reconstruction depuis le header style.css du thème                                            |
 
 **Cliquer sur n'importe quelle étiquette de source** ouvre un panneau depuis le bas affichant le sous-ensemble JSON brut correspondant à **cette technologie et cette source**. Vous obtenez directement les en-têtes de réponse bruts, la liste des URL de ressources ou un instantané dynamique, sans avoir à parcourir le JSON complet.
 

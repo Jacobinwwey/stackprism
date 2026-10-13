@@ -29,26 +29,26 @@ Recommandée pour les développeurs ou ceux qui souhaitent suivre la branche pri
 ```bash
 git clone https://github.com/setube/stackprism.git
 cd stackprism
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 Les artefacts de construction se trouvent dans `dist/`. Chargez le répertoire `dist/` en mode développeur depuis `chrome://extensions/`.
 
-Après toute modification du code source, relancez `pnpm run build` puis cliquez sur le bouton de rechargement de la carte de l'extension dans `chrome://extensions/`.
+Après toute modification du code source, relancez `bun run build` puis cliquez sur le bouton de rechargement de la carte de l'extension dans `chrome://extensions/`.
 
 ## Activation et permissions
 
 Lors de la première installation, les permissions suivantes sont demandées :
 
-| Permission   | Utilisation                                                          |
-| ------------ | -------------------------------------------------------------------- |
-| `tabs`       | Lire l'URL et le titre de l'onglet actif                             |
+| Permission   | Utilisation                                                         |
+| ------------ | ------------------------------------------------------------------- |
+| `tabs`       | Lire l'URL et le titre de l'onglet actif                            |
 | `activeTab`  | Injecter les scripts de détection dans la page active               |
-| `scripting`  | Injecter page-detector / page-source-search dans le monde MAIN       |
-| `storage`    | Stocker les paramètres, mettre en cache les résultats et les thèmes  |
-| `webRequest` | Intercepter les en-têtes de réponse (server, x-powered-by, etc.)     |
-| `<all_urls>` | Fonctionner sur toutes les pages http(s)                             |
+| `scripting`  | Injecter page-detector / page-source-search dans le monde MAIN      |
+| `storage`    | Stocker les paramètres, mettre en cache les résultats et les thèmes |
+| `webRequest` | Intercepter les en-têtes de réponse (server, x-powered-by, etc.)    |
+| `<all_urls>` | Fonctionner sur toutes les pages http(s)                            |
 
 La détection ne repose sur aucune API externe : les fichiers de règles sont embarqués avec l'extension et les résultats ne circulent que dans la mémoire du navigateur et le storage de l'extension.
 

@@ -13,25 +13,25 @@
 
 `public/rules/` は役割別にファイルが分割されています：
 
-| ファイル | 収録内容 |
-| --- | --- |
-| `page/frontend-frameworks.json` | React / Vue / Angular / 各種フロントエンドフレームワーク |
-| `page/ui-frameworks.json` | Tailwind / Bootstrap / Element / Antd などの UI ライブラリ |
-| `page/build-runtime.json` | Webpack / Vite / Rollup / Bun などのビルドツール |
+| ファイル                           | 収録内容                                                              |
+| ---------------------------------- | --------------------------------------------------------------------- |
+| `page/frontend-frameworks.json`    | React / Vue / Angular / 各種フロントエンドフレームワーク              |
+| `page/ui-frameworks.json`          | Tailwind / Bootstrap / Element / Antd などの UI ライブラリ            |
+| `page/build-runtime.json`          | Webpack / Vite / Rollup / Bun などのビルドツール                      |
 | `page/frontend-cdn-libraries.json` | CDN 経由の具名フロントエンドライブラリ（jQuery・lodash・moment など） |
-| `page/wordpress-plugins.json` | 4500 件以上の WordPress プラグイン |
-| `page/drupal-modules.json` | 4000 件以上の Drupal モジュール |
-| `page/cms-themes.json` | CMS テーマ |
-| `page/website-programs.json` | WordPress / Drupal / Discuz! などの CMS 本体 |
-| `page/payment-systems.json` | 決済プラットフォーム |
-| `page/third-party-logins.json` | サードパーティログイン |
-| `page/saas-services.json` | SaaS（Sentry / Mixpanel / Intercom など） |
-| `page/analytics-providers.json` | アナリティクスと分析 |
-| `page/cdn-providers.json` | CDN プロバイダー（フロントエンドランタイム検出） |
-| `headers/server-products.json` | `Server:` ヘッダーで識別されるサーバー製品 |
-| `headers/cdn-providers.json` | レスポンスヘッダーで識別される CDN |
-| `headers/website-programs.json` | レスポンスヘッダーで識別される CMS |
-| ... | |
+| `page/wordpress-plugins.json`      | 4500 件以上の WordPress プラグイン                                    |
+| `page/drupal-modules.json`         | 4000 件以上の Drupal モジュール                                       |
+| `page/cms-themes.json`             | CMS テーマ                                                            |
+| `page/website-programs.json`       | WordPress / Drupal / Discuz! などの CMS 本体                          |
+| `page/payment-systems.json`        | 決済プラットフォーム                                                  |
+| `page/third-party-logins.json`     | サードパーティログイン                                                |
+| `page/saas-services.json`          | SaaS（Sentry / Mixpanel / Intercom など）                             |
+| `page/analytics-providers.json`    | アナリティクスと分析                                                  |
+| `page/cdn-providers.json`          | CDN プロバイダー（フロントエンドランタイム検出）                      |
+| `headers/server-products.json`     | `Server:` ヘッダーで識別されるサーバー製品                            |
+| `headers/cdn-providers.json`       | レスポンスヘッダーで識別される CDN                                    |
+| `headers/website-programs.json`    | レスポンスヘッダーで識別される CMS                                    |
+| ...                                |                                                                       |
 
 完全なリストは `public/rules/index.json` を参照してください。
 
@@ -86,7 +86,7 @@ ExampleCMS の検出を追加したい場合、`page/website-programs.json` で�
 変更後：
 
 ```bash
-pnpm run build
+bun run build
 ```
 
 ビルドが `precompileRulesPlugin` を実行してルールに `__hints` などのフィールドを注入します。次に `chrome://extensions/` で `dist/` を読み込み、実際の ExampleCMS サイトで検証します。
@@ -105,7 +105,7 @@ pnpm run build
 ## メインリポジトリへのルール貢献フロー
 
 1. [setube/stackprism](https://github.com/setube/stackprism) をフォーク
-2. ローカルにクローンして `pnpm install`、`pnpm run build` で正常にビルドできることを確認
+2. ローカルにクローンして `bun install`、`bun run build` で正常にビルドできることを確認
 3. `public/rules/` の対応するファイルを見つけてルールを追加
 4. [Wappalyzer rules](https://github.com/enthec/webappanalyzer)・公式サイト・ドキュメントから証拠を 2〜3 件 PR の説明に記載する
 5. main ブランチに PR を提出

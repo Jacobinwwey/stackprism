@@ -12,11 +12,11 @@
 
 ### オプション
 
-| オプション | 説明 |
-| --- | --- |
-| 大文字・小文字を区別 | デフォルトはオフ。オンにすると `React` と `react` が区別される |
-| 完全単語マッチ | 通常テキストモードで有効。マッチの前後が非単語文字であることを要求する（`\b` で囲む） |
-| 正規表現 | 入力を JavaScript の正規表現ソースとして扱い、上記 2 つのフラグと組み合わせる |
+| オプション           | 説明                                                                                  |
+| -------------------- | ------------------------------------------------------------------------------------- |
+| 大文字・小文字を区別 | デフォルトはオフ。オンにすると `React` と `react` が区別される                        |
+| 完全単語マッチ       | 通常テキストモードで有効。マッチの前後が非単語文字であることを要求する（`\b` で囲む） |
+| 正規表現             | 入力を JavaScript の正規表現ソースとして扱い、上記 2 つのフラグと組み合わせる         |
 
 ### 出力
 
@@ -45,27 +45,13 @@
   "url": "https://example.com",
   "title": "Example",
   "generatedAt": "2026-05-10T10:00:00.000Z",
-  "technologies": [
-    /* マージ後の重複排除リスト */
-  ],
-  "resources": {
-    /* リソースサマリー */
-  },
-  "headers": {
-    /* メインドキュメントのレスポンスヘッダー */
-  },
-  "apiObservations": [
-    /* 各 API レスポンスの url/headers/technologies */
-  ],
-  "frameObservations": [
-    /* 各 iframe の同上 */
-  ],
-  "dynamicObservations": {
-    /* 動的に収集されたスクリプト/スタイル/iframe/feedLinks/domMarkers */
-  },
-  "notes": [
-    /* 方法論に関するいくつかの説明 */
-  ]
+  "technologies": [/* マージ後の重複排除リスト */],
+  "resources": {/* リソースサマリー */},
+  "headers": {/* メインドキュメントのレスポンスヘッダー */},
+  "apiObservations": [/* 各 API レスポンスの url/headers/technologies */],
+  "frameObservations": [/* 各 iframe の同上 */],
+  "dynamicObservations": {/* 動的に収集されたスクリプト/スタイル/iframe/feedLinks/domMarkers */},
+  "notes": [/* 方法論に関するいくつかの説明 */]
 }
 ```
 

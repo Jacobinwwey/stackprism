@@ -4,14 +4,14 @@ As regras personalizadas servem para cobrir sites não contemplados pelas regras
 
 ## Preenchimento do formulário
 
-| Campo               | Obrigatório | Descrição                                                                                                    |
-| ------------------- | ----------- | ------------------------------------------------------------------------------------------------------------ |
-| **Nome da tecnologia** | Sim      | Nome exibido no popup, ex.: `MyCMS`                                                                          |
-| **Categoria**       |             | Selecione uma categoria integrada (23 disponíveis) ou digite uma nova. Padrão: "Outras bibliotecas". O componente Select suporta entrada livre. |
-| **Descrição do tipo** |           | Nota para uso próprio, ex.: `CMS corporativo`, `pagamento de terceiros`. Aparece como prefixo nas evidências; pode ficar vazio. |
-| **Confiança**       |             | Alta / Média / Baixa; padrão: "Média"                                                                        |
-| **Método de correspondência** |  | Palavra-chave / Expressão regular; padrão: "Expressão regular"                                               |
-| **URL do site / repositório** |  | Deve começar com `http://` ou `https://`. Se preenchido, o nome da tecnologia no popup se torna clicável    |
+| Campo                         | Obrigatório | Descrição                                                                                                                                       |
+| ----------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Nome da tecnologia**        | Sim         | Nome exibido no popup, ex.: `MyCMS`                                                                                                             |
+| **Categoria**                 |             | Selecione uma categoria integrada (23 disponíveis) ou digite uma nova. Padrão: "Outras bibliotecas". O componente Select suporta entrada livre. |
+| **Descrição do tipo**         |             | Nota para uso próprio, ex.: `CMS corporativo`, `pagamento de terceiros`. Aparece como prefixo nas evidências; pode ficar vazio.                 |
+| **Confiança**                 |             | Alta / Média / Baixa; padrão: "Média"                                                                                                           |
+| **Método de correspondência** |             | Palavra-chave / Expressão regular; padrão: "Expressão regular"                                                                                  |
+| **URL do site / repositório** |             | Deve começar com `http://` ou `https://`. Se preenchido, o nome da tecnologia no popup se torna clicável                                        |
 
 Abaixo há quatro áreas adicionais:
 

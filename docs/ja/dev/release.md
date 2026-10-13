@@ -3,13 +3,13 @@
 ## ローカルビルド
 
 ```bash
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 ビルドチェーン：
 
-1. `pnpm run build:injected`（`build-scripts/build-injected.mjs`）：esbuild が `src/injected/page-detector.ts` と `page-source-search.ts` をそれぞれ独立した IIFE ファイルにコンパイルし、`public/injected/` に出力
+1. `bun run build:injected`（`build-scripts/build-injected.mjs`）：esbuild が `src/injected/page-detector.ts` と `page-source-search.ts` をそれぞれ独立した IIFE ファイルにコンパイルし、`public/injected/` に出力
 2. `vite build`（`@crxjs/vite-plugin`）：background / popup / settings / help の 4 つのエントリーポイントをバンドルし、`dist/` に出力
 3. `precompileRulesPlugin`（vite plugin の closeBundle フック）：`dist/rules/*.json` をスキャンし、各 leaf rule に `__hints` / `__legacyHints` / `__keywordCombined` を注入
 4. `minifyJsonAssets`（vite plugin の closeBundle フック）：すべての JSON を `JSON.stringify(parsed)` で書き直してインデントと改行を削除
@@ -19,7 +19,7 @@ pnpm run build
 ## 開発ホットリロード
 
 ```bash
-pnpm run dev
+bun run dev
 ```
 
 Vite dev サーバー + crxjs HMR：`src/ui/**` の popup / settings / help を変更すると自動でホットリプレースされます。`src/background/**` のバックグラウンドコードや `src/content/**` のコンテンツスクリプトを変更した後は、`chrome://extensions/` で拡張機能カードの更新ボタンをクリックして再読み込みが必要です。
@@ -27,8 +27,8 @@ Vite dev サーバー + crxjs HMR：`src/ui/**` の popup / settings / help を�
 ## 型チェックと lint
 
 ```bash
-pnpm run typecheck    # vue-tsc --noEmit、プロジェクト全体の厳密な型チェック
-pnpm run lint         # eslint src
+bun run typecheck    # vue-tsc --noEmit、プロジェクト全体の厳密な型チェック
+bun run lint         # eslint src
 ```
 
 コミット前に全体のフォーマットを統一：
@@ -66,9 +66,9 @@ git push origin main
 
 ワークフローが行うこと：
 
-1. checkout + pnpm + Node 20 のインストール
-2. `pnpm install --frozen-lockfile`
-3. `pnpm run build`
+1. checkout + bun + Node 20 のインストール
+2. `bun install --frozen-lockfile`
+3. `bun run build`
 4. `dist/manifest.json` から version を読み取り、release タグと一致することを確認
 5. `dist/` 全体を `stackprism-v{ver}.zip` + sha256 に圧縮
 6. **secret `EXTENSION_PRIVATE_KEY` が設定されている場合**、`npx crx3` で `stackprism-v{ver}.crx` + sha256 を署名して生成。設定されていない場合は crx をスキップして zip のみ
@@ -116,9 +116,9 @@ openssl genrsa -out extension.pem 2048
 ## リリースチェックリスト
 
 - [ ] `npx prettier --write .` を実行済み
-- [ ] `pnpm run typecheck` が通過
-- [ ] `pnpm run lint` が通過
-- [ ] `pnpm run build` が通過
+- [ ] `bun run typecheck` が通過
+- [ ] `bun run lint` が通過
+- [ ] `bun run build` が通過
 - [ ] Chrome で `dist/` を読み込んで主要なパスを手動テスト（ポップアップを開く・サイトを検出・更新・完全な技術スタックレポートのコピー・設定ページでルールを追加）
 - [ ] `package.json` の version を bump
 - [ ] git commit + push

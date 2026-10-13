@@ -13,25 +13,25 @@ Der folgende Abschnitt beschreibt hauptsächlich den direkten PR-Workflow.
 
 `public/rules/` ist nach Aufgaben in Dateien aufgeteilt:
 
-| Datei | Inhalt |
-| ----- | ------ |
-| `page/frontend-frameworks.json` | React / Vue / Angular / diverse Frontend-Frameworks |
-| `page/ui-frameworks.json` | Tailwind / Bootstrap / Element / Antd und andere UI-Bibliotheken |
-| `page/build-runtime.json` | Webpack / Vite / Rollup / Bun und andere Build-Tools |
+| Datei                              | Inhalt                                                               |
+| ---------------------------------- | -------------------------------------------------------------------- |
+| `page/frontend-frameworks.json`    | React / Vue / Angular / diverse Frontend-Frameworks                  |
+| `page/ui-frameworks.json`          | Tailwind / Bootstrap / Element / Antd und andere UI-Bibliotheken     |
+| `page/build-runtime.json`          | Webpack / Vite / Rollup / Bun und andere Build-Tools                 |
 | `page/frontend-cdn-libraries.json` | Benannte Frontend-Bibliotheken via CDN (jQuery, lodash, moment usw.) |
-| `page/wordpress-plugins.json` | 4.500+ WordPress-Plugins |
-| `page/drupal-modules.json` | 4.000+ Drupal-Module |
-| `page/cms-themes.json` | CMS-Themes |
-| `page/website-programs.json` | WordPress / Drupal / Discuz! und andere CMS selbst |
-| `page/payment-systems.json` | Zahlungsplattformen |
-| `page/third-party-logins.json` | Drittanbieter-Login |
-| `page/saas-services.json` | SaaS (Sentry / Mixpanel / Intercom usw.) |
-| `page/analytics-providers.json` | Analytics und Statistik |
-| `page/cdn-providers.json` | CDN-Anbieter (Erkennung über Frontend-Laufzeit) |
-| `headers/server-products.json` | Serverprodukte, erkannt über `Server:`-Header |
-| `headers/cdn-providers.json` | CDNs, erkannt über Antwortheader |
-| `headers/website-programs.json` | CMS, erkannt über Antwortheader |
-| ... | |
+| `page/wordpress-plugins.json`      | 4.500+ WordPress-Plugins                                             |
+| `page/drupal-modules.json`         | 4.000+ Drupal-Module                                                 |
+| `page/cms-themes.json`             | CMS-Themes                                                           |
+| `page/website-programs.json`       | WordPress / Drupal / Discuz! und andere CMS selbst                   |
+| `page/payment-systems.json`        | Zahlungsplattformen                                                  |
+| `page/third-party-logins.json`     | Drittanbieter-Login                                                  |
+| `page/saas-services.json`          | SaaS (Sentry / Mixpanel / Intercom usw.)                             |
+| `page/analytics-providers.json`    | Analytics und Statistik                                              |
+| `page/cdn-providers.json`          | CDN-Anbieter (Erkennung über Frontend-Laufzeit)                      |
+| `headers/server-products.json`     | Serverprodukte, erkannt über `Server:`-Header                        |
+| `headers/cdn-providers.json`       | CDNs, erkannt über Antwortheader                                     |
+| `headers/website-programs.json`    | CMS, erkannt über Antwortheader                                      |
+| ...                                |                                                                      |
 
 Die vollständige Liste findet sich in `public/rules/index.json`.
 
@@ -86,7 +86,7 @@ Die Regel der Untergruppe zuordnen, die zur eigenen Einschätzung der Erkennungs
 Nach dem Bearbeiten:
 
 ```bash
-pnpm run build
+bun run build
 ```
 
 Der Build führt `precompileRulesPlugin` aus, das `__hints` und andere Felder in die Regeln injiziert. Anschließend unter `chrome://extensions/` das Verzeichnis `dist/` laden und die Regel auf einer echten ExampleCMS-Website prüfen.
@@ -105,7 +105,7 @@ Alternativ zunächst die Regel im Panel „Benutzerdefinierte Regeln" als Nutzer
 ## Workflow für Beiträge zum Hauptrepository
 
 1. [setube/stackprism](https://github.com/setube/stackprism) forken
-2. Lokal klonen, `pnpm install`, `pnpm run build` — sicherstellen, dass der Build korrekt durchläuft
+2. Lokal klonen, `bun install`, `bun run build` — sicherstellen, dass der Build korrekt durchläuft
 3. Die entsprechende Datei unter `public/rules/` finden und die Regel ergänzen
 4. 2–3 Belege aus [Wappalyzer rules](https://github.com/enthec/webappanalyzer), der offiziellen Website oder der Dokumentation sammeln und in die PR-Beschreibung aufnehmen
 5. PR gegen den main-Branch einreichen

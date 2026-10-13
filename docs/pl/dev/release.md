@@ -3,13 +3,13 @@
 ## Lokalne budowanie
 
 ```bash
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 Łańcuch budowania:
 
-1. `pnpm run build:injected` (`build-scripts/build-injected.mjs`): esbuild kompiluje `src/injected/page-detector.ts` i `page-source-search.ts` jako oddzielne pliki IIFE do `public/injected/`
+1. `bun run build:injected` (`build-scripts/build-injected.mjs`): esbuild kompiluje `src/injected/page-detector.ts` i `page-source-search.ts` jako oddzielne pliki IIFE do `public/injected/`
 2. `vite build` (`@crxjs/vite-plugin`): pakuje cztery wejścia — background / popup / settings / help — do `dist/`
 3. `precompileRulesPlugin` (hook `closeBundle` pluginu Vite): skanuje `dist/rules/*.json` i dla każdej reguły liścia wstrzykuje `__hints` / `__legacyHints` / `__keywordCombined`
 4. `minifyJsonAssets` (hook `closeBundle` pluginu Vite): wszystkie pliki JSON są przepisywane przez `JSON.stringify(parsed)`, usuwając wcięcia i białe znaki
@@ -19,7 +19,7 @@ Gotowy katalog `dist/` można bezpośrednio załadować w trybie dewelopera na s
 ## Tryb deweloperski z hot reload
 
 ```bash
-pnpm run dev
+bun run dev
 ```
 
 Serwer deweloperski Vite + HMR crxjs: zmiany w `src/ui/**` (okno podręczne / ustawienia / instrukcja obsługi) są automatycznie podstawiane bez przeładowania. Po zmianach w `src/background/**` lub `src/content/**` należy kliknąć przycisk odświeżania na karcie rozszerzenia w `chrome://extensions/`.
@@ -27,8 +27,8 @@ Serwer deweloperski Vite + HMR crxjs: zmiany w `src/ui/**` (okno podręczne / us
 ## Sprawdzanie typów i linting
 
 ```bash
-pnpm run typecheck    # vue-tsc --noEmit, ścisłe sprawdzanie typów w całym projekcie
-pnpm run lint         # eslint src
+bun run typecheck    # vue-tsc --noEmit, ścisłe sprawdzanie typów w całym projekcie
+bun run lint         # eslint src
 ```
 
 Przed zatwierdzeniem zmian uruchom formatowanie dla całego projektu:
@@ -66,9 +66,9 @@ git push origin main
 
 Przepływ wydania:
 
-1. checkout + instalacja pnpm + Node 20
-2. `pnpm install --frozen-lockfile`
-3. `pnpm run build`
+1. checkout + instalacja bun + Node 20
+2. `bun install --frozen-lockfile`
+3. `bun run build`
 4. Odczyt wersji z `dist/manifest.json`, weryfikacja zgodności z tagiem release
 5. Spakowanie całego `dist/` do `stackprism-v{ver}.zip` + sha256
 6. **Jeśli skonfigurowano sekret `EXTENSION_PRIVATE_KEY`**: podpisanie pliku `stackprism-v{ver}.crx` przez `npx crx3` + sha256; w przeciwnym razie krok pomijany, wysyłany tylko zip
@@ -116,9 +116,9 @@ Przepływ wydania nadal działa, ale w artefaktach nie będzie pliku `.crx`. Uż
 ## Lista kontrolna przed wydaniem
 
 - [ ] Wykonano `npx prettier --write .`
-- [ ] `pnpm run typecheck` zakończone sukcesem
-- [ ] `pnpm run lint` zakończone sukcesem
-- [ ] `pnpm run build` zakończone sukcesem
+- [ ] `bun run typecheck` zakończone sukcesem
+- [ ] `bun run lint` zakończone sukcesem
+- [ ] `bun run build` zakończone sukcesem
 - [ ] Ręczne testy kluczowych ścieżek w Chrome po załadowaniu `dist/` (otwarcie okna podręcznego, rozpoznanie strony, odświeżenie, skopiowanie pełnego raportu stosu technologicznego, dodanie reguły na stronie ustawień)
 - [ ] Aktualizacja numeru wersji w `package.json`
 - [ ] git commit + push

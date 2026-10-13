@@ -1,11 +1,5 @@
 <div align="center">
 
-[简体中文](../README.md) · [English](README.en.md) · [繁體中文](README.zh-Hant.md) · **日本語** · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · [Čeština](README.cs.md) · [Polski](README.pl.md)
-
-</div>
-
-<div align="center">
-
 <img src="../public/icons/icon256.png" alt="StackPrism" width="160" height="160" />
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/cagpdifljieeiajlhlcboelglkalofak?label=Chrome%20Web%20Store&color=FBBC04)](https://chromewebstore.google.com/detail/stackprism/cagpdifljieeiajlhlcboelglkalofak)
@@ -19,6 +13,12 @@
 # StackPrism — Web テックスタック検出ツール
 
 > 6つの次元（ランタイムグローバル変数、DOM、リソースURL、レスポンスヘッダー、動的読み込み、JSコピーライトコメント）から手がかりを収集し、任意のウェブサイトを動かす技術を識別・分類します。
+
+<div align="center">
+
+[简体中文](../README.md) · [English](README.en.md) · [繁體中文](README.zh-Hant.md) · **日本語** · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · [Čeština](README.cs.md) · [Polski](README.pl.md)
+
+</div>
 
 [はじめに](#はじめに) • [機能](#機能) • [ルールシステム](#ルールシステム) • [注意事項](#注意事項) • [コントリビュート](#コントリビュート) • [スポンサー](SPONSORS.md) • [スター履歴](#スター履歴) • [ライセンス](#ライセンス)
 
@@ -68,9 +68,9 @@ HTMLリソースURLのスキャンのみを行う同種のツールとは異な�
 ```bash
 git clone https://github.com/setube/stackprism.git
 cd stackprism
-pnpm install
-pnpm run build            # Chrome / Edge
-pnpm run build:firefox    # Firefox
+bun install
+bun run build            # Chrome / Edge
+bun run build:firefox    # Firefox
 ```
 
 **Chrome / Edge:**
@@ -84,17 +84,17 @@ pnpm run build:firefox    # Firefox
 
 1. `about:debugging#/runtime/this-firefox` を開く
 2. 「一時的なアドオンを読み込む」をクリックし、`dist-firefox/manifest.json` を選択
-3. または `pnpm run build:firefox` を実行して、`release/` 内の `.xpi` をダブルクリック
+3. または `bun run build:firefox` を実行して、`release/` 内の `.xpi` をダブルクリック
 
 ### 開発
 
 ```bash
-pnpm run dev           # 開発モード + HMR
-pnpm run typecheck     # vue-tsc 型チェック
-pnpm run lint          # ESLint
-pnpm run build         # プロダクションビルド（ルールプリコンパイルを含む）
-pnpm run build:firefox # Firefox ビルド + .xpi パッケージング
-pnpm run docs:dev      # VitePress ドキュメントプレビュー
+bun run dev           # 開発モード + HMR
+bun run typecheck     # vue-tsc 型チェック
+bun run lint          # ESLint
+bun run build         # プロダクションビルド（ルールプリコンパイルを含む）
+bun run build:firefox # Firefox ビルド + .xpi パッケージング
+bun run docs:dev      # VitePress ドキュメントプレビュー
 ```
 
 ## ルールシステム
@@ -148,7 +148,7 @@ StackPrism は50以上のカテゴリにわたる2000以上の検出ルールを
 - **ルールのコントリビュート** — 設定の「ルールコントリビュートを送信」をクリックするか、[`public/rules/`](public/rules/) に直接PRを送ってください
 - **ディスカッションと提案** — [Discussions](https://github.com/setube/stackprism/discussions)
 
-コードを提出する前に `pnpm run typecheck && pnpm run lint && pnpm run build` を実行し、すべて通過することを確認してください。
+コードを提出する前に `bun run typecheck && bun run lint && bun run build` を実行し、すべて通過することを確認してください。
 
 ## スター履歴
 

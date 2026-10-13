@@ -14,7 +14,7 @@ mkdirSync(outDir, { recursive: true })
 
 for (const entry of entries) {
   console.log(`\n[build-injected] building ${entry}.iife.js`)
-  const result = spawnSync('pnpm', ['exec', 'vite', 'build', '--config', 'vite.injected.config.ts'], {
+  const result = spawnSync('bunx', ['vite', 'build', '--config', 'vite.injected.config.ts'], {
     cwd: root,
     stdio: 'inherit',
     env: { ...process.env, INJECTED_ENTRY: entry },

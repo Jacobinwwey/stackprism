@@ -12,11 +12,11 @@ Obsługuje zwykły tekst i wyrażenia regularne. Wciśnij Enter lub kliknij „S
 
 ### Opcje
 
-| Opcja                    | Opis                                                                                     |
-| ------------------------ | ---------------------------------------------------------------------------------------- |
-| Rozróżniaj wielkość liter | Domyślnie wyłączone; po włączeniu `React` i `react` są traktowane jako różne ciągi      |
-| Całe słowo               | Działa w trybie zwykłego tekstu; wymaga, aby przed i po dopasowaniu znajdował się znak niebędący literą (owija wyrażenie w `\b`) |
-| Wyrażenie regularne      | Traktuje wprowadzony tekst jako źródło wyrażenia regularnego JavaScript, łącząc je z powyższymi flagami |
+| Opcja                     | Opis                                                                                                                             |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Rozróżniaj wielkość liter | Domyślnie wyłączone; po włączeniu `React` i `react` są traktowane jako różne ciągi                                               |
+| Całe słowo                | Działa w trybie zwykłego tekstu; wymaga, aby przed i po dopasowaniu znajdował się znak niebędący literą (owija wyrażenie w `\b`) |
+| Wyrażenie regularne       | Traktuje wprowadzony tekst jako źródło wyrażenia regularnego JavaScript, łącząc je z powyższymi flagami                          |
 
 ### Wyniki
 
@@ -45,27 +45,13 @@ Wynikiem jest pełny JSON o następującej strukturze:
   "url": "https://example.com",
   "title": "Example",
   "generatedAt": "2026-05-10T10:00:00.000Z",
-  "technologies": [
-    /* scalona i zdeduplikowana lista */
-  ],
-  "resources": {
-    /* podsumowanie zasobów */
-  },
-  "headers": {
-    /* nagłówki odpowiedzi głównego dokumentu */
-  },
-  "apiObservations": [
-    /* url/headers/technologies dla każdego żądania API */
-  ],
-  "frameObservations": [
-    /* j.w. dla każdego iframe */
-  ],
-  "dynamicObservations": {
-    /* skrypty/style/iframe/feedLinks/domMarkers zebrane dynamicznie */
-  },
-  "notes": [
-    /* kilka uwag metodologicznych */
-  ]
+  "technologies": [/* scalona i zdeduplikowana lista */],
+  "resources": {/* podsumowanie zasobów */},
+  "headers": {/* nagłówki odpowiedzi głównego dokumentu */},
+  "apiObservations": [/* url/headers/technologies dla każdego żądania API */],
+  "frameObservations": [/* j.w. dla każdego iframe */],
+  "dynamicObservations": {/* skrypty/style/iframe/feedLinks/domMarkers zebrane dynamicznie */},
+  "notes": [/* kilka uwag metodologicznych */]
 }
 ```
 

@@ -11,25 +11,25 @@ La suite détaille le flux de la PR directe.
 
 `public/rules/` est découpé par responsabilité :
 
-| Fichier                              | Contenu                                                   |
-| ------------------------------------ | --------------------------------------------------------- |
-| `page/frontend-frameworks.json`      | React / Vue / Angular / divers frameworks frontend        |
-| `page/ui-frameworks.json`            | Tailwind / Bootstrap / Element / Antd et autres UI        |
-| `page/build-runtime.json`            | Webpack / Vite / Rollup / Bun et autres outils de build   |
-| `page/frontend-cdn-libraries.json`   | Bibliothèques frontend nommées chargées via CDN           |
-| `page/wordpress-plugins.json`        | 4 500+ plugins WordPress                                  |
-| `page/drupal-modules.json`           | 4 000+ modules Drupal                                     |
-| `page/cms-themes.json`               | Thèmes CMS                                                |
-| `page/website-programs.json`         | WordPress / Drupal / Discuz! et autres CMS                |
-| `page/payment-systems.json`          | Plateformes de paiement                                   |
-| `page/third-party-logins.json`       | Connexions tierces                                        |
-| `page/saas-services.json`            | SaaS (Sentry / Mixpanel / Intercom, etc.)                 |
-| `page/analytics-providers.json`      | Statistiques et analytique                                |
-| `page/cdn-providers.json`            | CDN (détection côté runtime frontend)                     |
-| `headers/server-products.json`       | Produits serveurs identifiés par l'en-tête `Server:`      |
-| `headers/cdn-providers.json`         | CDN identifiés par les en-têtes de réponse                |
-| `headers/website-programs.json`      | CMS identifiés par les en-têtes de réponse                |
-| ...                                  |                                                           |
+| Fichier                            | Contenu                                                 |
+| ---------------------------------- | ------------------------------------------------------- |
+| `page/frontend-frameworks.json`    | React / Vue / Angular / divers frameworks frontend      |
+| `page/ui-frameworks.json`          | Tailwind / Bootstrap / Element / Antd et autres UI      |
+| `page/build-runtime.json`          | Webpack / Vite / Rollup / Bun et autres outils de build |
+| `page/frontend-cdn-libraries.json` | Bibliothèques frontend nommées chargées via CDN         |
+| `page/wordpress-plugins.json`      | 4 500+ plugins WordPress                                |
+| `page/drupal-modules.json`         | 4 000+ modules Drupal                                   |
+| `page/cms-themes.json`             | Thèmes CMS                                              |
+| `page/website-programs.json`       | WordPress / Drupal / Discuz! et autres CMS              |
+| `page/payment-systems.json`        | Plateformes de paiement                                 |
+| `page/third-party-logins.json`     | Connexions tierces                                      |
+| `page/saas-services.json`          | SaaS (Sentry / Mixpanel / Intercom, etc.)               |
+| `page/analytics-providers.json`    | Statistiques et analytique                              |
+| `page/cdn-providers.json`          | CDN (détection côté runtime frontend)                   |
+| `headers/server-products.json`     | Produits serveurs identifiés par l'en-tête `Server:`    |
+| `headers/cdn-providers.json`       | CDN identifiés par les en-têtes de réponse              |
+| `headers/website-programs.json`    | CMS identifiés par les en-têtes de réponse              |
+| ...                                |                                                         |
 
 Liste complète dans `public/rules/index.json`.
 
@@ -84,7 +84,7 @@ Placez la règle dans le sous-groupe de confiance qui correspond à votre estima
 Après modification :
 
 ```bash
-pnpm run build
+bun run build
 ```
 
 Le build lance `precompileRulesPlugin` qui injecte les champs `__hints` et autres dans les règles. Chargez ensuite `dist/` dans `chrome://extensions/` et vérifiez sur un vrai site ExampleCMS.
@@ -103,7 +103,7 @@ Vous pouvez aussi utiliser le panneau « Règles personnalisées » pour écrire
 ## Processus pour contribuer au dépôt principal
 
 1. Forkez [setube/stackprism](https://github.com/setube/stackprism)
-2. Clonez localement, lancez `pnpm install` puis `pnpm run build` pour vérifier que le build fonctionne
+2. Clonez localement, lancez `bun install` puis `bun run build` pour vérifier que le build fonctionne
 3. Trouvez le fichier correspondant dans `public/rules/` et ajoutez la règle
 4. Récupérez 2 à 3 preuves depuis [Wappalyzer rules](https://github.com/enthec/webappanalyzer), le site officiel ou la documentation, et incluez-les dans la description de la PR
 5. Soumettez la PR sur la branche `main`

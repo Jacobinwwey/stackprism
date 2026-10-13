@@ -104,16 +104,16 @@ Chrome rozšíření má čtyři spouštěcí prostředí — StackPrism využí
 
 Všech 8 typů zpráv je definováno jako discriminated union v `src/types/messages.ts`; všechna volání procházejí wrapperem `sendMessage<M>()` v `src/utils/messaging.ts`.
 
-| Zpráva                        | Směr          | Účel                                        |
-| ----------------------------- | ------------- | ------------------------------------------- |
-| `GET_HEADER_DATA`             | popup → bg    | načtení záznamu hlaviček odpovědí           |
+| Zpráva                        | Směr          | Účel                                                               |
+| ----------------------------- | ------------- | ------------------------------------------------------------------ |
+| `GET_HEADER_DATA`             | popup → bg    | načtení záznamu hlaviček odpovědí                                  |
 | `GET_POPUP_RESULT`            | popup → bg    | načtení odlehčené mezipaměti (hlavní zobrazení vyskakovacího okna) |
-| `GET_POPUP_RAW_RESULT`        | popup → bg    | načtení kompletního raw (surové stopy / zpětná vazba pro opravu) |
-| `GET_TECH_LINK`               | popup → bg    | záložní dotaz na odkaz na oficiální web technologie |
-| `START_BACKGROUND_DETECTION`  | popup → bg    | aktivní detekce spuštěná tlačítkem „Obnovit" |
-| `GET_WORDPRESS_THEME_DETAILS` | bg interní    | načtení hlavičky style.css tématu           |
-| `DYNAMIC_PAGE_SNAPSHOT`       | content → bg  | průběžné hlášení dynamických snímků z content scriptu |
-| `PAGE_DETECTION_RESULT`       | injected → bg | výsledek vrácený po vložení page-detector   |
+| `GET_POPUP_RAW_RESULT`        | popup → bg    | načtení kompletního raw (surové stopy / zpětná vazba pro opravu)   |
+| `GET_TECH_LINK`               | popup → bg    | záložní dotaz na odkaz na oficiální web technologie                |
+| `START_BACKGROUND_DETECTION`  | popup → bg    | aktivní detekce spuštěná tlačítkem „Obnovit"                       |
+| `GET_WORDPRESS_THEME_DETAILS` | bg interní    | načtení hlavičky style.css tématu                                  |
+| `DYNAMIC_PAGE_SNAPSHOT`       | content → bg  | průběžné hlášení dynamických snímků z content scriptu              |
+| `PAGE_DETECTION_RESULT`       | injected → bg | výsledek vrácený po vložení page-detector                          |
 
 ## Problém dvou cest pro vložené skripty
 

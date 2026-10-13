@@ -29,26 +29,26 @@ Chrome では .crx ファイルのドラッグ＆ドロップによるインス�
 ```bash
 git clone https://github.com/setube/stackprism.git
 cd stackprism
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 ビルド成果物は `dist/` に出力されます。`chrome://extensions/` のデベロッパーモードで `dist/` ディレクトリを読み込んでください。
 
-ソースコードを変更した後は `pnpm run build` を再実行し、拡張機能ページの拡張機能カードにある更新ボタンをクリックすれば新しいバージョンが読み込まれます。
+ソースコードを変更した後は `bun run build` を再実行し、拡張機能ページの拡張機能カードにある更新ボタンをクリックすれば新しいバージョンが読み込まれます。
 
 ## 有効化と権限
 
 初回インストール時に以下の権限が要求されます：
 
-| 権限 | 用途 |
-| --- | --- |
-| `tabs` | 現在のタブの URL とタイトルを読み取る |
-| `activeTab` | 現在アクティブなページに検出スクリプトを注入する |
-| `scripting` | page-detector / page-source-search をページのメインワールドに注入する |
-| `storage` | 設定・検出結果のキャッシュ・テーマ設定を保存する |
-| `webRequest` | レスポンスヘッダーを監視して server / x-powered-by などを収集する |
-| `<all_urls>` | すべての http(s) ウェブページで動作する |
+| 権限         | 用途                                                                  |
+| ------------ | --------------------------------------------------------------------- |
+| `tabs`       | 現在のタブの URL とタイトルを読み取る                                 |
+| `activeTab`  | 現在アクティブなページに検出スクリプトを注入する                      |
+| `scripting`  | page-detector / page-source-search をページのメインワールドに注入する |
+| `storage`    | 設定・検出結果のキャッシュ・テーマ設定を保存する                      |
+| `webRequest` | レスポンスヘッダーを監視して server / x-powered-by などを収集する     |
+| `<all_urls>` | すべての http(s) ウェブページで動作する                               |
 
 検出処理は外部 API に依存しません。ルールファイルは拡張機能にバンドルされており、検出結果はブラウザーのメモリと拡張機能のストレージ内でのみ処理されます。
 

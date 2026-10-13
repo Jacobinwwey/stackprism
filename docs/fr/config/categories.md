@@ -4,30 +4,30 @@ La première section de la page de paramètres regroupe les interrupteurs de cat
 
 ## Toutes les catégories
 
-| Catégorie                  | Exemples                                                                          |
-| -------------------------- | --------------------------------------------------------------------------------- |
-| Frameworks frontend        | React, Vue, Angular, Next.js, Nuxt, Gatsby, Remix, SvelteKit, Astro               |
-| Frameworks UI / CSS        | Tailwind CSS, Bootstrap, Material UI, Ant Design, Element Plus, Chakra UI         |
-| Runtime de build           | Webpack, Vite, Rollup, Parcel, esbuild, SWC, Turbopack, Bun                      |
-| CDN / Hébergement          | Cloudflare, Akamai, Fastly, AWS CloudFront, Vercel, Netlify, jsDelivr             |
-| WAF / Pare-feu             | SafeLine, BT Website Firewall, 安全狗, 云锁, Alibaba Cloud WAF, AWS WAF           |
-| Frameworks backend         | Django, Flask, Rails, Laravel, Express, Koa, Spring, ASP.NET                     |
-| Programmes de site         | WordPress, Drupal, Discuz!, Typecho, ZBlog, phpBB, MediaWiki                     |
-| Thèmes / Modèles           | Thèmes WordPress, thèmes Drupal, reconstruction de chemins de modèles CMS        |
-| Langages / Runtimes        | PHP, Node.js, Python, Ruby, Java, Go, Rust                                       |
-| Statistiques / Analytique  | Google Analytics, Baidu Statistics, Umeng, Plausible, Umami                      |
-| Connexions tierces         | Google Sign-In, GitHub OAuth, WeChat Login, Auth0, Clerk                         |
-| Systèmes de paiement       | Stripe, PayPal, Alipay, WeChat Pay, UnionPay                                     |
-| Publicité & Marketing      | Google Ads, Facebook Pixel, TikTok Pixel                                         |
-| Services SaaS              | Sentry, Mixpanel, Intercom, Crisp, HubSpot                                       |
-| IA / LLM                   | Open WebUI, Dify, Flowise, Gradio, ComfyUI                                       |
-| Sondes / Monitoring        | New Relic, Datadog, Pingdom, Hotjar                                              |
-| RSS / Abonnements          | RSS, Atom, JSON Feed                                                             |
-| Plugins WordPress          | 4 500+ plugins nommés                                                            |
-| Modules Drupal             | 4 000+ modules nommés                                                            |
-| Sécurité & Protocoles      | HTTPS, CSP, Service Worker                                                       |
-| Autres bibliothèques       | Catégorie par défaut des règles personnalisées et catégorie de repli             |
-| … 24 catégories au total   |                                                                                   |
+| Catégorie                 | Exemples                                                                  |
+| ------------------------- | ------------------------------------------------------------------------- |
+| Frameworks frontend       | React, Vue, Angular, Next.js, Nuxt, Gatsby, Remix, SvelteKit, Astro       |
+| Frameworks UI / CSS       | Tailwind CSS, Bootstrap, Material UI, Ant Design, Element Plus, Chakra UI |
+| Runtime de build          | Webpack, Vite, Rollup, Parcel, esbuild, SWC, Turbopack, Bun               |
+| CDN / Hébergement         | Cloudflare, Akamai, Fastly, AWS CloudFront, Vercel, Netlify, jsDelivr     |
+| WAF / Pare-feu            | SafeLine, BT Website Firewall, 安全狗, 云锁, Alibaba Cloud WAF, AWS WAF   |
+| Frameworks backend        | Django, Flask, Rails, Laravel, Express, Koa, Spring, ASP.NET              |
+| Programmes de site        | WordPress, Drupal, Discuz!, Typecho, ZBlog, phpBB, MediaWiki              |
+| Thèmes / Modèles          | Thèmes WordPress, thèmes Drupal, reconstruction de chemins de modèles CMS |
+| Langages / Runtimes       | PHP, Node.js, Python, Ruby, Java, Go, Rust                                |
+| Statistiques / Analytique | Google Analytics, Baidu Statistics, Umeng, Plausible, Umami               |
+| Connexions tierces        | Google Sign-In, GitHub OAuth, WeChat Login, Auth0, Clerk                  |
+| Systèmes de paiement      | Stripe, PayPal, Alipay, WeChat Pay, UnionPay                              |
+| Publicité & Marketing     | Google Ads, Facebook Pixel, TikTok Pixel                                  |
+| Services SaaS             | Sentry, Mixpanel, Intercom, Crisp, HubSpot                                |
+| IA / LLM                  | Open WebUI, Dify, Flowise, Gradio, ComfyUI                                |
+| Sondes / Monitoring       | New Relic, Datadog, Pingdom, Hotjar                                       |
+| RSS / Abonnements         | RSS, Atom, JSON Feed                                                      |
+| Plugins WordPress         | 4 500+ plugins nommés                                                     |
+| Modules Drupal            | 4 000+ modules nommés                                                     |
+| Sécurité & Protocoles     | HTTPS, CSP, Service Worker                                                |
+| Autres bibliothèques      | Catégorie par défaut des règles personnalisées et catégorie de repli      |
+| … 24 catégories au total  |                                                                           |
 
 Liste complète : tableau `CATEGORY_ORDER` dans `src/utils/category-order.ts`.
 

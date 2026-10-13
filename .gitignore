@@ -28,7 +28,7 @@ playwright-report/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
+bun-debug.log*
 
 # Local-only scripts and scratch tools
 tools/

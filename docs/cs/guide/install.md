@@ -29,26 +29,26 @@ Vhodné pro vývojáře nebo uživatele, kteří chtějí sledovat nejnovější
 ```bash
 git clone https://github.com/setube/stackprism.git
 cd stackprism
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 Výstup sestavení je ve složce `dist/`. V režimu pro vývojáře na `chrome://extensions/` načtěte složku `dist/`.
 
-Po úpravě zdrojového kódu stačí znovu spustit `pnpm run build` a na stránce rozšíření kliknout na tlačítko obnovení u karty rozšíření, čímž se načte nová verze.
+Po úpravě zdrojového kódu stačí znovu spustit `bun run build` a na stránce rozšíření kliknout na tlačítko obnovení u karty rozšíření, čímž se načte nová verze.
 
 ## Aktivace a oprávnění
 
 Při prvním instalaci si rozšíření vyžádá následující oprávnění:
 
-| Oprávnění    | Účel                                                             |
-| ------------ | ---------------------------------------------------------------- |
-| `tabs`       | Čtení URL / titulku aktuální záložky                             |
-| `activeTab`  | Vložení detekčního skriptu do aktuálně aktivní stránky           |
+| Oprávnění    | Účel                                                                 |
+| ------------ | -------------------------------------------------------------------- |
+| `tabs`       | Čtení URL / titulku aktuální záložky                                 |
+| `activeTab`  | Vložení detekčního skriptu do aktuálně aktivní stránky               |
 | `scripting`  | Vložení page-detector / page-source-search do hlavního světa stránky |
-| `storage`    | Ukládání nastavení, mezipaměti výsledků detekce a preferencí motivu |
-| `webRequest` | Sledování hlaviček odpovědí pro sběr server / x-powered-by aj.  |
-| `<all_urls>` | Provoz na všech http(s) stránkách                                |
+| `storage`    | Ukládání nastavení, mezipaměti výsledků detekce a preferencí motivu  |
+| `webRequest` | Sledování hlaviček odpovědí pro sběr server / x-powered-by aj.       |
+| `<all_urls>` | Provoz na všech http(s) stránkách                                    |
 
 Detekce nevyžaduje žádné externí API: soubory pravidel jsou přibaleny k rozšíření lokálně a výsledky detekce zůstávají výhradně v paměti prohlížeče a úložišti rozšíření.
 

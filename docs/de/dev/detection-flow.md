@@ -118,11 +118,13 @@ const runActivePageDetection = async tabId => {
 ## Dynamisches Erfassungs-Throttling
 
 Content-Observer-Seite:
+
 - Bei jedem Auslösen von MutationObserver / PerformanceObserver werden Änderungen akkumuliert
 - `scheduleSend()` setzt einen 900ms-Timer; bei Ablauf wird `DYNAMIC_PAGE_SNAPSHOT` gesendet
 - Treten zwischendurch weitere Änderungen auf, werden sie weiter gesammelt und der Timer zurückgesetzt — insgesamt maximal ein Sendevorgang pro ~900ms
 
 Background `dynamic-snapshot.ts`:
+
 - Beim Empfang der Nachricht wird 800ms gewartet (Debounce)
 - Nach dem Debounce: `detectFromDynamicSnapshot(snapshot, pageRules)` ausführen
 - In `tab:{id}.dynamic` schreiben, dann `saveTabDataAndBadge` aufrufen

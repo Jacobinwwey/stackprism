@@ -13,25 +13,25 @@ The rest of this page covers the direct PR path.
 
 `public/rules/` is split by responsibility:
 
-| File                               | Contents                                                   |
-| ---------------------------------- | ---------------------------------------------------------- |
-| `page/frontend-frameworks.json`    | React, Vue, Angular, and other frontend frameworks         |
-| `page/ui-frameworks.json`          | Tailwind, Bootstrap, Element, Ant Design, etc.             |
-| `page/build-runtime.json`          | Webpack, Vite, Rollup, Bun, and other build tools          |
+| File                               | Contents                                                               |
+| ---------------------------------- | ---------------------------------------------------------------------- |
+| `page/frontend-frameworks.json`    | React, Vue, Angular, and other frontend frameworks                     |
+| `page/ui-frameworks.json`          | Tailwind, Bootstrap, Element, Ant Design, etc.                         |
+| `page/build-runtime.json`          | Webpack, Vite, Rollup, Bun, and other build tools                      |
 | `page/frontend-cdn-libraries.json` | Named frontend libraries loaded via CDN (jQuery, lodash, moment, etc.) |
-| `page/wordpress-plugins.json`      | 4,500+ WordPress plugins                                   |
-| `page/drupal-modules.json`         | 4,000+ Drupal modules                                      |
-| `page/cms-themes.json`             | CMS themes                                                 |
-| `page/website-programs.json`       | WordPress, Drupal, Discuz!, and other CMS platforms        |
-| `page/payment-systems.json`        | Payment platforms                                          |
-| `page/third-party-logins.json`     | Third-party login providers                                |
-| `page/saas-services.json`          | SaaS (Sentry, Mixpanel, Intercom, etc.)                    |
-| `page/analytics-providers.json`    | Analytics and tracking                                     |
-| `page/cdn-providers.json`          | CDN providers (page-side detection)                        |
-| `headers/server-products.json`     | Server products detected via `Server:` header              |
-| `headers/cdn-providers.json`       | CDNs detected via response headers                         |
-| `headers/website-programs.json`    | CMSes detected via response headers                        |
-| ...                                |                                                            |
+| `page/wordpress-plugins.json`      | 4,500+ WordPress plugins                                               |
+| `page/drupal-modules.json`         | 4,000+ Drupal modules                                                  |
+| `page/cms-themes.json`             | CMS themes                                                             |
+| `page/website-programs.json`       | WordPress, Drupal, Discuz!, and other CMS platforms                    |
+| `page/payment-systems.json`        | Payment platforms                                                      |
+| `page/third-party-logins.json`     | Third-party login providers                                            |
+| `page/saas-services.json`          | SaaS (Sentry, Mixpanel, Intercom, etc.)                                |
+| `page/analytics-providers.json`    | Analytics and tracking                                                 |
+| `page/cdn-providers.json`          | CDN providers (page-side detection)                                    |
+| `headers/server-products.json`     | Server products detected via `Server:` header                          |
+| `headers/cdn-providers.json`       | CDNs detected via response headers                                     |
+| `headers/website-programs.json`    | CMSes detected via response headers                                    |
+| ...                                |                                                                        |
 
 Full list in `public/rules/index.json`.
 
@@ -86,7 +86,7 @@ Place your rule in the subgroup that matches your confidence judgment. The order
 After making changes:
 
 ```bash
-pnpm run build
+bun run build
 ```
 
 The build runs `precompileRulesPlugin` to inject `__hints` and related fields. Then load `dist/` in `chrome://extensions/` and verify against a real ExampleCMS site.
@@ -105,7 +105,7 @@ Alternatively, use the Custom Rules panel in the settings page to test the rule 
 ## PR Workflow
 
 1. Fork [setube/stackprism](https://github.com/setube/stackprism)
-2. Clone locally, run `pnpm install`, verify `pnpm run build` succeeds
+2. Clone locally, run `bun install`, verify `bun run build` succeeds
 3. Edit the relevant file under `public/rules/`
 4. Grab 2–3 evidence samples from [Wappalyzer rules](https://github.com/enthec/webappanalyzer), the official site, or docs, and include them in the PR description
 5. Open a PR targeting the main branch

@@ -70,35 +70,35 @@ La regola React espansa equivale a:
 
 ## Campi della regola foglia
 
-| Campo                   | Tipo                     | Descrizione                                                                                                       |
-| ----------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| `name`                  | string                   | Nome visualizzato nel popup                                                                                       |
-| `category`              | string                   | Categoria, ordinata da `CATEGORY_ORDER`                                                                           |
-| `kind`                  | string                   | Descrizione del tipo, può essere vuota. Appare come prefisso nell'evidence                                        |
-| `confidence`            | `"高"` / `"中"` / `"低"` | Predefinita `"中"`                                                                                                 |
-| `matchType`             | `"keyword"` / `"regex"`  | Predefinita `"regex"` (diretto `new RegExp(p, 'i')`)                                                              |
-| `patterns`              | string[]                 | Pattern di matching. Tipo keyword usa `escapeRegExp + RegExp`                                                     |
-| `selectors`             | string[]                 | Selettori CSS — corrispondenza = confidenza Alta                                                                  |
-| `globals`               | string[]                 | Nomi di variabili globali (supporta notazione punto per annidamento) — corrispondenza = confidenza Alta           |
-| `classNames`            | string[]                 | Corrispondenza esatta di una classe nel DOM — confidenza Alta                                                     |
-| `classPrefixes`         | string[]                 | Classe nel DOM con questo prefisso — confidenza Alta                                                              |
-| `cssVariables`          | string[]                 | Proprietà CSS personalizzate della pagina: N corrispondenze attivano la regola, con `minCssVariableMatches`       |
-| `minCssVariableMatches` | number                   | Predefinito 1                                                                                                     |
-| `matchIn`               | string[]                 | Limita dove i patterns vengono cercati: `url` / `resources` / `html` / `headers` / `dynamic`. Vuoto = tutto      |
-| `resourceOnly`          | boolean                  | Solo matching su URL risorsa, ignora DOM / globals / selectors                                                    |
-| `resourceHints`         | string[]                 | Fingerprint di pre-filtro definiti manualmente. Il testo deve contenere almeno un hint per entrare nel matching   |
-| `evidence`              | string                   | Testo fisso dell'evidence alla corrispondenza, sovrascrive il default "URL risorsa / DOM corrispondente"          |
-| `url`                   | string                   | URL del sito ufficiale o repository della tecnologia                                                              |
+| Campo                   | Tipo                     | Descrizione                                                                                                     |
+| ----------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| `name`                  | string                   | Nome visualizzato nel popup                                                                                     |
+| `category`              | string                   | Categoria, ordinata da `CATEGORY_ORDER`                                                                         |
+| `kind`                  | string                   | Descrizione del tipo, può essere vuota. Appare come prefisso nell'evidence                                      |
+| `confidence`            | `"高"` / `"中"` / `"低"` | Predefinita `"中"`                                                                                              |
+| `matchType`             | `"keyword"` / `"regex"`  | Predefinita `"regex"` (diretto `new RegExp(p, 'i')`)                                                            |
+| `patterns`              | string[]                 | Pattern di matching. Tipo keyword usa `escapeRegExp + RegExp`                                                   |
+| `selectors`             | string[]                 | Selettori CSS — corrispondenza = confidenza Alta                                                                |
+| `globals`               | string[]                 | Nomi di variabili globali (supporta notazione punto per annidamento) — corrispondenza = confidenza Alta         |
+| `classNames`            | string[]                 | Corrispondenza esatta di una classe nel DOM — confidenza Alta                                                   |
+| `classPrefixes`         | string[]                 | Classe nel DOM con questo prefisso — confidenza Alta                                                            |
+| `cssVariables`          | string[]                 | Proprietà CSS personalizzate della pagina: N corrispondenze attivano la regola, con `minCssVariableMatches`     |
+| `minCssVariableMatches` | number                   | Predefinito 1                                                                                                   |
+| `matchIn`               | string[]                 | Limita dove i patterns vengono cercati: `url` / `resources` / `html` / `headers` / `dynamic`. Vuoto = tutto     |
+| `resourceOnly`          | boolean                  | Solo matching su URL risorsa, ignora DOM / globals / selectors                                                  |
+| `resourceHints`         | string[]                 | Fingerprint di pre-filtro definiti manualmente. Il testo deve contenere almeno un hint per entrare nel matching |
+| `evidence`              | string                   | Testo fisso dell'evidence alla corrispondenza, sovrascrive il default "URL risorsa / DOM corrispondente"        |
+| `url`                   | string                   | URL del sito ufficiale o repository della tecnologia                                                            |
 
 ## Campi iniettati automaticamente (buildtime)
 
 `precompileRulesPlugin` in `vite.config.ts` inietta in ogni leaf rule:
 
-| Campo               | Origine                                                                                                                         |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Campo               | Origine                                                                                                                                                                                                       |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `__hints`           | Insieme di letterali necessari della regex (`src/utils/rule-hints.ts`): un testo che la pattern può colpire contiene almeno uno di questi; serve solo a saltare le regole impossibili, non altera i risultati |
-| `__legacyHints`     | Soglia di pre-filtro di 1.3.79 e precedenti (i 3 frammenti letterali più lunghi); scritta solo per le regole più restrittive di `__hints` e senza `resourceHints`, garantisce invarianza dei risultati |
-| `__keywordCombined` | Per matchType keyword: sorgente regex combinata di tutti i patterns con escape uniti da `\|`                                    |
+| `__legacyHints`     | Soglia di pre-filtro di 1.3.79 e precedenti (i 3 frammenti letterali più lunghi); scritta solo per le regole più restrittive di `__hints` e senza `resourceHints`, garantisce invarianza dei risultati        |
+| `__keywordCombined` | Per matchType keyword: sorgente regex combinata di tutti i patterns con escape uniti da `\|`                                                                                                                  |
 
 I `__hints` scritti manualmente nel file di regole vengono trattati come soglia legacy di quella regola. A runtime `getRuleAutoHints(rule)` e `getCompiledCombinedPattern(rule)` leggono prima questi campi; se assenti, calcolano a runtime (le regole personalizzate calcolano solo i letterali necessari, senza soglia legacy).
 

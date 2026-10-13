@@ -70,35 +70,35 @@
 
 ## リーフルールのフィールド
 
-| フィールド | 型 | 説明 |
-| --- | --- | --- |
-| `name` | string | ポップアップの表示名 |
-| `category` | string | カテゴリー。`CATEGORY_ORDER` でソートされる |
-| `kind` | string | 種類の説明。空白可。evidence のプレフィックスとして表示 |
-| `confidence` | `"高"` / `"中"` / `"低"` | デフォルトは `"中"` |
-| `matchType` | `"keyword"` / `"regex"` | デフォルトは `"regex"`（直接 `new RegExp(p, 'i')` に渡す） |
-| `patterns` | string[] | マッチルール。keyword タイプは `escapeRegExp + RegExp` を使用 |
-| `selectors` | string[] | CSS セレクター。マッチすると高信頼度 |
-| `globals` | string[] | グローバル変数名（ドット区切りのネストに対応）。マッチすると高信頼度 |
-| `classNames` | string[] | DOM 上の特定クラスにマッチすると高信頼度（完全一致） |
-| `classPrefixes` | string[] | DOM 上のクラスがこのプレフィックスで始まる場合、高信頼度 |
-| `cssVariables` | string[] | ページの CSS カスタムプロパティが N 件以上マッチすると発火。`minCssVariableMatches` と組み合わせる |
-| `minCssVariableMatches` | number | デフォルトは 1 |
-| `matchIn` | string[] | patterns をマッチングするデータソースを制限。`url` / `resources` / `html` / `headers` / `dynamic` の任意の組み合わせ。空配列 / 未指定はすべてを意味する |
-| `resourceOnly` | boolean | リソース URL マッチングのみ実行し、DOM / globals / selectors をスキップ |
-| `resourceHints` | string[] | ビジネス側で手動指定する事前フィルタリング指紋。マッチするテキストにヒントが含まれる場合のみ patterns の完全マッチを実行 |
-| `evidence` | string | マッチ時の固定 evidence テキスト。デフォルトの「リソース URL マッチ / DOM マッチ」を上書き |
-| `url` | string | 技術の公式サイトまたはリポジトリ URL |
+| フィールド              | 型                       | 説明                                                                                                                                                    |
+| ----------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`                  | string                   | ポップアップの表示名                                                                                                                                    |
+| `category`              | string                   | カテゴリー。`CATEGORY_ORDER` でソートされる                                                                                                             |
+| `kind`                  | string                   | 種類の説明。空白可。evidence のプレフィックスとして表示                                                                                                 |
+| `confidence`            | `"高"` / `"中"` / `"低"` | デフォルトは `"中"`                                                                                                                                     |
+| `matchType`             | `"keyword"` / `"regex"`  | デフォルトは `"regex"`（直接 `new RegExp(p, 'i')` に渡す）                                                                                              |
+| `patterns`              | string[]                 | マッチルール。keyword タイプは `escapeRegExp + RegExp` を使用                                                                                           |
+| `selectors`             | string[]                 | CSS セレクター。マッチすると高信頼度                                                                                                                    |
+| `globals`               | string[]                 | グローバル変数名（ドット区切りのネストに対応）。マッチすると高信頼度                                                                                    |
+| `classNames`            | string[]                 | DOM 上の特定クラスにマッチすると高信頼度（完全一致）                                                                                                    |
+| `classPrefixes`         | string[]                 | DOM 上のクラスがこのプレフィックスで始まる場合、高信頼度                                                                                                |
+| `cssVariables`          | string[]                 | ページの CSS カスタムプロパティが N 件以上マッチすると発火。`minCssVariableMatches` と組み合わせる                                                      |
+| `minCssVariableMatches` | number                   | デフォルトは 1                                                                                                                                          |
+| `matchIn`               | string[]                 | patterns をマッチングするデータソースを制限。`url` / `resources` / `html` / `headers` / `dynamic` の任意の組み合わせ。空配列 / 未指定はすべてを意味する |
+| `resourceOnly`          | boolean                  | リソース URL マッチングのみ実行し、DOM / globals / selectors をスキップ                                                                                 |
+| `resourceHints`         | string[]                 | ビジネス側で手動指定する事前フィルタリング指紋。マッチするテキストにヒントが含まれる場合のみ patterns の完全マッチを実行                                |
+| `evidence`              | string                   | マッチ時の固定 evidence テキスト。デフォルトの「リソース URL マッチ / DOM マッチ」を上書き                                                              |
+| `url`                   | string                   | 技術の公式サイトまたはリポジトリ URL                                                                                                                    |
 
 ## 自動注入フィールド（ビルド時）
 
 ビルド段階の `vite.config.ts` の `precompileRulesPlugin` が各リーフルールに注入します：
 
-| フィールド | 由来 |
-| --- | --- |
-| `__hints` | 正規表現の必須リテラルセット（`src/utils/rule-hints.ts`）：パターンにマッチできるテキストには必ずその中の 1 つが含まれる。マッチしえないルールをスキップするためだけに使用し、結果を変えない |
-| `__legacyHints` | 1.3.79 以前の事前フィルタリング閾値（最長の 3 つのリテラルセグメント）。`__hints` より厳しく、かつ `resourceHints` を持たないルールにのみ書き込み、検出結果が変わらないことを保証 |
-| `__keywordCombined` | matchType が keyword の場合、すべての patterns を escape 後に `\|` で連結したマージ正規表現ソースコード |
+| フィールド          | 由来                                                                                                                                                                                         |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `__hints`           | 正規表現の必須リテラルセット（`src/utils/rule-hints.ts`）：パターンにマッチできるテキストには必ずその中の 1 つが含まれる。マッチしえないルールをスキップするためだけに使用し、結果を変えない |
+| `__legacyHints`     | 1.3.79 以前の事前フィルタリング閾値（最長の 3 つのリテラルセグメント）。`__hints` より厳しく、かつ `resourceHints` を持たないルールにのみ書き込み、検出結果が変わらないことを保証            |
+| `__keywordCombined` | matchType が keyword の場合、すべての patterns を escape 後に `\|` で連結したマージ正規表現ソースコード                                                                                      |
 
 ルールファイルに手書きされた `__hints` はそのルールの旧閾値として扱われます。実行時の `getRuleAutoHints(rule)` と `getCompiledCombinedPattern(rule)` はこれらのフィールドを優先して読み取り、欠落している場合のみ実行時計算にフォールバックします（カスタムルールは必須リテラルのみを計算し、旧閾値はない）。
 

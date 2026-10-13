@@ -24,10 +24,10 @@ Les limites effectives sont définies par `CUSTOM_RULE_LIMITS` dans `src/types/s
 
 ## Quand les modifications prennent-elles effet ?
 
-| Modification                                          | Prise d'effet                                             |
-| ----------------------------------------------------- | --------------------------------------------------------- |
-| Interrupteurs de catégories / technologies bloquées / CSS personnalisé | À la prochaine ouverture de la popup               |
-| Règles personnalisées                                 | Après sauvegarde, à la prochaine actualisation + réouverture de la popup |
-| Import JSON                                           | Idem                                                      |
+| Modification                                                           | Prise d'effet                                                            |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Interrupteurs de catégories / technologies bloquées / CSS personnalisé | À la prochaine ouverture de la popup                                     |
+| Règles personnalisées                                                  | Après sauvegarde, à la prochaine actualisation + réouverture de la popup |
+| Import JSON                                                            | Idem                                                                     |
 
 Après avoir cliqué sur « Enregistrer les paramètres », l'écriture dans le storage est immédiate — inutile de recharger la page de paramètres.

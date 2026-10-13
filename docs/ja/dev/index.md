@@ -12,20 +12,20 @@
 
 ## 技術スタックの概要
 
-プロジェクトのメインは Vite 5 + Vue 3 + TypeScript + `@crxjs/vite-plugin` 2.x です。バックグラウンドスクリプトは Manifest V3 の ESM サービスワーカーで、パッケージマネージャーは pnpm を使用しています。
+プロジェクトのメインは Vite 8 + Vue 3 + TypeScript + `@crxjs/vite-plugin` 3.x です。バックグラウンドスクリプトは Manifest V3 の ESM サービスワーカーで、パッケージマネージャーは bun を使用しています。
 
 ルールは `public/rules/` 以下に配置され、ページルール・レスポンスヘッダールール・WordPress / Drupal エコシステムなどの方向別に複数の JSON ファイルに分割されています。ビルド時にルールが前処理され、マッチング高速化のための `__hints` / `__legacyHints` / `__keywordCombined` フィールドが注入されます。
 
 ## 開発でよく使うコマンド
 
 ```bash
-pnpm install            # 依存関係のインストール
-pnpm run dev            # Vite dev サーバーを起動、拡張機能のホットリロード
-pnpm run build          # dist/ にビルド、Chrome に読み込み可能
-pnpm run typecheck      # vue-tsc による厳密な型チェック
-pnpm run lint           # ESLint チェック
-pnpm run docs:dev       # このドキュメントサイトのローカルプレビューを起動
-pnpm run docs:build     # ドキュメントの静的サイトをビルド
+bun install            # 依存関係のインストール
+bun run dev            # Vite dev サーバーを起動、拡張機能のホットリロード
+bun run build          # dist/ にビルド、Chrome に読み込み可能
+bun run typecheck      # vue-tsc による厳密な型チェック
+bun run lint           # ESLint チェック
+bun run docs:dev       # このドキュメントサイトのローカルプレビューを起動
+bun run docs:build     # ドキュメントの静的サイトをビルド
 ```
 
 dev モードでは拡張機能ページのホットアップデートに対応しています。popup / settings / help の変更は通常自動で更新されます。`src/background/` やコンテンツスクリプトを変更した後は、`chrome://extensions/` で拡張機能カードを手動で更新する必要があります。
@@ -34,11 +34,11 @@ dev モードでは拡張機能ページのホットアップデートに対応�
 
 3 つの独立した SPA エントリーポイントがあり、それぞれ独立してビルドされます：
 
-| エントリーポイント | ファイル | 説明 |
-| --- | --- | --- |
-| popup | `src/ui/popup/index.html` | ブラウザー右上の拡張機能アイコンをクリックして表示される 440px × 600px のウィンドウ |
-| settings | `src/ui/settings/index.html` | `chrome://extensions/` の詳細ページから開く options page |
-| help | `src/ui/help/index.html` | 設定ページの「使い方説明」をクリックして開く独立したタブ |
+| エントリーポイント | ファイル                     | 説明                                                                                |
+| ------------------ | ---------------------------- | ----------------------------------------------------------------------------------- |
+| popup              | `src/ui/popup/index.html`    | ブラウザー右上の拡張機能アイコンをクリックして表示される 440px × 600px のウィンドウ |
+| settings           | `src/ui/settings/index.html` | `chrome://extensions/` の詳細ページから開く options page                            |
+| help               | `src/ui/help/index.html`     | 設定ページの「使い方説明」をクリックして開く独立したタブ                            |
 
 ## 関連リンク
 

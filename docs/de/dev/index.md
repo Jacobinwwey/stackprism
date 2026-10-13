@@ -12,20 +12,20 @@ Dieser Abschnitt richtet sich an Personen, die den Quellcode lesen, Regeln ände
 
 ## Tech-Stack-Übersicht
 
-Das Projekt basiert auf Vite 5 + Vue 3 + TypeScript + `@crxjs/vite-plugin` 2.x. Das Hintergrundskript ist ein Manifest-V3-ESM-Service-Worker, als Paketmanager wird pnpm verwendet.
+Das Projekt basiert auf Vite 8 + Vue 3 + TypeScript + `@crxjs/vite-plugin` 3.x. Das Hintergrundskript ist ein Manifest-V3-ESM-Service-Worker, als Paketmanager wird bun verwendet.
 
 Regeln liegen unter `public/rules/` und sind nach Seiten-Regeln, Antwortheader-Regeln sowie WordPress-/Drupal-Ökosystem in mehrere JSON-Dateien aufgeteilt. Beim Build werden Regeln vorverarbeitet und Felder wie `__hints` / `__legacyHints` / `__keywordCombined` für schnelleres Matching injiziert.
 
 ## Häufig verwendete Entwicklungsbefehle
 
 ```bash
-pnpm install            # Abhängigkeiten installieren
-pnpm run dev            # Vite dev server starten, Erweiterung mit Hot-Reload
-pnpm run build          # Build nach dist/, in Chrome ladbar
-pnpm run typecheck      # vue-tsc strikter Typcheck
-pnpm run lint           # ESLint-Prüfung
-pnpm run docs:dev       # Lokale Vorschau dieser Dokumentationsseite
-pnpm run docs:build     # Statische Dokumentationsseite bauen
+bun install            # Abhängigkeiten installieren
+bun run dev            # Vite dev server starten, Erweiterung mit Hot-Reload
+bun run build          # Build nach dist/, in Chrome ladbar
+bun run typecheck      # vue-tsc strikter Typcheck
+bun run lint           # ESLint-Prüfung
+bun run docs:dev       # Lokale Vorschau dieser Dokumentationsseite
+bun run docs:build     # Statische Dokumentationsseite bauen
 ```
 
 Im Dev-Modus unterstützen Erweiterungsseiten Hot-Reload. Änderungen an popup / settings / help werden meist automatisch aktualisiert; nach Änderungen an `src/background/` oder Content Scripts muss die Erweiterungskarte unter `chrome://extensions/` manuell aktualisiert werden.
@@ -34,11 +34,11 @@ Im Dev-Modus unterstützen Erweiterungsseiten Hot-Reload. Änderungen an popup /
 
 Drei unabhängige SPA-Einstiegspunkte, jeweils separat gebaut und voneinander isoliert:
 
-| Einstiegspunkt | Datei | Beschreibung |
-| -------------- | ----- | ------------ |
-| popup | `src/ui/popup/index.html` | 440 px × 600 px kleines Fenster, das beim Klick auf das Erweiterungssymbol erscheint |
-| settings | `src/ui/settings/index.html` | Options Page, geöffnet über die Detailseite in `chrome://extensions/` |
-| help | `src/ui/help/index.html` | Separater Tab, geöffnet über „Nutzungsanleitung" in den Einstellungen |
+| Einstiegspunkt | Datei                        | Beschreibung                                                                         |
+| -------------- | ---------------------------- | ------------------------------------------------------------------------------------ |
+| popup          | `src/ui/popup/index.html`    | 440 px × 600 px kleines Fenster, das beim Klick auf das Erweiterungssymbol erscheint |
+| settings       | `src/ui/settings/index.html` | Options Page, geöffnet über die Detailseite in `chrome://extensions/`                |
+| help           | `src/ui/help/index.html`     | Separater Tab, geöffnet über „Nutzungsanleitung" in den Einstellungen                |
 
 ## Weiterführende Links
 

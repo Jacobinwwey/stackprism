@@ -21,7 +21,7 @@ export default defineConfig({
     minify: 'esbuild',
     target: 'chrome120',
     lib: {
-      entry: path.resolve(__dirname, ENTRIES[entryName]),
+      entry: path.resolve(import.meta.dirname, ENTRIES[entryName]),
       formats: ['iife'],
       name: `__StackPrismInjected_${entryName.replace(/-/g, '_')}__`,
       fileName: () => `${entryName}.iife.js`
@@ -34,7 +34,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src')
+      '@': path.resolve(import.meta.dirname, 'src')
     }
   }
 })

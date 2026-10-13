@@ -13,25 +13,25 @@ Níže je popsán postup pro přímý pull request.
 
 Soubory v `public/rules/` jsou rozděleny podle zaměření:
 
-| Soubor                               | Co obsahuje                                                   |
-| ------------------------------------ | ------------------------------------------------------------- |
-| `page/frontend-frameworks.json`      | React / Vue / Angular / různé frontendové frameworky          |
-| `page/ui-frameworks.json`            | Tailwind / Bootstrap / Element / Antd a podobné UI knihovny   |
-| `page/build-runtime.json`            | Webpack / Vite / Rollup / Bun a podobné buildovací nástroje   |
-| `page/frontend-cdn-libraries.json`   | Konkrétní frontendové knihovny přes CDN (jQuery, lodash, moment aj.) |
-| `page/wordpress-plugins.json`        | 4 500+ pluginů WordPress                                      |
-| `page/drupal-modules.json`           | 4 000+ modulů Drupal                                          |
-| `page/cms-themes.json`               | Témata CMS                                                    |
-| `page/website-programs.json`         | WordPress / Drupal / Discuz! a podobné CMS samotné            |
-| `page/payment-systems.json`          | Platební platformy                                            |
-| `page/third-party-logins.json`       | Přihlášení třetích stran                                      |
-| `page/saas-services.json`            | SaaS služby (Sentry / Mixpanel / Intercom aj.)                |
-| `page/analytics-providers.json`      | Analytika                                                     |
-| `page/cdn-providers.json`            | Poskytovatelé CDN (detekce za běhu v prohlížeči)              |
-| `headers/server-products.json`       | Serverové produkty identifikované podle hlavičky `Server:`    |
-| `headers/cdn-providers.json`         | CDN identifikované podle hlaviček odpovědí                    |
-| `headers/website-programs.json`      | CMS identifikované podle hlaviček odpovědí                    |
-| ...                                  |                                                               |
+| Soubor                             | Co obsahuje                                                          |
+| ---------------------------------- | -------------------------------------------------------------------- |
+| `page/frontend-frameworks.json`    | React / Vue / Angular / různé frontendové frameworky                 |
+| `page/ui-frameworks.json`          | Tailwind / Bootstrap / Element / Antd a podobné UI knihovny          |
+| `page/build-runtime.json`          | Webpack / Vite / Rollup / Bun a podobné buildovací nástroje          |
+| `page/frontend-cdn-libraries.json` | Konkrétní frontendové knihovny přes CDN (jQuery, lodash, moment aj.) |
+| `page/wordpress-plugins.json`      | 4 500+ pluginů WordPress                                             |
+| `page/drupal-modules.json`         | 4 000+ modulů Drupal                                                 |
+| `page/cms-themes.json`             | Témata CMS                                                           |
+| `page/website-programs.json`       | WordPress / Drupal / Discuz! a podobné CMS samotné                   |
+| `page/payment-systems.json`        | Platební platformy                                                   |
+| `page/third-party-logins.json`     | Přihlášení třetích stran                                             |
+| `page/saas-services.json`          | SaaS služby (Sentry / Mixpanel / Intercom aj.)                       |
+| `page/analytics-providers.json`    | Analytika                                                            |
+| `page/cdn-providers.json`          | Poskytovatelé CDN (detekce za běhu v prohlížeči)                     |
+| `headers/server-products.json`     | Serverové produkty identifikované podle hlavičky `Server:`           |
+| `headers/cdn-providers.json`       | CDN identifikované podle hlaviček odpovědí                           |
+| `headers/website-programs.json`    | CMS identifikované podle hlaviček odpovědí                           |
+| ...                                |                                                                      |
 
 Úplný seznam viz `public/rules/index.json`.
 
@@ -86,7 +86,7 @@ Podle svého úsudku o spolehlivosti detekce zařaďte pravidlo do příslušné
 Po provedení úprav spusťte:
 
 ```bash
-pnpm run build
+bun run build
 ```
 
 Sestavení spustí `precompileRulesPlugin`, který do pravidel vloží pole `__hints` a další. Poté v `chrome://extensions/` načtěte `dist/` a ověřte pravidlo na skutečném webu s ExampleCMS.
@@ -105,7 +105,7 @@ Alternativně lze pravidlo nejprve vyzkoušet na panelu „Vlastní pravidla" v 
 ## Postup pro přispění pravidel do hlavního repozitáře
 
 1. Forkujte [setube/stackprism](https://github.com/setube/stackprism)
-2. Naklonujte lokálně, spusťte `pnpm install` a `pnpm run build` a ověřte, že sestavení proběhne správně
+2. Naklonujte lokálně, spusťte `bun install` a `bun run build` a ověřte, že sestavení proběhne správně
 3. Najděte příslušný soubor v `public/rules/` a přidejte pravidlo
 4. Z [Wappalyzer rules](https://github.com/enthec/webappanalyzer), oficiální dokumentace nebo webu technologie získejte 2–3 důkazy a uveďte je v popisu PR
 5. Podejte PR do větve main

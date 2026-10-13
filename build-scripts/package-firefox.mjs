@@ -12,7 +12,7 @@ const distDir = resolve(root, 'dist')
 const firefoxDir = resolve(root, 'dist-firefox')
 
 if (!existsSync(distDir)) {
-  console.error('[package-firefox] dist/ not found, run `pnpm build` first')
+  console.error('[package-firefox] dist/ not found, run `bun build` first')
   process.exit(1)
 }
 
