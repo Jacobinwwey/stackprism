@@ -3,13 +3,13 @@
 ## 本地构建
 
 ```bash
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 链路：
 
-1. `pnpm run build:injected`（`build-scripts/build-injected.mjs`）：esbuild 把 `src/injected/page-detector.ts` 与 `page-source-search.ts` 各编译成一个独立 IIFE 文件，输出到 `public/injected/`
+1. `bun run build:injected`（`build-scripts/build-injected.mjs`）：esbuild 把 `src/injected/page-detector.ts` 与 `page-source-search.ts` 各编译成一个独立 IIFE 文件，输出到 `public/injected/`
 2. `vite build`（`@crxjs/vite-plugin`）：打包 background / popup / settings / help 四个入口，输出到 `dist/`
 3. `precompileRulesPlugin`（vite plugin closeBundle hook）：扫 `dist/rules/*.json`，给每条 leaf rule 注入 `__hints` / `__legacyHints` / `__keywordCombined`
 4. `minifyJsonAssets`（vite plugin closeBundle hook）：所有 JSON 用 `JSON.stringify(parsed)` 重写，去缩进与换行
@@ -19,7 +19,7 @@ pnpm run build
 ## 开发热更
 
 ```bash
-pnpm run dev
+bun run dev
 ```
 
 vite dev server + crxjs HMR：改 `src/ui/**` 弹窗 / 设置页 / 使用说明会自动热替换。改 `src/background/**` 后台代码或 `src/content/**` content script 需要在 `chrome://extensions/` 找到扩展卡片点刷新按钮重新加载。
@@ -27,8 +27,8 @@ vite dev server + crxjs HMR：改 `src/ui/**` 弹窗 / 设置页 / 使用说明�
 ## 类型与 lint
 
 ```bash
-pnpm run typecheck    # vue-tsc --noEmit，全工程严格类型检查
-pnpm run lint         # eslint src
+bun run typecheck    # vue-tsc --noEmit，全工程严格类型检查
+bun run lint         # eslint src
 ```
 
 提交前统一跑一遍格式化：
@@ -66,9 +66,9 @@ git push origin main
 
 工作流做的事：
 
-1. checkout + 安装 pnpm + Node 20
-2. `pnpm install --frozen-lockfile`
-3. `pnpm run build`
+1. checkout + 安装 bun + Node 20
+2. `bun install --frozen-lockfile`
+3. `bun run build`
 4. 从 `dist/manifest.json` 读 version，校验与 release tag 一致
 5. 把 `dist/` 整个 zip 成 `stackprism-v{ver}.zip` + sha256
 6. **如果配置了 secret `EXTENSION_PRIVATE_KEY`**，再用 `npx crx3` 签名出 `stackprism-v{ver}.crx` + sha256；否则跳过 crx 仅传 zip
@@ -116,9 +116,9 @@ openssl genrsa -out extension.pem 2048
 ## 发布检查清单
 
 - [ ] `npx prettier --write .` 已执行
-- [ ] `pnpm run typecheck` 通过
-- [ ] `pnpm run lint` 通过
-- [ ] `pnpm run build` 通过
+- [ ] `bun run typecheck` 通过
+- [ ] `bun run lint` 通过
+- [ ] `bun run build` 通过
 - [ ] 在 chrome 里加载 `dist/` 手动测试关键路径（弹窗打开、识别一个站点、刷新、复制完整技术栈报告、设置页加规则）
 - [ ] 把 `package.json` 的 version bump
 - [ ] git commit + push

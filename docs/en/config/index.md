@@ -24,10 +24,10 @@ The exact limits are defined by `CUSTOM_RULE_LIMITS` in `src/types/settings.ts`.
 
 ## When Changes Take Effect
 
-| Change                                         | When it takes effect                                    |
-| ---------------------------------------------- | ------------------------------------------------------- |
-| Category toggles / disabled technologies / custom CSS | Immediately on the next popup open              |
-| Custom rules                                   | After saving, on the next page refresh + popup open     |
-| JSON import                                    | Same as custom rules                                    |
+| Change                                                | When it takes effect                                |
+| ----------------------------------------------------- | --------------------------------------------------- |
+| Category toggles / disabled technologies / custom CSS | Immediately on the next popup open                  |
+| Custom rules                                          | After saving, on the next page refresh + popup open |
+| JSON import                                           | Same as custom rules                                |
 
 Clicking "Save Settings" writes to storage immediately — no need to refresh the settings page.

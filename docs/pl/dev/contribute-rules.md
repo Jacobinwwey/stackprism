@@ -13,25 +13,25 @@ Poniżej opisany jest głównie przepływ bezpośredniego PR.
 
 `public/rules/` jest podzielone na pliki według odpowiedzialności:
 
-| Plik                               | Zawiera                                                      |
-| ---------------------------------- | ------------------------------------------------------------ |
-| `page/frontend-frameworks.json`    | React / Vue / Angular / frameworki frontendowe               |
-| `page/ui-frameworks.json`          | Tailwind / Bootstrap / Element / Antd i inne biblioteki UI   |
-| `page/build-runtime.json`          | Webpack / Vite / Rollup / Bun i inne narzędzia budowania     |
-| `page/frontend-cdn-libraries.json` | Biblioteki frontendowe z CDN (jQuery, lodash, moment itp.)   |
-| `page/wordpress-plugins.json`      | Ponad 4500 wtyczek WordPress                                 |
-| `page/drupal-modules.json`         | Ponad 4000 modułów Drupal                                    |
-| `page/cms-themes.json`             | Motywy CMS                                                   |
-| `page/website-programs.json`       | WordPress / Drupal / Discuz! i inne programy stron           |
-| `page/payment-systems.json`        | Platformy płatności                                          |
-| `page/third-party-logins.json`     | Logowania zewnętrzne                                         |
-| `page/saas-services.json`          | SaaS (Sentry / Mixpanel / Intercom itp.)                     |
-| `page/analytics-providers.json`    | Statystyki i analityka                                       |
-| `page/cdn-providers.json`          | Dostawcy CDN (rozpoznawanie po stronie frontendu)            |
-| `headers/server-products.json`     | Produkty serwerowe rozpoznawane przez nagłówek `Server:`     |
-| `headers/cdn-providers.json`       | CDN rozpoznawane przez nagłówki odpowiedzi                   |
-| `headers/website-programs.json`    | CMS rozpoznawane przez nagłówki odpowiedzi                   |
-| ...                                |                                                              |
+| Plik                               | Zawiera                                                    |
+| ---------------------------------- | ---------------------------------------------------------- |
+| `page/frontend-frameworks.json`    | React / Vue / Angular / frameworki frontendowe             |
+| `page/ui-frameworks.json`          | Tailwind / Bootstrap / Element / Antd i inne biblioteki UI |
+| `page/build-runtime.json`          | Webpack / Vite / Rollup / Bun i inne narzędzia budowania   |
+| `page/frontend-cdn-libraries.json` | Biblioteki frontendowe z CDN (jQuery, lodash, moment itp.) |
+| `page/wordpress-plugins.json`      | Ponad 4500 wtyczek WordPress                               |
+| `page/drupal-modules.json`         | Ponad 4000 modułów Drupal                                  |
+| `page/cms-themes.json`             | Motywy CMS                                                 |
+| `page/website-programs.json`       | WordPress / Drupal / Discuz! i inne programy stron         |
+| `page/payment-systems.json`        | Platformy płatności                                        |
+| `page/third-party-logins.json`     | Logowania zewnętrzne                                       |
+| `page/saas-services.json`          | SaaS (Sentry / Mixpanel / Intercom itp.)                   |
+| `page/analytics-providers.json`    | Statystyki i analityka                                     |
+| `page/cdn-providers.json`          | Dostawcy CDN (rozpoznawanie po stronie frontendu)          |
+| `headers/server-products.json`     | Produkty serwerowe rozpoznawane przez nagłówek `Server:`   |
+| `headers/cdn-providers.json`       | CDN rozpoznawane przez nagłówki odpowiedzi                 |
+| `headers/website-programs.json`    | CMS rozpoznawane przez nagłówki odpowiedzi                 |
+| ...                                |                                                            |
 
 Pełna lista w `public/rules/index.json`.
 
@@ -86,7 +86,7 @@ Umieść regułę w podgrupie odpowiadającej twojej ocenie pewności rozpoznani
 Po wprowadzeniu zmian uruchom:
 
 ```bash
-pnpm run build
+bun run build
 ```
 
 Budowanie uruchomi `precompileRulesPlugin`, który wstrzyknie do reguł pola `__hints` itp. Następnie załaduj `dist/` na stronie `chrome://extensions/` i zweryfikuj na prawdziwej stronie z ExampleCMS.
@@ -105,7 +105,7 @@ Możesz też najpierw przetestować regułę w panelu „Reguły niestandardowe"
 ## Przepływ zgłaszania PR do głównego repozytorium
 
 1. Sforkuj [setube/stackprism](https://github.com/setube/stackprism)
-2. Sklonuj lokalnie, uruchom `pnpm install`, potwierdź poprawność budowania przez `pnpm run build`
+2. Sklonuj lokalnie, uruchom `bun install`, potwierdź poprawność budowania przez `bun run build`
 3. Znajdź odpowiedni plik w `public/rules/` i dodaj regułę
 4. Zbierz 2-3 dowody ze [Wappalyzer rules](https://github.com/enthec/webappanalyzer), oficjalnej dokumentacji lub strony projektu i umieść je w opisie PR
 5. Prześlij PR do gałęzi main

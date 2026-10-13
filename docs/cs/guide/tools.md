@@ -12,11 +12,11 @@ Podporuje prostý text i regulární výrazy. Spustí se stisknutím Enter nebo 
 
 ### Možnosti
 
-| Možnost              | Popis                                                                          |
-| -------------------- | ------------------------------------------------------------------------------ |
-| Rozlišovat velikost  | Výchozí: vypnuto. Po zapnutí `React` a `react` nejsou totožné                 |
-| Celé slovo           | Platí v režimu prostého textu; vyžaduje, aby před i za shodou byl ne-slovní znak (použije `\b`) |
-| Regulární výraz      | Zpracuje vstup jako zdrojový kód regulárního výrazu JavaScriptu v kombinaci s výše uvedenými příznaky |
+| Možnost             | Popis                                                                                                 |
+| ------------------- | ----------------------------------------------------------------------------------------------------- |
+| Rozlišovat velikost | Výchozí: vypnuto. Po zapnutí `React` a `react` nejsou totožné                                         |
+| Celé slovo          | Platí v režimu prostého textu; vyžaduje, aby před i za shodou byl ne-slovní znak (použije `\b`)       |
+| Regulární výraz     | Zpracuje vstup jako zdrojový kód regulárního výrazu JavaScriptu v kombinaci s výše uvedenými příznaky |
 
 ### Výstup
 
@@ -45,27 +45,13 @@ Výstupem je kompletní JSON s následující strukturou:
   "url": "https://example.com",
   "title": "Example",
   "generatedAt": "2026-05-10T10:00:00.000Z",
-  "technologies": [
-    /* sloučený deduplikovaný seznam */
-  ],
-  "resources": {
-    /* souhrn zdrojů */
-  },
-  "headers": {
-    /* hlavičky odpovědí hlavního dokumentu */
-  },
-  "apiObservations": [
-    /* url/headers/technologies pro každý API požadavek */
-  ],
-  "frameObservations": [
-    /* totéž pro každý iframe */
-  ],
-  "dynamicObservations": {
-    /* dynamicky zachycené skripty/styly/iframe/feedLinks/domMarkers */
-  },
-  "notes": [
-    /* několik vysvětlivek k metodologii */
-  ]
+  "technologies": [/* sloučený deduplikovaný seznam */],
+  "resources": {/* souhrn zdrojů */},
+  "headers": {/* hlavičky odpovědí hlavního dokumentu */},
+  "apiObservations": [/* url/headers/technologies pro každý API požadavek */],
+  "frameObservations": [/* totéž pro každý iframe */],
+  "dynamicObservations": {/* dynamicky zachycené skripty/styly/iframe/feedLinks/domMarkers */},
+  "notes": [/* několik vysvětlivek k metodologii */]
 }
 ```
 

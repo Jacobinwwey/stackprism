@@ -3,13 +3,13 @@
 ## Build local
 
 ```bash
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 Chaîne de build :
 
-1. `pnpm run build:injected` (`build-scripts/build-injected.mjs`) : esbuild compile `src/injected/page-detector.ts` et `page-source-search.ts` chacun en un fichier IIFE indépendant, avec sortie dans `public/injected/`
+1. `bun run build:injected` (`build-scripts/build-injected.mjs`) : esbuild compile `src/injected/page-detector.ts` et `page-source-search.ts` chacun en un fichier IIFE indépendant, avec sortie dans `public/injected/`
 2. `vite build` (`@crxjs/vite-plugin`) : package background / popup / settings / help en quatre points d'entrée, avec sortie dans `dist/`
 3. `precompileRulesPlugin` (hook `closeBundle` du plugin vite) : parcourt `dist/rules/*.json` et injecte `__hints` / `__legacyHints` / `__keywordCombined` dans chaque règle feuille
 4. `minifyJsonAssets` (hook `closeBundle` du plugin vite) : réécrit tous les JSON avec `JSON.stringify(parsed)`, supprimant indentations et sauts de ligne
@@ -19,7 +19,7 @@ Le répertoire `dist/` final peut être chargé directement dans `chrome://exten
 ## Rechargement à chaud en développement
 
 ```bash
-pnpm run dev
+bun run dev
 ```
 
 Serveur dev vite + HMR crxjs : les modifications dans `src/ui/**` (popup / page de paramètres / aide) se rechargent automatiquement. Les modifications dans `src/background/**` ou `src/content/**` (content script) nécessitent de cliquer sur le bouton de rechargement de la carte d'extension dans `chrome://extensions/`.
@@ -27,8 +27,8 @@ Serveur dev vite + HMR crxjs : les modifications dans `src/ui/**` (popup / page 
 ## Types et lint
 
 ```bash
-pnpm run typecheck    # vue-tsc --noEmit, vérification stricte des types sur tout le projet
-pnpm run lint         # eslint src
+bun run typecheck    # vue-tsc --noEmit, vérification stricte des types sur tout le projet
+bun run lint         # eslint src
 ```
 
 Avant de committer, lancez un formatage global :
@@ -66,9 +66,9 @@ git push origin main
 
 Ce que fait le workflow :
 
-1. checkout + installation pnpm + Node 20
-2. `pnpm install --frozen-lockfile`
-3. `pnpm run build`
+1. checkout + installation bun + Node 20
+2. `bun install --frozen-lockfile`
+3. `bun run build`
 4. lit la `version` depuis `dist/manifest.json` et vérifie qu'elle correspond au tag de release
 5. zip l'intégralité de `dist/` en `stackprism-v{ver}.zip` + sha256
 6. **si le secret `EXTENSION_PRIVATE_KEY` est configuré**, signe également avec `npx crx3` pour produire `stackprism-v{ver}.crx` + sha256 ; sinon, cette étape est ignorée et seul le zip est produit
@@ -116,9 +116,9 @@ Le workflow continue de fonctionner, mais aucun fichier `.crx` ne sera produit. 
 ## Liste de vérification avant publication
 
 - [ ] `npx prettier --write .` exécuté
-- [ ] `pnpm run typecheck` réussi
-- [ ] `pnpm run lint` réussi
-- [ ] `pnpm run build` réussi
+- [ ] `bun run typecheck` réussi
+- [ ] `bun run lint` réussi
+- [ ] `bun run build` réussi
 - [ ] Test manuel dans Chrome avec `dist/` chargé : ouverture de la popup, détection d'un site, actualisation, copie du rapport complet, ajout d'une règle dans la page de paramètres
 - [ ] Numéro de version dans `package.json` mis à jour
 - [ ] `git commit + push`

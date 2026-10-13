@@ -29,26 +29,26 @@ Geeignet für Entwickler oder Nutzer, die immer den aktuellen Hauptzweig verwend
 ```bash
 git clone https://github.com/setube/stackprism.git
 cd stackprism
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 Das Build-Ergebnis liegt in `dist/`. Lade das Verzeichnis `dist/` im Entwicklermodus unter `chrome://extensions/`.
 
-Nach Quelltextänderungen genügt es, `pnpm run build` erneut auszuführen und anschließend auf der Erweiterungsseite die Schaltfläche „Aktualisieren" auf der Erweiterungskarte zu klicken.
+Nach Quelltextänderungen genügt es, `bun run build` erneut auszuführen und anschließend auf der Erweiterungsseite die Schaltfläche „Aktualisieren" auf der Erweiterungskarte zu klicken.
 
 ## Aktivierung & Berechtigungen
 
 Bei der Erstinstallation werden folgende Berechtigungen angefragt:
 
-| Berechtigung | Zweck |
-| ------------ | ----- |
-| `tabs` | URL / Titel des aktuellen Tabs lesen |
-| `activeTab` | Erkennungsskript in die aktive Seite injizieren |
-| `scripting` | page-detector / page-source-search in die MAIN world der Seite injizieren |
-| `storage` | Einstellungen, gecachte Erkennungsergebnisse und Theme-Präferenz speichern |
-| `webRequest` | Antwortheader für server / x-powered-by u. a. mithören |
-| `<all_urls>` | Auf allen http(s)-Seiten ausführen |
+| Berechtigung | Zweck                                                                      |
+| ------------ | -------------------------------------------------------------------------- |
+| `tabs`       | URL / Titel des aktuellen Tabs lesen                                       |
+| `activeTab`  | Erkennungsskript in die aktive Seite injizieren                            |
+| `scripting`  | page-detector / page-source-search in die MAIN world der Seite injizieren  |
+| `storage`    | Einstellungen, gecachte Erkennungsergebnisse und Theme-Präferenz speichern |
+| `webRequest` | Antwortheader für server / x-powered-by u. a. mithören                     |
+| `<all_urls>` | Auf allen http(s)-Seiten ausführen                                         |
 
 Der Erkennungsvorgang ist nicht auf externe APIs angewiesen: Regeldateien werden mit der Erweiterung gebündelt und lokal ausgeliefert; Erkennungsergebnisse verbleiben im Browserspeicher und im Extension Storage.
 

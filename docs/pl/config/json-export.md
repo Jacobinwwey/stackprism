@@ -28,18 +28,18 @@ Każda reguła jest obiektem:
 }
 ```
 
-| Pole         | Typ                      | Wymagane    | Opis                                                                         |
-| ------------ | ------------------------ | ----------- | ---------------------------------------------------------------------------- |
-| `name`       | string                   | Tak         | Nazwa wyświetlana w oknie podręcznym                                         |
-| `category`   | string                   |             | Kategoria. Domyślnie `其他库` (Pozostałe biblioteki)                          |
-| `kind`       | string                   |             | Opis typu. Domyślnie `自定义规则` (Reguła niestandardowa)                      |
-| `confidence` | `"高"` / `"中"` / `"低"` |             | Domyślnie `"中"` (Średnia)                                                   |
-| `matchType`  | `"keyword"` / `"regex"`  |             | Domyślnie `"regex"`                                                          |
-| `patterns`   | string[]                 | Jedno z trzech | Co najmniej jedno z: patterns / selectors / globals musi być niepuste      |
-| `selectors`  | string[]                 | Jedno z trzech | Lista selektorów CSS                                                        |
-| `globals`    | string[]                 | Jedno z trzech | Lista nazw zmiennych globalnych (`window.x.y` zapisz jako `x.y`)           |
-| `matchIn`    | string[]                 |             | Dowolna kombinacja `url` / `resources` / `html` / `headers` / `dynamic`. Domyślnie wszystkie |
-| `url`        | string                   |             | Musi zaczynać się od `http(s)://`. Może być puste                           |
+| Pole         | Typ                      | Wymagane       | Opis                                                                                         |
+| ------------ | ------------------------ | -------------- | -------------------------------------------------------------------------------------------- |
+| `name`       | string                   | Tak            | Nazwa wyświetlana w oknie podręcznym                                                         |
+| `category`   | string                   |                | Kategoria. Domyślnie `其他库` (Pozostałe biblioteki)                                         |
+| `kind`       | string                   |                | Opis typu. Domyślnie `自定义规则` (Reguła niestandardowa)                                    |
+| `confidence` | `"高"` / `"中"` / `"低"` |                | Domyślnie `"中"` (Średnia)                                                                   |
+| `matchType`  | `"keyword"` / `"regex"`  |                | Domyślnie `"regex"`                                                                          |
+| `patterns`   | string[]                 | Jedno z trzech | Co najmniej jedno z: patterns / selectors / globals musi być niepuste                        |
+| `selectors`  | string[]                 | Jedno z trzech | Lista selektorów CSS                                                                         |
+| `globals`    | string[]                 | Jedno z trzech | Lista nazw zmiennych globalnych (`window.x.y` zapisz jako `x.y`)                             |
+| `matchIn`    | string[]                 |                | Dowolna kombinacja `url` / `resources` / `html` / `headers` / `dynamic`. Domyślnie wszystkie |
+| `url`        | string                   |                | Musi zaczynać się od `http(s)://`. Może być puste                                            |
 
 ## Przyciski operacji
 
@@ -75,14 +75,14 @@ Podczas importu cała tablica jest najpierw parsowana. Jeśli jakiekolwiek pole 
 
 `CUSTOM_RULE_LIMITS.rules` wynosi domyślnie 100. Przekroczenie limitu powoduje odrzucenie importu. Pełna lista limitów w [`src/types/settings.ts`](https://github.com/setube/stackprism/blob/main/src/types/settings.ts):
 
-| Pole                                       | Limit    |
-| ------------------------------------------ | -------- |
-| Łączna liczba reguł                        | 100      |
-| name                                       | 80 znaków |
-| category                                   | 40 znaków |
-| kind                                       | 40 znaków |
-| Pojedynczy pattern / selector / global     | 240 znaków |
-| Długość tablicy patterns / selectors / globals | Po 80 |
-| Długość tablicy matchIn                    | 8        |
-| url                                        | 240 znaków |
-| customCss                                  | 10 000 znaków |
+| Pole                                           | Limit         |
+| ---------------------------------------------- | ------------- |
+| Łączna liczba reguł                            | 100           |
+| name                                           | 80 znaków     |
+| category                                       | 40 znaków     |
+| kind                                           | 40 znaków     |
+| Pojedynczy pattern / selector / global         | 240 znaków    |
+| Długość tablicy patterns / selectors / globals | Po 80         |
+| Długość tablicy matchIn                        | 8             |
+| url                                            | 240 znaków    |
+| customCss                                      | 10 000 znaków |

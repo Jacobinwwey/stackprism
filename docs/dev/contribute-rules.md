@@ -86,7 +86,7 @@
 修改完后：
 
 ```bash
-pnpm run build
+bun run build
 ```
 
 构建会跑 `precompileRulesPlugin` 给规则注入 `__hints` 等字段。然后在 `chrome://extensions/` 加载 `dist/`，找一个真实的 ExampleCMS 网站验证。
@@ -105,7 +105,7 @@ pnpm run build
 ## 规则贡献到主仓的流程
 
 1. fork [setube/stackprism](https://github.com/setube/stackprism)
-2. clone 到本地，`pnpm install`，`pnpm run build` 确保能正常构建
+2. clone 到本地，`bun install`，`bun run build` 确保能正常构建
 3. 找到 `public/rules/` 对应文件，加规则
 4. 在 [Wappalyzer rules](https://github.com/enthec/webappanalyzer)、官网、文档抓 2-3 条证据放在 PR 描述里
 5. 提 PR 到 main 分支

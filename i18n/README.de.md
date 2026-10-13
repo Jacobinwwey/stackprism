@@ -1,11 +1,5 @@
 <div align="center">
 
-[简体中文](../README.md) · [English](README.en.md) · [繁體中文](README.zh-Hant.md) · [日本語](README.ja.md) · [Français](README.fr.md) · **Deutsch** · [Português](README.pt.md) · [Italiano](README.it.md) · [Čeština](README.cs.md) · [Polski](README.pl.md)
-
-</div>
-
-<div align="center">
-
 <img src="../public/icons/icon256.png" alt="StackPrism" width="160" height="160" />
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/cagpdifljieeiajlhlcboelglkalofak?label=Chrome%20Web%20Store&color=FBBC04)](https://chromewebstore.google.com/detail/stackprism/cagpdifljieeiajlhlcboelglkalofak)
@@ -19,6 +13,12 @@
 # StackPrism — Web-Tech-Stack-Detektor
 
 > Sammelt Hinweise aus 6 Dimensionen — Laufzeit-Globals, DOM, Ressourcen-URLs, Antwort-Header, dynamisches Laden und JS-Urheberrechtskommentare — um die Technologien zu identifizieren und zu kategorisieren, die eine Website antreiben.
+
+<div align="center">
+
+[简体中文](../README.md) · [English](README.en.md) · [繁體中文](README.zh-Hant.md) · [日本語](README.ja.md) · [Français](README.fr.md) · **Deutsch** · [Português](README.pt.md) · [Italiano](README.it.md) · [Čeština](README.cs.md) · [Polski](README.pl.md)
+
+</div>
 
 [Einführung](#einführung) • [Funktionen](#funktionen) • [Regelsystem](#regelsystem) • [Einschränkungen](#einschränkungen) • [Mitwirken](#mitwirken) • [Sponsoren](SPONSORS.md) • [Star-Verlauf](#star-verlauf) • [Lizenz](#lizenz)
 
@@ -68,9 +68,9 @@ Die Sprache kann auch manuell über den 🌐-Button im Popup-Header umgestellt w
 ```bash
 git clone https://github.com/setube/stackprism.git
 cd stackprism
-pnpm install
-pnpm run build            # Chrome / Edge
-pnpm run build:firefox    # Firefox
+bun install
+bun run build            # Chrome / Edge
+bun run build:firefox    # Firefox
 ```
 
 **Chrome / Edge:**
@@ -84,17 +84,17 @@ pnpm run build:firefox    # Firefox
 
 1. `about:debugging#/runtime/this-firefox` öffnen
 2. "Temporäres Add-on laden" klicken und `dist-firefox/manifest.json` auswählen
-3. Oder `pnpm run build:firefox` ausführen und die `.xpi`-Datei in `release/` doppelklicken
+3. Oder `bun run build:firefox` ausführen und die `.xpi`-Datei in `release/` doppelklicken
 
 ### Entwicklung
 
 ```bash
-pnpm run dev           # Entwicklungsmodus + HMR
-pnpm run typecheck     # vue-tsc Typprüfung
-pnpm run lint          # ESLint
-pnpm run build         # Produktions-Build (inkl. Regel-Vorkompilierung)
-pnpm run build:firefox # Firefox-Build + .xpi-Paketierung
-pnpm run docs:dev      # VitePress Docs-Vorschau
+bun run dev           # Entwicklungsmodus + HMR
+bun run typecheck     # vue-tsc Typprüfung
+bun run lint          # ESLint
+bun run build         # Produktions-Build (inkl. Regel-Vorkompilierung)
+bun run build:firefox # Firefox-Build + .xpi-Paketierung
+bun run docs:dev      # VitePress Docs-Vorschau
 ```
 
 ## Regelsystem
@@ -148,7 +148,7 @@ StackPrism enthält 2000+ Erkennungsregeln in 50+ Kategorien, aber das Frontend-
 - **Regelbeiträge** — klicke auf „Regelbeitrag einreichen" in den Einstellungen oder sende direkt einen PR an [`public/rules/`](public/rules/)
 - **Diskussion und Vorschläge** — [Discussions](https://github.com/setube/stackprism/discussions)
 
-Vor dem Einreichen von Code bitte `pnpm run typecheck && pnpm run lint && pnpm run build` ausführen und sicherstellen, dass alle drei Befehle erfolgreich sind.
+Vor dem Einreichen von Code bitte `bun run typecheck && bun run lint && bun run build` ausführen und sicherstellen, dass alle drei Befehle erfolgreich sind.
 
 ## Star-Verlauf
 

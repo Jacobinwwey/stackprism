@@ -12,20 +12,20 @@ Esta seção é para quem deseja ler o código-fonte, modificar regras ou enviar
 
 ## Visão geral da stack
 
-O projeto usa Vite 5 + Vue 3 + TypeScript + `@crxjs/vite-plugin` 2.x. O script de background é um service worker ESM do Manifest V3; o gerenciador de pacotes é o pnpm.
+O projeto usa Vite 8 + Vue 3 + TypeScript + `@crxjs/vite-plugin` 3.x. O script de background é um service worker ESM do Manifest V3; o gerenciador de pacotes é o bun.
 
 As regras ficam em `public/rules/`, divididas em múltiplos arquivos JSON por página, cabeçalhos de resposta, ecossistema WordPress/Drupal, etc. Durante o build, as regras são pré-processadas e recebem os campos `__hints` / `__legacyHints` / `__keywordCombined` para acelerar a correspondência.
 
 ## Comandos comuns de desenvolvimento
 
 ```bash
-pnpm install            # instalar dependências
-pnpm run dev            # iniciar vite dev server com hot reload da extensão
-pnpm run build          # compilar para dist/, pronto para carregar no Chrome
-pnpm run typecheck      # verificação de tipos estrita com vue-tsc
-pnpm run lint           # verificação com eslint
-pnpm run docs:dev       # iniciar preview local desta documentação
-pnpm run docs:build     # compilar o site de documentação estático
+bun install            # instalar dependências
+bun run dev            # iniciar vite dev server com hot reload da extensão
+bun run build          # compilar para dist/, pronto para carregar no Chrome
+bun run typecheck      # verificação de tipos estrita com vue-tsc
+bun run lint           # verificação com eslint
+bun run docs:dev       # iniciar preview local desta documentação
+bun run docs:build     # compilar o site de documentação estático
 ```
 
 No modo dev, as páginas da extensão suportam hot reload. Mudanças em popup / settings / help geralmente atualizam automaticamente; mudanças em `src/background/` ou content scripts exigem atualização manual do cartão da extensão em `chrome://extensions/`.
@@ -34,11 +34,11 @@ No modo dev, as páginas da extensão suportam hot reload. Mudanças em popup / 
 
 Três SPAs independentes, cada um compilado separadamente, sem interferência:
 
-| Entrada  | Arquivo                      | Descrição                                                      |
-| -------- | ---------------------------- | -------------------------------------------------------------- |
+| Entrada  | Arquivo                      | Descrição                                                          |
+| -------- | ---------------------------- | ------------------------------------------------------------------ |
 | popup    | `src/ui/popup/index.html`    | Janela de 440px × 600px que aparece ao clicar no ícone da extensão |
-| settings | `src/ui/settings/index.html` | Options page aberta nos detalhes de `chrome://extensions/`    |
-| help     | `src/ui/help/index.html`     | Aba independente aberta ao clicar em "Ajuda" nas configurações |
+| settings | `src/ui/settings/index.html` | Options page aberta nos detalhes de `chrome://extensions/`         |
+| help     | `src/ui/help/index.html`     | Aba independente aberta ao clicar em "Ajuda" nas configurações     |
 
 ## Links relacionados
 

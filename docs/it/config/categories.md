@@ -4,30 +4,30 @@ Il primo blocco della pagina delle impostazioni contiene i selettori di categori
 
 ## Tutte le categorie
 
-| Categoria              | Esempi                                                                     |
-| ---------------------- | -------------------------------------------------------------------------- |
-| Framework frontend     | React, Vue, Angular, Next.js, Nuxt, Gatsby, Remix, SvelteKit, Astro       |
-| Framework UI / CSS     | Tailwind CSS, Bootstrap, Material UI, Ant Design, Element Plus, Chakra UI |
-| Build / Runtime        | Webpack, Vite, Rollup, Parcel, esbuild, SWC, Turbopack, Bun               |
-| CDN / Hosting          | Cloudflare, Akamai, Fastly, AWS CloudFront, Vercel, Netlify, jsDelivr     |
-| WAF / Firewall         | SafeLine, Pagoda WAF, SafeDog, YunSuo, Alibaba Cloud WAF, AWS WAF         |
-| Framework backend      | Django, Flask, Rails, Laravel, Express, Koa, Spring, ASP.NET              |
-| CMS / Programmi web    | WordPress, Drupal, Discuz!, Typecho, ZBlog, phpBB, MediaWiki              |
-| Temi / Template        | Temi WordPress, temi Drupal, percorsi template CMS                        |
-| Linguaggi / Runtime    | PHP, Node.js, Python, Ruby, Java, Go, Rust                                |
-| Analytics / Statistiche| Google Analytics, Baidu Analytics, CNZZ, Plausible, Umami                |
-| Login di terze parti   | Google Login, GitHub OAuth, WeChat Login, Auth0, Clerk                    |
-| Sistemi di pagamento   | Stripe, PayPal, Alipay, WeChat Pay, UnionPay                              |
-| Pubblicità / Marketing | Google Ads, Facebook Pixel, TikTok Pixel                                  |
-| Servizi SaaS           | Sentry, Mixpanel, Intercom, Crisp, HubSpot                                |
-| AI / LLM               | Open WebUI, Dify, Flowise, Gradio, ComfyUI                                |
-| Monitoring / Probe     | New Relic, Datadog, Pingdom, Hotjar                                        |
-| RSS / Feed             | RSS, Atom, JSON Feed                                                       |
-| Plugin WordPress       | 4500+ plugin con nome                                                      |
-| Moduli Drupal          | 4000+ moduli con nome                                                      |
-| Sicurezza e protocolli | HTTPS, CSP, Service Worker                                                 |
-| Altre librerie         | Categoria predefinita per regole personalizzate e fallback non classificati |
-| ... totale 24 categorie|                                                                            |
+| Categoria               | Esempi                                                                      |
+| ----------------------- | --------------------------------------------------------------------------- |
+| Framework frontend      | React, Vue, Angular, Next.js, Nuxt, Gatsby, Remix, SvelteKit, Astro         |
+| Framework UI / CSS      | Tailwind CSS, Bootstrap, Material UI, Ant Design, Element Plus, Chakra UI   |
+| Build / Runtime         | Webpack, Vite, Rollup, Parcel, esbuild, SWC, Turbopack, Bun                 |
+| CDN / Hosting           | Cloudflare, Akamai, Fastly, AWS CloudFront, Vercel, Netlify, jsDelivr       |
+| WAF / Firewall          | SafeLine, Pagoda WAF, SafeDog, YunSuo, Alibaba Cloud WAF, AWS WAF           |
+| Framework backend       | Django, Flask, Rails, Laravel, Express, Koa, Spring, ASP.NET                |
+| CMS / Programmi web     | WordPress, Drupal, Discuz!, Typecho, ZBlog, phpBB, MediaWiki                |
+| Temi / Template         | Temi WordPress, temi Drupal, percorsi template CMS                          |
+| Linguaggi / Runtime     | PHP, Node.js, Python, Ruby, Java, Go, Rust                                  |
+| Analytics / Statistiche | Google Analytics, Baidu Analytics, CNZZ, Plausible, Umami                   |
+| Login di terze parti    | Google Login, GitHub OAuth, WeChat Login, Auth0, Clerk                      |
+| Sistemi di pagamento    | Stripe, PayPal, Alipay, WeChat Pay, UnionPay                                |
+| Pubblicità / Marketing  | Google Ads, Facebook Pixel, TikTok Pixel                                    |
+| Servizi SaaS            | Sentry, Mixpanel, Intercom, Crisp, HubSpot                                  |
+| AI / LLM                | Open WebUI, Dify, Flowise, Gradio, ComfyUI                                  |
+| Monitoring / Probe      | New Relic, Datadog, Pingdom, Hotjar                                         |
+| RSS / Feed              | RSS, Atom, JSON Feed                                                        |
+| Plugin WordPress        | 4500+ plugin con nome                                                       |
+| Moduli Drupal           | 4000+ moduli con nome                                                       |
+| Sicurezza e protocolli  | HTTPS, CSP, Service Worker                                                  |
+| Altre librerie          | Categoria predefinita per regole personalizzate e fallback non classificati |
+| ... totale 24 categorie |                                                                             |
 
 Elenco completo: array `CATEGORY_ORDER` in `src/utils/category-order.ts`.
 

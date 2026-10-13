@@ -29,13 +29,13 @@ Chrome 有時會攔截 .crx 拖入安裝（提示「無法從此網站新增應�
 ```bash
 git clone https://github.com/setube/stackprism.git
 cd stackprism
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 建置產物在 `dist/`。在 `chrome://extensions/` 開發人員模式下載入 `dist/` 目錄即可。
 
-修改原始碼後只要重跑 `pnpm run build`，擴充功能頁面點擴充功能卡片上的重新整理按鈕就能載入新版本。
+修改原始碼後只要重跑 `bun run build`，擴充功能頁面點擴充功能卡片上的重新整理按鈕就能載入新版本。
 
 ## 啟用與權限
 

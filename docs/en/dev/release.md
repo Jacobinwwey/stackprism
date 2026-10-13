@@ -3,13 +3,13 @@
 ## Local Build
 
 ```bash
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 Build pipeline:
 
-1. `pnpm run build:injected` (`build-scripts/build-injected.mjs`): esbuild compiles `src/injected/page-detector.ts` and `page-source-search.ts` into two standalone IIFE files, output to `public/injected/`
+1. `bun run build:injected` (`build-scripts/build-injected.mjs`): esbuild compiles `src/injected/page-detector.ts` and `page-source-search.ts` into two standalone IIFE files, output to `public/injected/`
 2. `vite build` (`@crxjs/vite-plugin`): bundles background, popup, settings, and help entry points, output to `dist/`
 3. `precompileRulesPlugin` (vite plugin closeBundle hook): scans `dist/rules/*.json` and injects `__hints` / `__legacyHints` / `__keywordCombined` into each leaf rule
 4. `minifyJsonAssets` (vite plugin closeBundle hook): rewrites all JSON with `JSON.stringify(parsed)` to strip indentation and whitespace
@@ -19,7 +19,7 @@ The resulting `dist/` can be loaded directly in `chrome://extensions/` with Deve
 ## Dev Hot-reload
 
 ```bash
-pnpm run dev
+bun run dev
 ```
 
 Vite dev server + crxjs HMR: changes to `src/ui/**` (popup, settings, help) hot-reload automatically. Changes to `src/background/**` or `src/content/**` require clicking the refresh button on the extension card in `chrome://extensions/`.
@@ -27,8 +27,8 @@ Vite dev server + crxjs HMR: changes to `src/ui/**` (popup, settings, help) hot-
 ## Type Check and Lint
 
 ```bash
-pnpm run typecheck    # vue-tsc --noEmit, strict type check across the project
-pnpm run lint         # eslint src
+bun run typecheck    # vue-tsc --noEmit, strict type check across the project
+bun run lint         # eslint src
 ```
 
 Before committing, run the formatter:
@@ -66,9 +66,9 @@ git push origin main
 
 What the workflow does:
 
-1. Checkout + install pnpm + Node 20
-2. `pnpm install --frozen-lockfile`
-3. `pnpm run build`
+1. Checkout + install bun + Node 20
+2. `bun install --frozen-lockfile`
+3. `bun run build`
 4. Read version from `dist/manifest.json`, verify it matches the release tag
 5. Zip the entire `dist/` into `stackprism-v{ver}.zip` + sha256
 6. **If the `EXTENSION_PRIVATE_KEY` secret is configured**, sign the zip into `stackprism-v{ver}.crx` + sha256 using `npx crx3`; otherwise skip the crx and upload only the zip
@@ -116,9 +116,9 @@ The workflow still runs successfully — the release artifacts just won't includ
 ## Release Checklist
 
 - [ ] `npx prettier --write .` done
-- [ ] `pnpm run typecheck` passes
-- [ ] `pnpm run lint` passes
-- [ ] `pnpm run build` passes
+- [ ] `bun run typecheck` passes
+- [ ] `bun run lint` passes
+- [ ] `bun run build` passes
 - [ ] Load `dist/` in Chrome and manually test critical paths (open popup, detect a site, refresh, copy full tech-stack report, add a rule in settings)
 - [ ] Bump `version` in `package.json`
 - [ ] `git commit + push`

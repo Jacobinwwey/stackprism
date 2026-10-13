@@ -13,25 +13,25 @@
 
 `public/rules/` 按職責分檔案：
 
-| 檔案                               | 收錄什麼                                           |
-| ---------------------------------- | -------------------------------------------------- |
-| `page/frontend-frameworks.json`    | React / Vue / Angular / 各種前端框架               |
-| `page/ui-frameworks.json`          | Tailwind / Bootstrap / Element / Antd 等 UI 程式庫 |
-| `page/build-runtime.json`          | Webpack / Vite / Rollup / Bun 等建置工具           |
+| 檔案                               | 收錄什麼                                               |
+| ---------------------------------- | ------------------------------------------------------ |
+| `page/frontend-frameworks.json`    | React / Vue / Angular / 各種前端框架                   |
+| `page/ui-frameworks.json`          | Tailwind / Bootstrap / Element / Antd 等 UI 程式庫     |
+| `page/build-runtime.json`          | Webpack / Vite / Rollup / Bun 等建置工具               |
 | `page/frontend-cdn-libraries.json` | 透過 CDN 的具名前端程式庫（jQuery、lodash、moment 等） |
-| `page/wordpress-plugins.json`      | 4500+ 個 WordPress 外掛                            |
-| `page/drupal-modules.json`         | 4000+ 個 Drupal 模組                               |
-| `page/cms-themes.json`             | CMS 佈景主題                                       |
-| `page/website-programs.json`       | WordPress / Drupal / Discuz! 等網站程式本身        |
-| `page/payment-systems.json`        | 支付平台                                           |
-| `page/third-party-logins.json`     | 第三方登入                                         |
-| `page/saas-services.json`          | SaaS（Sentry / Mixpanel / Intercom 等）            |
-| `page/analytics-providers.json`    | 統計與分析                                         |
-| `page/cdn-providers.json`          | CDN 供應商（前端執行時識別）                       |
-| `headers/server-products.json`     | 透過 `Server:` header 識別的伺服器產品             |
-| `headers/cdn-providers.json`       | 透過回應標頭識別的 CDN                             |
-| `headers/website-programs.json`    | 透過回應標頭識別的 CMS                             |
-| ...                                |                                                    |
+| `page/wordpress-plugins.json`      | 4500+ 個 WordPress 外掛                                |
+| `page/drupal-modules.json`         | 4000+ 個 Drupal 模組                                   |
+| `page/cms-themes.json`             | CMS 佈景主題                                           |
+| `page/website-programs.json`       | WordPress / Drupal / Discuz! 等網站程式本身            |
+| `page/payment-systems.json`        | 支付平台                                               |
+| `page/third-party-logins.json`     | 第三方登入                                             |
+| `page/saas-services.json`          | SaaS（Sentry / Mixpanel / Intercom 等）                |
+| `page/analytics-providers.json`    | 統計與分析                                             |
+| `page/cdn-providers.json`          | CDN 供應商（前端執行時識別）                           |
+| `headers/server-products.json`     | 透過 `Server:` header 識別的伺服器產品                 |
+| `headers/cdn-providers.json`       | 透過回應標頭識別的 CDN                                 |
+| `headers/website-programs.json`    | 透過回應標頭識別的 CMS                                 |
+| ...                                |                                                        |
 
 完整清單見 `public/rules/index.json`。
 
@@ -86,7 +86,7 @@
 修改完後：
 
 ```bash
-pnpm run build
+bun run build
 ```
 
 建置會跑 `precompileRulesPlugin` 給規則注入 `__hints` 等欄位。然後在 `chrome://extensions/` 載入 `dist/`，找一個真實的 ExampleCMS 網站驗證。
@@ -105,7 +105,7 @@ pnpm run build
 ## 規則貢獻到主倉的流程
 
 1. fork [setube/stackprism](https://github.com/setube/stackprism)
-2. clone 到本地，`pnpm install`，`pnpm run build` 確保能正常建置
+2. clone 到本地，`bun install`，`bun run build` 確保能正常建置
 3. 找到 `public/rules/` 對應檔案，加規則
 4. 在 [Wappalyzer rules](https://github.com/enthec/webappanalyzer)、官網、文件抓 2-3 條證據放在 PR 描述裡
 5. 提 PR 到 main 分支

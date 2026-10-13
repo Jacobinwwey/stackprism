@@ -12,20 +12,20 @@ This section is for people who want to read the source code, modify rules, or su
 
 ## Tech Stack
 
-The project is built with Vite 5 + Vue 3 + TypeScript + `@crxjs/vite-plugin` 2.x. The background script is a Manifest V3 ESM service worker. Package manager is pnpm.
+The project is built with Vite 8 + Vue 3 + TypeScript + `@crxjs/vite-plugin` 3.x. The background script is a Manifest V3 ESM service worker. Package manager is bun.
 
 Rules live under `public/rules/`, split into multiple JSON files by detection direction (page rules, response header rules, WordPress/Drupal ecosystem, etc.). At build time a plugin preprocesses each rule and injects `__hints` / `__legacyHints` / `__keywordCombined` fields used to accelerate matching.
 
 ## Common Dev Commands
 
 ```bash
-pnpm install            # install dependencies
-pnpm run dev            # start Vite dev server with extension hot-reload
-pnpm run build          # build to dist/, loadable in Chrome
-pnpm run typecheck      # vue-tsc strict type check
-pnpm run lint           # eslint check
-pnpm run docs:dev       # start this doc site locally
-pnpm run docs:build     # build the doc site as static files
+bun install            # install dependencies
+bun run dev            # start Vite dev server with extension hot-reload
+bun run build          # build to dist/, loadable in Chrome
+bun run typecheck      # vue-tsc strict type check
+bun run lint           # eslint check
+bun run docs:dev       # start this doc site locally
+bun run docs:build     # build the doc site as static files
 ```
 
 In dev mode the extension supports hot-reload. Changes to popup / settings / help usually refresh automatically. Changes to `src/background/` or content scripts require manually clicking the refresh button on the extension card in `chrome://extensions/`.
@@ -34,11 +34,11 @@ In dev mode the extension supports hot-reload. Changes to popup / settings / hel
 
 Three independent SPAs, each built separately:
 
-| Entry    | File                         | Description                                                      |
-| -------- | ---------------------------- | ---------------------------------------------------------------- |
-| popup    | `src/ui/popup/index.html`    | The 440 × 600 px window that opens when you click the icon       |
-| settings | `src/ui/settings/index.html` | The options page opened from the extensions detail view          |
-| help     | `src/ui/help/index.html`     | The standalone help tab opened from the settings page            |
+| Entry    | File                         | Description                                                |
+| -------- | ---------------------------- | ---------------------------------------------------------- |
+| popup    | `src/ui/popup/index.html`    | The 440 × 600 px window that opens when you click the icon |
+| settings | `src/ui/settings/index.html` | The options page opened from the extensions detail view    |
+| help     | `src/ui/help/index.html`     | The standalone help tab opened from the settings page      |
 
 ## Links
 

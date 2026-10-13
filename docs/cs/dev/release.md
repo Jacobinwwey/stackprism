@@ -3,13 +3,13 @@
 ## Lokální sestavení
 
 ```bash
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 Postup sestavení:
 
-1. `pnpm run build:injected` (`build-scripts/build-injected.mjs`): esbuild zkompiluje `src/injected/page-detector.ts` a `page-source-search.ts` každý do samostatného IIFE souboru, výstup do `public/injected/`
+1. `bun run build:injected` (`build-scripts/build-injected.mjs`): esbuild zkompiluje `src/injected/page-detector.ts` a `page-source-search.ts` každý do samostatného IIFE souboru, výstup do `public/injected/`
 2. `vite build` (`@crxjs/vite-plugin`): zabalí čtyři vstupní body — background / popup / settings / help — do `dist/`
 3. `precompileRulesPlugin` (vite plugin hook closeBundle): projde `dist/rules/*.json` a do každého listového pravidla vloží `__hints` / `__legacyHints` / `__keywordCombined`
 4. `minifyJsonAssets` (vite plugin hook closeBundle): přepíše všechny JSON soubory pomocí `JSON.stringify(parsed)`, čímž odstraní odsazení a zalomení řádků
@@ -19,7 +19,7 @@ Výsledný adresář `dist/` lze přímo načíst v `chrome://extensions/` v re�
 ## Hot reload při vývoji
 
 ```bash
-pnpm run dev
+bun run dev
 ```
 
 Vite dev server + crxjs HMR: změny v `src/ui/**` (vyskakovací okno / nastavení / nápověda) se automaticky nahradí. Po změně kódu na pozadí v `src/background/**` nebo content scriptu je nutné v `chrome://extensions/` ručně kliknout na tlačítko obnovení na kartě rozšíření.
@@ -27,8 +27,8 @@ Vite dev server + crxjs HMR: změny v `src/ui/**` (vyskakovací okno / nastaven�
 ## Typová kontrola a lint
 
 ```bash
-pnpm run typecheck    # vue-tsc --noEmit, striktní typová kontrola celého projektu
-pnpm run lint         # eslint src
+bun run typecheck    # vue-tsc --noEmit, striktní typová kontrola celého projektu
+bun run lint         # eslint src
 ```
 
 Před odevzdáním spusťte jednotné formátování:
@@ -66,9 +66,9 @@ git push origin main
 
 Kroky pracovního postupu:
 
-1. checkout + instalace pnpm + Node 20
-2. `pnpm install --frozen-lockfile`
-3. `pnpm run build`
+1. checkout + instalace bun + Node 20
+2. `bun install --frozen-lockfile`
+3. `bun run build`
 4. Načtení verze z `dist/manifest.json` a ověření shody s tagem release
 5. Zabalení celého adresáře `dist/` do `stackprism-v{ver}.zip` + sha256
 6. **Pokud je nakonfigurován secret `EXTENSION_PRIVATE_KEY`**, podepsání pomocí `npx crx3` a vytvoření `stackprism-v{ver}.crx` + sha256; jinak se přeskočí a nahraje se pouze zip
@@ -116,9 +116,9 @@ Pracovní postup stále proběhne, ale artefakty nebudou obsahovat soubor `.crx`
 ## Kontrolní seznam před vydáním
 
 - [ ] `npx prettier --write .` byl spuštěn
-- [ ] `pnpm run typecheck` prošel
-- [ ] `pnpm run lint` prošel
-- [ ] `pnpm run build` prošel
+- [ ] `bun run typecheck` prošel
+- [ ] `bun run lint` prošel
+- [ ] `bun run build` prošel
 - [ ] Načtěte `dist/` v Chrome a ručně otestujte klíčové funkce (otevření vyskakovacího okna, detekce webu, obnovení, kopírování kompletní zprávy o technologickém stacku, přidání pravidla na stránce nastavení)
 - [ ] Navyšte verzi v `package.json`
 - [ ] git commit + push

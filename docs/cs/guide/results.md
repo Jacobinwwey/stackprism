@@ -4,11 +4,11 @@
 
 Každá technologie má indikátor spolehlivosti se třemi úrovněmi:
 
-| Úroveň     | Barva  | Význam                                                                                                         |
-| ---------- | ------ | -------------------------------------------------------------------------------------------------------------- |
-| **Vysoká** | Zelená | Nalezen silný signál: globální proměnná (např. `window.React`), exkluzivní DOM selektor, jednoznačná URL zdroje (např. `/_next/`) |
-| **Střední** | Žlutá | Nalezen střední signál: přibližná shoda hlavičky odpovědi, prefix CSS třídy, sada CSS proměnných              |
-| **Nízká**  | Šedá   | Nalezen slabý signál: obecný záložní název souboru skriptu (např. `*.min.js`), vágní regulární výraz           |
+| Úroveň      | Barva  | Význam                                                                                                                            |
+| ----------- | ------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Vysoká**  | Zelená | Nalezen silný signál: globální proměnná (např. `window.React`), exkluzivní DOM selektor, jednoznačná URL zdroje (např. `/_next/`) |
+| **Střední** | Žlutá  | Nalezen střední signál: přibližná shoda hlavičky odpovědi, prefix CSS třídy, sada CSS proměnných                                  |
+| **Nízká**   | Šedá   | Nalezen slabý signál: obecný záložní název souboru skriptu (např. `*.min.js`), vágní regulární výraz                              |
 
 Ve výchozím stavu zobrazuje záložka „Klíčové" pouze výsledky s vysokou spolehlivostí.
 
@@ -28,14 +28,14 @@ Při výskytu falešného pozitivu se nejprve podívejte na důkazy. Obvykle pro
 
 Štítek zdroje označuje, odkud byl výsledek detekován:
 
-| Štítek zdroje                   | Pochází z                                                              |
-| ------------------------------- | ---------------------------------------------------------------------- |
-| `Hlavičky odpovědí`             | HTTP hlavičky odpovědi hlavního dokumentu (server / x-powered-by / set-cookie aj.) |
-| `Hlavičky odpovědí · API`       | Hlavičky odpovědi některého XHR / fetch požadavku aktuální stránky     |
-| `Hlavičky odpovědí · iframe`    | Hlavičky odpovědi hlavního dokumentu vnořeného iframe                  |
-| `Dynamické sledování`           | Zdroje / dynamicky načítané skripty průběžně zachycené content scriptem + MutationObserver |
-| `Dynamické sledování · po interakci` | Zdroje načtené až po akci uživatele (vyskakovací okno, přihlášení, platba) |
-| `Téma WordPress`                | Zpětná rekonstrukce z hlavičky souboru style.css tématu                |
+| Štítek zdroje                        | Pochází z                                                                                  |
+| ------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `Hlavičky odpovědí`                  | HTTP hlavičky odpovědi hlavního dokumentu (server / x-powered-by / set-cookie aj.)         |
+| `Hlavičky odpovědí · API`            | Hlavičky odpovědi některého XHR / fetch požadavku aktuální stránky                         |
+| `Hlavičky odpovědí · iframe`         | Hlavičky odpovědi hlavního dokumentu vnořeného iframe                                      |
+| `Dynamické sledování`                | Zdroje / dynamicky načítané skripty průběžně zachycené content scriptem + MutationObserver |
+| `Dynamické sledování · po interakci` | Zdroje načtené až po akci uživatele (vyskakovací okno, přihlášení, platba)                 |
+| `Téma WordPress`                     | Zpětná rekonstrukce z hlavičky souboru style.css tématu                                    |
 
 **Kliknutím na jakýkoli štítek zdroje** se v dolní části otevře panel zobrazující podmnožinu surových JSON dat **pro danou technologii a daný zdroj**. Zobrazí přímo surové hlavičky odpovědí, seznam URL zdrojů nebo dynamický snímek, aniž byste museli prohledávat celý JSON.
 

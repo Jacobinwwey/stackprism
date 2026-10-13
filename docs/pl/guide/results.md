@@ -4,11 +4,11 @@
 
 Każda technologia ma etykietę poziomu pewności z trzema stopniami:
 
-| Stopień    | Kolor  | Znaczenie                                                                                                           |
-| ---------- | ------ | ------------------------------------------------------------------------------------------------------------------- |
-| **Wysoka** | Zielony | Trafienie silnego sygnału: zmienna globalna (np. `window.React`), dedykowany selektor DOM, jednoznaczny URL zasobu (np. `/_next/`) |
-| **Średnia** | Żółty  | Trafienie sygnału o średniej sile: rozmyte dopasowanie nagłówka odpowiedzi, prefiks klasy CSS, zestaw zmiennych CSS |
-| **Niska**  | Szary  | Trafienie słabego sygnału: ogólna nazwa pliku skryptu (np. `*.min.js`), rozmyte wyrażenie regularne                 |
+| Stopień     | Kolor   | Znaczenie                                                                                                                          |
+| ----------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **Wysoka**  | Zielony | Trafienie silnego sygnału: zmienna globalna (np. `window.React`), dedykowany selektor DOM, jednoznaczny URL zasobu (np. `/_next/`) |
+| **Średnia** | Żółty   | Trafienie sygnału o średniej sile: rozmyte dopasowanie nagłówka odpowiedzi, prefiks klasy CSS, zestaw zmiennych CSS                |
+| **Niska**   | Szary   | Trafienie słabego sygnału: ogólna nazwa pliku skryptu (np. `*.min.js`), rozmyte wyrażenie regularne                                |
 
 W zakładce „Kluczowe" domyślnie widoczne są tylko wyniki o wysokiej pewności.
 
@@ -28,14 +28,14 @@ Przy fałszywych alarmach zacznij od sprawdzenia dowodów. Zazwyczaj wskazują o
 
 Etykiety źródła wskazują, skąd pochodzi dane rozpoznanie:
 
-| Etykieta źródła              | Skąd pochodzi                                                         |
-| ----------------------------- | --------------------------------------------------------------------- |
-| `Nagłówki odpowiedzi`         | Nagłówki HTTP głównego dokumentu (server / x-powered-by / set-cookie itp.) |
-| `Nagłówki odpowiedzi · API`   | Nagłówki odpowiedzi na żądania XHR / fetch bieżącej strony           |
-| `Nagłówki odpowiedzi · iframe`| Nagłówki głównego dokumentu zagnieżdżonego iframe                    |
-| `Dynamiczne monitorowanie`    | Zasoby i dynamicznie ładowane skrypty zbierane przez content script + MutationObserver |
+| Etykieta źródła                            | Skąd pochodzi                                                                            |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| `Nagłówki odpowiedzi`                      | Nagłówki HTTP głównego dokumentu (server / x-powered-by / set-cookie itp.)               |
+| `Nagłówki odpowiedzi · API`                | Nagłówki odpowiedzi na żądania XHR / fetch bieżącej strony                               |
+| `Nagłówki odpowiedzi · iframe`             | Nagłówki głównego dokumentu zagnieżdżonego iframe                                        |
+| `Dynamiczne monitorowanie`                 | Zasoby i dynamicznie ładowane skrypty zbierane przez content script + MutationObserver   |
 | `Dynamiczne monitorowanie · Po interakcji` | Zasoby załadowane dopiero po interakcji użytkownika (modalne okna, logowanie, płatności) |
-| `Motyw WordPress`             | Rozpoznanie na podstawie nagłówka style.css motywu                    |
+| `Motyw WordPress`                          | Rozpoznanie na podstawie nagłówka style.css motywu                                       |
 
 **Kliknięcie dowolnej etykiety źródła** otwiera od dołu panel z surowym podzbiorem JSON **dla tej technologii i tego źródła**. Dane surowe — nagłówki odpowiedzi, lista URL zasobów lub dynamyczny snapshot — są dostępne od razu, bez przeszukiwania pełnego JSON.
 

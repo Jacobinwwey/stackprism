@@ -4,11 +4,11 @@
 
 Jede Technologie trägt ein Konfidenz-Badge mit drei Stufen:
 
-| Stufe | Farbe | Bedeutung |
-| ----- | ----- | --------- |
-| **Hoch** | Grün | Starkes Signal: globale Variable (z. B. `window.React`), exklusiver DOM-Selektor, eindeutige Ressourcen-URL (z. B. `/_next/`) |
-| **Mittel** | Gelb | Mittleres Signal: ungenaue Übereinstimmung im Antwortheader, CSS-Klassen-Präfix, CSS-Variablen-Set |
-| **Niedrig** | Grau | Schwaches Signal: generischer Skriptdateiname als Fallback (z. B. `*.min.js`), unspezifische Regex |
+| Stufe       | Farbe | Bedeutung                                                                                                                     |
+| ----------- | ----- | ----------------------------------------------------------------------------------------------------------------------------- |
+| **Hoch**    | Grün  | Starkes Signal: globale Variable (z. B. `window.React`), exklusiver DOM-Selektor, eindeutige Ressourcen-URL (z. B. `/_next/`) |
+| **Mittel**  | Gelb  | Mittleres Signal: ungenaue Übereinstimmung im Antwortheader, CSS-Klassen-Präfix, CSS-Variablen-Set                            |
+| **Niedrig** | Grau  | Schwaches Signal: generischer Skriptdateiname als Fallback (z. B. `*.min.js`), unspezifische Regex                            |
 
 In der Ansicht „Highlights" werden standardmäßig nur Ergebnisse mit hoher Konfidenz angezeigt.
 
@@ -28,14 +28,14 @@ Bei Fehlerkennungen zuerst die Belege prüfen. Sie zeigen meist, ob das Problem 
 
 Das Quellen-Label gibt an, woher ein Ergebnis stammt:
 
-| Quellen-Label | Herkunft |
-| ------------- | -------- |
-| `Antwortheader` | HTTP-Antwortheader des Hauptdokuments (server / x-powered-by / set-cookie usw.) |
-| `Antwortheader · API` | Antwortheader einer XHR/fetch-Anfrage der aktuellen Seite |
-| `Antwortheader · iframe` | Antwortheader des Hauptdokuments eines eingebetteten iFrames |
-| `Dynamisch` | Ressourcen / dynamisch geladene Skripte, die vom Content Script + MutationObserver erfasst wurden |
-| `Dynamisch · nach Benutzerinteraktion` | Ressourcen, die erst nach einer Benutzeraktion geladen werden (Dialoge, Login, Zahlung) |
-| `WordPress-Theme` | Rückschluss aus dem Theme-style.css-Header |
+| Quellen-Label                          | Herkunft                                                                                          |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `Antwortheader`                        | HTTP-Antwortheader des Hauptdokuments (server / x-powered-by / set-cookie usw.)                   |
+| `Antwortheader · API`                  | Antwortheader einer XHR/fetch-Anfrage der aktuellen Seite                                         |
+| `Antwortheader · iframe`               | Antwortheader des Hauptdokuments eines eingebetteten iFrames                                      |
+| `Dynamisch`                            | Ressourcen / dynamisch geladene Skripte, die vom Content Script + MutationObserver erfasst wurden |
+| `Dynamisch · nach Benutzerinteraktion` | Ressourcen, die erst nach einer Benutzeraktion geladen werden (Dialoge, Login, Zahlung)           |
+| `WordPress-Theme`                      | Rückschluss aus dem Theme-style.css-Header                                                        |
 
 **Ein Klick auf ein Quellen-Label** öffnet ein Panel am unteren Rand mit dem **rohen JSON-Datensatz für diese Technologie und diese Quelle**. Es zeigt direkt die Original-Antwortheader, die Ressourcen-URL-Liste oder den dynamischen Snapshot, ohne die gesamte JSON-Datei durchsuchen zu müssen.
 

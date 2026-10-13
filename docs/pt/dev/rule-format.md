@@ -70,35 +70,35 @@ Após expansão, a regra React equivale a:
 
 ## Campos de leaf rule
 
-| Campo                   | Tipo                     | Descrição                                                                                                              |
-| ----------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| `name`                  | string                   | Nome exibido no popup                                                                                                  |
-| `category`              | string                   | Categoria; ordenada por `CATEGORY_ORDER`                                                                               |
-| `kind`                  | string                   | Descrição do tipo; pode ser vazio. Aparece como prefixo nas evidências                                                 |
-| `confidence`            | `"高"` / `"中"` / `"低"` | Padrão: `"中"`                                                                                                         |
-| `matchType`             | `"keyword"` / `"regex"`  | Padrão: `"regex"` (usa diretamente `new RegExp(p, 'i')`)                                                               |
-| `patterns`              | string[]                 | Regras de correspondência. O tipo keyword usa `escapeRegExp + RegExp`                                                  |
-| `selectors`             | string[]                 | Seletores CSS; uma correspondência resulta em alta confiança                                                           |
-| `globals`               | string[]                 | Nomes de variáveis globais (suporta aninhamento por ponto); uma correspondência resulta em alta confiança              |
-| `classNames`            | string[]                 | Correspondência exata de classe no DOM resulta em alta confiança                                                       |
-| `classPrefixes`         | string[]                 | Classe no DOM começando com este prefixo resulta em alta confiança                                                     |
-| `cssVariables`          | string[]                 | Propriedades CSS customizadas da página; N correspondências acionam a regra, com `minCssVariableMatches`               |
-| `minCssVariableMatches` | number                   | Padrão: 1                                                                                                              |
+| Campo                   | Tipo                     | Descrição                                                                                                                                  |
+| ----------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `name`                  | string                   | Nome exibido no popup                                                                                                                      |
+| `category`              | string                   | Categoria; ordenada por `CATEGORY_ORDER`                                                                                                   |
+| `kind`                  | string                   | Descrição do tipo; pode ser vazio. Aparece como prefixo nas evidências                                                                     |
+| `confidence`            | `"高"` / `"中"` / `"低"` | Padrão: `"中"`                                                                                                                             |
+| `matchType`             | `"keyword"` / `"regex"`  | Padrão: `"regex"` (usa diretamente `new RegExp(p, 'i')`)                                                                                   |
+| `patterns`              | string[]                 | Regras de correspondência. O tipo keyword usa `escapeRegExp + RegExp`                                                                      |
+| `selectors`             | string[]                 | Seletores CSS; uma correspondência resulta em alta confiança                                                                               |
+| `globals`               | string[]                 | Nomes de variáveis globais (suporta aninhamento por ponto); uma correspondência resulta em alta confiança                                  |
+| `classNames`            | string[]                 | Correspondência exata de classe no DOM resulta em alta confiança                                                                           |
+| `classPrefixes`         | string[]                 | Classe no DOM começando com este prefixo resulta em alta confiança                                                                         |
+| `cssVariables`          | string[]                 | Propriedades CSS customizadas da página; N correspondências acionam a regra, com `minCssVariableMatches`                                   |
+| `minCssVariableMatches` | number                   | Padrão: 1                                                                                                                                  |
 | `matchIn`               | string[]                 | Restringe onde os patterns são correspondidos: `url` / `resources` / `html` / `headers` / `dynamic`. Array vazio ou ausente significa tudo |
-| `resourceOnly`          | boolean                  | Apenas correspondência por URL de recurso; ignora DOM / globals / selectors                                           |
-| `resourceHints`         | string[]                 | Fingerprints de pré-filtragem definidas manualmente. Patterns completos só rodam se o texto contiver um hint           |
-| `evidence`              | string                   | Texto de evidência fixo quando há correspondência; sobrescreve o padrão "recurso URL correspondendo / DOM correspondendo" |
-| `url`                   | string                   | URL do site oficial ou repositório da tecnologia                                                                       |
+| `resourceOnly`          | boolean                  | Apenas correspondência por URL de recurso; ignora DOM / globals / selectors                                                                |
+| `resourceHints`         | string[]                 | Fingerprints de pré-filtragem definidas manualmente. Patterns completos só rodam se o texto contiver um hint                               |
+| `evidence`              | string                   | Texto de evidência fixo quando há correspondência; sobrescreve o padrão "recurso URL correspondendo / DOM correspondendo"                  |
+| `url`                   | string                   | URL do site oficial ou repositório da tecnologia                                                                                           |
 
 ## Campos injetados automaticamente (buildtime)
 
 O plugin `precompileRulesPlugin` em `vite.config.ts` injeta nas leaf rules:
 
-| Campo               | Origem                                                                                                                          |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Campo               | Origem                                                                                                                                                                                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `__hints`           | Conjunto de literais obrigatórias da regex (`src/utils/rule-hints.ts`): o texto que pode ser correspondido pela pattern sempre contém pelo menos uma; usada apenas para ignorar regras impossíveis, não altera resultados |
-| `__legacyHints`     | Limiar de pré-filtragem anterior a 1.3.79 (os 3 segmentos literais mais longos); escrito apenas para regras mais estritas que `__hints` e sem `resourceHints`, garantindo que os resultados de detecção não mudem |
-| `__keywordCombined` | Para matchType keyword, a fonte regex combinada de todos os patterns concatenados com `\|` após escape                          |
+| `__legacyHints`     | Limiar de pré-filtragem anterior a 1.3.79 (os 3 segmentos literais mais longos); escrito apenas para regras mais estritas que `__hints` e sem `resourceHints`, garantindo que os resultados de detecção não mudem         |
+| `__keywordCombined` | Para matchType keyword, a fonte regex combinada de todos os patterns concatenados com `\|` após escape                                                                                                                    |
 
 `__hints` escritos manualmente nos arquivos de regras são tratados como o limiar anterior dessa regra. Em runtime, `getRuleAutoHints(rule)` e `getCompiledCombinedPattern(rule)` leem esses campos primeiro; se ausentes, recalculam em runtime (regras personalizadas calculam apenas os literais obrigatórios, sem limiar antigo).
 

@@ -1,11 +1,5 @@
 <div align="center">
 
-**简体中文** · [English](README.en.md) · [繁體中文](i18n/README.zh-Hant.md) · [日本語](i18n/README.ja.md) · [Français](i18n/README.fr.md) · [Deutsch](i18n/README.de.md) · [Português](i18n/README.pt.md) · [Italiano](i18n/README.it.md) · [Čeština](i18n/README.cs.md) · [Polski](i18n/README.pl.md)
-
-</div>
-
-<div align="center">
-
 <img src="public/icons/icon256.png" alt="StackPrism / 栈棱镜" width="160" height="160" />
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/cagpdifljieeiajlhlcboelglkalofak?label=Chrome%20Web%20Store&color=FBBC04)](https://chromewebstore.google.com/detail/stackprism/cagpdifljieeiajlhlcboelglkalofak)
@@ -19,6 +13,12 @@
 # StackPrism / 栈棱镜 —— 网页技术栈识别浏览器扩展
 
 > 从页面运行时、DOM、资源 URL、响应头、动态加载和源码版权注释 6 个维度收集线索,把站点用的前后端栈分门别类列清楚。
+
+<div align="center">
+
+**简体中文** · [English](README.en.md) · [繁體中文](i18n/README.zh-Hant.md) · [日本語](i18n/README.ja.md) · [Français](i18n/README.fr.md) · [Deutsch](i18n/README.de.md) · [Português](i18n/README.pt.md) · [Italiano](i18n/README.it.md) · [Čeština](i18n/README.cs.md) · [Polski](i18n/README.pl.md)
+
+</div>
 
 [简介](#简介) • [功能特性](#功能特性) • [规则维护](#规则维护) • [注意事项](#注意事项) • [参与共建](#参与共建) • [赞助者](SPONSORS.md) • [星标趋势](#星标趋势) • [开源协议](#开源协议)
 
@@ -60,9 +60,9 @@ StackPrism(以下简称 **栈棱镜**)是一款基于 **Manifest V3** 的网页�
 ```bash
 git clone https://github.com/setube/stackprism.git
 cd stackprism
-pnpm install
-pnpm run build            # Chrome / Edge
-pnpm run build:firefox    # Firefox
+bun install
+bun run build            # Chrome / Edge
+bun run build:firefox    # Firefox
 ```
 
 **Chrome / Edge:**
@@ -76,17 +76,17 @@ pnpm run build:firefox    # Firefox
 
 1. 打开 `about:debugging#/runtime/this-firefox`
 2. 点「临时载入附加组件」,选 `dist-firefox/manifest.json`
-3. 或者运行 `pnpm run build:firefox` 后在 `release/` 目录获取 `.xpi` 文件双击安装
+3. 或者运行 `bun run build:firefox` 后在 `release/` 目录获取 `.xpi` 文件双击安装
 
 ### 开发
 
 ```bash
-pnpm run dev          # 开发模式 + HMR
-pnpm run typecheck    # vue-tsc 类型检查
-pnpm run lint         # ESLint
-pnpm run build        # 生产构建(含规则预编译)
-pnpm run build:firefox # Firefox 构建 + .xpi 打包
-pnpm run docs:dev     # VitePress 文档站本地预览
+bun run dev          # 开发模式 + HMR
+bun run typecheck    # vue-tsc 类型检查
+bun run lint         # ESLint
+bun run build        # 生产构建(含规则预编译)
+bun run build:firefox # Firefox 构建 + .xpi 打包
+bun run docs:dev     # VitePress 文档站本地预览
 ```
 
 ## 规则维护
@@ -140,7 +140,7 @@ pnpm run docs:dev     # VitePress 文档站本地预览
 - **规则贡献**:扩展设置页点「提交规则贡献」,或直接 PR 到 [`public/rules/`](public/rules/)
 - **讨论与提案**:[Discussions](https://github.com/setube/stackprism/discussions)
 
-提交代码前请跑 `pnpm run typecheck && pnpm run lint && pnpm run build` 三个检查全过。
+提交代码前请跑 `bun run typecheck && bun run lint && bun run build` 三个检查全过。
 
 ## 星标趋势
 

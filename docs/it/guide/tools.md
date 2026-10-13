@@ -12,11 +12,11 @@ Supporta testo semplice e regex. Premi Invio o clicca "Cerca" per eseguire.
 
 ### Opzioni
 
-| Opzione              | Descrizione                                                                 |
-| -------------------- | --------------------------------------------------------------------------- |
-| Distingui maiuscole  | Disattivato per default; se attivato, `React` e `react` non sono equivalenti |
+| Opzione              | Descrizione                                                                                                        |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Distingui maiuscole  | Disattivato per default; se attivato, `React` e `react` non sono equivalenti                                       |
 | Parola intera        | In modalità testo semplice, richiede che la corrispondenza sia delimitata da caratteri non alfanumerici (usa `\b`) |
-| Espressione regolare | Interpreta l'input come sorgente regex JavaScript, combinato con le due opzioni sopra |
+| Espressione regolare | Interpreta l'input come sorgente regex JavaScript, combinato con le due opzioni sopra                              |
 
 ### Output
 
@@ -45,27 +45,13 @@ L'output è JSON completo con questa struttura:
   "url": "https://example.com",
   "title": "Example",
   "generatedAt": "2026-05-10T10:00:00.000Z",
-  "technologies": [
-    /* elenco deduplicato dopo la fusione */
-  ],
-  "resources": {
-    /* riepilogo risorse */
-  },
-  "headers": {
-    /* intestazioni di risposta del documento principale */
-  },
-  "apiObservations": [
-    /* per ogni risposta API: url/headers/technologies */
-  ],
-  "frameObservations": [
-    /* per ogni iframe: uguale */
-  ],
-  "dynamicObservations": {
-    /* script/stili/iframe/feedLinks/domMarkers raccolti dinamicamente */
-  },
-  "notes": [
-    /* note metodologiche */
-  ]
+  "technologies": [/* elenco deduplicato dopo la fusione */],
+  "resources": {/* riepilogo risorse */},
+  "headers": {/* intestazioni di risposta del documento principale */},
+  "apiObservations": [/* per ogni risposta API: url/headers/technologies */],
+  "frameObservations": [/* per ogni iframe: uguale */],
+  "dynamicObservations": {/* script/stili/iframe/feedLinks/domMarkers raccolti dinamicamente */},
+  "notes": [/* note metodologiche */]
 }
 ```
 

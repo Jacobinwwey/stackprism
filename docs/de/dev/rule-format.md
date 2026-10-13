@@ -70,35 +70,35 @@ Expandiert entspricht die React-Regel:
 
 ## Felder einer Leaf Rule
 
-| Feld | Typ | Beschreibung |
-| ---- | --- | ------------ |
-| `name` | string | Im Popup angezeigter Name |
-| `category` | string | Kategorie, sortiert nach `CATEGORY_ORDER` |
-| `kind` | string | Typbeschreibung, optional. Wird als Präfix in Belegen angezeigt |
-| `confidence` | `"高"` / `"中"` / `"低"` | Standard: `"中"` |
-| `matchType` | `"keyword"` / `"regex"` | Standard: `"regex"` (direkt `new RegExp(p, 'i')`) |
-| `patterns` | string[] | Muster. Keyword-Typ verwendet `escapeRegExp + RegExp` |
-| `selectors` | string[] | CSS-Selektoren, Treffer ergibt hohe Konfidenz |
-| `globals` | string[] | Globale Variablennamen (punkt-getrennte Pfade unterstützt), Treffer ergibt hohe Konfidenz |
-| `classNames` | string[] | Exakte Klassen-Übereinstimmung im DOM, Treffer ergibt hohe Konfidenz |
-| `classPrefixes` | string[] | DOM-Klassen mit diesem Präfix, Treffer ergibt hohe Konfidenz |
-| `cssVariables` | string[] | Treffer, wenn N der CSS-Custom-Properties auf der Seite übereinstimmen, kombiniert mit `minCssVariableMatches` |
-| `minCssVariableMatches` | number | Standard: 1 |
-| `matchIn` | string[] | Schränkt patterns auf bestimmte Datenquellen ein: `url` / `resources` / `html` / `headers` / `dynamic`. Leeres Array / nicht angegeben = alle |
-| `resourceOnly` | boolean | Nur Ressourcen-URL-Matching; überspringt DOM / globals / selectors |
-| `resourceHints` | string[] | Manuell angegebene Vorfilter-Fingerabdrücke; Muster werden nur durchsucht, wenn der Text einen Hint enthält |
-| `evidence` | string | Feste Belegmeldung bei Treffer; überschreibt den Standard „Ressourcen-URL-Treffer / DOM-Treffer" |
-| `url` | string | Offizielle Website oder Repository der Technologie |
+| Feld                    | Typ                      | Beschreibung                                                                                                                                  |
+| ----------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`                  | string                   | Im Popup angezeigter Name                                                                                                                     |
+| `category`              | string                   | Kategorie, sortiert nach `CATEGORY_ORDER`                                                                                                     |
+| `kind`                  | string                   | Typbeschreibung, optional. Wird als Präfix in Belegen angezeigt                                                                               |
+| `confidence`            | `"高"` / `"中"` / `"低"` | Standard: `"中"`                                                                                                                              |
+| `matchType`             | `"keyword"` / `"regex"`  | Standard: `"regex"` (direkt `new RegExp(p, 'i')`)                                                                                             |
+| `patterns`              | string[]                 | Muster. Keyword-Typ verwendet `escapeRegExp + RegExp`                                                                                         |
+| `selectors`             | string[]                 | CSS-Selektoren, Treffer ergibt hohe Konfidenz                                                                                                 |
+| `globals`               | string[]                 | Globale Variablennamen (punkt-getrennte Pfade unterstützt), Treffer ergibt hohe Konfidenz                                                     |
+| `classNames`            | string[]                 | Exakte Klassen-Übereinstimmung im DOM, Treffer ergibt hohe Konfidenz                                                                          |
+| `classPrefixes`         | string[]                 | DOM-Klassen mit diesem Präfix, Treffer ergibt hohe Konfidenz                                                                                  |
+| `cssVariables`          | string[]                 | Treffer, wenn N der CSS-Custom-Properties auf der Seite übereinstimmen, kombiniert mit `minCssVariableMatches`                                |
+| `minCssVariableMatches` | number                   | Standard: 1                                                                                                                                   |
+| `matchIn`               | string[]                 | Schränkt patterns auf bestimmte Datenquellen ein: `url` / `resources` / `html` / `headers` / `dynamic`. Leeres Array / nicht angegeben = alle |
+| `resourceOnly`          | boolean                  | Nur Ressourcen-URL-Matching; überspringt DOM / globals / selectors                                                                            |
+| `resourceHints`         | string[]                 | Manuell angegebene Vorfilter-Fingerabdrücke; Muster werden nur durchsucht, wenn der Text einen Hint enthält                                   |
+| `evidence`              | string                   | Feste Belegmeldung bei Treffer; überschreibt den Standard „Ressourcen-URL-Treffer / DOM-Treffer"                                              |
+| `url`                   | string                   | Offizielle Website oder Repository der Technologie                                                                                            |
 
 ## Automatisch injizierte Felder (Build-Zeit)
 
 Das `precompileRulesPlugin` in `vite.config.ts` injiziert in jede Leaf Rule:
 
-| Feld | Herkunft |
-| ---- | -------- |
-| `__hints` | Erforderliche Literalmengen aus dem Regex (`src/utils/rule-hints.ts`): Text, der ein Muster treffen kann, enthält immer eines davon. Dient nur zum Überspringen unmöglicher Treffer, ändert das Ergebnis nicht |
-| `__legacyHints` | Ältere Vorfilter-Schwellenwerte (die 3 längsten Literalsegmente, bis Version 1.3.79). Wird nur für Regeln ohne `resourceHints` geschrieben, bei denen `__hints` strenger ist — stellt sicher, dass sich Erkennungsergebnisse nicht ändern |
-| `__keywordCombined` | Bei `matchType: keyword`: alle Patterns nach dem Escapen mit `\|` zu einem kombinierten Regex-Quelltext zusammengefügt |
+| Feld                | Herkunft                                                                                                                                                                                                                                  |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `__hints`           | Erforderliche Literalmengen aus dem Regex (`src/utils/rule-hints.ts`): Text, der ein Muster treffen kann, enthält immer eines davon. Dient nur zum Überspringen unmöglicher Treffer, ändert das Ergebnis nicht                            |
+| `__legacyHints`     | Ältere Vorfilter-Schwellenwerte (die 3 längsten Literalsegmente, bis Version 1.3.79). Wird nur für Regeln ohne `resourceHints` geschrieben, bei denen `__hints` strenger ist — stellt sicher, dass sich Erkennungsergebnisse nicht ändern |
+| `__keywordCombined` | Bei `matchType: keyword`: alle Patterns nach dem Escapen mit `\|` zu einem kombinierten Regex-Quelltext zusammengefügt                                                                                                                    |
 
 Manuell in Regeldateien geschriebene `__hints` werden als ältere Schwellenwerte dieser Regel behandelt. Zur Laufzeit lesen `getRuleAutoHints(rule)` und `getCompiledCombinedPattern(rule)` bevorzugt diese Felder und fallen erst bei deren Fehlen auf die Laufzeitberechnung zurück (benutzerdefinierte Regeln berechnen nur erforderliche Literale, haben keine alten Schwellenwerte).
 

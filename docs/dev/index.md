@@ -12,20 +12,20 @@
 
 ## 技术栈概况
 
-项目主体是 Vite 5 + Vue 3 + TypeScript + `@crxjs/vite-plugin` 2.x。后台脚本是 Manifest V3 ESM service worker，包管理器用 pnpm。
+项目主体是 Vite 8 + Vue 3 + TypeScript + `@crxjs/vite-plugin` 3.x。后台脚本是 Manifest V3 ESM service worker，包管理器用 bun。
 
 规则放在 `public/rules/` 下，按页面规则、响应头规则、WordPress / Drupal 生态等方向拆成多个 JSON 文件。构建时会预处理规则，注入 `__hints` / `__legacyHints` / `__keywordCombined` 这类用于匹配加速的字段。
 
 ## 开发常用命令
 
 ```bash
-pnpm install            # 装依赖
-pnpm run dev            # 起 vite dev server，扩展热更
-pnpm run build          # 构建到 dist/，可加载到 chrome
-pnpm run typecheck      # vue-tsc 严格类型检查
-pnpm run lint           # eslint 检查
-pnpm run docs:dev       # 起本文档站本地预览
-pnpm run docs:build     # 构建文档静态站
+bun install            # 装依赖
+bun run dev            # 起 vite dev server，扩展热更
+bun run build          # 构建到 dist/，可加载到 chrome
+bun run typecheck      # vue-tsc 严格类型检查
+bun run lint           # eslint 检查
+bun run docs:dev       # 起本文档站本地预览
+bun run docs:build     # 构建文档静态站
 ```
 
 dev 模式下，扩展页面支持热更新。改 popup / settings / help 通常会自动刷新；改 `src/background/` 或 content script 后，需要到 `chrome://extensions/` 手动刷新扩展卡片。

@@ -4,14 +4,14 @@ Benutzerdefinierte Regeln ergänzen Seiten, die von den eingebauten Regeln nicht
 
 ## Formular ausfüllen
 
-| Feld | Pflicht | Beschreibung |
-| ---- | ------- | ------------ |
-| **Technologiename** | Ja | Im Popup angezeigter Name, z. B. `MyCMS` |
-| **Kategorie** | | Wähle eine der 23 eingebauten Kategorien oder gib eine neue ein. Standard: „Sonstige Bibliotheken". Das Select-Feld unterstützt freie Eingabe. |
-| **Typbeschreibung** | | Eigene Notiz, z. B. `Enterprise-CMS`, `Drittanbieter-Zahlung`. Wird als Präfix in den Belegen angezeigt, kann leer bleiben. |
-| **Konfidenz** | | Hoch / Mittel / Niedrig, Standard: „Mittel" |
-| **Übereinstimmungstyp** | | Schlüsselwort / Regulärer Ausdruck, Standard: „Regulärer Ausdruck" |
-| **Offizielle Website / Repository-URL** | | Muss `http://` oder `https://` beginnen. Wenn angegeben, wird der Technologiename im Popup anklickbar |
+| Feld                                    | Pflicht | Beschreibung                                                                                                                                   |
+| --------------------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Technologiename**                     | Ja      | Im Popup angezeigter Name, z. B. `MyCMS`                                                                                                       |
+| **Kategorie**                           |         | Wähle eine der 23 eingebauten Kategorien oder gib eine neue ein. Standard: „Sonstige Bibliotheken". Das Select-Feld unterstützt freie Eingabe. |
+| **Typbeschreibung**                     |         | Eigene Notiz, z. B. `Enterprise-CMS`, `Drittanbieter-Zahlung`. Wird als Präfix in den Belegen angezeigt, kann leer bleiben.                    |
+| **Konfidenz**                           |         | Hoch / Mittel / Niedrig, Standard: „Mittel"                                                                                                    |
+| **Übereinstimmungstyp**                 |         | Schlüsselwort / Regulärer Ausdruck, Standard: „Regulärer Ausdruck"                                                                             |
+| **Offizielle Website / Repository-URL** |         | Muss `http://` oder `https://` beginnen. Wenn angegeben, wird der Technologiename im Popup anklickbar                                          |
 
 Darunter befinden sich vier weitere Bereiche:
 

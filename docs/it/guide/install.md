@@ -29,26 +29,26 @@ Adatto agli sviluppatori o a chi vuole seguire l'ultimo commit del branch main.
 ```bash
 git clone https://github.com/setube/stackprism.git
 cd stackprism
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 Il risultato della compilazione si trova in `dist/`. Carica la directory `dist/` in modalità sviluppatore da `chrome://extensions/`.
 
-Dopo aver modificato il sorgente, basta rieseguire `pnpm run build` e cliccare il pulsante di aggiornamento sulla scheda dell'estensione in `chrome://extensions/`.
+Dopo aver modificato il sorgente, basta rieseguire `bun run build` e cliccare il pulsante di aggiornamento sulla scheda dell'estensione in `chrome://extensions/`.
 
 ## Attivazione e permessi
 
 Al primo avvio verranno richiesti i seguenti permessi:
 
-| Permesso      | Utilizzo                                                        |
-| ------------- | --------------------------------------------------------------- |
-| `tabs`        | Legge l'URL e il titolo della scheda corrente                   |
-| `activeTab`   | Inietta script di rilevamento nella pagina attiva               |
-| `scripting`   | Inietta page-detector / page-source-search nel MAIN world       |
-| `storage`     | Salva impostazioni, cache dei risultati, preferenze tema        |
-| `webRequest`  | Intercetta le intestazioni di risposta per raccogliere server / x-powered-by ecc. |
-| `<all_urls>`  | Esegue su tutte le pagine http(s)                               |
+| Permesso     | Utilizzo                                                                          |
+| ------------ | --------------------------------------------------------------------------------- |
+| `tabs`       | Legge l'URL e il titolo della scheda corrente                                     |
+| `activeTab`  | Inietta script di rilevamento nella pagina attiva                                 |
+| `scripting`  | Inietta page-detector / page-source-search nel MAIN world                         |
+| `storage`    | Salva impostazioni, cache dei risultati, preferenze tema                          |
+| `webRequest` | Intercetta le intestazioni di risposta per raccogliere server / x-powered-by ecc. |
+| `<all_urls>` | Esegue su tutte le pagine http(s)                                                 |
 
 Il rilevamento non dipende da API esterne: i file di regole sono inclusi nell'estensione e i risultati circolano solo nella memoria del browser e nello storage dell'estensione.
 

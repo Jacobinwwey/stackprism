@@ -24,10 +24,10 @@ Os limites reais são definidos por `CUSTOM_RULE_LIMITS` em `src/types/settings.
 
 ## Quando as alterações entram em vigor
 
-| Alteração                                      | Quando entra em vigor                              |
-| ---------------------------------------------- | -------------------------------------------------- |
-| Alternâncias de categoria / bloquear tecnologias / CSS personalizado | Imediatamente ao reabrir o popup |
-| Regras personalizadas                          | Após salvar, na próxima atualização da página + reabertura do popup |
-| Importação de JSON                             | Mesmo que acima                                    |
+| Alteração                                                            | Quando entra em vigor                                               |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| Alternâncias de categoria / bloquear tecnologias / CSS personalizado | Imediatamente ao reabrir o popup                                    |
+| Regras personalizadas                                                | Após salvar, na próxima atualização da página + reabertura do popup |
+| Importação de JSON                                                   | Mesmo que acima                                                     |
 
 Clicar em "Salvar configurações" grava no storage imediatamente; não é necessário recarregar a página de configurações.

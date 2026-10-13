@@ -12,20 +12,20 @@ Questa sezione è per chi vuole leggere il codice sorgente, modificare le regole
 
 ## Stack tecnologico
 
-Il progetto principale usa Vite 5 + Vue 3 + TypeScript + `@crxjs/vite-plugin` 2.x. Lo script in background è un service worker ESM Manifest V3, il gestore di pacchetti è pnpm.
+Il progetto principale usa Vite 8 + Vue 3 + TypeScript + `@crxjs/vite-plugin` 3.x. Lo script in background è un service worker ESM Manifest V3, il gestore di pacchetti è bun.
 
 Le regole si trovano in `public/rules/`, suddivise in più file JSON per direzione (regole di pagina, regole sulle intestazioni, ecosistema WordPress / Drupal ecc.). In fase di build le regole vengono pre-elaborate con l'iniezione dei campi `__hints` / `__legacyHints` / `__keywordCombined` per accelerare il matching.
 
 ## Comandi di sviluppo comuni
 
 ```bash
-pnpm install            # installare le dipendenze
-pnpm run dev            # avvia il vite dev server, hot-reload dell'estensione
-pnpm run build          # compila in dist/, caricabile in Chrome
-pnpm run typecheck      # controllo rigoroso dei tipi con vue-tsc
-pnpm run lint           # controllo eslint
-pnpm run docs:dev       # anteprima locale della documentazione
-pnpm run docs:build     # compila il sito di documentazione statico
+bun install            # installare le dipendenze
+bun run dev            # avvia il vite dev server, hot-reload dell'estensione
+bun run build          # compila in dist/, caricabile in Chrome
+bun run typecheck      # controllo rigoroso dei tipi con vue-tsc
+bun run lint           # controllo eslint
+bun run docs:dev       # anteprima locale della documentazione
+bun run docs:build     # compila il sito di documentazione statico
 ```
 
 In modalità dev, le pagine dell'estensione supportano l'hot update. Le modifiche a popup / settings / help di solito si aggiornano automaticamente; dopo aver modificato `src/background/` o il content script, è necessario aggiornare manualmente la scheda dell'estensione in `chrome://extensions/`.
@@ -34,11 +34,11 @@ In modalità dev, le pagine dell'estensione supportano l'hot update. Le modifich
 
 Tre SPA indipendenti, compilate separatamente, senza interferenze:
 
-| Entry point | File                         | Descrizione                                                     |
-| ----------- | ---------------------------- | --------------------------------------------------------------- |
+| Entry point | File                         | Descrizione                                                          |
+| ----------- | ---------------------------- | -------------------------------------------------------------------- |
 | popup       | `src/ui/popup/index.html`    | Finestra 440px × 600px che appare cliccando l'icona in alto a destra |
-| settings    | `src/ui/settings/index.html` | Options page aperta dai dettagli in `chrome://extensions/`      |
-| help        | `src/ui/help/index.html`     | Pagina indipendente aperta cliccando "Guida" nelle impostazioni |
+| settings    | `src/ui/settings/index.html` | Options page aperta dai dettagli in `chrome://extensions/`           |
+| help        | `src/ui/help/index.html`     | Pagina indipendente aperta cliccando "Guida" nelle impostazioni      |
 
 ## Link correlati
 

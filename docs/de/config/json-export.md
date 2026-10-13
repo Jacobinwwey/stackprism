@@ -28,18 +28,18 @@ Jede Regel ist ein Objekt:
 }
 ```
 
-| Feld | Typ | Pflicht | Beschreibung |
-| ---- | --- | ------- | ------------ |
-| `name` | string | Ja | Im Popup angezeigter Name |
-| `category` | string | | Kategorie, Standard: `其他库` |
-| `kind` | string | | Typbeschreibung, Standard: `自定义规则` |
-| `confidence` | `"高"` / `"中"` / `"低"` | | Standard: `中` |
-| `matchType` | `"keyword"` / `"regex"` | | Standard: `regex` |
-| `patterns` | string[] | Eines von dreien | Mindestens eines von patterns / selectors / globals muss nicht leer sein |
-| `selectors` | string[] | Eines von dreien | CSS-Selektoren-Liste |
-| `globals` | string[] | Eines von dreien | Liste globaler Variablennamen (`window.x.y` als `x.y` schreiben) |
-| `matchIn` | string[] | | Beliebige Kombination aus `url` / `resources` / `html` / `headers` / `dynamic`, Standard: alle |
-| `url` | string | | Muss `http(s)://` beginnen, kann leer sein |
+| Feld         | Typ                      | Pflicht          | Beschreibung                                                                                   |
+| ------------ | ------------------------ | ---------------- | ---------------------------------------------------------------------------------------------- |
+| `name`       | string                   | Ja               | Im Popup angezeigter Name                                                                      |
+| `category`   | string                   |                  | Kategorie, Standard: `其他库`                                                                  |
+| `kind`       | string                   |                  | Typbeschreibung, Standard: `自定义规则`                                                        |
+| `confidence` | `"高"` / `"中"` / `"低"` |                  | Standard: `中`                                                                                 |
+| `matchType`  | `"keyword"` / `"regex"`  |                  | Standard: `regex`                                                                              |
+| `patterns`   | string[]                 | Eines von dreien | Mindestens eines von patterns / selectors / globals muss nicht leer sein                       |
+| `selectors`  | string[]                 | Eines von dreien | CSS-Selektoren-Liste                                                                           |
+| `globals`    | string[]                 | Eines von dreien | Liste globaler Variablennamen (`window.x.y` als `x.y` schreiben)                               |
+| `matchIn`    | string[]                 |                  | Beliebige Kombination aus `url` / `resources` / `html` / `headers` / `dynamic`, Standard: alle |
+| `url`        | string                   |                  | Muss `http(s)://` beginnen, kann leer sein                                                     |
 
 ## Schaltflächen
 
@@ -75,14 +75,14 @@ Beim Import wird das gesamte Array zuerst geparst. Wenn ein Regelfeld ungültig 
 
 `CUSTOM_RULE_LIMITS.rules` beträgt standardmäßig 100. Überschreitungen werden abgelehnt. Alle Grenzwerte in [`src/types/settings.ts`](https://github.com/setube/stackprism/blob/main/src/types/settings.ts):
 
-| Feld | Grenzwert |
-| ---- | --------- |
-| Gesamtanzahl Regeln | 100 |
-| name | 80 Zeichen |
-| category | 40 Zeichen |
-| kind | 40 Zeichen |
-| Einzelnes pattern / selector / global | 240 Zeichen |
-| Länge der arrays patterns / selectors / globals | je 80 |
-| Länge von matchIn | 8 |
-| url | 240 Zeichen |
-| customCss | 10.000 Zeichen |
+| Feld                                            | Grenzwert      |
+| ----------------------------------------------- | -------------- |
+| Gesamtanzahl Regeln                             | 100            |
+| name                                            | 80 Zeichen     |
+| category                                        | 40 Zeichen     |
+| kind                                            | 40 Zeichen     |
+| Einzelnes pattern / selector / global           | 240 Zeichen    |
+| Länge der arrays patterns / selectors / globals | je 80          |
+| Länge von matchIn                               | 8              |
+| url                                             | 240 Zeichen    |
+| customCss                                       | 10.000 Zeichen |

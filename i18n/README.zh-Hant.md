@@ -1,11 +1,5 @@
 <div align="center">
 
-[简体中文](../README.md) · [English](README.en.md) · **繁體中文** · [日本語](README.ja.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · [Čeština](README.cs.md) · [Polski](README.pl.md)
-
-</div>
-
-<div align="center">
-
 <img src="../public/icons/icon256.png" alt="StackPrism" width="160" height="160" />
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/cagpdifljieeiajlhlcboelglkalofak?label=Chrome%20Web%20Store&color=FBBC04)](https://chromewebstore.google.com/detail/stackprism/cagpdifljieeiajlhlcboelglkalofak)
@@ -19,6 +13,12 @@
 # StackPrism — 網頁技術棧偵測器
 
 > 從 6 個維度蒐集線索——執行期全域變數、DOM、資源 URL、回應標頭、動態載入以及 JS 版權註解——識別並分類任何網站所使用的技術。
+
+<div align="center">
+
+[简体中文](../README.md) · [English](README.en.md) · **繁體中文** · [日本語](README.ja.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · [Čeština](README.cs.md) · [Polski](README.pl.md)
+
+</div>
 
 [簡介](#簡介) • [功能](#功能) • [規則系統](#規則系統) • [注意事項](#注意事項) • [貢獻](#貢獻) • [贊助者](SPONSORS.md) • [Star 趨勢](#star-趨勢) • [授權](#授權)
 
@@ -68,9 +68,9 @@ StackPrism 是一款 **Manifest V3** 瀏覽器擴充套件，支援 Chrome、Edg
 ```bash
 git clone https://github.com/setube/stackprism.git
 cd stackprism
-pnpm install
-pnpm run build            # Chrome / Edge
-pnpm run build:firefox    # Firefox
+bun install
+bun run build            # Chrome / Edge
+bun run build:firefox    # Firefox
 ```
 
 **Chrome / Edge：**
@@ -84,17 +84,17 @@ pnpm run build:firefox    # Firefox
 
 1. 開啟 `about:debugging#/runtime/this-firefox`
 2. 點擊「暫時載入附加元件」並選擇 `dist-firefox/manifest.json`
-3. 或執行 `pnpm run build:firefox`，然後雙擊 `release/` 中的 `.xpi` 檔案
+3. 或執行 `bun run build:firefox`，然後雙擊 `release/` 中的 `.xpi` 檔案
 
 ### 開發
 
 ```bash
-pnpm run dev           # 開發模式 + HMR
-pnpm run typecheck     # vue-tsc 型別檢查
-pnpm run lint          # ESLint
-pnpm run build         # 生產建置（含規則預編譯）
-pnpm run build:firefox # Firefox 建置 + .xpi 打包
-pnpm run docs:dev      # VitePress 文件預覽
+bun run dev           # 開發模式 + HMR
+bun run typecheck     # vue-tsc 型別檢查
+bun run lint          # ESLint
+bun run build         # 生產建置（含規則預編譯）
+bun run build:firefox # Firefox 建置 + .xpi 打包
+bun run docs:dev      # VitePress 文件預覽
 ```
 
 ## 規則系統
@@ -148,7 +148,7 @@ StackPrism 在 50+ 個分類中內建 2000+ 條偵測規則，但前端生態系
 - **規則貢獻** — 點擊設定中的「提交規則貢獻」，或直接向 [`public/rules/`](public/rules/) 發送 PR
 - **討論與提案** — [Discussions](https://github.com/setube/stackprism/discussions)
 
-提交程式碼前，請執行 `pnpm run typecheck && pnpm run lint && pnpm run build` 並確認三者均通過。
+提交程式碼前，請執行 `bun run typecheck && bun run lint && bun run build` 並確認三者均通過。
 
 ## Star 趨勢
 

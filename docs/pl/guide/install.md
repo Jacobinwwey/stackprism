@@ -29,26 +29,26 @@ Dla deweloperów lub użytkowników chcących korzystać z najnowszej gałęzi m
 ```bash
 git clone https://github.com/setube/stackprism.git
 cd stackprism
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 Wyniki budowania znajdziesz w `dist/`. W trybie dewelopera na stronie `chrome://extensions/` załaduj katalog `dist/`.
 
-Po wprowadzeniu zmian w kodzie źródłowym wystarczy ponownie uruchomić `pnpm run build`, a następnie kliknąć przycisk odświeżania na karcie rozszerzenia.
+Po wprowadzeniu zmian w kodzie źródłowym wystarczy ponownie uruchomić `bun run build`, a następnie kliknąć przycisk odświeżania na karcie rozszerzenia.
 
 ## Aktywacja i uprawnienia
 
 Przy pierwszej instalacji zostaniesz poproszony o przyznanie następujących uprawnień:
 
-| Uprawnienie  | Zastosowanie                                                            |
-| ------------ | ----------------------------------------------------------------------- |
-| `tabs`       | Odczyt URL / tytułu aktywnej karty                                      |
-| `activeTab`  | Wstrzykiwanie skryptu detekcji do aktywnej strony                       |
-| `scripting`  | Wstrzykiwanie page-detector / page-source-search do świata głównego strony |
-| `storage`    | Przechowywanie ustawień, cache wyników detekcji, preferencji motywu     |
+| Uprawnienie  | Zastosowanie                                                                  |
+| ------------ | ----------------------------------------------------------------------------- |
+| `tabs`       | Odczyt URL / tytułu aktywnej karty                                            |
+| `activeTab`  | Wstrzykiwanie skryptu detekcji do aktywnej strony                             |
+| `scripting`  | Wstrzykiwanie page-detector / page-source-search do świata głównego strony    |
+| `storage`    | Przechowywanie ustawień, cache wyników detekcji, preferencji motywu           |
 | `webRequest` | Nasłuchiwanie nagłówków odpowiedzi w celu zebrania server / x-powered-by itp. |
-| `<all_urls>` | Działanie na wszystkich stronach http(s)                                |
+| `<all_urls>` | Działanie na wszystkich stronach http(s)                                      |
 
 Proces detekcji nie zależy od zewnętrznych API: pliki reguł są dołączone do rozszerzenia, a wyniki detekcji pozostają wyłącznie w pamięci przeglądarki i storage rozszerzenia.
 

@@ -6,7 +6,7 @@ on:
     paths:
       - 'docs/**'
       - 'package.json'
-      - 'pnpm-lock.yaml'
+      - 'bun.lock'
       - '.github/workflows/deploy-docs.yml'
   workflow_dispatch:
 
@@ -29,22 +29,19 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 安装 pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
+      - name: 安装 Bun
+        uses: oven-sh/setup-bun@v2
 
       - name: 安装 Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
 
       - name: 安装依赖
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
 
       - name: 构建 VitePress
-        run: pnpm run docs:build
+        run: bun run docs:build
 
       - name: 配置 Pages
         uses: actions/configure-pages@v4
