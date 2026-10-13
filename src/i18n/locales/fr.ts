@@ -311,6 +311,7 @@ export default {
     'AI 图像生成 / 推理面板': "Génération d'images IA",
     'AI 客服 / 文档问答': 'Support IA / QA documentaire',
     'AI 客服 / 聊天机器人': 'Chatbot IA',
+    'AI 站点索引': 'Index de site AI',
     'API 网关 / 服务治理控制台': 'Passerelle API / Console de services',
     'APM / 链路追踪': 'APM / Traçage distribué',
     'B2B 电商系统': 'E-commerce B2B',
@@ -805,6 +806,7 @@ export default {
     '验证码 / Bot 防护': 'CAPTCHA / Protection bot'
   },
   categoryMap: {
+    智能体浏览: 'Navigation agentique',
     前端框架: 'Framework frontend',
     'UI / CSS 框架': 'Framework UI / CSS',
     前端库: 'Bibliothèque frontend',

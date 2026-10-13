@@ -312,6 +312,7 @@ export default {
     'AI 图像生成 / 推理面板': 'KI-Bildgenerierung',
     'AI 客服 / 文档问答': 'KI-Support / Doku-QA',
     'AI 客服 / 聊天机器人': 'KI-Chatbot',
+    'AI 站点索引': 'KI-Seitenindex',
     'API 网关 / 服务治理控制台': 'API-Gateway / Service-Konsole',
     'APM / 链路追踪': 'APM / Tracing',
     'B2B 电商系统': 'B2B E-Commerce',
@@ -806,6 +807,7 @@ export default {
     '验证码 / Bot 防护': 'CAPTCHA / Bot-Schutz'
   },
   categoryMap: {
+    智能体浏览: 'Agentisches Browsen',
     前端框架: 'Frontend-Framework',
     'UI / CSS 框架': 'UI / CSS-Framework',
     前端库: 'Frontend-Bibliothek',

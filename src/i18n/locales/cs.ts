@@ -311,6 +311,7 @@ export default {
     'AI 图像生成 / 推理面板': 'AI Generování obrázků',
     'AI 客服 / 文档问答': 'AI Podpora / QA dokumentů',
     'AI 客服 / 聊天机器人': 'AI Chatbot',
+    'AI 站点索引': 'AI rejstřík stránek',
     'API 网关 / 服务治理控制台': 'API Brána / Konzole služeb',
     'APM / 链路追踪': 'APM / Trasování',
     'B2B 电商系统': 'B2B E-shop',
@@ -805,6 +806,7 @@ export default {
     '验证码 / Bot 防护': 'CAPTCHA / Ochrana proti botům'
   },
   categoryMap: {
+    智能体浏览: 'Agentní prohlížení',
     前端框架: 'Frontend framework',
     'UI / CSS 框架': 'UI / CSS framework',
     前端库: 'Frontend knihovna',
