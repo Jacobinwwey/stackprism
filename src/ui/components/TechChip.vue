@@ -11,6 +11,7 @@
 
   const props = defineProps<{
     name: string
+    displayName?: string
     large?: boolean
     url?: string
   }>()
@@ -78,7 +79,8 @@
   })
 
   const initial = computed(() => {
-    const raw = String(props.name || '').trim()
+    // 优先用翻译后的显示名（非 CJK 语言下为英文），回退到原始名称
+    const raw = String(props.displayName || props.name || '').trim()
     if (!raw) return '?'
     if (/^[぀-ヿ㐀-鿿]/.test(raw)) return raw.charAt(0)
     const letter = raw.replace(/^[^a-zA-Z0-9]+/, '').charAt(0)

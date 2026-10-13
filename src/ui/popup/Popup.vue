@@ -3,34 +3,52 @@
     <header class="topbar">
       <div>
         <h1>
-          <a class="app-title-link" :href="REPOSITORY_URL" target="_blank" rel="noreferrer" @click="openRepository">栈棱镜</a>
+          <a class="app-title-link" :href="repoUrl" target="_blank" rel="noreferrer" @click="openRepository">{{ t('app.title') }}</a>
           <span v-if="version" class="version-badge">v{{ version }}</span>
         </h1>
         <p class="url">{{ pageUrl }}</p>
       </div>
       <div class="actions">
-        <RippleButton class="icon-btn" :title="`主题：${themeLabel(theme)}（点击切换）`" @click="toggleTheme">
+        <RippleButton class="icon-btn" :title="t('theme.toggle', { label: themeLabel(theme) })" @click="toggleTheme">
           <Sun v-if="theme === 'light'" :size="16" :stroke-width="2" />
           <Moon v-else-if="theme === 'dark'" :size="16" :stroke-width="2" />
           <Monitor v-else :size="16" :stroke-width="2" />
         </RippleButton>
-        <RippleButton class="icon-btn" title="打开设置页" @click="openSettings">
+        <RippleButton class="icon-btn" :title="t('nav.openSettings')" @click="openSettings">
           <Settings2 :size="16" :stroke-width="2" />
         </RippleButton>
-        <RippleButton class="icon-btn" title="复制当前页 URL" @click="copyResult">
+        <RippleButton class="icon-btn" :title="t('lang.label')" @click="showLangMenu = !showLangMenu">
+          <Languages :size="16" :stroke-width="2" />
+        </RippleButton>
+        <RippleButton class="icon-btn" :title="t('nav.copyUrl')" @click="copyResult">
           <Copy :size="16" :stroke-width="2" />
         </RippleButton>
-        <RippleButton class="icon-btn primary" variant="primary" title="重新检测" @click="runDetection({ force: true })">
+        <RippleButton class="icon-btn primary" variant="primary" :title="t('nav.redetect')" @click="runDetection({ force: true })">
           <RefreshCw :size="16" :stroke-width="2" />
         </RippleButton>
       </div>
+      <Transition name="lang-menu">
+        <div v-if="showLangMenu" class="lang-menu" role="menu">
+          <button
+            v-for="loc in SUPPORTED_LOCALES"
+            :key="loc.code"
+            type="button"
+            class="lang-option"
+            :class="{ active: locale === loc.code }"
+            role="menuitem"
+            @click="switchLocale(loc.code as SupportedLocale)"
+          >
+            {{ loc.label }}
+          </button>
+        </div>
+      </Transition>
     </header>
 
     <div v-if="!state.pageSupported" class="unsupported">
       <Ban class="empty-icon" :size="36" :stroke-width="1.5" />
-      <h2>当前页面不支持检测</h2>
+      <h2>{{ t('state.unsupported') }}</h2>
       <p>{{ unsupportedReason }}</p>
-      <p class="unsupported-hint">在普通网页（http:// 或 https://）上重新打开扩展即可。</p>
+      <p class="unsupported-hint">{{ t('state.unsupportedHint') }}</p>
     </div>
 
     <template v-else>
@@ -42,35 +60,35 @@
 
       <div v-if="isLoading" class="loading">
         <Loader2 class="loading-spinner" :size="28" :stroke-width="1.8" />
-        <p>正在读取后台缓存...</p>
+        <p>{{ t('state.loading') }}</p>
       </div>
 
       <template v-else>
         <section class="summary" aria-label="检测概览">
           <RippleButton
             :class="['summary-tile', { active: state.activeCategory === FOCUS_CATEGORY && !footerPanel }]"
-            title="返回重点列表"
+            :title="t('summary.focusTitle')"
             @click="focusTechnologyList"
           >
             <span>{{ animatedTotal }}</span>
-            <label>技术</label>
+            <label>{{ t('summary.tech') }}</label>
           </RippleButton>
           <RippleButton
             :class="['summary-tile', { active: footerPanel === 'resources' }]"
-            title="查看抓取到的资源列表"
+            :title="t('summary.resourcesTitle')"
             @click="openSummaryDetail('resources')"
           >
             <span>{{ animatedResource }}</span>
-            <label>资源</label>
+            <label>{{ t('summary.resources') }}</label>
           </RippleButton>
           <RippleButton
             :class="['summary-tile', { active: footerPanel === 'headers' }]"
-            title="查看主文档响应头"
+            :title="t('summary.headersTitle')"
             @click="openSummaryDetail('headers')"
           >
             <span>{{ animatedHeader }}</span>
             <label class="summary-label">
-              响应头
+              {{ t('summary.headers') }}
               <Loader2 v-if="isDetecting" class="detection-spinner" :size="12" :stroke-width="2" />
             </label>
           </RippleButton>
@@ -84,21 +102,21 @@
               :aria-selected="state.activeCategory === FOCUS_CATEGORY"
               @click="selectCategory(FOCUS_CATEGORY)"
             >
-              <span>重点</span>
+              <span>{{ t('summary.focus') }}</span>
               <span class="segment-count">{{ focusCount }}</span>
             </RippleButton>
             <RippleButton
               role="tab"
-              :class="['segment-btn', { active: state.activeCategory === '全部' }]"
-              :aria-selected="state.activeCategory === '全部'"
-              @click="selectCategory('全部')"
+              :class="['segment-btn', { active: state.activeCategory === allCategory }]"
+              :aria-selected="state.activeCategory === allCategory"
+              @click="selectCategory(allCategory)"
             >
-              <span>全部</span>
+              <span>{{ t('summary.all') }}</span>
               <span class="segment-count">{{ totalCount }}</span>
             </RippleButton>
           </div>
           <div class="filter-select">
-            <Select v-model="categoryFilterValue" :options="categoryFilterOptions" placeholder="选择分类" />
+            <Select v-model="categoryFilterValue" :options="categoryFilterOptions" :placeholder="t('summary.selectCategory')" />
           </div>
         </nav>
 
@@ -107,17 +125,17 @@
             <section :key="`${state.activeCategory}|${filteredSections.length ? 'd' : 'e'}`" class="sections">
               <div v-if="!state.result?.technologies?.length" class="empty">
                 <SearchX class="empty-icon" :size="32" :stroke-width="1.5" />
-                <p>未检测到明确技术线索</p>
-                <p class="empty-hint">刷新页面后重新打开插件，以便捕获主文档响应头。</p>
+                <p>{{ t('state.noTech') }}</p>
+                <p class="empty-hint">{{ t('state.noTechHint') }}</p>
               </div>
               <div v-else-if="!filteredSections.length" class="empty">
                 <Inbox class="empty-icon" :size="28" :stroke-width="1.5" />
-                <p>当前分类没有检测结果</p>
+                <p>{{ t('state.noCategoryResult') }}</p>
               </div>
               <section v-for="group in filteredSections" :key="group.category" class="category">
                 <h2>
-                  <span>{{ group.category }}</span>
-                  <span class="count">{{ group.items.length }} 项</span>
+                  <span>{{ tCat(group.category) }}</span>
+                  <span class="count">{{ t('count', { n: group.items.length }) }}</span>
                 </h2>
                 <div class="tech-grid">
                   <button
@@ -125,12 +143,12 @@
                     :key="`${tech.name}|${tech.category}`"
                     type="button"
                     class="tech-row"
-                    :title="`查看 ${tech.name} 详情`"
+                    :title="t('detail.viewDetail', { name: tech.name })"
                     @click="openTechDetail(tech)"
                   >
-                    <TechChip :name="tech.name" :url="tech.url" />
+                    <TechChip :name="tech.name" :display-name="tTechName(tech.name)" :url="tech.url" />
                     <span class="tech-row-name">
-                      {{ tech.name }}
+                      {{ tTechName(tech.name) }}
                       <span v-if="tech.version" class="tech-row-version">{{ tech.version }}</span>
                     </span>
                   </button>
@@ -141,7 +159,7 @@
         </div>
 
         <Transition name="scroll-top-fade">
-          <RippleButton v-show="showScrollTop" class="scroll-top" title="返回顶部" @click="scrollSectionsTop">
+          <RippleButton v-show="showScrollTop" class="scroll-top" :title="t('nav.scrollTop')" @click="scrollSectionsTop">
             <ArrowUp :size="16" :stroke-width="2" />
           </RippleButton>
         </Transition>
@@ -157,34 +175,39 @@
         <header class="footer-panel-head">
           <span class="footer-panel-title">{{ footerPanelTitle }}</span>
           <div class="footer-panel-actions">
-            <RippleButton v-if="footerPanel === 'raw'" class="footer-panel-copy" title="下载原始线索" @click="downloadRawOutput">
+            <RippleButton
+              v-if="footerPanel === 'raw'"
+              class="footer-panel-copy"
+              :title="t('footer.downloadRaw')"
+              @click="downloadRawOutput"
+            >
               <Download :size="12" :stroke-width="2" />
             </RippleButton>
-            <RippleButton v-if="footerPanel === 'raw'" class="footer-panel-copy" title="复制原始线索" @click="copyRawOutput">
+            <RippleButton v-if="footerPanel === 'raw'" class="footer-panel-copy" :title="t('footer.copyRaw')" @click="copyRawOutput">
               <Copy :size="12" :stroke-width="2" />
             </RippleButton>
-            <RippleButton class="footer-panel-close" title="关闭面板" @click="closeFooterPanel">
+            <RippleButton class="footer-panel-close" :title="t('footer.close')" @click="closeFooterPanel">
               <X :size="14" :stroke-width="2" />
             </RippleButton>
           </div>
         </header>
         <div v-if="footerPanel === 'search'" class="footer-panel-body">
           <div class="search-row">
-            <Input v-model="search.query" type="search" placeholder="输入关键词或正则表达式" @keydown="onSearchKeydown" />
-            <RippleButton @click="searchPageSourceFromPopup">搜索</RippleButton>
+            <Input v-model="search.query" type="search" :placeholder="t('search.placeholder')" @keydown="onSearchKeydown" />
+            <RippleButton @click="searchPageSourceFromPopup">{{ t('footer.search') }}</RippleButton>
           </div>
           <div class="search-options">
             <label>
               <Checkbox v-model="search.caseSensitive" />
-              区分大小写
+              {{ t('search.caseSensitive') }}
             </label>
             <label>
               <Checkbox v-model="search.wholeWord" />
-              全字匹配
+              {{ t('search.wholeWord') }}
             </label>
             <label>
               <Checkbox v-model="search.useRegex" />
-              正则表达式
+              {{ t('search.useRegex') }}
             </label>
           </div>
           <div class="search-meta">{{ search.meta }}</div>
@@ -194,8 +217,8 @@
           <pre>{{ rawOutputText }}</pre>
         </div>
         <div v-else-if="footerPanel === 'resources'" class="footer-panel-body detail-body">
-          <div v-if="detailLoading" class="detail-empty">正在加载...</div>
-          <div v-else-if="!detailResources.length" class="detail-empty">未抓取到资源。</div>
+          <div v-if="detailLoading" class="detail-empty">{{ t('state.loadingDetail') }}</div>
+          <div v-else-if="!detailResources.length" class="detail-empty">{{ t('state.noResources') }}</div>
           <ul v-else class="resource-list">
             <li v-for="url in detailResources" :key="url">
               <button type="button" class="resource-link" :title="url" @click="openResourceLink(url)">
@@ -206,8 +229,8 @@
           </ul>
         </div>
         <div v-else-if="footerPanel === 'headers'" class="footer-panel-body detail-body">
-          <div v-if="detailLoading" class="detail-empty">正在加载...</div>
-          <div v-else-if="!Object.keys(detailHeaders).length" class="detail-empty">没有主文档响应头数据；可点击"刷新"重新抓取。</div>
+          <div v-if="detailLoading" class="detail-empty">{{ t('state.loadingDetail') }}</div>
+          <div v-else-if="!Object.keys(detailHeaders).length" class="detail-empty">{{ t('state.noHeaders') }}</div>
           <dl v-else class="header-list">
             <template v-for="(value, key) in detailHeaders" :key="key">
               <dt>{{ key }}</dt>
@@ -217,52 +240,49 @@
         </div>
         <div v-else-if="footerPanel === 'tech' && selectedTech" class="footer-panel-body tech-detail-body">
           <div class="tech-detail-head">
-            <TechChip :name="selectedTech.name" :url="selectedTech.url" large />
+            <TechChip :name="selectedTech.name" :display-name="tTechName(selectedTech.name)" :url="selectedTech.url" large />
             <div class="tech-detail-meta">
-              <span class="tech-detail-category">{{ selectedTech.category }}</span>
-              <span class="tech-detail-name">{{ selectedTech.name }}</span>
+              <span class="tech-detail-category">{{ tCat(selectedTech.category) }}</span>
+              <span class="tech-detail-name">{{ tTechName(selectedTech.name) }}</span>
             </div>
-            <span :class="['confidence', confidenceClass(selectedTech.confidence)]">{{ selectedTech.confidence }}置信度</span>
+            <span :class="['confidence', confidenceClass(selectedTech.confidence)]">
+              {{ t('detail.confidence', { level: tConfidence(selectedTech.confidence) }) }}
+            </span>
           </div>
           <button
             v-if="selectedTech.url"
             type="button"
             class="tech-detail-link"
-            :title="`打开 ${selectedTech.name} 官网或仓库`"
+            :title="t('detail.openSite', { name: selectedTech.name })"
             @click="openTechnologyLink(selectedTech)"
           >
             <ExternalLink :size="12" :stroke-width="2" />
             <span>{{ selectedTech.url }}</span>
           </button>
           <section v-if="selectedTech.evidence?.length" class="tech-detail-section">
-            <h3>识别依据</h3>
+            <h3>{{ t('detail.evidence') }}</h3>
             <ul class="tech-detail-evidence">
-              <li v-for="(ev, i) in selectedTech.evidence" :key="i">{{ ev }}</li>
+              <li v-for="(ev, i) in selectedTech.evidence" :key="i">{{ tEvidence(ev) }}</li>
             </ul>
           </section>
           <section v-if="selectedTech.sources?.length" class="tech-detail-section">
-            <h3>来源(点击查看原始数据)</h3>
+            <h3>{{ t('detail.sources') }}</h3>
             <div class="tech-detail-sources">
               <button
                 v-for="src in selectedTech.sources"
                 :key="src"
                 type="button"
                 class="tech-detail-source"
-                :title="`查看 ${src} 来源的原始数据`"
+                :title="t('detail.viewSource', { source: tSource(src) })"
                 @click="openSourceRaw(selectedTech, src)"
               >
-                {{ src }}
+                {{ tSource(src) }}
               </button>
             </div>
           </section>
-          <button
-            type="button"
-            class="tech-detail-correction"
-            title="打开 GitHub 议题并自动填写这条识别结果"
-            @click="openCorrectionIssue(selectedTech)"
-          >
+          <button type="button" class="tech-detail-correction" title="" @click="openCorrectionIssue(selectedTech)">
             <Flag :size="12" :stroke-width="2" />
-            <span>识别不准确，点击纠正</span>
+            <span>{{ t('detail.correct') }}</span>
           </button>
         </div>
       </section>
@@ -272,32 +292,33 @@
       <div class="footer-tools">
         <RippleButton
           :class="['footer-tool-btn', { active: footerPanel === 'search' }]"
-          title="网页源代码搜索"
+          :title="t('footer.searchTitle')"
           @click="toggleFooterPanel('search')"
         >
           <Search :size="13" :stroke-width="2" />
-          <span>搜索</span>
+          <span>{{ t('footer.search') }}</span>
         </RippleButton>
         <RippleButton
           :class="['footer-tool-btn', { active: footerPanel === 'raw' }]"
-          title="查看原始线索"
+          :title="t('footer.rawTitle')"
           @click="toggleFooterPanel('raw')"
         >
           <FileCode :size="13" :stroke-width="2" />
-          <span>原始线索</span>
+          <span>{{ t('footer.raw') }}</span>
         </RippleButton>
-        <RippleButton class="footer-tool-btn" title="复制全部技术栈报告" @click="copyTechStackReport">
+        <RippleButton class="footer-tool-btn" :title="t('footer.copyAllTitle')" @click="copyTechStackReport">
           <ClipboardList :size="13" :stroke-width="2" />
-          <span>复制全部</span>
+          <span>{{ t('footer.copyAll') }}</span>
         </RippleButton>
       </div>
-      <a class="footer-repo" :href="REPOSITORY_URL" target="_blank" rel="noreferrer" @click="openRepository">GitHub</a>
+      <a class="footer-repo" :href="repoUrl" target="_blank" rel="noreferrer" @click="openRepository">GitHub</a>
     </footer>
   </main>
 </template>
 
 <script setup lang="ts">
   import { onMounted, onBeforeUnmount, reactive, ref, computed, watch, type Ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
   import {
     ArrowUp,
     Ban,
@@ -308,6 +329,7 @@
     FileCode,
     Flag,
     Inbox,
+    Languages,
     Loader2,
     Monitor,
     Moon,
@@ -333,13 +355,211 @@
     REPOSITORY_URL,
     RAW_PLACEHOLDER,
     SETTINGS_STORAGE_KEY,
-    STATUS_HIDE_DELAY
+    STATUS_HIDE_DELAY,
+    getReadmeUrl
   } from '@/utils/constants'
   import { cycleTheme, getStoredTheme, setStoredTheme, themeLabel, type ThemeMode } from '@/utils/theme'
   import { checkPageSupport } from '@/utils/page-support'
+  import { SUPPORTED_LOCALES, setStoredLocale, type SupportedLocale } from '@/i18n'
   import { formatTechStackReport } from '@/utils/format-tech-stack'
 
-  const RAW_LOADING_TEXT = '正在请求原始线索...'
+  const { t, locale, tm } = useI18n({ useScope: 'global' })
+
+  const repoUrl = computed(() => getReadmeUrl(locale.value))
+
+  const showLangMenu = ref(false)
+
+  const switchLocale = async (code: SupportedLocale) => {
+    locale.value = code
+    showLangMenu.value = false
+    await setStoredLocale(code)
+  }
+
+  // 把后台返回的中文分类名翻译成当前语言
+  const tCat = (zhName: string): string => {
+    const map = tm('categoryMap') as Record<string, string> | undefined
+    return (map && map[zhName]) || zhName
+  }
+
+  // 把置信度中文值翻译成当前语言
+  const tConfidence = (level: string): string => {
+    if (level === '高') return t('settings.form.confidenceHigh')
+    if (level === '中') return t('settings.form.confidenceMid')
+    if (level === '低') return t('settings.form.confidenceLow')
+    return level
+  }
+
+  // 翻译 kind 前缀（技术子类型，来自规则 kind 字段）
+  const tKind = (zhKind: string): string => {
+    if (!zhKind) return zhKind
+    const map = tm('kindMap') as Record<string, string> | undefined
+    return (map && map[zhKind]) || zhKind
+  }
+
+  // 翻译证据字符串（前缀匹配后翻译前缀，保留后面的具体内容）
+  const EVIDENCE_PREFIX_MAP: Record<string, string> = {
+    'DOM 匹配': 'ev.domMatch',
+    '资源 URL 匹配': 'ev.resourceMatch',
+    '页面 URL 匹配': 'ev.urlMatch',
+    'CSS 变量匹配': 'ev.cssVarMatch',
+    'JS 版权注释匹配': 'ev.licenseMatch',
+    '兜底识别：': 'ev.fallback',
+    '疑似前端库:': 'suspect.frontendLib',
+    '疑似前端库：': 'suspect.frontendLib'
+  }
+  const tEvidence = (ev: string): string => {
+    if (!ev) return ev
+    // 精确命中 evidenceMap（来自规则 JSON 的 evidence 字段，已预翻译）
+    const evMap = tm('evidenceMap') as Record<string, string> | undefined
+    if (evMap?.[ev]) return evMap[ev]
+    // 兜底识别 — 脚本文件名格式
+    const scriptMatch = ev.match(/^兜底识别：根据脚本文件名 (.+?) 判断，未匹配到内置规则或官网链接$/)
+    if (scriptMatch) return `${t('ev.fallback')}${t('ev.fallbackScript', { file: scriptMatch[1] })}`
+    const dynMatch = ev.match(/^兜底识别：根据动态脚本文件名 (.+?) 判断，未匹配到内置规则或官网链接$/)
+    if (dynMatch) return `${t('ev.fallback')}${t('ev.fallbackDynamic', { file: dynMatch[1] })}`
+    // 私有 CDN
+    const cdnMatch = ev.match(/^(\d+) 个资源域名疑似私有 CDN，如 (.+)$/)
+    if (cdnMatch) return t('ev.privateCdn', { count: cdnMatch[1], examples: cdnMatch[2] })
+    // 规则数据里的 evidence 前缀模式
+    const setCookieMatch = ev.match(/^Set-Cookie 包含 (.+)$/)
+    if (setCookieMatch) return t('ev.setCookieContains', { value: setCookieMatch[1] })
+    const headerContainsMatch = ev.match(/^响应头包含 (.+)$/)
+    if (headerContainsMatch) return t('ev.headerContains', { value: headerContainsMatch[1] })
+    const serverMatch = ev.match(/^Server 头包含 (.+)$/)
+    if (serverMatch) return t('ev.serverHeaderContains', { value: serverMatch[1] })
+    const xCacheMatch = ev.match(/^X-Cache 包含 (.+)$/)
+    if (xCacheMatch) return t('ev.xCacheContains', { value: xCacheMatch[1] })
+    const viaMatch = ev.match(/^Via 包含 (.+)$/)
+    if (viaMatch) return t('ev.viaContains', { value: viaMatch[1] })
+    // React Fiber
+    if (ev === 'DOM 节点存在 React Fiber 标记') return t('ev.reactFiber')
+    // HTTPS
+    if (ev === '当前页面使用 HTTPS') return t('ev.httpsPage')
+    // HTTP/2 / HTTP/3
+    const httpProtoMatch = ev.match(/^资源使用 (HTTP\/[23]) 协议（如 (.+)）$/)
+    if (httpProtoMatch) return t('ev.httpProtocol', { proto: httpProtoMatch[1], example: httpProtoMatch[2] })
+    // window.X
+    const windowMatch = ev.match(/^存在 window\.(.+)$/)
+    if (windowMatch) return t('ev.windowGlobal', { name: windowMatch[1] })
+    // 页面源码匹配
+    if (ev === '页面源码或资源索引包含规则特征') return t('ev.pageSourceMatch')
+    // Service Worker
+    if (ev === '当前页面受 Service Worker 控制') return t('ev.serviceWorker')
+    // CSP meta
+    if (ev === '页面包含 CSP meta 标签') return t('ev.cspMeta')
+    // CDN/Edge 缓存线索
+    if (ev === '响应头包含 CDN 或 Edge 缓存线索') return t('ev.cdnEdgeHint')
+    // Tailwind atomic
+    if (ev === '存在大量 Tailwind 风格原子类名') return t('ev.tailwindAtomic')
+    // spoofed headers
+    if (ev === '响应头里同时出现多种不同主体身份字段，识别结果可能被伪造') return t('ev.spoofedHeaders')
+    // UnoCSS / Tailwind CSS variable prefixes (exact strings from page-detector)
+    if (ev === '存在 --un-* CSS 变量(UnoCSS 默认前缀)') return t('ev.unocssVar')
+    if (ev === '存在 --tw-* CSS 变量(Tailwind 默认前缀)') return t('ev.tailwindVar')
+    // PHP runtime inference
+    const phpBackendMatch = ev.match(/^由 (.+?) 后端框架推断 PHP 后端运行时$/)
+    if (phpBackendMatch) return t('ev.phpFromBackend', { name: phpBackendMatch[1] })
+    const phpCmsMatch = ev.match(/^由 (.+?) 站点程序推断 PHP 后端运行时$/)
+    if (phpCmsMatch) return t('ev.phpFromCms', { name: phpCmsMatch[1] })
+    const phpClueMatch = ev.match(/^由 (.+?) 技术线索推断 PHP 后端运行时$/)
+    if (phpClueMatch) return t('ev.phpFromClue', { name: phpClueMatch[1] })
+    // JS 包体内嵌 OAuth 入口（前面可能有 "类型：" 前缀，全角或半角冒号）
+    const oauthMatch = ev.match(/^(?:(.+?)[：:]\s)?JS 包体内嵌 OAuth 入口 (.+)$/)
+    if (oauthMatch) {
+      const kindMap = tm('kindMap') as Record<string, string> | undefined
+      const rawKind = oauthMatch[1]
+      const translatedKind = rawKind ? (kindMap && kindMap[rawKind]) || rawKind : ''
+      const prefix = translatedKind ? `${translatedKind}: ` : ''
+      return prefix + t('ev.oauthEmbed', { url: oauthMatch[2] })
+    }
+    // CSS 变量前缀：存在 --prefix-* CSS 变量
+    const cssVarPrefixMatch = ev.match(/^存在 (--[\w-]+\*) CSS 变量/)
+    if (cssVarPrefixMatch) return t('ev.cssVarPrefix', { prefix: cssVarPrefixMatch[1] })
+    // 类名前缀：存在 prefix-* 类名
+    const classPrefixMatch = ev.match(/^存在 ([\w-]+\*) 类名$/)
+    if (classPrefixMatch) return t('ev.classNamePrefix', { prefix: classPrefixMatch[1] })
+    // 具体类名：存在 className 类名
+    const classMatch = ev.match(/^存在 ([\w-]+) 类名$/)
+    if (classMatch) return t('ev.className', { name: classMatch[1] })
+    // 资源或源码路径包含
+    const resourcePathMatch = ev.match(/^资源或源码路径包含 (.+)$/)
+    if (resourcePathMatch) return t('ev.resourcePathContains', { path: resourcePathMatch[1] })
+    // 动态资源路径包含
+    const dynamicPathMatch = ev.match(/^动态资源路径包含 (.+)$/)
+    if (dynamicPathMatch) return t('ev.dynamicPathContains', { path: dynamicPathMatch[1] })
+    // feed 链接
+    const feedMatch = ev.match(/^发现 feed 链接：(.+)$/)
+    if (feedMatch) return t('ev.feedFound', { url: feedMatch[1] })
+    const dynFeedMatch = ev.match(/^动态发现 feed 链接：(.+)$/)
+    if (dynFeedMatch) return t('ev.dynamicFeedFound', { url: dynFeedMatch[1] })
+    // JS 版权注释匹配 URL
+    const licenseUrlMatch = ev.match(/^JS 版权注释匹配 (.+)$/)
+    if (licenseUrlMatch) return `${t('ev.licenseMatch')} ${licenseUrlMatch[1]}`
+    // 资源 URL 匹配 X 等 N 个
+    const resourceUrlMatch = ev.match(/^资源 URL 匹配 (.+)$/)
+    if (resourceUrlMatch) return `${t('ev.resourceMatch')} ${resourceUrlMatch[1]}`
+    // DOM 匹配 selector
+    const domSelectorMatch = ev.match(/^DOM 匹配 (.+)$/)
+    if (domSelectorMatch) return `${t('ev.domMatch')} ${domSelectorMatch[1]}`
+    // CSS 变量匹配 X
+    const cssVarMatch = ev.match(/^CSS 变量匹配 (.+)$/)
+    if (cssVarMatch) return `${t('ev.cssVarMatch')} ${cssVarMatch[1]}`
+    // "kind：具体证据" 格式 — kind 前缀通过 kindMap 翻译（必须在 sourceMatchSuffix 之前，
+    // 否则 "自有埋点 SDK：JSON 统计动态规则 匹配" 会被后者提前吞掉）
+    const kindPrefixMatch = ev.match(/^(.+?)：(.+)$/)
+    if (kindPrefixMatch) {
+      const translatedKind = tKind(kindPrefixMatch[1])
+      const translatedEvidence = tEvidence(kindPrefixMatch[2])
+      return `${translatedKind}: ${translatedEvidence}`
+    }
+    // "X 匹配" 格式 — sourceLabel + 匹配（[^：] 保证不含全角冒号，避免误匹配上面格式的剩余部分）
+    const sourceMatchSuffix = ev.match(/^([^：]+) 匹配$/)
+    if (sourceMatchSuffix) return t('ev.ruleMatch', { source: tSource(sourceMatchSuffix[1]) })
+    for (const [prefix, key] of Object.entries(EVIDENCE_PREFIX_MAP)) {
+      if (ev.startsWith(prefix)) {
+        const translatedPrefix = t(key)
+        const rest = ev.slice(prefix.length)
+        return rest ? `${translatedPrefix} ${rest.trimStart()}` : translatedPrefix
+      }
+    }
+    return ev
+  }
+
+  // 翻译技术名称中的 "疑似前端库:" 前缀
+  const tTechName = (name: string): string => {
+    if (!name) return name
+    const m = name.match(/^疑似前端库[：:]\s*(.+)$/u)
+    if (m) return `${t('suspect.frontendLib')} ${m[1]}`
+    // 翻译生成的固定技术名称（如私有 CDN 兜底名）
+    const nameMap = tm('techNameMap') as Record<string, string> | undefined
+    if (nameMap?.[name]) return nameMap[name]
+    return name
+  }
+
+  // 把后台返回的中文来源字符串翻译成当前语言
+  const tSource = (zhSource: string): string => {
+    if (!zhSource) return zhSource
+    const map = tm('sourceMap') as Record<string, string> | undefined
+    if (!map) return zhSource
+    // 精确匹配
+    if (map[zhSource]) return map[zhSource]
+    // 前缀匹配（如"动态监控 · 页面交互后" / "响应头 · API" / "响应头 · iframe"）
+    for (const [key, val] of Object.entries(map)) {
+      if (zhSource.startsWith(key)) {
+        const suffix = zhSource.slice(key.length)
+        const translatedSuffix = suffix
+          .replace('页面交互后', t('ev.afterInteraction'))
+          .replace(' · API', ` · ${map['API'] || 'API'}`)
+          .replace(' · iframe', ` · ${map['iframe'] || 'iframe'}`)
+        return val + translatedSuffix
+      }
+    }
+    return zhSource
+  }
+  const RAW_LOADING_TEXT = t('state.loadingRaw')
+
+  // 当前语言的"全部"分类标签（英语等用 'all'，中文用 '全部'）
+  const allCategory = computed(() => t('summary.all'))
 
   const state = reactive({
     result: null as any,
@@ -354,7 +574,7 @@
 
   const status = reactive({ message: '', type: '' as 'ok' | 'error' | '' })
   let statusTimer = 0
-  const pageUrl = ref('正在检测当前标签页...')
+  const pageUrl = ref(t('state.detecting'))
   const unsupportedReason = ref('')
   const version = ref('')
   const isLoading = ref(true)
@@ -364,10 +584,11 @@
     caseSensitive: false,
     wholeWord: false,
     useRegex: false,
-    meta: '搜索当前页面 DOM 源码快照。',
+    meta: t('search.meta'),
     output: ''
   })
-  const rawOutputText = ref(RAW_PLACEHOLDER)
+  const rawOutputText = ref('')
+  const getRawPlaceholder = () => t('msg.rawPlaceholder')
   const theme = ref<ThemeMode>('auto')
   const footerPanel = ref<'search' | 'raw' | 'resources' | 'headers' | 'tech' | null>(null)
   const rawSourceContext = ref<{ tech: any; source: string } | null>(null)
@@ -381,16 +602,16 @@
   const rawPanelTitle = computed(() => {
     if (footerPanel.value !== 'raw') return ''
     const ctx = rawSourceContext.value
-    if (!ctx) return '原始线索'
-    return `原始线索 · ${ctx.tech?.name || ''} · ${ctx.source}`
+    if (!ctx) return t('footer.raw')
+    return `${t('footer.raw')} · ${ctx.tech ? tTechName(ctx.tech.name) : ''} · ${tSource(ctx.source)}`
   })
 
   const footerPanelTitle = computed(() => {
-    if (footerPanel.value === 'search') return '网页源代码搜索'
+    if (footerPanel.value === 'search') return t('footer.searchTitle')
     if (footerPanel.value === 'raw') return rawPanelTitle.value
-    if (footerPanel.value === 'resources') return `资源列表（${detailResources.value.length}）`
-    if (footerPanel.value === 'headers') return `响应头（${Object.keys(detailHeaders.value).length}）`
-    if (footerPanel.value === 'tech') return selectedTech.value?.name || '技术详情'
+    if (footerPanel.value === 'resources') return `${t('summary.resources')}（${detailResources.value.length}）`
+    if (footerPanel.value === 'headers') return `${t('summary.headers')}（${Object.keys(detailHeaders.value).length}）`
+    if (footerPanel.value === 'tech') return selectedTech.value ? tTechName(selectedTech.value.name) : t('app.title')
     return ''
   })
 
@@ -559,13 +780,13 @@
   })
 
   const categoryFilterOptions = computed(() =>
-    tabItems.value.map(item => ({ value: item.category, label: `${item.category} · ${item.count}` }))
+    tabItems.value.map(item => ({ value: item.category, label: `${tCat(item.category)} · ${item.count}` }))
   )
 
   const categoryFilterValue = computed({
     get: () => {
       const cat = state.activeCategory
-      if (cat === FOCUS_CATEGORY || cat === '全部') return ''
+      if (cat === FOCUS_CATEGORY || cat === allCategory.value) return ''
       return cat
     },
     set: value => {
@@ -573,7 +794,7 @@
         state.activeCategory = FOCUS_CATEGORY
         return
       }
-      if (value !== FOCUS_CATEGORY && value !== '全部') {
+      if (value !== FOCUS_CATEGORY && value !== allCategory.value) {
         state.activeCategory = value
       }
     }
@@ -601,7 +822,7 @@
 
   const getFilteredTechnologies = (result: any) => {
     if (state.activeCategory === FOCUS_CATEGORY) return getFocusTechnologies(result.technologies)
-    if (state.activeCategory === '全部') return result.technologies
+    if (state.activeCategory === allCategory.value) return result.technologies
     return result.technologies.filter((tech: any) => tech.category === state.activeCategory)
   }
 
@@ -630,13 +851,13 @@
 
   const requestPopupResult = async (tabId: number) => {
     const response = await chrome.runtime.sendMessage({ type: 'GET_POPUP_RESULT', tabId })
-    if (!response?.ok) throw new Error(response?.error || '后台没有返回结果')
+    if (!response?.ok) throw new Error(response?.error || t('msg.noCache'))
     return response
   }
 
   const requestPopupRawResult = async (tabId: number) => {
     const response = await chrome.runtime.sendMessage({ type: 'GET_POPUP_RAW_RESULT', tabId })
-    if (!response?.ok) throw new Error(response?.error || '后台没有返回原始线索')
+    if (!response?.ok) throw new Error(response?.error || t('msg.noRaw'))
     return response.data || {}
   }
 
@@ -678,11 +899,13 @@
     scheduleCachedResultRefresh(tabId, previousUpdatedAt, attempt + 1)
   }
 
-  const markUnsupportedPage = (url: string, reason: string) => {
+  const markUnsupportedPage = (url: string, reasonCode?: string) => {
     state.pageSupported = false
     state.result = null
-    unsupportedReason.value = reason
-    pageUrl.value = url || '当前标签页'
+    const code = reasonCode || 'unsupportedProtocol'
+    const reasonMap = tm('state.unsupportedReasons') as Record<string, string> | undefined
+    unsupportedReason.value = (reasonMap && reasonMap[code]) || t('state.unsupported')
+    pageUrl.value = url || t('msg.currentTab')
     setStatus('')
     clearCacheRefreshTimer()
   }
@@ -695,19 +918,19 @@
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
     if (!tab || !tab.id) {
       isLoading.value = false
-      showError('无法读取当前标签页。')
+      showError(t('msg.noTab'))
       return
     }
 
     const support = checkPageSupport(tab.url || '')
     if (!support.supported) {
       isLoading.value = false
-      markUnsupportedPage(tab.url || '', support.reason)
+      markUnsupportedPage(tab.url || '', support.reasonCode)
       return
     }
 
     state.pageSupported = true
-    pageUrl.value = tab.url || '当前标签页'
+    pageUrl.value = tab.url || t('msg.currentTab')
     state.currentTabId = tab.id
     setStatus('')
 
@@ -722,23 +945,23 @@
       isLoading.value = false
 
       if (!response.hasCache) {
-        setStatus('还没有后台缓存，已请求后台检测；稍后会自动读取新结果，也可以点击"刷新"立即检测。')
+        setStatus(t('msg.noCache'))
         requestBackgroundDetection(tab.id)
         scheduleCachedResultRefresh(tab.id, response.updatedAt || 0, 0)
         return
       }
 
       if (response.stale) {
-        setStatus('后台正在更新缓存，当前结果可先使用。')
+        setStatus(t('msg.cacheUpdating'))
         requestBackgroundDetection(tab.id)
         scheduleCachedResultRefresh(tab.id, response.updatedAt || 0, 0)
         return
       }
 
-      setStatus('检测结果已加载。', 'ok')
+      setStatus(t('msg.loaded'), 'ok')
     } catch (error: any) {
       isLoading.value = false
-      showError(`读取后台缓存失败：${String(error?.message || error)}`)
+      showError(t('msg.cacheReadFailed', { msg: String(error?.message || error) }))
     }
   }
 
@@ -747,19 +970,19 @@
 
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
     if (!tab || !tab.id) {
-      showError('无法读取当前标签页。')
+      showError(t('msg.noTab'))
       return
     }
 
     const support = checkPageSupport(tab.url || '')
     if (!support.supported) {
-      markUnsupportedPage(tab.url || '', support.reason)
+      markUnsupportedPage(tab.url || '', support.reasonCode)
       return
     }
 
     state.pageSupported = true
-    setStatus(force ? '已请求后台重新检测，当前结果可先使用。' : '已请求后台检测。', 'ok')
-    pageUrl.value = tab.url || '当前标签页'
+    setStatus(force ? t('msg.redetectRequested') : t('msg.detectRequested'), 'ok')
+    pageUrl.value = tab.url || t('msg.currentTab')
     state.currentTabId = tab.id
 
     const previousUpdatedAt = Number(state.result?.updatedAt || 0)
@@ -808,9 +1031,9 @@
       rawCopied
     }
     if (rawCopied) {
-      setStatus('完整原始线索已复制到剪贴板，跳转后可直接粘贴到议题中。', 'ok')
+      setStatus(t('msg.rawCopiedForIssue'), 'ok')
     }
-    chrome.tabs.create({ url: buildCorrectionIssueUrl(tech, ctx) })
+    chrome.tabs.create({ url: buildCorrectionIssueUrl(tech, ctx, t, locale.value) })
   }
 
   const openSettings = () => {
@@ -821,52 +1044,52 @@
 
   const openRepository = (event: Event) => {
     event.preventDefault()
-    chrome.tabs.create({ url: REPOSITORY_URL })
+    chrome.tabs.create({ url: getReadmeUrl(locale.value) })
   }
 
   const copyResult = async () => {
     const url = (state.result as any)?.url || pageUrl.value
-    if (!url || url === '正在检测当前标签页...') {
-      setStatus('暂无可复制的当前页 URL。', 'error')
+    if (!url || url === t('state.detecting')) {
+      setStatus(t('msg.noUrl'), 'error')
       return
     }
     try {
       await navigator.clipboard.writeText(String(url))
-      setStatus('已复制当前页 URL。', 'ok')
+      setStatus(t('msg.copyUrlDone'), 'ok')
     } catch (error: any) {
-      setStatus(`复制失败：${String(error?.message || error)}`, 'error')
+      setStatus(t('msg.copyFailed', { msg: String(error?.message || error) }), 'error')
     }
   }
 
   const copyRawOutput = async () => {
     const text = rawOutputText.value
     if (!text || text === RAW_PLACEHOLDER || text === RAW_LOADING_TEXT) {
-      setStatus('暂无可复制的原始线索。', 'error')
+      setStatus(t('msg.noRawCopy'), 'error')
       return
     }
     try {
       await navigator.clipboard.writeText(text)
-      setStatus('已复制原始线索。', 'ok')
+      setStatus(t('msg.rawCopied'), 'ok')
     } catch (error: any) {
-      setStatus(`复制失败：${String(error?.message || error)}`, 'error')
+      setStatus(t('msg.copyFailed', { msg: String(error?.message || error) }), 'error')
     }
   }
 
   const copyTechStackReport = async () => {
     const result = state.result
     if (!result) {
-      setStatus('暂无可复制的技术栈信息。', 'error')
+      setStatus(t('msg.noTechStack'), 'error')
       return
     }
     if (!navigator.clipboard?.writeText) {
-      setStatus('当前浏览器不支持直接复制技术栈报告。', 'error')
+      setStatus(t('msg.copyUnsupported'), 'error')
       return
     }
     try {
       await navigator.clipboard.writeText(formatTechStackReport(result))
-      setStatus('已复制完整技术栈报告。', 'ok')
+      setStatus(t('msg.reportCopied'), 'ok')
     } catch (error: any) {
-      setStatus(`复制失败：${String(error?.message || error)}`, 'error')
+      setStatus(t('msg.copyFailed', { msg: String(error?.message || error) }), 'error')
     }
   }
 
@@ -901,7 +1124,7 @@
   const downloadRawOutput = () => {
     const text = rawOutputText.value
     if (!text || text === RAW_PLACEHOLDER || text === RAW_LOADING_TEXT) {
-      setStatus('暂无可下载的原始线索。', 'error')
+      setStatus(t('msg.noRawDownload'), 'error')
       return
     }
     try {
@@ -914,9 +1137,9 @@
       anchor.click()
       anchor.remove()
       setTimeout(() => URL.revokeObjectURL(objectUrl), 1000)
-      setStatus(rawSourceContext.value ? '已下载来源详情。' : '已下载完整原始线索。', 'ok')
+      setStatus(rawSourceContext.value ? t('msg.sourceDownloaded') : t('msg.rawDownloaded'), 'ok')
     } catch (error: any) {
-      setStatus(`下载失败：${String(error?.message || error)}`, 'error')
+      setStatus(t('msg.downloadFailed', { msg: String(error?.message || error) }), 'error')
     }
   }
 
@@ -931,9 +1154,16 @@
 
   const getActiveTabId = async () => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
-    if (!tab || !tab.id) throw new Error('无法读取当前标签页。')
+    if (!tab || !tab.id) throw new Error(t('msg.noTab'))
     const support = checkPageSupport(tab.url || '')
-    if (!support.supported) throw new Error(support.reason)
+    if (!support.supported)
+      throw new Error(
+        (() => {
+          const code = support.reasonCode || 'unsupportedProtocol'
+          const reasonMap = tm('state.unsupportedReasons') as Record<string, string> | undefined
+          return (reasonMap && reasonMap[code]) || t('state.unsupported')
+        })()
+      )
     state.currentTabId = tab.id
     return tab.id
   }
@@ -1012,13 +1242,49 @@
     if (footerPanel.value === 'raw') {
       void renderRawOutput()
     } else {
-      rawOutputText.value = RAW_PLACEHOLDER
+      rawOutputText.value = getRawPlaceholder()
     }
+  }
+
+  // 把 raw JSON 里的技术记录字段翻译成当前语言，供 Raw data 面板展示
+  const translateRawForDisplay = (obj: any): any => {
+    if (!obj || typeof obj !== 'object') return obj
+    if (Array.isArray(obj)) return obj.map(translateRawForDisplay)
+
+    const result: Record<string, any> = {}
+    for (const [k, v] of Object.entries(obj)) {
+      if (k === 'technologies' && Array.isArray(v)) {
+        result[k] = v.map((tech: any) => {
+          if (!tech || typeof tech !== 'object') return tech
+          return {
+            ...tech,
+            name: tTechName(tech.name),
+            category: tCat(tech.category),
+            confidence: tConfidence(tech.confidence),
+            source: tech.source ? tSource(tech.source) : tech.source,
+            sources: Array.isArray(tech.sources) ? tech.sources.map(tSource) : tech.sources,
+            evidence: Array.isArray(tech.evidence) ? tech.evidence.map(tEvidence) : tech.evidence
+          }
+        })
+      } else if (k === 'source' && typeof v === 'string') {
+        result[k] = tSource(v)
+      } else if (k === 'technology' && typeof v === 'string') {
+        result[k] = tTechName(v)
+      } else if (k === 'notes' && Array.isArray(v)) {
+        const notesMap = tm('rawNotes') as Record<string, string> | undefined
+        result[k] = v.map((note: string) => notesMap?.[note] || note)
+      } else if (['apiObservations', 'frameObservations', 'dynamicObservations', 'bundleObservations'].includes(k)) {
+        result[k] = translateRawForDisplay(v)
+      } else {
+        result[k] = v
+      }
+    }
+    return result
   }
 
   const renderRawOutput = async () => {
     if (!state.result) {
-      rawOutputText.value = '暂无原始线索。'
+      rawOutputText.value = t('msg.noRaw')
       return
     }
     rawOutputText.value = RAW_LOADING_TEXT
@@ -1026,12 +1292,12 @@
       const raw = await getRawResult()
       const ctx = rawSourceContext.value
       if (ctx) {
-        rawOutputText.value = JSON.stringify(buildScopedRawJson(raw, ctx.tech, ctx.source), null, 2)
+        rawOutputText.value = JSON.stringify(translateRawForDisplay(buildScopedRawJson(raw, ctx.tech, ctx.source)), null, 2)
       } else {
-        rawOutputText.value = JSON.stringify(raw, null, 2)
+        rawOutputText.value = JSON.stringify(translateRawForDisplay(raw), null, 2)
       }
     } catch (error: any) {
-      rawOutputText.value = `原始线索生成失败：${String(error?.message || error)}`
+      rawOutputText.value = t('msg.rawFailed', { msg: String(error?.message || error) })
     }
   }
 
@@ -1045,14 +1311,14 @@
   const searchPageSourceFromPopup = async () => {
     const query = search.query
     if (!query) {
-      search.meta = '请输入要搜索的内容。'
+      search.meta = t('search.queryRequired')
       search.output = ''
       return
     }
 
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
     if (!tab || !tab.id) {
-      search.meta = '无法读取当前标签页。'
+      search.meta = t('search.noTab')
       search.output = ''
       return
     }
@@ -1070,7 +1336,7 @@
       useRegex: search.useRegex
     }
 
-    search.meta = '正在搜索当前页面 DOM 源码快照...'
+    search.meta = t('search.searching')
     search.output = ''
 
     try {
@@ -1090,38 +1356,38 @@
       const result = injection?.result as any
 
       if (!result?.ok) {
-        search.meta = result?.error || '搜索失败。'
+        search.meta = result?.error || t('search.searchFailed')
         search.output = ''
         return
       }
 
-      search.meta = `找到 ${result.totalMatchesText} 处匹配，源码长度 ${result.sourceLength.toLocaleString()} 字符。`
+      search.meta = t('search.searchFound', { count: result.totalMatchesText, length: result.sourceLength.toLocaleString() })
       search.output = formatSearchResult(result)
     } catch (error: any) {
-      search.meta = `搜索失败：${String(error?.message || error)}`
+      search.meta = t('search.searchFailed') + ': ' + String(error?.message || error)
       search.output = ''
     }
   }
 
   const formatSearchResult = (result: any) => {
     const lines = [
-      `查询: ${result.query}`,
-      `模式: ${describeSearchOptions(result.options)}`,
-      `来源: ${result.sourceKind}`,
-      `源码长度: ${result.sourceLength.toLocaleString()} 字符`,
-      `匹配数量: ${result.totalMatchesText}`
+      `${t('search.queryLabel')}: ${result.query}`,
+      `${t('search.modeLabel')}: ${describeSearchOptions(result.options)}`,
+      `${t('search.sourceLabel')}: ${result.sourceKind}`,
+      `${t('search.sourceLength')}: ${result.sourceLength.toLocaleString()}`,
+      `${t('search.matchCount')}: ${result.totalMatchesText}`
     ]
 
     if (!result.snippets.length) {
-      lines.push('', '未找到匹配。')
+      lines.push('', t('search.noMatch'))
       return lines.join('\n')
     }
-    if (result.truncated) lines.push(`只展示前 ${result.snippets.length} 条匹配上下文。`)
+    if (result.truncated) lines.push(t('search.truncated', { n: result.snippets.length }))
 
     lines.push('', '----------------------------------------')
     for (const snippet of result.snippets) {
       lines.push(
-        `#${snippet.index} 行 ${snippet.line} 列 ${snippet.column} 字符位置 ${snippet.offset}`,
+        t('search.matchLocation', { index: snippet.index, line: snippet.line, col: snippet.column, offset: snippet.offset }),
         snippet.preview,
         '----------------------------------------'
       )
@@ -1131,9 +1397,9 @@
 
   const describeSearchOptions = (options: any) => {
     const parts: string[] = []
-    parts.push(options.useRegex ? '正则表达式' : '普通文本')
-    parts.push(options.caseSensitive ? '区分大小写' : '忽略大小写')
-    if (options.wholeWord) parts.push('全字匹配')
+    parts.push(options.useRegex ? t('search.modeRegex') : t('search.modePlain'))
+    parts.push(options.caseSensitive ? t('search.modeCaseSensitive') : t('search.modeCaseInsensitive'))
+    if (options.wholeWord) parts.push(t('search.modeWholeWord'))
     return parts.join(' / ')
   }
 
@@ -1264,6 +1530,7 @@
     display: flex;
     flex: 0 0 auto;
     gap: 4px;
+    position: relative;
     white-space: nowrap;
 
     button {
@@ -1303,6 +1570,61 @@
     justify-content: center;
     padding: 0 !important;
     width: 28px;
+  }
+
+  // 语言菜单
+  .lang-menu {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    min-width: 120px;
+    overflow: hidden;
+    padding: 4px;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 4px);
+    z-index: 100;
+  }
+
+  .lang-option {
+    background: transparent;
+    border: 0;
+    border-radius: 5px;
+    color: var(--text);
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    padding: 5px 10px;
+    text-align: left;
+    transition:
+      background 0.12s ease,
+      color 0.12s ease;
+    white-space: nowrap;
+    width: 100%;
+
+    &:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    &.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+  }
+
+  .lang-menu-enter-active,
+  .lang-menu-leave-active {
+    transition:
+      opacity 0.12s ease,
+      transform 0.12s ease;
+  }
+
+  .lang-menu-enter-from,
+  .lang-menu-leave-to {
+    opacity: 0;
+    transform: translateY(-4px);
   }
 
   // msg 浮动通知：与 settings 一致的悬浮提示

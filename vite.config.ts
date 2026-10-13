@@ -61,6 +61,7 @@ const precompileRuleTree = (node: any, inherited: Record<string, unknown> = {}):
 const precompileRulesPlugin = (): Plugin => ({
   name: 'stackprism:precompile-rules',
   apply: 'build',
+  enforce: 'post',
   closeBundle() {
     const rulesDir = path.resolve(__dirname, 'dist/rules')
     let dirStat
@@ -99,6 +100,7 @@ const precompileRulesPlugin = (): Plugin => ({
 const minifyJsonAssets = (): Plugin => ({
   name: 'stackprism:minify-json-assets',
   apply: 'build',
+  enforce: 'post',
   closeBundle() {
     const distDir = path.resolve(__dirname, 'dist')
     const walk = (dir: string): string[] => {

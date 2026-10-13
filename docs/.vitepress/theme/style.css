@@ -150,3 +150,29 @@
 .dark .VPDoc :not(pre) > code {
   color: var(--vp-c-brand-1);
 }
+
+/* 语言切换菜单：当前语言高亮（JS 注入 is-current-lang 类） */
+.VPMenuLink.is-current-lang a {
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+}
+
+.VPMenuLink.is-current-lang a::after {
+  content: ' ✓';
+  font-size: 11px;
+}
+
+/* 桥接扩展 UI 组件 token 到 VitePress token，让 Select/Input/Textarea 能在文档站里正常显示 */
+:root {
+  --accent: var(--vp-c-brand-1);
+  --accent-soft: var(--vp-c-brand-soft);
+  --panel: var(--vp-c-bg);
+  --line: var(--vp-c-divider);
+  --text: var(--vp-c-text-1);
+  --muted: var(--vp-c-text-3);
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.dark {
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}

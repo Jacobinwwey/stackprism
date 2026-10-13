@@ -1,5 +1,5 @@
 import type { TechnologyRecord } from '@/types/rules'
-import { DETECTION_CORRECTION_TEMPLATE, REPOSITORY_URL, RULE_CONTRIBUTION_URL } from './constants'
+import { DOCS_URL } from './constants'
 
 export interface CorrectionContext {
   url?: string
@@ -9,52 +9,58 @@ export interface CorrectionContext {
   rawCopied?: boolean
 }
 
-export const buildCorrectionIssueUrl = (tech: TechnologyRecord, ctx: CorrectionContext = {}): string => {
-  const title = `识别纠正：${tech.name || '未知技术'}`
-  const evidenceLines = tech.evidence?.length ? tech.evidence.slice(0, 8).map(item => `- ${item}`) : ['- 无']
+type TFn = (key: string, values?: Record<string, string | number>) => string
 
-  const supplementSection = ctx.rawCopied
-    ? ['完整原始线索 JSON 已复制到你的剪贴板，请在下方粘贴（Ctrl+V / Cmd+V），便于排查规则误判位置：', '', '```json', '', '```']
-    : ['请粘贴页面源码片段、资源 URL、响应头、截图或其他可以帮助修正规则的信息。']
-
-  const body = [
-    '## 需要纠正的识别结果',
-    '',
-    `- 技术名称：${tech.name || ''}`,
-    `- 分类：${tech.category || ''}`,
-    `- 置信度：${tech.confidence || ''}`,
-    `- 来源：${tech.sources?.length ? tech.sources.join('、') : '无'}`,
-    `- 页面标题：${ctx.title || ''}`,
-    `- 页面 URL：${ctx.url || ''}`,
-    `- 插件版本：v${ctx.version || ''}`,
-    `- 生成时间：${ctx.generatedAt || ''}`,
-    '',
-    '## 当前证据',
-    '',
-    ...evidenceLines,
-    '',
-    '## 你认为正确的结果',
-    '',
-    '- 正确技术名称：',
-    '- 正确分类：',
-    '- 纠正原因：',
-    '',
-    '## 补充线索',
-    '',
-    ...supplementSection
-  ].join('\n')
-
-  const issueUrl = new URL(`${REPOSITORY_URL}/issues/new`)
-  issueUrl.searchParams.set('template', DETECTION_CORRECTION_TEMPLATE)
-  issueUrl.searchParams.set('title', title)
-  issueUrl.searchParams.set('labels', 'feedback,rule')
-  issueUrl.searchParams.set('body', body)
-  return issueUrl.toString()
+const fallbackT: TFn = key => {
+  const defaults: Record<string, string> = {
+    'issue.correctionTitle': '识别纠正：',
+    'issue.unknownTech': '未知技术',
+    'issue.noEvidence': '无',
+    'issue.sectionNeeds': '## 需要纠正的识别结果',
+    'issue.fieldName': '- 技术名称：',
+    'issue.fieldCategory': '- 分类：',
+    'issue.fieldConfidence': '- 置信度：',
+    'issue.fieldSources': '- 来源：',
+    'issue.fieldPageTitle': '- 页面标题：',
+    'issue.fieldPageUrl': '- 页面 URL：',
+    'issue.fieldVersion': '- 插件版本：v',
+    'issue.fieldGeneratedAt': '- 生成时间：',
+    'issue.sectionEvidence': '## 当前证据',
+    'issue.sectionCorrect': '## 你认为正确的结果',
+    'issue.correctName': '- 正确技术名称：',
+    'issue.correctCategory': '- 正确分类：',
+    'issue.correctReason': '- 纠正原因：',
+    'issue.sectionSupplement': '## 补充线索',
+    'issue.rawCopiedHint': '完整原始线索 JSON 已复制到你的剪贴板，请在下方粘贴（Ctrl+V / Cmd+V），便于排查规则误判位置：',
+    'issue.rawNotCopiedHint': '请粘贴页面源码片段、资源 URL、响应头、截图或其他可以帮助修正规则的信息。',
+    'issue.ruleContributionTitle': '规则贡献：'
+  }
+  return defaults[key] ?? key
 }
 
-export const buildRuleContributionUrl = (name?: string, category?: string): string => {
+export const buildCorrectionIssueUrl = (
+  tech: TechnologyRecord,
+  ctx: CorrectionContext = {},
+  t: TFn = fallbackT,
+  locale?: string
+): string => {
+  const feedbackUrl = new URL(`${DOCS_URL}/feedback`)
+  feedbackUrl.searchParams.set('tab', 'bug')
+  if (tech.name) feedbackUrl.searchParams.set('tech', tech.name)
+  if (tech.category) feedbackUrl.searchParams.set('category', tech.category)
+  if (ctx.version) feedbackUrl.searchParams.set('version', ctx.version)
+  if (ctx.url) feedbackUrl.searchParams.set('url', ctx.url)
+  if (locale) feedbackUrl.searchParams.set('lang', locale)
+  return feedbackUrl.toString()
+}
+
+export const buildRuleContributionUrl = (name?: string, category?: string, t: TFn = fallbackT, locale?: string): string => {
   const trimmedName = (name ?? '').trim()
   const trimmedCategory = (category ?? '').trim()
-  const title = trimmedName ? `规则贡献：${trimmedCategory ? `${trimmedCategory} / ` : ''}${trimmedName}` : '规则贡献：'
-  return `${RULE_CONTRIBUTION_URL}&title=${encodeURIComponent(title)}`
+  const feedbackUrl = new URL(`${DOCS_URL}/feedback`)
+  feedbackUrl.searchParams.set('tab', 'rule')
+  if (trimmedName) feedbackUrl.searchParams.set('tech', trimmedName)
+  if (trimmedCategory) feedbackUrl.searchParams.set('category', trimmedCategory)
+  if (locale) feedbackUrl.searchParams.set('lang', locale)
+  return feedbackUrl.toString()
 }

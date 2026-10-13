@@ -3,33 +3,33 @@
     <div class="settings-header-inner">
       <div>
         <h1>
-          StackPrism 设置
+          {{ t('settings.title') }}
           <span v-if="version" class="version-badge">v{{ version }}</span>
         </h1>
-        <p>控制识别分类，添加自定义规则，并覆盖弹窗样式。</p>
+        <p>{{ t('settings.subtitle') }}</p>
       </div>
       <div class="header-actions">
-        <RippleButton :title="`主题：${themeLabel(theme)}（点击切换）`" @click="toggleTheme">
+        <RippleButton :title="t('theme.toggle', { label: tTheme(theme) })" @click="toggleTheme">
           <Sun v-if="theme === 'light'" :size="14" :stroke-width="2" />
           <Moon v-else-if="theme === 'dark'" :size="14" :stroke-width="2" />
           <Monitor v-else :size="14" :stroke-width="2" />
-          <span>主题：{{ themeLabel(theme) }}</span>
+          <span>{{ t('theme.labelPrefix') }}{{ tTheme(theme) }}</span>
         </RippleButton>
         <RippleButton @click="openHelp">
           <BookOpen :size="14" :stroke-width="2" />
-          <span>使用说明</span>
+          <span>{{ t('settings.help') }}</span>
         </RippleButton>
-        <RippleButton title="GitHub 仓库" @click="openRepository">
+        <RippleButton :title="t('settings.github')" @click="openRepository">
           <ExternalLink :size="14" :stroke-width="2" />
-          <span>GitHub 仓库</span>
+          <span>{{ t('settings.github') }}</span>
         </RippleButton>
         <RippleButton class="primary" variant="primary" @click="saveSettings">
           <Save :size="14" :stroke-width="2" />
-          <span>保存设置</span>
+          <span>{{ t('settings.save') }}</span>
         </RippleButton>
         <RippleButton @click="resetSettings">
           <RotateCcw :size="14" :stroke-width="2" />
-          <span>恢复默认</span>
+          <span>{{ t('settings.reset') }}</span>
         </RippleButton>
       </div>
     </div>
@@ -39,70 +39,70 @@
 
     <section class="panel">
       <div class="panel-head">
-        <h2>识别开关</h2>
+        <h2>{{ t('settings.toggleSection') }}</h2>
         <div class="inline-actions">
-          <RippleButton @click="setAllCategories(true)">全开</RippleButton>
-          <RippleButton @click="setAllCategories(false)">全关</RippleButton>
+          <RippleButton @click="setAllCategories(true)">{{ t('settings.allOn') }}</RippleButton>
+          <RippleButton @click="setAllCategories(false)">{{ t('settings.allOff') }}</RippleButton>
         </div>
       </div>
       <div class="category-grid">
         <label v-for="cat in CATEGORY_ORDER" :key="cat" class="toggle-item">
           <Checkbox v-model="enabledCategories[cat]" :value="cat" @change="collectCategorySettings" />
-          {{ cat }}
+          {{ tCat(cat) }}
         </label>
       </div>
     </section>
 
     <section class="panel two-column">
       <div>
-        <h2>禁用指定技术</h2>
-        <p class="hint">每行一个技术名称。名称匹配后不会在结果里显示。</p>
-        <Textarea v-model="disabledTechnologiesText" :rows="9" placeholder="例如：&#10;Google Analytics&#10;WordPress 插件: akismet" />
+        <h2>{{ t('settings.disabledTech') }}</h2>
+        <p class="hint">{{ t('settings.disabledTechHint') }}</p>
+        <Textarea v-model="disabledTechnologiesText" :rows="9" :placeholder="t('settings.disabledTechPlaceholder')" />
       </div>
       <div>
-        <h2>自定义样式 CSS</h2>
-        <p class="hint">保存后会应用到弹窗和设置页。留空则不覆盖样式。</p>
+        <h2>{{ t('settings.customCss') }}</h2>
+        <p class="hint">{{ t('settings.customCssHint') }}</p>
         <Textarea v-model="customCssText" :rows="9" placeholder=".tech-name { color: #0f766e; }" />
       </div>
     </section>
 
     <section class="panel">
       <div class="panel-head">
-        <h2>自定义规则</h2>
+        <h2>{{ t('settings.customRules') }}</h2>
         <div class="inline-actions">
-          <RippleButton @click="openContribute">提交规则贡献</RippleButton>
-          <RippleButton @click="clearRuleForm">清空表单</RippleButton>
+          <RippleButton @click="openContribute">{{ t('settings.contribute') }}</RippleButton>
+          <RippleButton @click="clearRuleForm">{{ t('settings.clearForm') }}</RippleButton>
         </div>
       </div>
 
       <div class="rule-form">
         <label>
-          <span>技术名称</span>
-          <Input v-model="form.name" placeholder="例如：MyCMS" />
+          <span>{{ t('settings.form.name') }}</span>
+          <Input v-model="form.name" :placeholder="t('settings.form.namePlaceholder')" />
         </label>
         <label>
-          <span>分类</span>
-          <Select v-model="form.category" :options="categoryOptions" creatable placeholder="例如：网站程序" />
+          <span>{{ t('settings.form.category') }}</span>
+          <Select v-model="form.category" :options="categoryOptions" creatable :placeholder="t('settings.form.categoryPlaceholder')" />
         </label>
         <label>
-          <span>类型说明</span>
-          <Input v-model="form.kind" placeholder="例如：自定义 CMS" />
+          <span>{{ t('settings.form.kind') }}</span>
+          <Input v-model="form.kind" :placeholder="t('settings.form.kindPlaceholder')" />
         </label>
         <label>
-          <span>置信度</span>
+          <span>{{ t('settings.form.confidence') }}</span>
           <Select v-model="form.confidence" :options="confidenceOptions" />
         </label>
         <label>
-          <span>匹配方式</span>
+          <span>{{ t('settings.form.matchType') }}</span>
           <Select v-model="form.matchType" :options="matchTypeOptions" />
         </label>
         <label>
-          <span>官网 / 仓库 URL</span>
+          <span>{{ t('settings.form.url') }}</span>
           <Input v-model="form.url" type="url" placeholder="https://example.com" />
         </label>
       </div>
 
-      <div class="match-targets" aria-label="匹配范围">
+      <div class="match-targets" :aria-label="t('settings.form.matchTargets')">
         <label v-for="target in MATCH_TARGETS" :key="target.value">
           <Checkbox v-model="form.matchIn" :value="target.value" />
           {{ target.label }}
@@ -111,28 +111,28 @@
 
       <div class="rule-textareas">
         <label>
-          <span>匹配规则，每行一个</span>
+          <span>{{ t('settings.form.patterns') }}</span>
           <Textarea v-model="form.patterns" :rows="7" placeholder="wp-content/themes/my-theme&#10;X-Generator: MyCMS" />
         </label>
         <label>
-          <span>CSS 选择器，每行一个</span>
+          <span>{{ t('settings.form.selectors') }}</span>
           <Textarea v-model="form.selectors" :rows="7" placeholder="[data-powered-by='mycms']&#10;.mycms-root" />
         </label>
         <label>
-          <span>全局变量，每行一个</span>
+          <span>{{ t('settings.form.globals') }}</span>
           <Textarea v-model="form.globals" :rows="7" placeholder="MyCMS&#10;myApp.version" />
         </label>
       </div>
 
       <div class="form-actions">
-        <RippleButton class="primary" variant="primary" @click="addRuleFromForm">添加规则</RippleButton>
-        <RippleButton @click="updateRuleFromForm">更新当前规则</RippleButton>
+        <RippleButton class="primary" variant="primary" @click="addRuleFromForm">{{ t('settings.form.addRule') }}</RippleButton>
+        <RippleButton @click="updateRuleFromForm">{{ t('settings.form.updateRule') }}</RippleButton>
       </div>
 
       <div class="rules-list">
         <div v-if="!state.settings.customRules.length" class="rules-empty">
           <Inbox class="rules-empty-icon" :size="28" :stroke-width="1.5" />
-          <span>暂无自定义规则</span>
+          <span>{{ t('state.noCustomRules') }}</span>
         </div>
         <div v-for="(rule, index) in state.settings.customRules" :key="`${rule.name}|${index}`" class="rule-row">
           <div>
@@ -140,10 +140,10 @@
             <div class="rule-meta">{{ ruleListLines[index] }}</div>
           </div>
           <div class="rule-actions">
-            <RippleButton class="icon-btn" title="编辑此规则" @click="fillRuleForm(rule, index)">
+            <RippleButton class="icon-btn" :title="t('settings.editRule')" @click="fillRuleForm(rule, index)">
               <Pencil :size="14" :stroke-width="2" />
             </RippleButton>
-            <RippleButton class="icon-btn danger" variant="danger" title="删除此规则" @click="deleteRule(index)">
+            <RippleButton class="icon-btn danger" variant="danger" :title="t('settings.deleteRule')" @click="deleteRule(index)">
               <Trash2 :size="14" :stroke-width="2" />
             </RippleButton>
           </div>
@@ -153,10 +153,10 @@
 
     <section class="panel">
       <div class="panel-head">
-        <h2>规则 JSON</h2>
+        <h2>{{ t('settings.rulesJson') }}</h2>
         <div class="inline-actions">
-          <RippleButton @click="importRulesJson">从 JSON 导入</RippleButton>
-          <RippleButton @click="formatRulesJson">格式化</RippleButton>
+          <RippleButton @click="importRulesJson">{{ t('settings.importJson') }}</RippleButton>
+          <RippleButton @click="formatRulesJson">{{ t('settings.formatJson') }}</RippleButton>
         </div>
       </div>
       <Textarea v-model="rulesJsonText" :rows="13" />
@@ -166,6 +166,7 @@
 
 <script setup lang="ts">
   import { onMounted, reactive, ref, watch, computed } from 'vue'
+  import { useI18n } from 'vue-i18n'
   import { BookOpen, ExternalLink, Inbox, Monitor, Moon, Pencil, RotateCcw, Save, Sun, Trash2 } from 'lucide-vue-next'
   import Select from '@/ui/components/Select.vue'
   import Checkbox from '@/ui/components/Checkbox.vue'
@@ -176,27 +177,41 @@
   import { applyCustomCss } from '@/utils/apply-custom-css'
   import { cleanCustomRules, cleanStringArray, defaultSettings, normalizeSettings } from '@/utils/normalize-settings'
   import { buildRuleContributionUrl } from '@/utils/build-issue-url'
-  import { REPOSITORY_URL, SETTINGS_STORAGE_KEY, STATUS_HIDE_DELAY } from '@/utils/constants'
+  import { REPOSITORY_URL, SETTINGS_STORAGE_KEY, STATUS_HIDE_DELAY, getReadmeUrl } from '@/utils/constants'
   import { ALLOWED_CONFIDENCES, ALLOWED_MATCH_TARGETS, ALLOWED_MATCH_TYPES, CUSTOM_RULE_LIMITS } from '@/types/settings'
   import { cycleTheme, getStoredTheme, setStoredTheme, themeLabel, type ThemeMode } from '@/utils/theme'
 
+  const { t, tm, locale } = useI18n()
+
+  const tCat = (zhCat: string): string => {
+    if (!zhCat) return zhCat
+    const map = tm('categoryMap') as Record<string, string> | undefined
+    return (map && map[zhCat]) || zhCat
+  }
+
+  const tTheme = (mode: ThemeMode): string => {
+    if (mode === 'light') return t('theme.light')
+    if (mode === 'dark') return t('theme.dark')
+    return t('theme.auto')
+  }
+
   const MATCH_TARGETS = [
-    { value: 'url', label: '页面 URL' },
-    { value: 'resources', label: '资源 URL' },
-    { value: 'html', label: 'DOM / 源码' },
-    { value: 'headers', label: '响应头' },
-    { value: 'dynamic', label: '动态资源' }
+    { value: 'url', label: t('settings.form.targets.url') },
+    { value: 'resources', label: t('settings.form.targets.resources') },
+    { value: 'html', label: t('settings.form.targets.html') },
+    { value: 'headers', label: t('settings.form.targets.headers') },
+    { value: 'dynamic', label: t('settings.form.targets.dynamic') }
   ]
 
   const confidenceOptions = [
-    { value: '高', label: '高' },
-    { value: '中', label: '中' },
-    { value: '低', label: '低' }
+    { value: '高', label: t('settings.form.confidenceHigh') },
+    { value: '中', label: t('settings.form.confidenceMid') },
+    { value: '低', label: t('settings.form.confidenceLow') }
   ]
 
   const matchTypeOptions = [
-    { value: 'regex', label: '正则表达式' },
-    { value: 'keyword', label: '关键词' }
+    { value: 'regex', label: t('settings.form.matchRegex') },
+    { value: 'keyword', label: t('settings.form.matchKeyword') }
   ]
 
   const categoryOptions = CATEGORY_ORDER.map(cat => ({ value: cat, label: cat }))
@@ -237,9 +252,10 @@
   const enabledCategories = reactive<Record<string, boolean>>({})
 
   const ruleListLines = computed(() =>
-    state.settings.customRules.map(
-      rule => `${rule.category} · ${rule.kind} · ${rule.confidence} · ${rule.matchType} · ${rule.patterns.length} 条匹配规则`
-    )
+    state.settings.customRules.map(rule => {
+      const count = t('settings.form.rulePatterns', { count: rule.patterns.length })
+      return `${tCat(rule.category)} · ${rule.kind} · ${t('settings.form.confidence' + (rule.confidence === '高' ? 'High' : rule.confidence === '中' ? 'Mid' : 'Low'))} · ${rule.matchType === 'regex' ? t('settings.form.matchRegex') : t('settings.form.matchKeyword')} · ${count}`
+    })
   )
 
   const lines = (value: string) => {
@@ -265,17 +281,18 @@
 
   const showValidationErrors = (errors: string[]) => {
     const visible = errors.slice(0, 6)
-    const more = errors.length > visible.length ? `\n还有 ${errors.length - visible.length} 个问题，请先修正上面的问题再保存。` : ''
-    showStatus(`规则语法检查未通过：\n${visible.join('\n')}${more}`, 'error')
+    const more = errors.length > visible.length ? `\n${t('settings.validation.moreErrors', { n: errors.length - visible.length })}` : ''
+    showStatus(t('settings.validation.validationFailed', { errors: visible.join('\n') }) + more, 'error')
   }
 
-  const validateRegexPatterns = (rule: any, label = '规则') => {
+  const validateRegexPatterns = (rule: any, label?: string) => {
+    const lbl = label ?? t('settings.validation.ruleLabel', { n: '' }).trim()
     if (rule.matchType === 'keyword') return ''
     for (const [index, pattern] of rule.patterns.entries()) {
       try {
         new RegExp(pattern, 'i')
       } catch (error: any) {
-        return `${label} 的匹配规则第 ${index + 1} 行正则无效：${pattern}（${error.message}）`
+        return t('settings.validation.regexInvalid', { label: lbl, row: index + 1, pattern, msg: error.message })
       }
     }
     return ''
@@ -290,19 +307,21 @@
       try {
         document.createDocumentFragment().querySelector(selector)
       } catch (error: any) {
-        errors.push(`${label} 的 CSS 选择器第 ${index + 1} 行无效：${selector}（${error.message}）`)
+        errors.push(t('settings.validation.selectorInvalid', { label, row: index + 1, selector, msg: error.message }))
       }
     }
 
     for (const [index, globalName] of (rule.globals || []).entries()) {
       if (!/^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)*$/.test(globalName)) {
-        errors.push(`${label} 的全局变量第 ${index + 1} 行写法不对：${globalName}。请写成 MyCMS 或 google.maps 这种变量名。`)
+        errors.push(t('settings.validation.globalInvalid', { label, row: index + 1, name: globalName }))
       }
     }
 
     const invalidTargets = (rule.matchIn || []).filter((target: string) => !ALLOWED_MATCH_TARGETS.includes(target as any))
     if (invalidTargets.length) {
-      errors.push(`${label} 的 matchIn 有不认识的范围：${invalidTargets.join('、')}。只能写 ${ALLOWED_MATCH_TARGETS.join('、')}。`)
+      errors.push(
+        t('settings.validation.matchInInvalid', { label, values: invalidTargets.join(', '), allowed: ALLOWED_MATCH_TARGETS.join(', ') })
+      )
     }
 
     return errors
@@ -311,21 +330,21 @@
   const readTextField = (source: any, field: string, label: string, errors: string[], options: any) => {
     if (source[field] === undefined || source[field] === null || source[field] === '') {
       if (options.required) {
-        errors.push(`${label} 缺少 ${options.displayName}。`)
+        errors.push(t('settings.validation.fieldMissing', { label, field: options.displayName }))
         return ''
       }
       return options.defaultValue || ''
     }
     if (typeof source[field] !== 'string') {
-      errors.push(`${label} 的 ${options.displayName} 必须是文字。`)
+      errors.push(t('settings.validation.fieldMustBeString', { label, field: options.displayName }))
       return ''
     }
     const value = source[field].trim()
     if (!value && options.required) {
-      errors.push(`${label} 的 ${options.displayName} 不能为空。`)
+      errors.push(t('settings.validation.fieldEmpty', { label, field: options.displayName }))
     }
     if (value.length > options.max) {
-      errors.push(`${label} 的 ${options.displayName} 最多 ${options.max} 个字，当前 ${value.length} 个字。`)
+      errors.push(t('settings.validation.fieldTooLong', { label, field: options.displayName, max: options.max, len: value.length }))
     }
     return value || options.defaultValue || ''
   }
@@ -333,7 +352,7 @@
   const readUrlField = (source: any, label: string, errors: string[]) => {
     if (source.url === undefined || source.url === null || source.url === '') return ''
     if (typeof source.url !== 'string') {
-      errors.push(`${label} 的官网 / 仓库 URL 必须是文字。`)
+      errors.push(t('settings.validation.urlMustBeString', { label }))
       return ''
     }
     const value = source.url.trim()
@@ -341,7 +360,7 @@
       errors.push(`${label} 的官网 / 仓库 URL 必须以 http:// 或 https:// 开头。`)
     }
     if (value.length > CUSTOM_RULE_LIMITS.url) {
-      errors.push(`${label} 的官网 / 仓库 URL 最多 ${CUSTOM_RULE_LIMITS.url} 个字。`)
+      errors.push(t('settings.validation.urlTooLong', { label, max: CUSTOM_RULE_LIMITS.url }))
     }
     return value
   }
@@ -349,12 +368,19 @@
   const readEnumField = (source: any, field: string, label: string, errors: string[], options: any) => {
     if (source[field] === undefined || source[field] === null || source[field] === '') return options.defaultValue
     if (typeof source[field] !== 'string') {
-      errors.push(`${label} 的 ${options.displayName} 必须是文字。`)
+      errors.push(t('settings.validation.fieldMustBeString', { label, field: options.displayName }))
       return options.defaultValue
     }
     const value = source[field].trim()
     if (!options.allowed.includes(value)) {
-      errors.push(`${label} 的 ${options.displayName} 只能写 ${options.allowed.join('、')}，当前是 ${value || '空'}。`)
+      errors.push(
+        t('settings.validation.enumInvalid', {
+          label,
+          field: options.displayName,
+          allowed: options.allowed.join(', '),
+          value: value || t('settings.validation.empty')
+        })
+      )
       return options.defaultValue
     }
     return value
@@ -363,25 +389,32 @@
   const readStringArrayField = (source: any, field: string, label: string, errors: string[], options: any) => {
     if (source[field] === undefined || source[field] === null) return []
     if (!Array.isArray(source[field])) {
-      errors.push(`${label} 的 ${options.displayName} 必须是数组，例如 ["wp-content/themes/my-theme"]。`)
+      errors.push(t('settings.validation.fieldMustBeArray', { label, field: options.displayName }))
       return []
     }
     if (source[field].length > options.max) {
-      errors.push(`${label} 的 ${options.displayName} 最多 ${options.max} 项，当前 ${source[field].length} 项。`)
+      errors.push(t('settings.validation.arrayTooLong', { label, field: options.displayName, max: options.max, len: source[field].length }))
     }
     const values: string[] = []
     source[field].forEach((item: unknown, itemIndex: number) => {
       if (typeof item !== 'string') {
-        errors.push(`${label} 的 ${options.displayName} 第 ${itemIndex + 1} 项必须是文字。`)
+        errors.push(t('settings.validation.arrayItemMustBeString', { label, field: options.displayName, index: itemIndex + 1 }))
         return
       }
       const value = item.trim()
       if (!value) {
-        errors.push(`${label} 的 ${options.displayName} 第 ${itemIndex + 1} 项不能为空。`)
+        errors.push(t('settings.validation.arrayItemEmpty', { label, field: options.displayName, index: itemIndex + 1 }))
         return
       }
       if (value.length > CUSTOM_RULE_LIMITS.item) {
-        errors.push(`${label} 的 ${options.displayName} 第 ${itemIndex + 1} 项最多 ${CUSTOM_RULE_LIMITS.item} 个字。`)
+        errors.push(
+          t('settings.validation.arrayItemTooLong', {
+            label,
+            field: options.displayName,
+            index: itemIndex + 1,
+            max: CUSTOM_RULE_LIMITS.item
+          })
+        )
         return
       }
       if (!values.includes(value)) values.push(value)
@@ -390,59 +423,59 @@
   }
 
   const normalizeCustomRuleFromRaw = (rawRule: any, index: number, errors: string[]) => {
-    const label = `第 ${index + 1} 条规则`
+    const label = t('settings.validation.ruleLabel', { n: index + 1 })
     const startCount = errors.length
     if (!isPlainObject(rawRule)) {
-      errors.push(`${label} 必须是对象，也就是 { ... }。`)
+      errors.push(t('settings.validation.ruleMustBeObject', { label }))
       return null
     }
 
     const name = readTextField(rawRule, 'name', label, errors, {
-      displayName: '技术名称 name',
+      displayName: 'name',
       required: true,
       max: CUSTOM_RULE_LIMITS.name
     })
     const category = readTextField(rawRule, 'category', label, errors, {
-      displayName: '分类 category',
+      displayName: 'category',
       defaultValue: '其他库',
       max: CUSTOM_RULE_LIMITS.category
     })
     const kind = readTextField(rawRule, 'kind', label, errors, {
-      displayName: '类型说明 kind',
+      displayName: 'kind',
       defaultValue: '自定义规则',
       max: CUSTOM_RULE_LIMITS.kind
     })
     const url = readUrlField(rawRule, label, errors)
     const confidence = readEnumField(rawRule, 'confidence', label, errors, {
-      displayName: '置信度 confidence',
+      displayName: 'confidence',
       defaultValue: '中',
       allowed: ALLOWED_CONFIDENCES
     })
     const matchType = readEnumField(rawRule, 'matchType', label, errors, {
-      displayName: '匹配方式 matchType',
+      displayName: 'matchType',
       defaultValue: 'regex',
       allowed: ALLOWED_MATCH_TYPES
     })
     const patterns = readStringArrayField(rawRule, 'patterns', label, errors, {
-      displayName: '匹配规则 patterns',
+      displayName: 'patterns',
       max: CUSTOM_RULE_LIMITS.patterns
     })
     const selectors = readStringArrayField(rawRule, 'selectors', label, errors, {
-      displayName: 'CSS 选择器 selectors',
+      displayName: 'selectors',
       max: CUSTOM_RULE_LIMITS.selectors
     })
     const globals = readStringArrayField(rawRule, 'globals', label, errors, {
-      displayName: '全局变量 globals',
+      displayName: 'globals',
       max: CUSTOM_RULE_LIMITS.globals
     })
     const matchIn = readStringArrayField(rawRule, 'matchIn', label, errors, {
-      displayName: '匹配范围 matchIn',
+      displayName: 'matchIn',
       max: CUSTOM_RULE_LIMITS.matchIn
     })
 
     const rule = { name, category, kind, confidence, matchType, patterns, selectors, globals, matchIn, url }
     if (!patterns.length && !selectors.length && !globals.length) {
-      errors.push(`${label} 至少要填写 patterns、selectors、globals 其中一种。`)
+      errors.push(t('settings.validation.rulePatternRequired', { label }))
     }
     errors.push(...validateCustomRuleDetails(rule, label))
     return errors.length === startCount ? rule : null
@@ -453,12 +486,12 @@
     const rules: any[] = []
     if (!Array.isArray(value)) {
       return {
-        errors: ['最外层必须是数组，也就是用 [ ] 包住所有规则。示例：[{"name":"MyCMS","patterns":["mycms"]}]'],
+        errors: [t('settings.validation.rulesMustBeArray')],
         rules
       }
     }
     if (value.length > CUSTOM_RULE_LIMITS.rules) {
-      errors.push(`规则最多保存 ${CUSTOM_RULE_LIMITS.rules} 条，当前是 ${value.length} 条。`)
+      errors.push(t('settings.validation.rulesTooMany', { max: CUSTOM_RULE_LIMITS.rules, len: value.length }))
     }
     value.forEach((rawRule, index) => {
       const normalized = normalizeCustomRuleFromRaw(rawRule, index, errors)
@@ -511,19 +544,19 @@
       matchIn: [...form.matchIn]
     }
     if (!rule.name) {
-      showStatus('请填写技术名称。', 'error')
+      showStatus(t('settings.validation.nameRequired'), 'error')
       return null
     }
     if (!rule.patterns.length && !rule.selectors.length && !rule.globals.length) {
-      showStatus('至少填写一种匹配规则、CSS 选择器或全局变量。', 'error')
+      showStatus(t('settings.validation.patternRequired'), 'error')
       return null
     }
     if (!rule.matchIn.length) {
-      showStatus('至少选择一个匹配范围。', 'error')
+      showStatus(t('settings.validation.matchInRequired'), 'error')
       return null
     }
     if (rule.url && !/^https?:\/\//i.test(rule.url)) {
-      showStatus('官网 / 仓库 URL 必须以 http:// 或 https:// 开头。', 'error')
+      showStatus(t('settings.validation.urlInvalid'), 'error')
       return null
     }
     const regexError = validateRegexPatterns(rule)
@@ -531,7 +564,7 @@
       showStatus(regexError, 'error')
       return null
     }
-    const detailErrors = validateCustomRuleDetails(rule, '当前表单')
+    const detailErrors = validateCustomRuleDetails(rule, t('settings.validation.currentForm'))
     if (detailErrors.length) {
       showValidationErrors(detailErrors)
       return null
@@ -549,12 +582,12 @@
     state.settings.customRules.push(rule)
     clearRuleForm()
     syncRulesJson()
-    showStatus('规则已添加，记得保存设置。', 'ok')
+    showStatus(t('settings.validation.ruleAdded'), 'ok')
   }
 
   const updateRuleFromForm = () => {
     if (state.editingIndex < 0 || state.editingIndex >= state.settings.customRules.length) {
-      showStatus('当前没有正在编辑的规则。', 'error')
+      showStatus(t('settings.validation.noEditingRule'), 'error')
       return
     }
     const rule = readRuleForm()
@@ -562,7 +595,7 @@
     state.settings.customRules[state.editingIndex] = rule
     clearRuleForm()
     syncRulesJson()
-    showStatus('规则已更新，记得保存设置。', 'ok')
+    showStatus(t('settings.validation.ruleUpdated'), 'ok')
   }
 
   const fillRuleForm = (rule: any, index: number) => {
@@ -608,7 +641,7 @@
       }
       return validation.rules
     } catch (error: any) {
-      showStatus(`规则 JSON 解析失败：${error.message}`, 'error')
+      showStatus(t('settings.validation.jsonParseFailed', { msg: error.message }), 'error')
       return null
     }
   }
@@ -618,14 +651,14 @@
     if (!rules) return
     state.settings.customRules = rules
     syncRulesJson()
-    showStatus('规则 JSON 已导入，记得保存设置。', 'ok')
+    showStatus(t('settings.validation.jsonImported'), 'ok')
   }
 
   const formatRulesJson = () => {
     const rules = parseRulesJsonTextarea()
     if (!rules) return
     rulesJsonText.value = JSON.stringify(rules, null, 2)
-    showStatus('规则 JSON 已格式化。', 'ok')
+    showStatus(t('settings.validation.jsonFormatted'), 'ok')
   }
 
   const saveSettings = async () => {
@@ -643,23 +676,23 @@
       state.settings = settings
       syncFromSettings()
       applyCustomCss(settings.customCss)
-      showStatus('设置已保存。重新打开或刷新插件弹窗后生效。', 'ok')
+      showStatus(t('settings.validation.saved'), 'ok')
     } catch (error: any) {
-      showStatus(`保存失败：${error.message || error}`, 'error')
+      showStatus(t('settings.validation.saveFailed', { msg: error.message || error }), 'error')
     }
   }
 
   const resetSettings = async () => {
-    if (!confirm('确定恢复默认设置？自定义规则和自定义 CSS 会被清空。')) return
+    if (!confirm(t('settings.validation.resetConfirm'))) return
     state.settings = defaultSettings()
     try {
       await chrome.storage.sync.set({ [SETTINGS_STORAGE_KEY]: state.settings })
       clearRuleForm()
       syncFromSettings()
       applyCustomCss('')
-      showStatus('已恢复默认设置。', 'ok')
+      showStatus(t('settings.validation.resetDone'), 'ok')
     } catch (error: any) {
-      showStatus(`恢复失败：${error.message || error}`, 'error')
+      showStatus(t('settings.validation.resetFailed', { msg: error.message || error }), 'error')
     }
   }
 
@@ -668,12 +701,12 @@
   }
 
   const openContribute = () => {
-    chrome.tabs.create({ url: buildRuleContributionUrl(form.name, form.category) })
+    chrome.tabs.create({ url: buildRuleContributionUrl(form.name, form.category, t, locale.value) })
   }
 
   const openRepository = (event: Event) => {
     event.preventDefault()
-    chrome.tabs.create({ url: REPOSITORY_URL })
+    chrome.tabs.create({ url: getReadmeUrl(locale.value) })
   }
 
   watch(

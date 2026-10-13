@@ -90,6 +90,37 @@
             ]
           },
           {
+            "name": "Phosphor Icons",
+            "patterns": [
+              "(?:^|/)@phosphor-icons/(?:react|vue|web)(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)",
+              "(?:^|/)phosphor-react(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"
+            ],
+            "classPrefixes": ["ph-"]
+          },
+          {
+            "name": "Tabler Icons",
+            "patterns": [
+              "(?:^|/)@tabler/icons(?:-react|-vue|-svelte|-angular)?(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)",
+              "(?:^|/)tabler-icons(?:\\.min)?\\.(?:js|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"
+            ],
+            "classPrefixes": ["ti-"]
+          },
+          {
+            "name": "Remix Icon",
+            "patterns": [
+              "(?:^|/)remixicon(?:\\.min)?\\.css(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)",
+              "(?:^|/)remixicon(?:@[^/\\s\"'<>]+)?/.+\\.css(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"
+            ],
+            "classPrefixes": ["ri-"]
+          },
+          {
+            "name": "Lucide Icons",
+            "patterns": [
+              "(?:^|/)lucide(?:-react|-vue|-svelte|-angular|-solid)?(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"
+            ],
+            "classPrefixes": ["lucide-"]
+          },
+          {
             "name": "spin.js",
             "patterns": ["(?:^|/)spin(?:\\.min\\d*)?\\.js(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"]
           },

@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: GitHub 仓库
-    url: https://github.com/setube/stackprism
-    about: 查看项目代码、提交记录和最新说明。
+  - name: 🔗 Create new issue / 创建新 issue
+    url: https://setube.github.io/stackprism/feedback
+    about: Issues created using the ⚠️ Blank issue above will be closed directly. Please click this link to create an issue using the issue helper. / 使用上面 ⚠️ Blank issue 创建的问题将会被直接关闭，请点击此链接通过 issue helper 创建.
+  - name: 🤔 Questions and Help / 问题和帮助
+    url: https://github.com/setube/stackprism/discussions
+    about: Ask questions and request help or other discussions.

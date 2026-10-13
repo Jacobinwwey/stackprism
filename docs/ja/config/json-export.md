@@ -1,0 +1,88 @@
+# ルール JSON のインポート / エクスポート
+
+設定ページの最後のセクションに現在のカスタムルールの JSON が表示されます。バックアップ・移行・一括編集に適しています。
+
+## 用途
+
+- デバイス間 / アカウント間でカスタムルールを移行する
+- バージョン管理ツールでルールをバックアップする
+- 一括編集（入力ボックス内で検索・置換する方がフォームで 1 件ずつ編集するより速い）
+- プログラムでルール配列を構築する（スクリプトで数百件のルールを生成する）
+
+## フィールド構造
+
+各ルールはオブジェクトです：
+
+```json
+{
+  "name": "MyCMS",
+  "category": "网站程序",
+  "kind": "自定义 CMS",
+  "confidence": "中",
+  "matchType": "regex",
+  "patterns": ["mycms-[0-9.]+\\.js", "X-Generator: MyCMS"],
+  "selectors": ["[data-powered-by='mycms']"],
+  "globals": ["MyCMS"],
+  "matchIn": ["url", "resources", "html", "headers", "dynamic"],
+  "url": "https://mycms.example.com"
+}
+```
+
+| フィールド | 型 | 必須 | 説明 |
+| --- | --- | --- | --- |
+| `name` | string | はい | ポップアップの表示名 |
+| `category` | string | | カテゴリー。デフォルトは `其他库` |
+| `kind` | string | | 種類の説明。デフォルトは `自定义规则` |
+| `confidence` | `"高"` / `"中"` / `"低"` | | デフォルトは `中` |
+| `matchType` | `"keyword"` / `"regex"` | | デフォルトは `regex` |
+| `patterns` | string[] | 三択 | 三択（patterns / selectors / globals のいずれか 1 つ以上が非空）|
+| `selectors` | string[] | 三択 | CSS セレクターのリスト |
+| `globals` | string[] | 三択 | グローバル変数名のリスト（`window.x.y` は `x.y` と記述）|
+| `matchIn` | string[] | | `url` / `resources` / `html` / `headers` / `dynamic` の任意の組み合わせ。デフォルトはすべて |
+| `url` | string | | `http(s)://` で始まる必要がある。空白可 |
+
+## 操作ボタン
+
+タイトルバーの右上に 2 つのボタンがあります：
+
+- **JSON からインポート**：入力ボックスの内容を解析し、検証を通過した場合は現在のカスタムルールリストを**全体的に置き換える**（マージではない）
+- **フォーマット**：解析後に `JSON.stringify(rules, null, 2)` で書き直し、インデントを整える
+
+## 文字列内のバックスラッシュ
+
+JSON 内に正規表現を書く場合は二重エスケープが必要です。例えば `\.js` にマッチさせたい場合：
+
+```json
+{
+  "matchType": "regex",
+  "patterns": ["\\.js$"]
+}
+```
+
+JSON パーサーが `\\` を単一の `\` に解釈し、拡張機能が `\.js$` を受け取り、`new RegExp()` に渡されて初めて真の「エスケープされたドット」になります。
+
+## 全体バリデーション
+
+インポート時に配列全体が先にパースされ、1 件でもルールのフィールドが不正な場合はインポート全体が拒否されます（アトミック）。「半分がインポートされて半分が拒否される」という中間状態は発生しません。エラーメッセージは何番目のルールのどのフィールドに問題があるかを示します。
+
+## フォームとの関係
+
+- フォームで変更 → JSON 入力ボックスに自動同期
+- JSON 入力ボックスを変更 → 「JSON からインポート」をクリックしないと内部のルールリストに同期されない
+- インポートせずに「設定を保存」すると、最後のフォーム操作またはインポート操作後の状態で保存される
+
+## 件数の上限
+
+`CUSTOM_RULE_LIMITS.rules` のデフォルトは 100 件です。超えると拒否されます。[`src/types/settings.ts`](https://github.com/setube/stackprism/blob/main/src/types/settings.ts) のすべての制限：
+
+| フィールド | 上限 |
+| --- | --- |
+| ルールの総数 | 100 |
+| name | 80 文字 |
+| category | 40 文字 |
+| kind | 40 文字 |
+| 1 件あたりの pattern / selector / global | 240 文字 |
+| patterns / selectors / globals 配列の長さ | それぞれ 80 |
+| matchIn 配列の長さ | 8 |
+| url | 240 文字 |
+| customCss | 10000 文字 |

@@ -361,6 +361,129 @@
             "cssVariables": ["--neutral-fill-rest", "--accent-fill-rest", "--neutral-foreground-rest"]
           }
         ]
+      },
+      {
+        "category": "UI / CSS 框架",
+        "name": "UIkit",
+        "url": "https://getuikit.com/",
+        "confidence": "高",
+        "patterns": [
+          "uikit(?:\\.min)?\\.(?:js|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)",
+          "(?:^|/)uikit(?:@[^/\\s\"'<>]+)?/.+\\.(?:js|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"
+        ],
+        "globals": ["UIkit"],
+        "classPrefixes": ["uk-"]
+      },
+      {
+        "defaults": {
+          "category": "UI / CSS 框架",
+          "confidence": "中"
+        },
+        "rules": [
+          {
+            "name": "Varlet UI",
+            "url": "https://varlet.pages.dev/",
+            "patterns": ["(?:^|/)@varlet/ui(?:[@/])"],
+            "classPrefixes": ["var-"]
+          },
+          {
+            "name": "NutUI",
+            "url": "https://nutui.jd.com/",
+            "patterns": ["(?:^|/)@nutui/(?:nutui|taro|uniapp)(?:[@/])"],
+            "classPrefixes": ["nut-"]
+          },
+          {
+            "name": "Buefy",
+            "url": "https://buefy.org/",
+            "patterns": [
+              "(?:^|/)buefy(?:\\.min)?\\.(?:js|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)",
+              "(?:^|/)buefy(?:@[^/\\s\"'<>]+)?/.+\\.(?:js|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"
+            ]
+          },
+          {
+            "name": "VitePress",
+            "url": "https://vitepress.dev/",
+            "patterns": ["(?:^|/)@vitepress/(?:theme|client)(?:[@/])", "/_vitepress/"]
+          },
+          {
+            "name": "Materialize CSS",
+            "url": "https://materializecss.com/",
+            "patterns": [
+              "materialize(?:\\.min)?\\.(?:js|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)",
+              "(?:^|/)materialize-css(?:@[^/\\s\"'<>]+)?/.+\\.(?:js|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"
+            ]
+          },
+          {
+            "name": "Docusaurus",
+            "url": "https://docusaurus.io/",
+            "patterns": ["(?:^|/)@docusaurus/(?:core|theme-[a-z-]+)(?:[@/])", "/_docusaurus/"]
+          }
+        ]
+      },
+      {
+        "defaults": {
+          "category": "UI / CSS 框架",
+          "confidence": "中"
+        },
+        "rules": [
+          {
+            "name": "Atlassian Design System",
+            "url": "https://atlassian.design/",
+            "patterns": ["(?:^|/)@atlaskit/[^/\\s\"'<>]+(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"]
+          },
+          {
+            "name": "Shopify Polaris",
+            "url": "https://polaris.shopify.com/",
+            "patterns": ["(?:^|/)@shopify/polaris(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"],
+            "classPrefixes": ["Polaris-"]
+          },
+          {
+            "name": "Carbon Design System",
+            "url": "https://carbondesignsystem.com/",
+            "patterns": [
+              "(?:^|/)@carbon/(?:react|web-components|styles|icons-react)(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"
+            ],
+            "classPrefixes": ["cds-", "bx-"]
+          },
+          {
+            "name": "Lightning Design System",
+            "url": "https://www.lightningdesignsystem.com/",
+            "patterns": [
+              "(?:^|/)@salesforce-ux/design-system(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"
+            ],
+            "classPrefixes": ["slds-"]
+          },
+          {
+            "name": "Zendesk Garden",
+            "url": "https://garden.zendesk.com/",
+            "patterns": [
+              "(?:^|/)@zendeskgarden/[^/\\s\"'<>]+(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"
+            ]
+          },
+          {
+            "name": "Elastic UI",
+            "url": "https://eui.elastic.co/",
+            "patterns": ["(?:^|/)@elastic/eui(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"],
+            "classPrefixes": ["eui-"]
+          },
+          {
+            "name": "Flowbite Svelte",
+            "url": "https://flowbite-svelte.com/",
+            "patterns": ["(?:^|/)flowbite-svelte(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"]
+          },
+          {
+            "name": "shadcn-svelte",
+            "url": "https://www.shadcn-svelte.com/",
+            "patterns": ["(?:^|/)bits-ui(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"]
+          },
+          {
+            "name": "Svelte UI",
+            "url": "https://www.svelteui.dev/",
+            "patterns": [
+              "(?:^|/)@svelteuidev/(?:core|composables|dates|motion)(?:@[^/\\s\"'<>]+)?/.+\\.(?:m?js|cjs|css)(?:[?#][^\\s\"'<>]*)?(?:[\"'<>\\s]|$)"
+            ]
+          }
+        ]
       }
     ]
   }

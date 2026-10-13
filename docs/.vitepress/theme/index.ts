@@ -1,7 +1,45 @@
 import DefaultTheme from 'vitepress/theme'
 import type { Theme } from 'vitepress'
+import { watch, nextTick } from 'vue'
+import { useRoute } from 'vitepress'
 import './style.css'
+import IssueFeedback from './IssueFeedback.vue'
+
+// 根据当前路径找到对应语言的菜单项并加上 active 标记
+function markCurrentLang() {
+  const path = window.location.pathname
+  // 取第一个路径段作为语言前缀
+  const match = path.match(/^\/([a-z]{2}(?:-[A-Z]{2})?)\//)
+  const currentLang = match ? match[1] : 'root'
+
+  // VitePress 语言菜单里 href 是 /<lang>/ 或 /
+  const langLinks = document.querySelectorAll('.VPMenuLink a.VPLink')
+  langLinks.forEach(link => {
+    const a = link as HTMLAnchorElement
+    const href = a.getAttribute('href') || ''
+    const isRoot = currentLang === 'root' && href === '/'
+    const isMatch = currentLang !== 'root' && href === `/${currentLang}/`
+    const wrapper = a.closest('.VPMenuLink') as HTMLElement | null
+    if (wrapper) {
+      wrapper.classList.toggle('is-current-lang', isRoot || isMatch)
+    }
+  })
+}
 
 export default {
-  extends: DefaultTheme
+  extends: DefaultTheme,
+  enhanceApp({ app, router }) {
+    app.component('IssueFeedback', IssueFeedback)
+    if (typeof window !== 'undefined') {
+      router.onAfterRouteChanged = () => {
+        nextTick(markCurrentLang)
+      }
+    }
+  },
+  setup() {
+    if (typeof window !== 'undefined') {
+      nextTick(markCurrentLang)
+    }
+  }
 } satisfies Theme
+
