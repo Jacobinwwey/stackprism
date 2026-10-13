@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "StackPrism",
+    "description": "Extension name"
+  },
+  "appDesc": {
+    "message": "Rileva tecnologie frontend, backend, CDN, SaaS, pubblicità, analisi, autenticazione, pagamento e CMS nelle pagine web.",
+    "description": "Extension description"
+  }
+}
