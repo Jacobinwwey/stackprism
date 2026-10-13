@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "StackPrism",
+    "description": "Extension name"
+  },
+  "appDesc": {
+    "message": "Webページのフロントエンド、バックエンド、CDN、SaaS、広告、分析、認証、決済、CMSなどの技術を検出します。",
+    "description": "Extension description"
+  }
+}
