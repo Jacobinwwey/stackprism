@@ -45,27 +45,13 @@
   "url": "https://example.com",
   "title": "Example",
   "generatedAt": "2026-05-10T10:00:00.000Z",
-  "technologies": [
-    /* 合併後的去重清單 */
-  ],
-  "resources": {
-    /* 資源摘要 */
-  },
-  "headers": {
-    /* 主文件回應標頭 */
-  },
-  "apiObservations": [
-    /* 每個 API 回應的 url/headers/technologies */
-  ],
-  "frameObservations": [
-    /* 每個 iframe 同上 */
-  ],
-  "dynamicObservations": {
-    /* 動態採集到的腳本/樣式/iframe/feedLinks/domMarkers */
-  },
-  "notes": [
-    /* 幾句方法論說明 */
-  ]
+  "technologies": [/* 合併後的去重清單 */],
+  "resources": {/* 資源摘要 */},
+  "headers": {/* 主文件回應標頭 */},
+  "apiObservations": [/* 每個 API 回應的 url/headers/technologies */],
+  "frameObservations": [/* 每個 iframe 同上 */],
+  "dynamicObservations": {/* 動態採集到的腳本/樣式/iframe/feedLinks/domMarkers */},
+  "notes": [/* 幾句方法論說明 */]
 }
 ```
 

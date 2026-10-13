@@ -4,14 +4,14 @@ Le regole personalizzate servono a coprire i siti non gestiti dalle regole integ
 
 ## Compilazione del modulo
 
-| Campo                  | Obbligatorio | Descrizione                                                                                                         |
-| ---------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------- |
-| **Nome tecnologia**    | Sì           | Il nome visualizzato nel popup, es. `MyCMS`                                                                         |
-| **Categoria**          |              | Seleziona una categoria integrata (23) o inseriscine una nuova. Predefinita: "Altre librerie". Il campo supporta input libero. |
+| Campo                  | Obbligatorio | Descrizione                                                                                                                           |
+| ---------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| **Nome tecnologia**    | Sì           | Il nome visualizzato nel popup, es. `MyCMS`                                                                                           |
+| **Categoria**          |              | Seleziona una categoria integrata (23) o inseriscine una nuova. Predefinita: "Altre librerie". Il campo supporta input libero.        |
 | **Tipo**               |              | Nota descrittiva per uso personale, es. `CMS aziendale`, `Pagamento terze parti`. Appare come prefisso nella prova. Può essere vuoto. |
-| **Confidenza**         |              | Alta / Media / Bassa, predefinita "Media"                                                                           |
-| **Metodo di matching** |              | Parola chiave / Espressione regolare, predefinito "Espressione regolare"                                            |
-| **URL sito / repo**    |              | Deve iniziare con `http://` o `https://`. Se compilato, il nome della tecnologia nel popup diventa cliccabile.      |
+| **Confidenza**         |              | Alta / Media / Bassa, predefinita "Media"                                                                                             |
+| **Metodo di matching** |              | Parola chiave / Espressione regolare, predefinito "Espressione regolare"                                                              |
+| **URL sito / repo**    |              | Deve iniziare con `http://` o `https://`. Se compilato, il nome della tecnologia nel popup diventa cliccabile.                        |
 
 Sotto ci sono quattro aree:
 

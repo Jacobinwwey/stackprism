@@ -104,16 +104,16 @@ A extensão Chrome usa quatro ambientes de execução; o StackPrism usa todos el
 
 Os 8 tipos de mensagem são definidos como discriminated union em `src/types/messages.ts`; todas as chamadas passam pelo wrapper `sendMessage<M>()` em `src/utils/messaging.ts`.
 
-| Mensagem                       | Direção       | Finalidade                                  |
-| ------------------------------ | ------------- | ------------------------------------------- |
-| `GET_HEADER_DATA`              | popup → bg    | Buscar registros de cabeçalhos de resposta  |
-| `GET_POPUP_RESULT`             | popup → bg    | Buscar cache leve (exibição principal do popup) |
-| `GET_POPUP_RAW_RESULT`         | popup → bg    | Buscar dados brutos completos (dados brutos / feedback de erro) |
-| `GET_TECH_LINK`                | popup → bg    | Consulta fallback do link oficial de uma tecnologia |
-| `START_BACKGROUND_DETECTION`   | popup → bg    | Botão "Atualizar" aciona detecção ativa     |
-| `GET_WORDPRESS_THEME_DETAILS`  | bg interno    | Buscar cabeçalho do style.css do tema       |
-| `DYNAMIC_PAGE_SNAPSHOT`        | content → bg  | Content script reporta snapshots dinâmicos continuamente |
-| `PAGE_DETECTION_RESULT`        | injected → bg | page-detector retorna resultado após injeção |
+| Mensagem                      | Direção       | Finalidade                                                      |
+| ----------------------------- | ------------- | --------------------------------------------------------------- |
+| `GET_HEADER_DATA`             | popup → bg    | Buscar registros de cabeçalhos de resposta                      |
+| `GET_POPUP_RESULT`            | popup → bg    | Buscar cache leve (exibição principal do popup)                 |
+| `GET_POPUP_RAW_RESULT`        | popup → bg    | Buscar dados brutos completos (dados brutos / feedback de erro) |
+| `GET_TECH_LINK`               | popup → bg    | Consulta fallback do link oficial de uma tecnologia             |
+| `START_BACKGROUND_DETECTION`  | popup → bg    | Botão "Atualizar" aciona detecção ativa                         |
+| `GET_WORDPRESS_THEME_DETAILS` | bg interno    | Buscar cabeçalho do style.css do tema                           |
+| `DYNAMIC_PAGE_SNAPSHOT`       | content → bg  | Content script reporta snapshots dinâmicos continuamente        |
+| `PAGE_DETECTION_RESULT`       | injected → bg | page-detector retorna resultado após injeção                    |
 
 ## O problema dos dois caminhos do script injetado
 

@@ -4,11 +4,11 @@
 
 Every technology entry shows a confidence pill with one of three levels:
 
-| Level      | Color  | Meaning                                                                                                             |
-| ---------- | ------ | ------------------------------------------------------------------------------------------------------------------- |
+| Level      | Color  | Meaning                                                                                                                                      |
+| ---------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | **High**   | Green  | A strong signal matched: a global variable (e.g., `window.React`), a dedicated DOM selector, or a distinctive resource URL (e.g., `/_next/`) |
-| **Medium** | Yellow | A moderate signal matched: a fuzzy response header, a CSS class prefix, or a set of CSS variables                  |
-| **Low**    | Gray   | A weak signal matched: a generic script filename fallback (e.g., `*.min.js`) or a broad regex                      |
+| **Medium** | Yellow | A moderate signal matched: a fuzzy response header, a CSS class prefix, or a set of CSS variables                                            |
+| **Low**    | Gray   | A weak signal matched: a generic script filename fallback (e.g., `*.min.js`) or a broad regex                                                |
 
 The Highlights tab shows only high-confidence results by default.
 
@@ -28,14 +28,14 @@ When investigating a false positive, start by reading the evidence. It usually t
 
 The source tag indicates where the detection came from:
 
-| Source Tag                         | Origin                                                                                       |
-| ---------------------------------- | -------------------------------------------------------------------------------------------- |
-| `Response Headers`                 | HTTP response headers from the main document (server / x-powered-by / set-cookie, etc.)     |
-| `Response Headers · API`           | Response headers from an XHR / fetch request made by the page                               |
-| `Response Headers · iframe`        | Main document response headers from a nested iframe                                         |
-| `Dynamic Monitor`                  | Resources and dynamically loaded scripts collected continuously by the content script + MutationObserver |
-| `Dynamic Monitor · After Interaction` | Resources loaded after user interaction (modals, login, payment flows)                  |
-| `WordPress Theme`                  | Reverse-engineered from the theme's `style.css` header                                      |
+| Source Tag                            | Origin                                                                                                   |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `Response Headers`                    | HTTP response headers from the main document (server / x-powered-by / set-cookie, etc.)                  |
+| `Response Headers · API`              | Response headers from an XHR / fetch request made by the page                                            |
+| `Response Headers · iframe`           | Main document response headers from a nested iframe                                                      |
+| `Dynamic Monitor`                     | Resources and dynamically loaded scripts collected continuously by the content script + MutationObserver |
+| `Dynamic Monitor · After Interaction` | Resources loaded after user interaction (modals, login, payment flows)                                   |
+| `WordPress Theme`                     | Reverse-engineered from the theme's `style.css` header                                                   |
 
 **Clicking any source tag** opens a panel from the bottom showing the raw JSON subset for **that technology and that source only**. It gives you the raw response headers, resource URL list, or dynamic snapshot directly, without having to dig through the full JSON.
 

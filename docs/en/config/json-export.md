@@ -28,18 +28,18 @@ Each rule is an object:
 }
 ```
 
-| Field        | Type                        | Required      | Description                                                                         |
-| ------------ | --------------------------- | ------------- | ----------------------------------------------------------------------------------- |
-| `name`       | string                      | Yes           | Name shown in the popup                                                             |
-| `category`   | string                      |               | Category; defaults to `Other Libraries`                                             |
-| `kind`       | string                      |               | Kind label; defaults to `Custom Rule`                                               |
-| `confidence` | `"high"` / `"medium"` / `"low"` |           | Defaults to `medium`                                                                |
-| `matchType`  | `"keyword"` / `"regex"`     |               | Defaults to `regex`                                                                 |
-| `patterns`   | string[]                    | One of three  | At least one of patterns / selectors / globals must be non-empty                   |
-| `selectors`  | string[]                    | One of three  | CSS selector list                                                                   |
-| `globals`    | string[]                    | One of three  | Global variable name list (`window.x.y` written as `x.y`)                          |
-| `matchIn`    | string[]                    |               | Any combination of `url` / `resources` / `html` / `headers` / `dynamic`; defaults to all |
-| `url`        | string                      |               | Must be `http(s)://`; may be empty                                                  |
+| Field        | Type                            | Required     | Description                                                                              |
+| ------------ | ------------------------------- | ------------ | ---------------------------------------------------------------------------------------- |
+| `name`       | string                          | Yes          | Name shown in the popup                                                                  |
+| `category`   | string                          |              | Category; defaults to `Other Libraries`                                                  |
+| `kind`       | string                          |              | Kind label; defaults to `Custom Rule`                                                    |
+| `confidence` | `"high"` / `"medium"` / `"low"` |              | Defaults to `medium`                                                                     |
+| `matchType`  | `"keyword"` / `"regex"`         |              | Defaults to `regex`                                                                      |
+| `patterns`   | string[]                        | One of three | At least one of patterns / selectors / globals must be non-empty                         |
+| `selectors`  | string[]                        | One of three | CSS selector list                                                                        |
+| `globals`    | string[]                        | One of three | Global variable name list (`window.x.y` written as `x.y`)                                |
+| `matchIn`    | string[]                        |              | Any combination of `url` / `resources` / `html` / `headers` / `dynamic`; defaults to all |
+| `url`        | string                          |              | Must be `http(s)://`; may be empty                                                       |
 
 ## Buttons
 
@@ -75,14 +75,14 @@ The entire array is parsed before any rule is committed. If any rule has an inva
 
 `CUSTOM_RULE_LIMITS.rules` defaults to 100. Exceeding it causes the import to be rejected. Full limits in [`src/types/settings.ts`](https://github.com/setube/stackprism/blob/main/src/types/settings.ts):
 
-| Field                                         | Limit         |
-| --------------------------------------------- | ------------- |
-| Total rules                                   | 100           |
-| name                                          | 80 chars      |
-| category                                      | 40 chars      |
-| kind                                          | 40 chars      |
-| Single pattern / selector / global            | 240 chars     |
-| patterns / selectors / globals array length   | 80 each       |
-| matchIn array length                          | 8             |
-| url                                           | 240 chars     |
-| customCss                                     | 10,000 chars  |
+| Field                                       | Limit        |
+| ------------------------------------------- | ------------ |
+| Total rules                                 | 100          |
+| name                                        | 80 chars     |
+| category                                    | 40 chars     |
+| kind                                        | 40 chars     |
+| Single pattern / selector / global          | 240 chars    |
+| patterns / selectors / globals array length | 80 each      |
+| matchIn array length                        | 8            |
+| url                                         | 240 chars    |
+| customCss                                   | 10,000 chars |

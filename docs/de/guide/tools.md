@@ -12,11 +12,11 @@ Unterstützt normalen Text und reguläre Ausdrücke. Suche starten mit Enter ode
 
 ### Optionen
 
-| Option | Beschreibung |
-| ------ | ------------ |
-| Groß-/Kleinschreibung | Standard: aus. Aktiviert: `React` und `react` sind nicht mehr gleichwertig |
-| Ganzes Wort | Im Nur-Text-Modus: erfordert Nicht-Wortzeichen vor und nach dem Treffer (`\b`-Umrahmung) |
-| Regulärer Ausdruck | Interpretiert die Eingabe als JavaScript-Regex-Quelltext, kombiniert mit den obigen Flags |
+| Option                | Beschreibung                                                                              |
+| --------------------- | ----------------------------------------------------------------------------------------- |
+| Groß-/Kleinschreibung | Standard: aus. Aktiviert: `React` und `react` sind nicht mehr gleichwertig                |
+| Ganzes Wort           | Im Nur-Text-Modus: erfordert Nicht-Wortzeichen vor und nach dem Treffer (`\b`-Umrahmung)  |
+| Regulärer Ausdruck    | Interpretiert die Eingabe als JavaScript-Regex-Quelltext, kombiniert mit den obigen Flags |
 
 ### Ausgabe
 
@@ -45,27 +45,13 @@ Die Ausgabe ist ein vollständiges JSON-Objekt mit folgendem Aufbau:
   "url": "https://example.com",
   "title": "Example",
   "generatedAt": "2026-05-10T10:00:00.000Z",
-  "technologies": [
-    /* deduplizierte, zusammengeführte Liste */
-  ],
-  "resources": {
-    /* Ressourcenübersicht */
-  },
-  "headers": {
-    /* Antwortheader des Hauptdokuments */
-  },
-  "apiObservations": [
-    /* url/headers/technologies für jede API-Antwort */
-  ],
-  "frameObservations": [
-    /* wie oben für jeden iFrame */
-  ],
-  "dynamicObservations": {
-    /* dynamisch erfasste Skripte/Stylesheets/iFrames/feedLinks/domMarkers */
-  },
-  "notes": [
-    /* kurze methodologische Hinweise */
-  ]
+  "technologies": [/* deduplizierte, zusammengeführte Liste */],
+  "resources": {/* Ressourcenübersicht */},
+  "headers": {/* Antwortheader des Hauptdokuments */},
+  "apiObservations": [/* url/headers/technologies für jede API-Antwort */],
+  "frameObservations": [/* wie oben für jeden iFrame */],
+  "dynamicObservations": {/* dynamisch erfasste Skripte/Stylesheets/iFrames/feedLinks/domMarkers */},
+  "notes": [/* kurze methodologische Hinweise */]
 }
 ```
 

@@ -4,11 +4,11 @@
 
 Ogni tecnologia ha un indicatore di confidenza con tre livelli:
 
-| Livello  | Colore | Significato                                                                                                 |
-| -------- | ------ | ----------------------------------------------------------------------------------------------------------- |
-| **Alta** | Verde  | Segnale forte: variabile globale (es. `window.React`), selettore DOM specifico, URL risorsa esplicito (es. `/_next/`) |
-| **Media**| Giallo | Segnale medio: corrispondenza approssimativa intestazioni di risposta, prefisso classe CSS, insieme di variabili CSS   |
-| **Bassa**| Grigio | Segnale debole: fallback su nome file script generico (es. `*.min.js`), regex generica                       |
+| Livello   | Colore | Significato                                                                                                           |
+| --------- | ------ | --------------------------------------------------------------------------------------------------------------------- |
+| **Alta**  | Verde  | Segnale forte: variabile globale (es. `window.React`), selettore DOM specifico, URL risorsa esplicito (es. `/_next/`) |
+| **Media** | Giallo | Segnale medio: corrispondenza approssimativa intestazioni di risposta, prefisso classe CSS, insieme di variabili CSS  |
+| **Bassa** | Grigio | Segnale debole: fallback su nome file script generico (es. `*.min.js`), regex generica                                |
 
 Nella vista "In evidenza" vengono mostrati per default solo i risultati ad alta confidenza.
 
@@ -28,14 +28,14 @@ In caso di falso positivo, controlla prima le prove. Di solito indicano se il pr
 
 L'etichetta di origine indica da dove è stato rilevato il risultato:
 
-| Etichetta origine                  | Provenienza                                                              |
-| ---------------------------------- | ------------------------------------------------------------------------ |
-| `Intestazioni`                     | Intestazioni HTTP del documento principale (server / x-powered-by / set-cookie ecc.) |
-| `Intestazioni · API`               | Intestazioni di risposta di una richiesta XHR / fetch dalla pagina       |
-| `Intestazioni · iframe`            | Intestazioni del documento principale di un iframe annidato              |
-| `Monitoraggio dinamico`            | Risorse / script caricati dinamicamente, raccolti da content script + MutationObserver |
-| `Monitoraggio dinamico · post-interazione` | Risorse caricate dopo un'azione dell'utente (popup, login, pagamento) |
-| `Tema WordPress`                   | Dedotto dall'header dello style.css del tema                             |
+| Etichetta origine                          | Provenienza                                                                            |
+| ------------------------------------------ | -------------------------------------------------------------------------------------- |
+| `Intestazioni`                             | Intestazioni HTTP del documento principale (server / x-powered-by / set-cookie ecc.)   |
+| `Intestazioni · API`                       | Intestazioni di risposta di una richiesta XHR / fetch dalla pagina                     |
+| `Intestazioni · iframe`                    | Intestazioni del documento principale di un iframe annidato                            |
+| `Monitoraggio dinamico`                    | Risorse / script caricati dinamicamente, raccolti da content script + MutationObserver |
+| `Monitoraggio dinamico · post-interazione` | Risorse caricate dopo un'azione dell'utente (popup, login, pagamento)                  |
+| `Tema WordPress`                           | Dedotto dall'header dello style.css del tema                                           |
 
 **Cliccando su qualsiasi etichetta di origine** si apre un pannello in basso con il sottoinsieme di dati JSON grezzi corrispondente a **quella tecnologia e quella origine**. Mostra direttamente le intestazioni grezze, l'elenco degli URL delle risorse o lo snapshot dinamico, senza dover cercare nel JSON completo.
 

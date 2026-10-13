@@ -3,13 +3,13 @@
 ## 本地建置
 
 ```bash
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 鏈路：
 
-1. `pnpm run build:injected`（`build-scripts/build-injected.mjs`）：esbuild 把 `src/injected/page-detector.ts` 與 `page-source-search.ts` 各編譯成一個獨立 IIFE 檔案，輸出到 `public/injected/`
+1. `bun run build:injected`（`build-scripts/build-injected.mjs`）：esbuild 把 `src/injected/page-detector.ts` 與 `page-source-search.ts` 各編譯成一個獨立 IIFE 檔案，輸出到 `public/injected/`
 2. `vite build`（`@crxjs/vite-plugin`）：打包 background / popup / settings / help 四個入口，輸出到 `dist/`
 3. `precompileRulesPlugin`（vite plugin closeBundle hook）：掃 `dist/rules/*.json`，給每條 leaf rule 注入 `__hints` / `__legacyHints` / `__keywordCombined`
 4. `minifyJsonAssets`（vite plugin closeBundle hook）：所有 JSON 用 `JSON.stringify(parsed)` 重寫，去縮排與換行
@@ -19,7 +19,7 @@ pnpm run build
 ## 開發熱更新
 
 ```bash
-pnpm run dev
+bun run dev
 ```
 
 vite dev server + crxjs HMR：改 `src/ui/**` 彈窗 / 設定頁 / 使用說明會自動熱替換。改 `src/background/**` 背景代碼或 `src/content/**` content script 需要在 `chrome://extensions/` 找到擴充功能卡片點重新整理按鈕重新載入。
@@ -27,8 +27,8 @@ vite dev server + crxjs HMR：改 `src/ui/**` 彈窗 / 設定頁 / 使用說明�
 ## 型別與 lint
 
 ```bash
-pnpm run typecheck    # vue-tsc --noEmit，全工程嚴格型別檢查
-pnpm run lint         # eslint src
+bun run typecheck    # vue-tsc --noEmit，全工程嚴格型別檢查
+bun run lint         # eslint src
 ```
 
 提交前統一跑一遍格式化：
@@ -66,9 +66,9 @@ git push origin main
 
 工作流程做的事：
 
-1. checkout + 安裝 pnpm + Node 20
-2. `pnpm install --frozen-lockfile`
-3. `pnpm run build`
+1. checkout + 安裝 bun + Node 20
+2. `bun install --frozen-lockfile`
+3. `bun run build`
 4. 從 `dist/manifest.json` 讀 version，校驗與 release tag 一致
 5. 把 `dist/` 整個 zip 成 `stackprism-v{ver}.zip` + sha256
 6. **如果配置了 secret `EXTENSION_PRIVATE_KEY`**，再用 `npx crx3` 簽署出 `stackprism-v{ver}.crx` + sha256；否則跳過 crx 僅傳 zip
@@ -116,9 +116,9 @@ openssl genrsa -out extension.pem 2048
 ## 發布檢查清單
 
 - [ ] `npx prettier --write .` 已執行
-- [ ] `pnpm run typecheck` 通過
-- [ ] `pnpm run lint` 通過
-- [ ] `pnpm run build` 通過
+- [ ] `bun run typecheck` 通過
+- [ ] `bun run lint` 通過
+- [ ] `bun run build` 通過
 - [ ] 在 chrome 裡載入 `dist/` 手動測試關鍵路徑（彈窗開啟、識別一個站點、重新整理、複製完整技術棧報告、設定頁加規則）
 - [ ] 把 `package.json` 的 version bump
 - [ ] git commit + push

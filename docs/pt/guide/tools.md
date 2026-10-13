@@ -12,11 +12,11 @@ Suporta texto simples e expressões regulares. Pressione Enter ou clique em "Pes
 
 ### Opções
 
-| Opção              | Descrição                                                                      |
-| ------------------ | ------------------------------------------------------------------------------ |
-| Diferenciar maiúsc. | Desativado por padrão; quando ativado, `React` e `react` não são equivalentes |
-| Palavra inteira    | Funciona no modo de texto simples; requer caracteres não-palavra ao redor da correspondência (usa `\b`) |
-| Expressão regular  | Trata a entrada como fonte de regex JavaScript, combinada com as flags acima  |
+| Opção               | Descrição                                                                                               |
+| ------------------- | ------------------------------------------------------------------------------------------------------- |
+| Diferenciar maiúsc. | Desativado por padrão; quando ativado, `React` e `react` não são equivalentes                           |
+| Palavra inteira     | Funciona no modo de texto simples; requer caracteres não-palavra ao redor da correspondência (usa `\b`) |
+| Expressão regular   | Trata a entrada como fonte de regex JavaScript, combinada com as flags acima                            |
 
 ### Saída
 
@@ -45,27 +45,13 @@ A saída é JSON completo com a seguinte estrutura:
   "url": "https://example.com",
   "title": "Example",
   "generatedAt": "2026-05-10T10:00:00.000Z",
-  "technologies": [
-    /* lista deduplicada e mesclada */
-  ],
-  "resources": {
-    /* resumo de recursos */
-  },
-  "headers": {
-    /* cabeçalhos de resposta do documento principal */
-  },
-  "apiObservations": [
-    /* url/headers/technologies de cada resposta de API */
-  ],
-  "frameObservations": [
-    /* o mesmo para cada iframe */
-  ],
-  "dynamicObservations": {
-    /* scripts/estilos/iframes/feedLinks/domMarkers coletados dinamicamente */
-  },
-  "notes": [
-    /* algumas notas metodológicas */
-  ]
+  "technologies": [/* lista deduplicada e mesclada */],
+  "resources": {/* resumo de recursos */},
+  "headers": {/* cabeçalhos de resposta do documento principal */},
+  "apiObservations": [/* url/headers/technologies de cada resposta de API */],
+  "frameObservations": [/* o mesmo para cada iframe */],
+  "dynamicObservations": {/* scripts/estilos/iframes/feedLinks/domMarkers coletados dinamicamente */},
+  "notes": [/* algumas notas metodológicas */]
 }
 ```
 

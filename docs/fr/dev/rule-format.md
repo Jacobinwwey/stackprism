@@ -70,35 +70,35 @@ Après expansion, la règle React est équivalente à :
 
 ## Champs d'une règle feuille
 
-| Champ                   | Type                     | Description                                                                                                               |
-| ----------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| `name`                  | string                   | Nom affiché dans la popup                                                                                                 |
-| `category`              | string                   | Catégorie, triée par `CATEGORY_ORDER`                                                                                     |
-| `kind`                  | string                   | Description du type, optionnel. S'affiche en préfixe dans les preuves                                                    |
-| `confidence`            | `"高"` / `"中"` / `"低"` | Par défaut `"中"`                                                                                                          |
-| `matchType`             | `"keyword"` / `"regex"`  | Par défaut `"regex"` (passe directement à `new RegExp(p, 'i')`)                                                           |
-| `patterns`              | string[]                 | Règles de correspondance. En mode keyword : `escapeRegExp + RegExp`                                                       |
-| `selectors`             | string[]                 | Sélecteurs CSS ; une correspondance implique une haute confiance                                                          |
-| `globals`               | string[]                 | Noms de variables globales (notation pointée supportée) ; une correspondance implique une haute confiance                 |
-| `classNames`            | string[]                 | Correspondance exacte d'un class name dans le DOM ; haute confiance                                                      |
-| `classPrefixes`         | string[]                 | Correspondance d'un class name commençant par ce préfixe dans le DOM ; haute confiance                                   |
-| `cssVariables`          | string[]                 | Propriétés CSS personnalisées de la page — N correspondances déclenchent la règle, combiné avec `minCssVariableMatches`   |
-| `minCssVariableMatches` | number                   | Par défaut 1                                                                                                              |
-| `matchIn`               | string[]                 | Limite les patterns aux sources : `url` / `resources` / `html` / `headers` / `dynamic`. Tableau vide / absent = toutes   |
-| `resourceOnly`          | boolean                  | Ne fait correspondre que les URL de ressources, ignore DOM / globals / selectors                                          |
+| Champ                   | Type                     | Description                                                                                                                 |
+| ----------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| `name`                  | string                   | Nom affiché dans la popup                                                                                                   |
+| `category`              | string                   | Catégorie, triée par `CATEGORY_ORDER`                                                                                       |
+| `kind`                  | string                   | Description du type, optionnel. S'affiche en préfixe dans les preuves                                                       |
+| `confidence`            | `"高"` / `"中"` / `"低"` | Par défaut `"中"`                                                                                                           |
+| `matchType`             | `"keyword"` / `"regex"`  | Par défaut `"regex"` (passe directement à `new RegExp(p, 'i')`)                                                             |
+| `patterns`              | string[]                 | Règles de correspondance. En mode keyword : `escapeRegExp + RegExp`                                                         |
+| `selectors`             | string[]                 | Sélecteurs CSS ; une correspondance implique une haute confiance                                                            |
+| `globals`               | string[]                 | Noms de variables globales (notation pointée supportée) ; une correspondance implique une haute confiance                   |
+| `classNames`            | string[]                 | Correspondance exacte d'un class name dans le DOM ; haute confiance                                                         |
+| `classPrefixes`         | string[]                 | Correspondance d'un class name commençant par ce préfixe dans le DOM ; haute confiance                                      |
+| `cssVariables`          | string[]                 | Propriétés CSS personnalisées de la page — N correspondances déclenchent la règle, combiné avec `minCssVariableMatches`     |
+| `minCssVariableMatches` | number                   | Par défaut 1                                                                                                                |
+| `matchIn`               | string[]                 | Limite les patterns aux sources : `url` / `resources` / `html` / `headers` / `dynamic`. Tableau vide / absent = toutes      |
+| `resourceOnly`          | boolean                  | Ne fait correspondre que les URL de ressources, ignore DOM / globals / selectors                                            |
 | `resourceHints`         | string[]                 | Empreintes de pré-filtrage définies manuellement ; la correspondance complète n'est tentée que si le texte contient un hint |
-| `evidence`              | string                   | Texte de preuve fixe à l'affichage, remplace le texte par défaut « URL de ressource correspondante / correspondance DOM » |
-| `url`                   | string                   | URL du site officiel ou du dépôt de la technologie                                                                        |
+| `evidence`              | string                   | Texte de preuve fixe à l'affichage, remplace le texte par défaut « URL de ressource correspondante / correspondance DOM »   |
+| `url`                   | string                   | URL du site officiel ou du dépôt de la technologie                                                                          |
 
 ## Champs injectés automatiquement (buildtime)
 
 Le plugin `precompileRulesPlugin` dans `vite.config.ts` injecte ces champs dans chaque règle feuille lors du build :
 
-| Champ               | Provenance                                                                                                                        |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `__hints`           | Ensemble de littéraux requis des expressions régulières (`src/utils/rule-hints.ts`) : sert uniquement à ignorer les règles impossibles à faire correspondre, sans modifier les résultats |
+| Champ               | Provenance                                                                                                                                                                                                     |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `__hints`           | Ensemble de littéraux requis des expressions régulières (`src/utils/rule-hints.ts`) : sert uniquement à ignorer les règles impossibles à faire correspondre, sans modifier les résultats                       |
 | `__legacyHints`     | Seuil de pré-filtrage des versions ≤ 1.3.79 (les 3 segments littéraux les plus longs) ; uniquement pour les règles plus strictes que `__hints` et sans `resourceHints`, pour garantir des résultats identiques |
-| `__keywordCombined` | Source de la regex combinée pour les règles de type keyword : tous les patterns sont échappés et joints avec `\|`                 |
+| `__keywordCombined` | Source de la regex combinée pour les règles de type keyword : tous les patterns sont échappés et joints avec `\|`                                                                                              |
 
 Les champs `__hints` écrits manuellement dans les fichiers de règles sont traités comme l'ancien seuil de cette règle. À l'exécution, `getRuleAutoHints(rule)` et `getCompiledCombinedPattern(rule)` lisent ces champs en priorité ; en leur absence, le calcul est effectué au runtime (les règles personnalisées ne calculent que les littéraux requis, sans ancien seuil).
 

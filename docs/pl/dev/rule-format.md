@@ -70,35 +70,35 @@ Po rozwinięciu reguła React jest równoważna:
 
 ## Pola reguł liści
 
-| Pole                    | Typ                      | Opis                                                                                                               |
-| ----------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| `name`                  | string                   | Nazwa wyświetlana w oknie podręcznym                                                                               |
-| `category`              | string                   | Kategoria sortowana przez `CATEGORY_ORDER`                                                                         |
-| `kind`                  | string                   | Opis typu; może być pusty. Wyświetlany jako prefiks evidence                                                       |
-| `confidence`            | `"高"` / `"中"` / `"低"` | Domyślnie `"中"`                                                                                                   |
-| `matchType`             | `"keyword"` / `"regex"`  | Domyślnie `"regex"` (bezpośrednio `new RegExp(p, 'i')`)                                                           |
-| `patterns`              | string[]                 | Reguły dopasowania. Typ keyword: `escapeRegExp + RegExp`                                                           |
-| `selectors`             | string[]                 | Selektory CSS; trafienie oznacza wysoką pewność                                                                    |
-| `globals`               | string[]                 | Nazwy zmiennych globalnych (obsługa zagnieżdżania przez kropkę); trafienie oznacza wysoką pewność                  |
-| `classNames`            | string[]                 | Dokładne dopasowanie klasy CSS w DOM oznacza wysoką pewność                                                        |
-| `classPrefixes`         | string[]                 | Klasa DOM zaczynająca się od tego prefiksu oznacza wysoką pewność                                                  |
-| `cssVariables`          | string[]                 | Jeśli N właściwości niestandardowych CSS strony pasuje, wyzwala detekcję; konfigurowane przez `minCssVariableMatches` |
-| `minCssVariableMatches` | number                   | Domyślnie 1                                                                                                        |
-| `matchIn`               | string[]                 | Ogranicza `patterns` do konkretnych źródeł: `url` / `resources` / `html` / `headers` / `dynamic`. Pusta tablica lub brak = wszystkie |
-| `resourceOnly`          | boolean                  | Tylko dopasowanie URL zasobów; pomija DOM / globals / selectors                                                    |
+| Pole                    | Typ                      | Opis                                                                                                                                  |
+| ----------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`                  | string                   | Nazwa wyświetlana w oknie podręcznym                                                                                                  |
+| `category`              | string                   | Kategoria sortowana przez `CATEGORY_ORDER`                                                                                            |
+| `kind`                  | string                   | Opis typu; może być pusty. Wyświetlany jako prefiks evidence                                                                          |
+| `confidence`            | `"高"` / `"中"` / `"低"` | Domyślnie `"中"`                                                                                                                      |
+| `matchType`             | `"keyword"` / `"regex"`  | Domyślnie `"regex"` (bezpośrednio `new RegExp(p, 'i')`)                                                                               |
+| `patterns`              | string[]                 | Reguły dopasowania. Typ keyword: `escapeRegExp + RegExp`                                                                              |
+| `selectors`             | string[]                 | Selektory CSS; trafienie oznacza wysoką pewność                                                                                       |
+| `globals`               | string[]                 | Nazwy zmiennych globalnych (obsługa zagnieżdżania przez kropkę); trafienie oznacza wysoką pewność                                     |
+| `classNames`            | string[]                 | Dokładne dopasowanie klasy CSS w DOM oznacza wysoką pewność                                                                           |
+| `classPrefixes`         | string[]                 | Klasa DOM zaczynająca się od tego prefiksu oznacza wysoką pewność                                                                     |
+| `cssVariables`          | string[]                 | Jeśli N właściwości niestandardowych CSS strony pasuje, wyzwala detekcję; konfigurowane przez `minCssVariableMatches`                 |
+| `minCssVariableMatches` | number                   | Domyślnie 1                                                                                                                           |
+| `matchIn`               | string[]                 | Ogranicza `patterns` do konkretnych źródeł: `url` / `resources` / `html` / `headers` / `dynamic`. Pusta tablica lub brak = wszystkie  |
+| `resourceOnly`          | boolean                  | Tylko dopasowanie URL zasobów; pomija DOM / globals / selectors                                                                       |
 | `resourceHints`         | string[]                 | Ręcznie określone odciski palca do wstępnego filtrowania. Tekst musi zawierać jeden hint, aby przejść do pełnego dopasowania patterns |
-| `evidence`              | string                   | Stały tekst evidence przy trafieniu; nadpisuje domyślny tekst „URL zasobu pasuje / dopasowanie DOM"                |
-| `url`                   | string                   | URL oficjalnej strony lub repozytorium technologii                                                                 |
+| `evidence`              | string                   | Stały tekst evidence przy trafieniu; nadpisuje domyślny tekst „URL zasobu pasuje / dopasowanie DOM"                                   |
+| `url`                   | string                   | URL oficjalnej strony lub repozytorium technologii                                                                                    |
 
 ## Pola wstrzykiwane automatycznie (czas budowania)
 
 Plugin `precompileRulesPlugin` w `vite.config.ts` wstrzykuje do każdej reguły liścia:
 
-| Pole                | Źródło                                                                                                                           |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `__hints`           | Zbiór wymaganych literałów z wyrażeń regularnych (`src/utils/rule-hints.ts`): tekst trafiający w regułę musi zawierać jeden z nich; używane tylko do pomijania reguł, które nie mogą trafić — wynik się nie zmienia |
+| Pole                | Źródło                                                                                                                                                                                                                     |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `__hints`           | Zbiór wymaganych literałów z wyrażeń regularnych (`src/utils/rule-hints.ts`): tekst trafiający w regułę musi zawierać jeden z nich; używane tylko do pomijania reguł, które nie mogą trafić — wynik się nie zmienia        |
 | `__legacyHints`     | Próg wstępnego filtrowania z wersji 1.3.79 i wcześniejszych (trzy najdłuższe segmenty literałowe); zapisywane tylko dla reguł bardziej restrykcyjnych niż `__hints` i bez `resourceHints`; gwarantuje niezmienność wyników |
-| `__keywordCombined` | Dla reguł keyword: wszystkie patterns ze escape połączone przez `\|` jako źródło wyrażenia regularnego                           |
+| `__keywordCombined` | Dla reguł keyword: wszystkie patterns ze escape połączone przez `\|` jako źródło wyrażenia regularnego                                                                                                                     |
 
 Ręcznie zapisane `__hints` w pliku reguł są traktowane jako stary próg dla tej reguły. W czasie działania `getRuleAutoHints(rule)` i `getCompiledCombinedPattern(rule)` odczytują najpierw te pola; jeśli brakuje, cofają się do obliczeń w czasie działania (reguły niestandardowe obliczają tylko wymagane literały, bez starego progu).
 

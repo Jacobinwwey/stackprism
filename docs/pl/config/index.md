@@ -24,10 +24,10 @@ Rzeczywiste limity są określone przez `CUSTOM_RULE_LIMITS` w `src/types/settin
 
 ## Kiedy zmiany wchodzą w życie
 
-| Zmiana                                             | Kiedy wchodzi w życie                                     |
-| -------------------------------------------------- | --------------------------------------------------------- |
-| Przełączniki kategorii / zablokowane technologie / niestandardowy CSS | Natychmiast po ponownym otwarciu okna podręcznego |
-| Reguły niestandardowe                              | Po zapisaniu — przy następnym odświeżeniu strony i ponownym otwarciu okna |
-| Import JSON                                        | Jak wyżej                                                 |
+| Zmiana                                                                | Kiedy wchodzi w życie                                                     |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Przełączniki kategorii / zablokowane technologie / niestandardowy CSS | Natychmiast po ponownym otwarciu okna podręcznego                         |
+| Reguły niestandardowe                                                 | Po zapisaniu — przy następnym odświeżeniu strony i ponownym otwarciu okna |
+| Import JSON                                                           | Jak wyżej                                                                 |
 
 Kliknięcie „Zapisz ustawienia" od razu zapisuje dane do storage, bez konieczności odświeżania strony ustawień.

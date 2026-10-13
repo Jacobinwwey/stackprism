@@ -28,18 +28,18 @@ Každé pravidlo je objekt:
 }
 ```
 
-| Pole         | Typ                        | Povinné   | Popis                                                                        |
-| ------------ | -------------------------- | --------- | ---------------------------------------------------------------------------- |
-| `name`       | string                     | ano       | Název zobrazený ve vyskakovacím okně                                         |
-| `category`   | string                     |           | Kategorie. Výchozí: `其他库`                                                 |
-| `kind`       | string                     |           | Popis typu. Výchozí: `自定义规则`                                            |
-| `confidence` | `"高"` / `"中"` / `"低"`  |           | Výchozí: `中`                                                                |
-| `matchType`  | `"keyword"` / `"regex"`    |           | Výchozí: `regex`                                                             |
-| `patterns`   | string[]                   | jedno ze tří | Ze tří polí (patterns / selectors / globals) musí být alespoň jedno neprázdné |
-| `selectors`  | string[]                   | jedno ze tří | Seznam CSS selektorů                                                        |
-| `globals`    | string[]                   | jedno ze tří | Názvy globálních proměnných (`window.x.y` se zapíše jako `x.y`)             |
-| `matchIn`    | string[]                   |           | Libovolná kombinace `url` / `resources` / `html` / `headers` / `dynamic`. Výchozí: vše |
-| `url`        | string                     |           | Musí začínat `http(s)://`; může být prázdné                                 |
+| Pole         | Typ                      | Povinné      | Popis                                                                                  |
+| ------------ | ------------------------ | ------------ | -------------------------------------------------------------------------------------- |
+| `name`       | string                   | ano          | Název zobrazený ve vyskakovacím okně                                                   |
+| `category`   | string                   |              | Kategorie. Výchozí: `其他库`                                                           |
+| `kind`       | string                   |              | Popis typu. Výchozí: `自定义规则`                                                      |
+| `confidence` | `"高"` / `"中"` / `"低"` |              | Výchozí: `中`                                                                          |
+| `matchType`  | `"keyword"` / `"regex"`  |              | Výchozí: `regex`                                                                       |
+| `patterns`   | string[]                 | jedno ze tří | Ze tří polí (patterns / selectors / globals) musí být alespoň jedno neprázdné          |
+| `selectors`  | string[]                 | jedno ze tří | Seznam CSS selektorů                                                                   |
+| `globals`    | string[]                 | jedno ze tří | Názvy globálních proměnných (`window.x.y` se zapíše jako `x.y`)                        |
+| `matchIn`    | string[]                 |              | Libovolná kombinace `url` / `resources` / `html` / `headers` / `dynamic`. Výchozí: vše |
+| `url`        | string                   |              | Musí začínat `http(s)://`; může být prázdné                                            |
 
 ## Tlačítka
 
@@ -75,14 +75,14 @@ Při importu se nejprve zpracuje celé pole; pokud má jakékoli pravidlo neplat
 
 Výchozí hodnota `CUSTOM_RULE_LIMITS.rules` je 100. Překročení bude odmítnuto. Kompletní přehled limitů je v souboru [`src/types/settings.ts`](https://github.com/setube/stackprism/blob/main/src/types/settings.ts):
 
-| Pole                                        | Limit     |
-| ------------------------------------------- | --------- |
-| Celkový počet pravidel                      | 100       |
-| name                                        | 80 znaků  |
-| category                                    | 40 znaků  |
-| kind                                        | 40 znaků  |
-| Jeden pattern / selektor / globální proměnná | 240 znaků |
-| Délka polí patterns / selectors / globals   | 80 každé  |
-| Délka pole matchIn                          | 8         |
-| url                                         | 240 znaků |
-| customCss                                   | 10 000 znaků |
+| Pole                                         | Limit        |
+| -------------------------------------------- | ------------ |
+| Celkový počet pravidel                       | 100          |
+| name                                         | 80 znaků     |
+| category                                     | 40 znaků     |
+| kind                                         | 40 znaků     |
+| Jeden pattern / selektor / globální proměnná | 240 znaků    |
+| Délka polí patterns / selectors / globals    | 80 každé     |
+| Délka pole matchIn                           | 8            |
+| url                                          | 240 znaků    |
+| customCss                                    | 10 000 znaků |

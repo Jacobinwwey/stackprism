@@ -13,25 +13,25 @@ Di seguito viene descritto principalmente il flusso della PR diretta.
 
 `public/rules/` è suddiviso per responsabilità:
 
-| File                               | Cosa contiene                                              |
-| ---------------------------------- | ---------------------------------------------------------- |
-| `page/frontend-frameworks.json`    | React / Vue / Angular / vari framework frontend            |
-| `page/ui-frameworks.json`          | Tailwind / Bootstrap / Element / Antd ecc.                 |
-| `page/build-runtime.json`          | Webpack / Vite / Rollup / Bun ecc.                         |
-| `page/frontend-cdn-libraries.json` | Librerie frontend con nome distribuiti via CDN             |
-| `page/wordpress-plugins.json`      | 4500+ plugin WordPress                                     |
-| `page/drupal-modules.json`         | 4000+ moduli Drupal                                        |
-| `page/cms-themes.json`             | Temi CMS                                                   |
-| `page/website-programs.json`       | WordPress / Drupal / Discuz! ecc.                          |
-| `page/payment-systems.json`        | Piattaforme di pagamento                                   |
-| `page/third-party-logins.json`     | Login di terze parti                                       |
-| `page/saas-services.json`          | SaaS (Sentry / Mixpanel / Intercom ecc.)                   |
-| `page/analytics-providers.json`    | Analytics e statistiche                                    |
-| `page/cdn-providers.json`          | CDN (rilevamento lato runtime frontend)                    |
-| `headers/server-products.json`     | Prodotti server rilevati tramite header `Server:`          |
-| `headers/cdn-providers.json`       | CDN rilevati tramite intestazioni di risposta              |
-| `headers/website-programs.json`    | CMS rilevati tramite intestazioni di risposta              |
-| ...                                |                                                            |
+| File                               | Cosa contiene                                     |
+| ---------------------------------- | ------------------------------------------------- |
+| `page/frontend-frameworks.json`    | React / Vue / Angular / vari framework frontend   |
+| `page/ui-frameworks.json`          | Tailwind / Bootstrap / Element / Antd ecc.        |
+| `page/build-runtime.json`          | Webpack / Vite / Rollup / Bun ecc.                |
+| `page/frontend-cdn-libraries.json` | Librerie frontend con nome distribuiti via CDN    |
+| `page/wordpress-plugins.json`      | 4500+ plugin WordPress                            |
+| `page/drupal-modules.json`         | 4000+ moduli Drupal                               |
+| `page/cms-themes.json`             | Temi CMS                                          |
+| `page/website-programs.json`       | WordPress / Drupal / Discuz! ecc.                 |
+| `page/payment-systems.json`        | Piattaforme di pagamento                          |
+| `page/third-party-logins.json`     | Login di terze parti                              |
+| `page/saas-services.json`          | SaaS (Sentry / Mixpanel / Intercom ecc.)          |
+| `page/analytics-providers.json`    | Analytics e statistiche                           |
+| `page/cdn-providers.json`          | CDN (rilevamento lato runtime frontend)           |
+| `headers/server-products.json`     | Prodotti server rilevati tramite header `Server:` |
+| `headers/cdn-providers.json`       | CDN rilevati tramite intestazioni di risposta     |
+| `headers/website-programs.json`    | CMS rilevati tramite intestazioni di risposta     |
+| ...                                |                                                   |
 
 Elenco completo in `public/rules/index.json`.
 
@@ -86,7 +86,7 @@ In base alla certezza del rilevamento, inserisci la regola nel sottogruppo di co
 Dopo la modifica:
 
 ```bash
-pnpm run build
+bun run build
 ```
 
 La build esegue `precompileRulesPlugin` che inietta i campi `__hints` ecc. nelle regole. Poi carica `dist/` in `chrome://extensions/` e verifica su un sito ExampleCMS reale.
@@ -105,7 +105,7 @@ In alternativa usa il pannello "Regole personalizzate" per scrivere prima la reg
 ## Flusso per contribuire al repository principale
 
 1. Fai un fork di [setube/stackprism](https://github.com/setube/stackprism)
-2. Clona in locale, esegui `pnpm install`, `pnpm run build` per verificare che la build funzioni
+2. Clona in locale, esegui `bun install`, `bun run build` per verificare che la build funzioni
 3. Trova il file corrispondente in `public/rules/` e aggiungi la regola
 4. Recupera 2-3 prove da [Wappalyzer rules](https://github.com/enthec/webappanalyzer), dal sito ufficiale o dalla documentazione e includile nella descrizione della PR
 5. Apri una PR verso il branch main

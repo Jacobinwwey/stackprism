@@ -1,11 +1,5 @@
 <div align="center">
 
-[简体中文](../README.md) · [English](README.en.md) · [繁體中文](README.zh-Hant.md) · [日本語](README.ja.md) · **Français** · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · [Čeština](README.cs.md) · [Polski](README.pl.md)
-
-</div>
-
-<div align="center">
-
 <img src="../public/icons/icon256.png" alt="StackPrism" width="160" height="160" />
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/cagpdifljieeiajlhlcboelglkalofak?label=Chrome%20Web%20Store&color=FBBC04)](https://chromewebstore.google.com/detail/stackprism/cagpdifljieeiajlhlcboelglkalofak)
@@ -19,6 +13,12 @@
 # StackPrism — Détecteur de Stack Technologique Web
 
 > Collecte des indices selon 6 dimensions — variables globales à l'exécution, DOM, URL de ressources, en-têtes de réponse, chargement dynamique et commentaires de copyright JavaScript — pour identifier et catégoriser les technologies utilisées par n'importe quel site web.
+
+<div align="center">
+
+[简体中文](../README.md) · [English](README.en.md) · [繁體中文](README.zh-Hant.md) · [日本語](README.ja.md) · **Français** · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · [Čeština](README.cs.md) · [Polski](README.pl.md)
+
+</div>
 
 [Introduction](#introduction) • [Fonctionnalités](#fonctionnalités) • [Système de règles](#système-de-règles) • [Mises en garde](#mises-en-garde) • [Contribuer](#contribuer) • [Sponsors](SPONSORS.md) • [Historique des étoiles](#historique-des-étoiles) • [Licence](#licence)
 
@@ -68,9 +68,9 @@ Vous pouvez également changer la langue manuellement avec le bouton 🌐 dans l
 ```bash
 git clone https://github.com/setube/stackprism.git
 cd stackprism
-pnpm install
-pnpm run build            # Chrome / Edge
-pnpm run build:firefox    # Firefox
+bun install
+bun run build            # Chrome / Edge
+bun run build:firefox    # Firefox
 ```
 
 **Chrome / Edge :**
@@ -84,17 +84,17 @@ pnpm run build:firefox    # Firefox
 
 1. Ouvrez `about:debugging#/runtime/this-firefox`
 2. Cliquez sur « Charger un module complémentaire temporaire » et sélectionnez `dist-firefox/manifest.json`
-3. Ou exécutez `pnpm run build:firefox` et double-cliquez sur le fichier `.xpi` dans `release/`
+3. Ou exécutez `bun run build:firefox` et double-cliquez sur le fichier `.xpi` dans `release/`
 
 ### Développement
 
 ```bash
-pnpm run dev           # Mode dev + HMR
-pnpm run typecheck     # Vérification des types vue-tsc
-pnpm run lint          # ESLint
-pnpm run build         # Build de production (inclut la précompilation des règles)
-pnpm run build:firefox # Build Firefox + empaquetage .xpi
-pnpm run docs:dev      # Prévisualisation de la documentation VitePress
+bun run dev           # Mode dev + HMR
+bun run typecheck     # Vérification des types vue-tsc
+bun run lint          # ESLint
+bun run build         # Build de production (inclut la précompilation des règles)
+bun run build:firefox # Build Firefox + empaquetage .xpi
+bun run docs:dev      # Prévisualisation de la documentation VitePress
 ```
 
 ## Système de Règles
@@ -148,7 +148,7 @@ StackPrism comprend plus de 2000 règles de détection dans plus de 50 catégori
 - **Contributions de règles** — cliquez sur « Soumettre une contribution de règle » dans les paramètres, ou envoyez directement une PR vers [`public/rules/`](public/rules/)
 - **Discussion et propositions** — [Discussions](https://github.com/setube/stackprism/discussions)
 
-Avant de soumettre du code, exécutez `pnpm run typecheck && pnpm run lint && pnpm run build` et assurez-vous que les trois réussissent.
+Avant de soumettre du code, exécutez `bun run typecheck && bun run lint && bun run build` et assurez-vous que les trois réussissent.
 
 ## Historique des Étoiles
 

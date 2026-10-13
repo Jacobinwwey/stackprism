@@ -4,14 +4,14 @@ Vlastní pravidla slouží k pokrytí stránek, na které vestavěná pravidla n
 
 ## Vyplnění formuláře
 
-| Pole                  | Povinné | Popis                                                                                                                                         |
-| --------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Název technologie** | ano     | Název zobrazený ve vyskakovacím okně, např. `MyCMS`                                                                                           |
-| **Kategorie**         |         | Vyberte jednu z vestavěných kategorií (23) nebo zadejte vlastní název. Výchozí hodnota je „Ostatní knihovny". Komponenta Select podporuje volný vstup. |
-| **Popis typu**        |         | Poznámka pro vlastní potřebu, např. `Podnikový CMS`, `Platba třetí strany`. Zobrazí se jako předpona u důkazů; může být prázdné.               |
-| **Spolehlivost**      |         | Vysoká / Střední / Nízká. Výchozí hodnota: „Střední"                                                                                          |
-| **Způsob shody**      |         | Klíčová slova / Regulární výraz. Výchozí hodnota: „Regulární výraz"                                                                           |
-| **URL webu / repozitáře** |     | Musí začínat `http://` nebo `https://`. Po vyplnění bude název technologie ve vyskakovacím okně klikatelný                                    |
+| Pole                      | Povinné | Popis                                                                                                                                                  |
+| ------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Název technologie**     | ano     | Název zobrazený ve vyskakovacím okně, např. `MyCMS`                                                                                                    |
+| **Kategorie**             |         | Vyberte jednu z vestavěných kategorií (23) nebo zadejte vlastní název. Výchozí hodnota je „Ostatní knihovny". Komponenta Select podporuje volný vstup. |
+| **Popis typu**            |         | Poznámka pro vlastní potřebu, např. `Podnikový CMS`, `Platba třetí strany`. Zobrazí se jako předpona u důkazů; může být prázdné.                       |
+| **Spolehlivost**          |         | Vysoká / Střední / Nízká. Výchozí hodnota: „Střední"                                                                                                   |
+| **Způsob shody**          |         | Klíčová slova / Regulární výraz. Výchozí hodnota: „Regulární výraz"                                                                                    |
+| **URL webu / repozitáře** |         | Musí začínat `http://` nebo `https://`. Po vyplnění bude název technologie ve vyskakovacím okně klikatelný                                             |
 
 Pod formulářem jsou čtyři další sekce:
 

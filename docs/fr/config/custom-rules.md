@@ -4,14 +4,14 @@ Les règles personnalisées servent à couvrir les sites non pris en charge par 
 
 ## Remplissage du formulaire
 
-| Champ                  | Requis | Description                                                                                                          |
-| ---------------------- | ------ | -------------------------------------------------------------------------------------------------------------------- |
-| **Nom de la technologie** | Oui | Nom affiché dans la popup, par exemple `MyCMS`                                                                       |
-| **Catégorie**          |        | Choisissez une catégorie intégrée (23 au total) ou saisissez-en une nouvelle. Par défaut « Autres bibliothèques ». Le composant Select accepte la saisie libre. |
-| **Description du type** |       | Commentaire pour vous-même, ex. `CMS d'entreprise`, `Paiement tiers`. S'affiche en préfixe dans les preuves ; peut être vide. |
-| **Niveau de confiance** |       | Haute / Moyenne / Faible, par défaut « Moyenne »                                                                     |
-| **Mode de correspondance** |    | Mots-clés / Expression régulière, par défaut « Expression régulière »                                               |
-| **URL officielle / dépôt** |    | Doit commencer par `http://` ou `https://`. Une fois renseignée, le nom de la technologie dans la popup est cliquable. |
+| Champ                      | Requis | Description                                                                                                                                                     |
+| -------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Nom de la technologie**  | Oui    | Nom affiché dans la popup, par exemple `MyCMS`                                                                                                                  |
+| **Catégorie**              |        | Choisissez une catégorie intégrée (23 au total) ou saisissez-en une nouvelle. Par défaut « Autres bibliothèques ». Le composant Select accepte la saisie libre. |
+| **Description du type**    |        | Commentaire pour vous-même, ex. `CMS d'entreprise`, `Paiement tiers`. S'affiche en préfixe dans les preuves ; peut être vide.                                   |
+| **Niveau de confiance**    |        | Haute / Moyenne / Faible, par défaut « Moyenne »                                                                                                                |
+| **Mode de correspondance** |        | Mots-clés / Expression régulière, par défaut « Expression régulière »                                                                                           |
+| **URL officielle / dépôt** |        | Doit commencer par `http://` ou `https://`. Une fois renseignée, le nom de la technologie dans la popup est cliquable.                                          |
 
 Quatre zones supplémentaires sont disponibles en dessous :
 

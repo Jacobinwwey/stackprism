@@ -24,10 +24,10 @@ I limiti effettivi sono definiti da `CUSTOM_RULE_LIMITS` in `src/types/settings.
 
 ## Quando entrano in vigore le modifiche
 
-| Modifica                                          | Quando entra in vigore                             |
-| ------------------------------------------------- | -------------------------------------------------- |
-| Selettori / tecnologie disabilitate / CSS custom  | Immediatamente alla prossima apertura del popup    |
-| Regole personalizzate                             | Al salvataggio, dopo il prossimo aggiornamento pagina + riapertura popup |
-| Importazione JSON                                 | Come sopra                                         |
+| Modifica                                         | Quando entra in vigore                                                   |
+| ------------------------------------------------ | ------------------------------------------------------------------------ |
+| Selettori / tecnologie disabilitate / CSS custom | Immediatamente alla prossima apertura del popup                          |
+| Regole personalizzate                            | Al salvataggio, dopo il prossimo aggiornamento pagina + riapertura popup |
+| Importazione JSON                                | Come sopra                                                               |
 
 Cliccando "Salva impostazioni" vengono scritte immediatamente nello storage, senza bisogno di ricaricare la pagina delle impostazioni.

@@ -2,17 +2,17 @@ import { cpSync, rmSync, readFileSync, writeFileSync, mkdirSync, existsSync, cre
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createRequire } from 'node:module'
-import archiver from 'archiver'
 
 const require = createRequire(import.meta.url)
 const esbuild = require('esbuild')
+const { ZipArchive } = require('archiver')
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = resolve(root, 'dist')
 const firefoxDir = resolve(root, 'dist-firefox')
 
 if (!existsSync(distDir)) {
-  console.error('[package-firefox] dist/ not found, run `pnpm build` first')
+  console.error('[package-firefox] dist/ not found, run `bun build` first')
   process.exit(1)
 }
 
@@ -85,7 +85,7 @@ const xpiPath = resolve(releaseDir, xpiName)
 
 await new Promise((ok, reject) => {
   const output = createWriteStream(xpiPath)
-  const archive = archiver('zip', { zlib: { level: 9 } })
+  const archive = new ZipArchive({ zlib: { level: 9 } })
   output.on('close', ok)
   archive.on('error', reject)
   archive.pipe(output)

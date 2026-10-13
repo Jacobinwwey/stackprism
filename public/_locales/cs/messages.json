@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "StackPrism",
+    "description": "Extension name"
+  },
+  "appDesc": {
+    "message": "Detekuje technologie frontendu, backendu, CDN, SaaS, reklamy, analytiky, autentizace, plateb a CMS na webových stránkách.",
+    "description": "Extension description"
+  }
+}

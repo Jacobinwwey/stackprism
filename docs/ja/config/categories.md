@@ -4,30 +4,30 @@
 
 ## 全カテゴリー
 
-| カテゴリー | 含まれる例 |
-| --- | --- |
-| フロントエンドフレームワーク | React、Vue、Angular、Next.js、Nuxt、Gatsby、Remix、SvelteKit、Astro |
-| UI / CSS フレームワーク | Tailwind CSS、Bootstrap、Material UI、Ant Design、Element Plus、Chakra UI |
-| ビルドランタイム | Webpack、Vite、Rollup、Parcel、esbuild、SWC、Turbopack、Bun |
-| CDN / ホスティング | Cloudflare、Akamai、Fastly、AWS CloudFront、Vercel、Netlify、jsDelivr |
-| WAF / ファイアウォール | 雷池 SafeLine、宝塔 Web ファイアウォール、安全狗、云锁、Alibaba Cloud WAF、AWS WAF |
-| バックエンドフレームワーク | Django、Flask、Rails、Laravel、Express、Koa、Spring、ASP.NET |
-| CMS / ウェブサイトプログラム | WordPress、Drupal、Discuz!、Typecho、ZBlog、phpBB、MediaWiki |
-| テーマ / テンプレート | WordPress テーマ、Drupal テーマ、CMS テンプレートのパス逆推論 |
-| 開発言語 / ランタイム | PHP、Node.js、Python、Ruby、Java、Go、Rust |
-| アナリティクス / 分析 | Google Analytics、百度統計、友盟、Plausible、Umami |
-| サードパーティログイン | Google ログイン、GitHub OAuth、WeChat ログイン、Auth0、Clerk |
-| 決済システム | Stripe、PayPal、Alipay、WeChat Pay、UnionPay |
-| 広告 / マーケティング | Google Ads、Facebook Pixel、TikTok Pixel |
-| SaaS サービス | Sentry、Mixpanel、Intercom、Crisp、HubSpot |
-| AI / 大規模モデル | Open WebUI、Dify、Flowise、Gradio、ComfyUI |
-| モニタリング / プローブ | New Relic、Datadog、Pingdom、Hotjar |
-| RSS / 購読 | RSS、Atom、JSON Feed |
-| WordPress プラグイン | 4500 件以上の具名プラグイン |
-| Drupal モジュール | 4000 件以上の具名モジュール |
-| セキュリティとプロトコル | HTTPS、CSP、Service Worker |
-| その他のライブラリ | カスタムルールのデフォルト分類・未分類のフォールバック |
-| ... 全 24 カテゴリー | |
+| カテゴリー                   | 含まれる例                                                                         |
+| ---------------------------- | ---------------------------------------------------------------------------------- |
+| フロントエンドフレームワーク | React、Vue、Angular、Next.js、Nuxt、Gatsby、Remix、SvelteKit、Astro                |
+| UI / CSS フレームワーク      | Tailwind CSS、Bootstrap、Material UI、Ant Design、Element Plus、Chakra UI          |
+| ビルドランタイム             | Webpack、Vite、Rollup、Parcel、esbuild、SWC、Turbopack、Bun                        |
+| CDN / ホスティング           | Cloudflare、Akamai、Fastly、AWS CloudFront、Vercel、Netlify、jsDelivr              |
+| WAF / ファイアウォール       | 雷池 SafeLine、宝塔 Web ファイアウォール、安全狗、云锁、Alibaba Cloud WAF、AWS WAF |
+| バックエンドフレームワーク   | Django、Flask、Rails、Laravel、Express、Koa、Spring、ASP.NET                       |
+| CMS / ウェブサイトプログラム | WordPress、Drupal、Discuz!、Typecho、ZBlog、phpBB、MediaWiki                       |
+| テーマ / テンプレート        | WordPress テーマ、Drupal テーマ、CMS テンプレートのパス逆推論                      |
+| 開発言語 / ランタイム        | PHP、Node.js、Python、Ruby、Java、Go、Rust                                         |
+| アナリティクス / 分析        | Google Analytics、百度統計、友盟、Plausible、Umami                                 |
+| サードパーティログイン       | Google ログイン、GitHub OAuth、WeChat ログイン、Auth0、Clerk                       |
+| 決済システム                 | Stripe、PayPal、Alipay、WeChat Pay、UnionPay                                       |
+| 広告 / マーケティング        | Google Ads、Facebook Pixel、TikTok Pixel                                           |
+| SaaS サービス                | Sentry、Mixpanel、Intercom、Crisp、HubSpot                                         |
+| AI / 大規模モデル            | Open WebUI、Dify、Flowise、Gradio、ComfyUI                                         |
+| モニタリング / プローブ      | New Relic、Datadog、Pingdom、Hotjar                                                |
+| RSS / 購読                   | RSS、Atom、JSON Feed                                                               |
+| WordPress プラグイン         | 4500 件以上の具名プラグイン                                                        |
+| Drupal モジュール            | 4000 件以上の具名モジュール                                                        |
+| セキュリティとプロトコル     | HTTPS、CSP、Service Worker                                                         |
+| その他のライブラリ           | カスタムルールのデフォルト分類・未分類のフォールバック                             |
+| ... 全 24 カテゴリー         |                                                                                    |
 
 完全なリストは `src/utils/category-order.ts` の `CATEGORY_ORDER` 配列を参照してください。
 

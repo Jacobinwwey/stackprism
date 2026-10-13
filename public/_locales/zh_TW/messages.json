@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "棧稜鏡",
+    "description": "Extension name"
+  },
+  "appDesc": {
+    "message": "偵測網頁前端、後端、CDN、SaaS、廣告行銷、統計、登入、支付、網站程式和主題模板線索。",
+    "description": "Extension description"
+  }
+}

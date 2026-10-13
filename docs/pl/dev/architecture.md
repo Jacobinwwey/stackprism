@@ -104,16 +104,16 @@ Rozszerzenie Chrome korzysta z czterech środowisk wykonawczych; StackPrism uży
 
 Wszystkie 8 typów wiadomości jest zdefiniowanych jako discriminated union w `src/types/messages.ts`. Każde wywołanie przechodzi przez wrapper `sendMessage<M>()` z `src/utils/messaging.ts`.
 
-| Wiadomość                     | Kierunek       | Zastosowanie                                   |
-| ----------------------------- | -------------- | ---------------------------------------------- |
-| `GET_HEADER_DATA`             | popup → bg     | pobieranie zapisów nagłówków odpowiedzi         |
-| `GET_POPUP_RESULT`            | popup → bg     | pobieranie lekkiego cache (główny widok okna)   |
-| `GET_POPUP_RAW_RESULT`        | popup → bg     | pobieranie pełnego raw (surowe wskazówki / feedback) |
-| `GET_TECH_LINK`               | popup → bg     | awaryjne wyszukiwanie linku do oficjalnej strony |
-| `START_BACKGROUND_DETECTION`  | popup → bg     | aktywna detekcja wywołana przyciskiem „Odśwież" |
-| `GET_WORDPRESS_THEME_DETAILS` | bg internal    | pobieranie nagłówka style.css motywu            |
-| `DYNAMIC_PAGE_SNAPSHOT`       | content → bg   | ciągłe raportowanie dynamicznych snapshotów     |
-| `PAGE_DETECTION_RESULT`       | injected → bg  | wynik zwrócony po wstrzyknięciu page-detector   |
+| Wiadomość                     | Kierunek      | Zastosowanie                                         |
+| ----------------------------- | ------------- | ---------------------------------------------------- |
+| `GET_HEADER_DATA`             | popup → bg    | pobieranie zapisów nagłówków odpowiedzi              |
+| `GET_POPUP_RESULT`            | popup → bg    | pobieranie lekkiego cache (główny widok okna)        |
+| `GET_POPUP_RAW_RESULT`        | popup → bg    | pobieranie pełnego raw (surowe wskazówki / feedback) |
+| `GET_TECH_LINK`               | popup → bg    | awaryjne wyszukiwanie linku do oficjalnej strony     |
+| `START_BACKGROUND_DETECTION`  | popup → bg    | aktywna detekcja wywołana przyciskiem „Odśwież"      |
+| `GET_WORDPRESS_THEME_DETAILS` | bg internal   | pobieranie nagłówka style.css motywu                 |
+| `DYNAMIC_PAGE_SNAPSHOT`       | content → bg  | ciągłe raportowanie dynamicznych snapshotów          |
+| `PAGE_DETECTION_RESULT`       | injected → bg | wynik zwrócony po wstrzyknięciu page-detector        |
 
 ## Problem dwóch ścieżek dla skryptów wstrzykiwanych
 

@@ -4,30 +4,30 @@ Pierwsza sekcja strony ustawień to przełączniki kategorii. Każde pole wyboru
 
 ## Wszystkie kategorie
 
-| Kategoria                  | Przykłady                                                                     |
-| -------------------------- | ----------------------------------------------------------------------------- |
-| Frameworki frontendowe     | React, Vue, Angular, Next.js, Nuxt, Gatsby, Remix, SvelteKit, Astro           |
-| Frameworki UI / CSS        | Tailwind CSS, Bootstrap, Material UI, Ant Design, Element Plus, Chakra UI     |
-| Środowisko kompilacji      | Webpack, Vite, Rollup, Parcel, esbuild, SWC, Turbopack, Bun                   |
-| CDN / Hosting              | Cloudflare, Akamai, Fastly, AWS CloudFront, Vercel, Netlify, jsDelivr         |
-| WAF / Zapora               | SafeLine, Baota WAF, Safedog, YunSuo, Alibaba Cloud WAF, AWS WAF              |
-| Frameworki backendowe      | Django, Flask, Rails, Laravel, Express, Koa, Spring, ASP.NET                  |
-| Programy stron             | WordPress, Drupal, Discuz!, Typecho, ZBlog, phpBB, MediaWiki                  |
-| Motywy / Szablony          | Motywy WordPress, motywy Drupal, ścieżki szablonów CMS                        |
-| Języki / Środowisko        | PHP, Node.js, Python, Ruby, Java, Go, Rust                                    |
-| Statystyki / Analityka     | Google Analytics, Baidu Analytics, Umami, Plausible                           |
-| Logowania zewnętrzne       | Google Login, GitHub OAuth, WeChat Login, Auth0, Clerk                        |
-| Systemy płatności          | Stripe, PayPal, Alipay, WeChat Pay, UnionPay                                  |
-| Reklamy i marketing        | Google Ads, Facebook Pixel, TikTok Pixel                                      |
-| Usługi SaaS                | Sentry, Mixpanel, Intercom, Crisp, HubSpot                                    |
-| AI / Modele językowe       | Open WebUI, Dify, Flowise, Gradio, ComfyUI                                    |
-| Monitoring / Probes        | New Relic, Datadog, Pingdom, Hotjar                                            |
-| RSS / Subskrypcje          | RSS, Atom, JSON Feed                                                           |
-| Wtyczki WordPress          | Ponad 4500 nazwanych wtyczek                                                   |
-| Moduły Drupal              | Ponad 4000 nazwanych modułów                                                   |
-| Bezpieczeństwo i protokoły | HTTPS, CSP, Service Worker                                                     |
-| Pozostałe biblioteki       | Domyślna kategoria dla reguł niestandardowych i nieprzypisanych technologii    |
-| … łącznie 24 kategorie     |                                                                               |
+| Kategoria                  | Przykłady                                                                   |
+| -------------------------- | --------------------------------------------------------------------------- |
+| Frameworki frontendowe     | React, Vue, Angular, Next.js, Nuxt, Gatsby, Remix, SvelteKit, Astro         |
+| Frameworki UI / CSS        | Tailwind CSS, Bootstrap, Material UI, Ant Design, Element Plus, Chakra UI   |
+| Środowisko kompilacji      | Webpack, Vite, Rollup, Parcel, esbuild, SWC, Turbopack, Bun                 |
+| CDN / Hosting              | Cloudflare, Akamai, Fastly, AWS CloudFront, Vercel, Netlify, jsDelivr       |
+| WAF / Zapora               | SafeLine, Baota WAF, Safedog, YunSuo, Alibaba Cloud WAF, AWS WAF            |
+| Frameworki backendowe      | Django, Flask, Rails, Laravel, Express, Koa, Spring, ASP.NET                |
+| Programy stron             | WordPress, Drupal, Discuz!, Typecho, ZBlog, phpBB, MediaWiki                |
+| Motywy / Szablony          | Motywy WordPress, motywy Drupal, ścieżki szablonów CMS                      |
+| Języki / Środowisko        | PHP, Node.js, Python, Ruby, Java, Go, Rust                                  |
+| Statystyki / Analityka     | Google Analytics, Baidu Analytics, Umami, Plausible                         |
+| Logowania zewnętrzne       | Google Login, GitHub OAuth, WeChat Login, Auth0, Clerk                      |
+| Systemy płatności          | Stripe, PayPal, Alipay, WeChat Pay, UnionPay                                |
+| Reklamy i marketing        | Google Ads, Facebook Pixel, TikTok Pixel                                    |
+| Usługi SaaS                | Sentry, Mixpanel, Intercom, Crisp, HubSpot                                  |
+| AI / Modele językowe       | Open WebUI, Dify, Flowise, Gradio, ComfyUI                                  |
+| Monitoring / Probes        | New Relic, Datadog, Pingdom, Hotjar                                         |
+| RSS / Subskrypcje          | RSS, Atom, JSON Feed                                                        |
+| Wtyczki WordPress          | Ponad 4500 nazwanych wtyczek                                                |
+| Moduły Drupal              | Ponad 4000 nazwanych modułów                                                |
+| Bezpieczeństwo i protokoły | HTTPS, CSP, Service Worker                                                  |
+| Pozostałe biblioteki       | Domyślna kategoria dla reguł niestandardowych i nieprzypisanych technologii |
+| … łącznie 24 kategorie     |                                                                             |
 
 Pełna lista znajduje się w tablicy `CATEGORY_ORDER` w pliku `src/utils/category-order.ts`.
 

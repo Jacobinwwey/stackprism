@@ -104,16 +104,16 @@ Chrome 拡張機能には 4 種類の実行環境があり、StackPrism はす�
 
 8 種類のメッセージはすべて `src/types/messages.ts` で discriminated union として型定義されており、すべての呼び出しは `src/utils/messaging.ts` の `sendMessage<M>()` ラッパーを経由します。
 
-| メッセージ | 方向 | 用途 |
-| --- | --- | --- |
-| `GET_HEADER_DATA` | popup → bg | レスポンスヘッダー記録を取得 |
-| `GET_POPUP_RESULT` | popup → bg | 軽量キャッシュを取得（ポップアップのメイン表示） |
-| `GET_POPUP_RAW_RESULT` | popup → bg | 完全な raw データを取得（生の手がかり / 誤検知フィードバック） |
-| `GET_TECH_LINK` | popup → bg | 特定の技術の公式サイトリンクをフォールバック取得 |
-| `START_BACKGROUND_DETECTION` | popup → bg | 「更新」ボタンによるアクティブ検出のトリガー |
-| `GET_WORDPRESS_THEME_DETAILS` | bg internal | テーマの style.css ヘッダーの取得 |
-| `DYNAMIC_PAGE_SNAPSHOT` | content → bg | コンテンツスクリプトによる動的スナップショットの継続レポート |
-| `PAGE_DETECTION_RESULT` | injected → bg | page-detector 注入完了後の結果返却 |
+| メッセージ                    | 方向          | 用途                                                           |
+| ----------------------------- | ------------- | -------------------------------------------------------------- |
+| `GET_HEADER_DATA`             | popup → bg    | レスポンスヘッダー記録を取得                                   |
+| `GET_POPUP_RESULT`            | popup → bg    | 軽量キャッシュを取得（ポップアップのメイン表示）               |
+| `GET_POPUP_RAW_RESULT`        | popup → bg    | 完全な raw データを取得（生の手がかり / 誤検知フィードバック） |
+| `GET_TECH_LINK`               | popup → bg    | 特定の技術の公式サイトリンクをフォールバック取得               |
+| `START_BACKGROUND_DETECTION`  | popup → bg    | 「更新」ボタンによるアクティブ検出のトリガー                   |
+| `GET_WORDPRESS_THEME_DETAILS` | bg internal   | テーマの style.css ヘッダーの取得                              |
+| `DYNAMIC_PAGE_SNAPSHOT`       | content → bg  | コンテンツスクリプトによる動的スナップショットの継続レポート   |
+| `PAGE_DETECTION_RESULT`       | injected → bg | page-detector 注入完了後の結果返却                             |
 
 ## 注入スクリプトのデュアルトラック問題
 

@@ -45,27 +45,13 @@
   "url": "https://example.com",
   "title": "Example",
   "generatedAt": "2026-05-10T10:00:00.000Z",
-  "technologies": [
-    /* 合并后的去重列表 */
-  ],
-  "resources": {
-    /* 资源摘要 */
-  },
-  "headers": {
-    /* 主文档响应头 */
-  },
-  "apiObservations": [
-    /* 每个 API 响应的 url/headers/technologies */
-  ],
-  "frameObservations": [
-    /* 每个 iframe 同上 */
-  ],
-  "dynamicObservations": {
-    /* 动态采集到的脚本/样式/iframe/feedLinks/domMarkers */
-  },
-  "notes": [
-    /* 几句方法学说明 */
-  ]
+  "technologies": [/* 合并后的去重列表 */],
+  "resources": {/* 资源摘要 */},
+  "headers": {/* 主文档响应头 */},
+  "apiObservations": [/* 每个 API 响应的 url/headers/technologies */],
+  "frameObservations": [/* 每个 iframe 同上 */],
+  "dynamicObservations": {/* 动态采集到的脚本/样式/iframe/feedLinks/domMarkers */},
+  "notes": [/* 几句方法学说明 */]
 }
 ```
 

@@ -70,35 +70,35 @@ Po rozbalení je pravidlo React ekvivalentní:
 
 ## Pole listových pravidel
 
-| Pole                    | Typ                      | Popis                                                                                                                                 |
-| ----------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`                  | string                   | Název zobrazený ve vyskakovacím okně                                                                                                  |
-| `category`              | string                   | Kategorie, řazena podle `CATEGORY_ORDER`                                                                                              |
-| `kind`                  | string                   | Popis typu, může být prázdný. Zobrazí se jako předpona u důkazů                                                                      |
-| `confidence`            | `"高"` / `"中"` / `"低"` | Výchozí hodnota: `"中"`                                                                                                               |
-| `matchType`             | `"keyword"` / `"regex"`  | Výchozí hodnota: `"regex"` (přímé `new RegExp(p, 'i')`)                                                                              |
-| `patterns`              | string[]                 | Pravidla shody. Typ keyword používá `escapeRegExp + RegExp`                                                                          |
-| `selectors`             | string[]                 | CSS selektory — shoda automaticky znamená vysokou spolehlivost                                                                        |
-| `globals`               | string[]                 | Názvy globálních proměnných (podporuje vnořování oddělené tečkou) — shoda automaticky znamená vysokou spolehlivost                    |
-| `classNames`            | string[]                 | Přesná shoda s názvem třídy DOM — vysoká spolehlivost                                                                                 |
-| `classPrefixes`         | string[]                 | Shoda s třídou DOM začínající daným prefixem — vysoká spolehlivost                                                                   |
-| `cssVariables`          | string[]                 | Spuštění při shodě N CSS vlastních vlastností stránky; v kombinaci s `minCssVariableMatches`                                         |
-| `minCssVariableMatches` | number                   | Výchozí hodnota: 1                                                                                                                    |
+| Pole                    | Typ                      | Popis                                                                                                                                   |
+| ----------------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`                  | string                   | Název zobrazený ve vyskakovacím okně                                                                                                    |
+| `category`              | string                   | Kategorie, řazena podle `CATEGORY_ORDER`                                                                                                |
+| `kind`                  | string                   | Popis typu, může být prázdný. Zobrazí se jako předpona u důkazů                                                                         |
+| `confidence`            | `"高"` / `"中"` / `"低"` | Výchozí hodnota: `"中"`                                                                                                                 |
+| `matchType`             | `"keyword"` / `"regex"`  | Výchozí hodnota: `"regex"` (přímé `new RegExp(p, 'i')`)                                                                                 |
+| `patterns`              | string[]                 | Pravidla shody. Typ keyword používá `escapeRegExp + RegExp`                                                                             |
+| `selectors`             | string[]                 | CSS selektory — shoda automaticky znamená vysokou spolehlivost                                                                          |
+| `globals`               | string[]                 | Názvy globálních proměnných (podporuje vnořování oddělené tečkou) — shoda automaticky znamená vysokou spolehlivost                      |
+| `classNames`            | string[]                 | Přesná shoda s názvem třídy DOM — vysoká spolehlivost                                                                                   |
+| `classPrefixes`         | string[]                 | Shoda s třídou DOM začínající daným prefixem — vysoká spolehlivost                                                                      |
+| `cssVariables`          | string[]                 | Spuštění při shodě N CSS vlastních vlastností stránky; v kombinaci s `minCssVariableMatches`                                            |
+| `minCssVariableMatches` | number                   | Výchozí hodnota: 1                                                                                                                      |
 | `matchIn`               | string[]                 | Omezení porovnávání vzorů na konkrétní zdroje dat: `url` / `resources` / `html` / `headers` / `dynamic`. Prázdné pole / chybějící = vše |
-| `resourceOnly`          | boolean                  | Prochází pouze URL zdrojů, přeskočí DOM / globals / selectors                                                                        |
-| `resourceHints`         | string[]                 | Ručně zadané předfiltrovací otisky na straně obchodní logiky; plné porovnávání vzorů proběhne jen tehdy, pokud text obsahuje hint     |
-| `evidence`              | string                   | Pevný text důkazů při shodě, přepíše výchozí „shoda URL zdroje / DOM shoda"                                                         |
-| `url`                   | string                   | URL oficiálního webu nebo repozitáře technologie                                                                                     |
+| `resourceOnly`          | boolean                  | Prochází pouze URL zdrojů, přeskočí DOM / globals / selectors                                                                           |
+| `resourceHints`         | string[]                 | Ručně zadané předfiltrovací otisky na straně obchodní logiky; plné porovnávání vzorů proběhne jen tehdy, pokud text obsahuje hint       |
+| `evidence`              | string                   | Pevný text důkazů při shodě, přepíše výchozí „shoda URL zdroje / DOM shoda"                                                             |
+| `url`                   | string                   | URL oficiálního webu nebo repozitáře technologie                                                                                        |
 
 ## Automaticky vkládaná pole (buildtime)
 
 Plugin `precompileRulesPlugin` v `vite.config.ts` vkládá do každého listového pravidla při sestavení:
 
-| Pole                | Původ                                                                                                                                       |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pole                | Původ                                                                                                                                                                                                                             |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `__hints`           | Sada nutných literálů regulárního výrazu (`src/utils/rule-hints.ts`): text, který vzor dokáže zasáhnout, musí nutně obsahovat alespoň jeden z nich; slouží pouze k přeskočení pravidel, která nemohou zasáhnout — nemění výsledky |
-| `__legacyHints`     | Předfiltrovací práh starší verze (3 nejdelší literální segmenty z 1.3.79 a dříve); zapisuje se pouze tam, kde je přísnější než `__hints` a kde chybí `resourceHints`, aby výsledky detekce zůstaly nezměněny |
-| `__keywordCombined` | Pro matchType keyword: zdroj sloučeného regulárního výrazu ze všech escapovaných vzorů spojených `\|`                                       |
+| `__legacyHints`     | Předfiltrovací práh starší verze (3 nejdelší literální segmenty z 1.3.79 a dříve); zapisuje se pouze tam, kde je přísnější než `__hints` a kde chybí `resourceHints`, aby výsledky detekce zůstaly nezměněny                      |
+| `__keywordCombined` | Pro matchType keyword: zdroj sloučeného regulárního výrazu ze všech escapovaných vzorů spojených `\|`                                                                                                                             |
 
 Ručně zapsané `__hints` v souborech pravidel jsou považovány za starší práh daného pravidla. Za běhu `getRuleAutoHints(rule)` a `getCompiledCombinedPattern(rule)` čtou tato pole přednostně; teprve při jejich absenci přejdou na výpočet za běhu (vlastní pravidla počítají pouze nutné literály, nemají starší práh).
 

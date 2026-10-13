@@ -3,13 +3,13 @@
 ## Build locale
 
 ```bash
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 Sequenza:
 
-1. `pnpm run build:injected` (`build-scripts/build-injected.mjs`): esbuild compila `src/injected/page-detector.ts` e `page-source-search.ts` ciascuno come file IIFE indipendente, con output in `public/injected/`
+1. `bun run build:injected` (`build-scripts/build-injected.mjs`): esbuild compila `src/injected/page-detector.ts` e `page-source-search.ts` ciascuno come file IIFE indipendente, con output in `public/injected/`
 2. `vite build` (`@crxjs/vite-plugin`): pacchettizza i quattro entry point background / popup / settings / help, con output in `dist/`
 3. `precompileRulesPlugin` (hook closeBundle del vite plugin): scansiona `dist/rules/*.json` e inietta `__hints` / `__legacyHints` / `__keywordCombined` in ogni leaf rule
 4. `minifyJsonAssets` (hook closeBundle del vite plugin): riscrive tutti i JSON con `JSON.stringify(parsed)`, rimuovendo indentazione e spazi
@@ -19,7 +19,7 @@ Il risultato finale in `dist/` può essere caricato direttamente in modalità sv
 ## Hot-reload per lo sviluppo
 
 ```bash
-pnpm run dev
+bun run dev
 ```
 
 vite dev server + crxjs HMR: le modifiche a `src/ui/**` (popup / impostazioni / guida) vengono sostituite automaticamente. Le modifiche a `src/background/**` o al content script richiedono di cliccare il pulsante di aggiornamento sulla scheda dell'estensione in `chrome://extensions/`.
@@ -27,8 +27,8 @@ vite dev server + crxjs HMR: le modifiche a `src/ui/**` (popup / impostazioni / 
 ## Tipi e lint
 
 ```bash
-pnpm run typecheck    # vue-tsc --noEmit, controllo rigoroso dei tipi su tutto il progetto
-pnpm run lint         # eslint src
+bun run typecheck    # vue-tsc --noEmit, controllo rigoroso dei tipi su tutto il progetto
+bun run lint         # eslint src
 ```
 
 Prima del commit, esegui la formattazione su tutto il progetto:
@@ -66,9 +66,9 @@ git push origin main
 
 Cosa fa il workflow:
 
-1. checkout + installazione pnpm + Node 20
-2. `pnpm install --frozen-lockfile`
-3. `pnpm run build`
+1. checkout + installazione bun + Node 20
+2. `bun install --frozen-lockfile`
+3. `bun run build`
 4. legge la versione da `dist/manifest.json` e verifica che corrisponda al tag della release
 5. comprime l'intera `dist/` in `stackprism-v{ver}.zip` + sha256
 6. **se è configurato il secret `EXTENSION_PRIVATE_KEY`**, usa `npx crx3` per firmare e produrre `stackprism-v{ver}.crx` + sha256; altrimenti salta il crx e genera solo lo zip
@@ -116,9 +116,9 @@ Il workflow funziona comunque, ma gli artefatti non includeranno il file `.crx`.
 ## Checklist pre-rilascio
 
 - [ ] `npx prettier --write .` eseguito
-- [ ] `pnpm run typecheck` passa
-- [ ] `pnpm run lint` passa
-- [ ] `pnpm run build` passa
+- [ ] `bun run typecheck` passa
+- [ ] `bun run lint` passa
+- [ ] `bun run build` passa
 - [ ] Caricato `dist/` in Chrome e testato manualmente i percorsi critici (apertura popup, rilevamento su un sito, aggiornamento, copia report completo stack tecnologico, aggiunta regola nella pagina impostazioni)
 - [ ] Versione aggiornata in `package.json`
 - [ ] git commit + push

@@ -871,12 +871,11 @@
     // 语言优先级：VitePress 当前语言 > URL ?lang= > 浏览器语言
     const vpCode = vpLang.value?.toLowerCase() || ''
     const langParam = params.get('lang') || ''
-    const detectedLang =
-      LANGS.some(l => l.code === vpCode)
-        ? vpCode
-        : langParam && LANGS.some(l => l.code === langParam)
-          ? langParam
-          : detectLang()
+    const detectedLang = LANGS.some(l => l.code === vpCode)
+      ? vpCode
+      : langParam && LANGS.some(l => l.code === langParam)
+        ? langParam
+        : detectLang()
     lang.value = detectedLang
     const tabParam = params.get('tab') as Tab | null
     if (tabParam && TABS.includes(tabParam)) {
@@ -955,9 +954,7 @@
     suggestion: ['sug_content', 'sug_reason']
   }
 
-  const canSubmit = computed(() =>
-    REQUIRED_FIELDS[tab.value].every(k => (fields.value[k] ?? '').trim().length > 0)
-  )
+  const canSubmit = computed(() => REQUIRED_FIELDS[tab.value].every(k => (fields.value[k] ?? '').trim().length > 0))
 
   // ─── 构建 body ─────────────────────────────────────────────────────────────
   function buildBody(): string {
@@ -1045,12 +1042,7 @@
     <!-- 语言切换 -->
     <div class="if-toolbar">
       <label class="if-toolbar-label">{{ t('langLabel') }}</label>
-      <SpSelect
-        v-model="lang"
-        :options="LANGS.map(l => ({ value: l.code, label: l.label }))"
-        :clearable="false"
-        class="if-lang-select"
-      />
+      <SpSelect v-model="lang" :options="LANGS.map(l => ({ value: l.code, label: l.label }))" :clearable="false" class="if-lang-select" />
     </div>
 
     <!-- Tab 切换 -->
@@ -1424,7 +1416,9 @@
     font-size: 13px;
     font-weight: 500;
     padding: 8px 18px;
-    transition: background 0.12s, opacity 0.12s;
+    transition:
+      background 0.12s,
+      opacity 0.12s;
   }
 
   .if-submit:hover:not(:disabled) {

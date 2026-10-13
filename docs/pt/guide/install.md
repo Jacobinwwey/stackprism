@@ -29,26 +29,26 @@ Indicado para desenvolvedores ou quem queira acompanhar o branch principal mais 
 ```bash
 git clone https://github.com/setube/stackprism.git
 cd stackprism
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 O artefato de build fica em `dist/`. Carregue o diretório `dist/` no modo desenvolvedor em `chrome://extensions/`.
 
-Após modificar o código-fonte, basta executar `pnpm run build` novamente e clicar no botão de atualização no cartão da extensão para carregar a nova versão.
+Após modificar o código-fonte, basta executar `bun run build` novamente e clicar no botão de atualização no cartão da extensão para carregar a nova versão.
 
 ## Ativação e permissões
 
 Na primeira instalação, as seguintes permissões são solicitadas:
 
-| Permissão    | Finalidade                                                          |
-| ------------ | ------------------------------------------------------------------- |
-| `tabs`       | Ler a URL e o título da aba atual                                   |
-| `activeTab`  | Injetar script de detecção na página ativa                          |
-| `scripting`  | Injetar page-detector / page-source-search no mundo principal da página |
+| Permissão    | Finalidade                                                                     |
+| ------------ | ------------------------------------------------------------------------------ |
+| `tabs`       | Ler a URL e o título da aba atual                                              |
+| `activeTab`  | Injetar script de detecção na página ativa                                     |
+| `scripting`  | Injetar page-detector / page-source-search no mundo principal da página        |
 | `storage`    | Armazenar configurações, resultados de detecção em cache e preferência de tema |
-| `webRequest` | Monitorar cabeçalhos de resposta para coletar server / x-powered-by, etc. |
-| `<all_urls>` | Executar em todas as páginas http(s)                                |
+| `webRequest` | Monitorar cabeçalhos de resposta para coletar server / x-powered-by, etc.      |
+| `<all_urls>` | Executar em todas as páginas http(s)                                           |
 
 O processo de detecção não depende de APIs externas: os arquivos de regras são empacotados localmente com a extensão, e os resultados transitam apenas entre a memória do navegador e o storage da extensão.
 

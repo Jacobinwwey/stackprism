@@ -24,10 +24,10 @@ Die genauen Grenzen sind in `CUSTOM_RULE_LIMITS` in `src/types/settings.ts` defi
 
 ## Wann werden Änderungen wirksam?
 
-| Änderung | Wann wirksam |
-| -------- | ------------ |
-| Erkennungsschalter / Deaktivierte Technologien / Benutzerdefiniertes CSS | Sofort nach erneutem Öffnen des Popups |
-| Benutzerdefinierte Regeln | Beim nächsten Neuladen der Seite + erneutem Öffnen des Popups |
-| JSON-Import | Wie oben |
+| Änderung                                                                 | Wann wirksam                                                  |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------- |
+| Erkennungsschalter / Deaktivierte Technologien / Benutzerdefiniertes CSS | Sofort nach erneutem Öffnen des Popups                        |
+| Benutzerdefinierte Regeln                                                | Beim nächsten Neuladen der Seite + erneutem Öffnen des Popups |
+| JSON-Import                                                              | Wie oben                                                      |
 
 Nach dem Klick auf „Einstellungen speichern" werden die Daten sofort in den Storage geschrieben; ein Neuladen der Einstellungsseite ist nicht erforderlich.

@@ -28,18 +28,18 @@
 }
 ```
 
-| フィールド | 型 | 必須 | 説明 |
-| --- | --- | --- | --- |
-| `name` | string | はい | ポップアップの表示名 |
-| `category` | string | | カテゴリー。デフォルトは `其他库` |
-| `kind` | string | | 種類の説明。デフォルトは `自定义规则` |
-| `confidence` | `"高"` / `"中"` / `"低"` | | デフォルトは `中` |
-| `matchType` | `"keyword"` / `"regex"` | | デフォルトは `regex` |
-| `patterns` | string[] | 三択 | 三択（patterns / selectors / globals のいずれか 1 つ以上が非空）|
-| `selectors` | string[] | 三択 | CSS セレクターのリスト |
-| `globals` | string[] | 三択 | グローバル変数名のリスト（`window.x.y` は `x.y` と記述）|
-| `matchIn` | string[] | | `url` / `resources` / `html` / `headers` / `dynamic` の任意の組み合わせ。デフォルトはすべて |
-| `url` | string | | `http(s)://` で始まる必要がある。空白可 |
+| フィールド   | 型                       | 必須 | 説明                                                                                        |
+| ------------ | ------------------------ | ---- | ------------------------------------------------------------------------------------------- |
+| `name`       | string                   | はい | ポップアップの表示名                                                                        |
+| `category`   | string                   |      | カテゴリー。デフォルトは `其他库`                                                           |
+| `kind`       | string                   |      | 種類の説明。デフォルトは `自定义规则`                                                       |
+| `confidence` | `"高"` / `"中"` / `"低"` |      | デフォルトは `中`                                                                           |
+| `matchType`  | `"keyword"` / `"regex"`  |      | デフォルトは `regex`                                                                        |
+| `patterns`   | string[]                 | 三択 | 三択（patterns / selectors / globals のいずれか 1 つ以上が非空）                            |
+| `selectors`  | string[]                 | 三択 | CSS セレクターのリスト                                                                      |
+| `globals`    | string[]                 | 三択 | グローバル変数名のリスト（`window.x.y` は `x.y` と記述）                                    |
+| `matchIn`    | string[]                 |      | `url` / `resources` / `html` / `headers` / `dynamic` の任意の組み合わせ。デフォルトはすべて |
+| `url`        | string                   |      | `http(s)://` で始まる必要がある。空白可                                                     |
 
 ## 操作ボタン
 
@@ -75,14 +75,14 @@ JSON パーサーが `\\` を単一の `\` に解釈し、拡張機能が `\.js$
 
 `CUSTOM_RULE_LIMITS.rules` のデフォルトは 100 件です。超えると拒否されます。[`src/types/settings.ts`](https://github.com/setube/stackprism/blob/main/src/types/settings.ts) のすべての制限：
 
-| フィールド | 上限 |
-| --- | --- |
-| ルールの総数 | 100 |
-| name | 80 文字 |
-| category | 40 文字 |
-| kind | 40 文字 |
-| 1 件あたりの pattern / selector / global | 240 文字 |
+| フィールド                                | 上限        |
+| ----------------------------------------- | ----------- |
+| ルールの総数                              | 100         |
+| name                                      | 80 文字     |
+| category                                  | 40 文字     |
+| kind                                      | 40 文字     |
+| 1 件あたりの pattern / selector / global  | 240 文字    |
 | patterns / selectors / globals 配列の長さ | それぞれ 80 |
-| matchIn 配列の長さ | 8 |
-| url | 240 文字 |
-| customCss | 10000 文字 |
+| matchIn 配列の長さ                        | 8           |
+| url                                       | 240 文字    |
+| customCss                                 | 10000 文字  |

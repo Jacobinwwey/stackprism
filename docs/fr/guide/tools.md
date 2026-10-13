@@ -12,11 +12,11 @@ Prend en charge le texte libre et les expressions régulières. Appuyez sur Entr
 
 ### Options
 
-| Option                  | Description                                                                  |
-| ----------------------- | ---------------------------------------------------------------------------- |
-| Respecter la casse      | Désactivé par défaut ; activé, `React` et `react` sont distincts             |
-| Mot entier              | Applicable en mode texte libre ; exige des caractères non-mot autour (`\b`)  |
-| Expression régulière    | Interprète la saisie comme la source d'une expression régulière JavaScript   |
+| Option               | Description                                                                 |
+| -------------------- | --------------------------------------------------------------------------- |
+| Respecter la casse   | Désactivé par défaut ; activé, `React` et `react` sont distincts            |
+| Mot entier           | Applicable en mode texte libre ; exige des caractères non-mot autour (`\b`) |
+| Expression régulière | Interprète la saisie comme la source d'une expression régulière JavaScript  |
 
 ### Résultat
 
@@ -45,27 +45,13 @@ La sortie est un JSON complet dont la structure est la suivante :
   "url": "https://example.com",
   "title": "Example",
   "generatedAt": "2026-05-10T10:00:00.000Z",
-  "technologies": [
-    /* liste dédupliquée et fusionnée */
-  ],
-  "resources": {
-    /* résumé des ressources */
-  },
-  "headers": {
-    /* en-têtes de réponse du document principal */
-  },
-  "apiObservations": [
-    /* url/headers/technologies de chaque réponse API */
-  ],
-  "frameObservations": [
-    /* idem pour chaque iframe */
-  ],
-  "dynamicObservations": {
-    /* scripts/styles/iframes/feedLinks/domMarkers collectés dynamiquement */
-  },
-  "notes": [
-    /* quelques remarques méthodologiques */
-  ]
+  "technologies": [/* liste dédupliquée et fusionnée */],
+  "resources": {/* résumé des ressources */},
+  "headers": {/* en-têtes de réponse du document principal */},
+  "apiObservations": [/* url/headers/technologies de chaque réponse API */],
+  "frameObservations": [/* idem pour chaque iframe */],
+  "dynamicObservations": {/* scripts/styles/iframes/feedLinks/domMarkers collectés dynamiquement */},
+  "notes": [/* quelques remarques méthodologiques */]
 }
 ```
 

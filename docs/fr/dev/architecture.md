@@ -104,16 +104,16 @@ L'extension Chrome utilise quatre environnements d'exécution, tous exploités p
 
 Les 8 types de messages sont tous définis avec un discriminated union dans `src/types/messages.ts`, et tous les appels passent par le wrapper `sendMessage<M>()` de `src/utils/messaging.ts`.
 
-| Message                       | Direction     | Utilisation                                          |
-| ----------------------------- | ------------- | ---------------------------------------------------- |
-| `GET_HEADER_DATA`             | popup → bg    | récupérer les en-têtes de réponse enregistrés        |
-| `GET_POPUP_RESULT`            | popup → bg    | récupérer le cache léger (affichage principal popup) |
-| `GET_POPUP_RAW_RESULT`        | popup → bg    | récupérer le raw complet (indices bruts / correction)|
-| `GET_TECH_LINK`               | popup → bg    | fallback pour l'URL officielle d'une technologie     |
-| `START_BACKGROUND_DETECTION`  | popup → bg    | déclencher la détection active via « Actualiser »    |
-| `GET_WORDPRESS_THEME_DETAILS` | bg interne    | récupérer le header du style.css du thème            |
-| `DYNAMIC_PAGE_SNAPSHOT`       | content → bg  | rapport continu de l'instantané dynamique            |
-| `PAGE_DETECTION_RESULT`       | injected → bg | résultat retourné par page-detector après injection  |
+| Message                       | Direction     | Utilisation                                           |
+| ----------------------------- | ------------- | ----------------------------------------------------- |
+| `GET_HEADER_DATA`             | popup → bg    | récupérer les en-têtes de réponse enregistrés         |
+| `GET_POPUP_RESULT`            | popup → bg    | récupérer le cache léger (affichage principal popup)  |
+| `GET_POPUP_RAW_RESULT`        | popup → bg    | récupérer le raw complet (indices bruts / correction) |
+| `GET_TECH_LINK`               | popup → bg    | fallback pour l'URL officielle d'une technologie      |
+| `START_BACKGROUND_DETECTION`  | popup → bg    | déclencher la détection active via « Actualiser »     |
+| `GET_WORDPRESS_THEME_DETAILS` | bg interne    | récupérer le header du style.css du thème             |
+| `DYNAMIC_PAGE_SNAPSHOT`       | content → bg  | rapport continu de l'instantané dynamique             |
+| `PAGE_DETECTION_RESULT`       | injected → bg | résultat retourné par page-detector après injection   |
 
 ## Problème du double chemin des scripts injectés
 
@@ -154,6 +154,7 @@ Deux plugins Vite traitent également ces JSON lors du build :
 ## Gestion d'état
 
 Pinia n'est pas utilisé. Raisons :
+
 - 6 champs de state dans la popup
 - 2 champs de state dans les paramètres
 - popup et settings sont deux pages d'extension indépendantes (contextes chrome.runtime distincts) — Pinia nécessiterait une double instanciation

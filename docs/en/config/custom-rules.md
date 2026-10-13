@@ -4,14 +4,14 @@ Custom rules let you cover sites the built-in rules miss, or validate a new rule
 
 ## Form Fields
 
-| Field                | Required | Description                                                                                                       |
-| -------------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
-| **Tech name**        | Yes      | The name shown in the popup, e.g., `MyCMS`                                                                       |
-| **Category**         |          | Pick a built-in category (23 available) or type your own. Defaults to "Other Libraries". The select supports free input. |
-| **Kind label**       |          | A note for yourself, e.g., `Enterprise CMS`, `Third-party Payment`. Appears as an evidence prefix. Can be empty. |
-| **Confidence**       |          | High / Medium / Low. Defaults to Medium.                                                                          |
-| **Match mode**       |          | Keyword / Regex. Defaults to Regex.                                                                               |
-| **Website / repo URL** |        | Must be `http://` or `https://`. When set, the tech name in the popup becomes a clickable link.                  |
+| Field                  | Required | Description                                                                                                              |
+| ---------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Tech name**          | Yes      | The name shown in the popup, e.g., `MyCMS`                                                                               |
+| **Category**           |          | Pick a built-in category (23 available) or type your own. Defaults to "Other Libraries". The select supports free input. |
+| **Kind label**         |          | A note for yourself, e.g., `Enterprise CMS`, `Third-party Payment`. Appears as an evidence prefix. Can be empty.         |
+| **Confidence**         |          | High / Medium / Low. Defaults to Medium.                                                                                 |
+| **Match mode**         |          | Keyword / Regex. Defaults to Regex.                                                                                      |
+| **Website / repo URL** |          | Must be `http://` or `https://`. When set, the tech name in the popup becomes a clickable link.                          |
 
 Below those fields are four areas:
 

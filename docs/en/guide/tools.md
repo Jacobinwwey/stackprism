@@ -12,11 +12,11 @@ Supports plain text and regular expressions. Press Enter or click Search to run.
 
 ### Options
 
-| Option           | Description                                                                                          |
-| ---------------- | ---------------------------------------------------------------------------------------------------- |
-| Case sensitive   | Off by default; when enabled, `React` and `react` are treated as different                          |
-| Whole word       | Active in plain-text mode; requires non-word characters on both sides of the match (uses `\b`)      |
-| Regular expression | Treats the input as a JavaScript regex source, combined with the two flags above                  |
+| Option             | Description                                                                                    |
+| ------------------ | ---------------------------------------------------------------------------------------------- |
+| Case sensitive     | Off by default; when enabled, `React` and `react` are treated as different                     |
+| Whole word         | Active in plain-text mode; requires non-word characters on both sides of the match (uses `\b`) |
+| Regular expression | Treats the input as a JavaScript regex source, combined with the two flags above               |
 
 ### Output
 
@@ -45,27 +45,13 @@ The output is the full JSON, structured as follows:
   "url": "https://example.com",
   "title": "Example",
   "generatedAt": "2026-05-10T10:00:00.000Z",
-  "technologies": [
-    /* deduplicated, merged list */
-  ],
-  "resources": {
-    /* resource summary */
-  },
-  "headers": {
-    /* main document response headers */
-  },
-  "apiObservations": [
-    /* url/headers/technologies for each API response */
-  ],
-  "frameObservations": [
-    /* same structure for each iframe */
-  ],
-  "dynamicObservations": {
-    /* dynamically collected scripts/styles/iframes/feedLinks/domMarkers */
-  },
-  "notes": [
-    /* a few methodological remarks */
-  ]
+  "technologies": [/* deduplicated, merged list */],
+  "resources": {/* resource summary */},
+  "headers": {/* main document response headers */},
+  "apiObservations": [/* url/headers/technologies for each API response */],
+  "frameObservations": [/* same structure for each iframe */],
+  "dynamicObservations": {/* dynamically collected scripts/styles/iframes/feedLinks/domMarkers */},
+  "notes": [/* a few methodological remarks */]
 }
 ```
 

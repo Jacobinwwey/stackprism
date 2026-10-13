@@ -4,11 +4,11 @@
 
 Cada tecnologia tem um indicador de confiança com três níveis:
 
-| Nível   | Cor    | Significado                                                                                                      |
-| ------- | ------ | ---------------------------------------------------------------------------------------------------------------- |
-| **Alta** | Verde  | Sinal forte encontrado: variável global (ex.: `window.React`), seletor DOM exclusivo, URL de recurso específica (ex.: `/_next/`) |
-| **Média** | Amarelo | Sinal médio encontrado: correspondência difusa em cabeçalho de resposta, prefixo de classe CSS, conjunto de variáveis CSS |
-| **Baixa** | Cinza  | Sinal fraco encontrado: nome de arquivo de script genérico de fallback (ex.: `*.min.js`), regex difusa |
+| Nível     | Cor     | Significado                                                                                                                      |
+| --------- | ------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **Alta**  | Verde   | Sinal forte encontrado: variável global (ex.: `window.React`), seletor DOM exclusivo, URL de recurso específica (ex.: `/_next/`) |
+| **Média** | Amarelo | Sinal médio encontrado: correspondência difusa em cabeçalho de resposta, prefixo de classe CSS, conjunto de variáveis CSS        |
+| **Baixa** | Cinza   | Sinal fraco encontrado: nome de arquivo de script genérico de fallback (ex.: `*.min.js`), regex difusa                           |
 
 Na aba "Destaques", apenas resultados de alta confiança são exibidos por padrão.
 
@@ -28,14 +28,14 @@ Ao investigar falsos positivos, comece pelas evidências. Elas geralmente revela
 
 As etiquetas de origem indicam de onde o resultado foi detectado:
 
-| Etiqueta de origem              | Fonte                                                                   |
-| ------------------------------- | ----------------------------------------------------------------------- |
-| `cabeçalho de resposta`         | Cabeçalhos de resposta HTTP do documento principal (server / x-powered-by / set-cookie, etc.) |
-| `cabeçalho de resposta · API`   | Cabeçalhos de resposta de alguma requisição XHR / fetch da página atual |
-| `cabeçalho de resposta · iframe`| Cabeçalhos de resposta do documento principal de um iframe aninhado     |
-| `monitoramento dinâmico`        | Recursos / scripts carregados dinamicamente coletados continuamente por content script + MutationObserver |
-| `monitoramento dinâmico · após interação` | Recursos carregados após ação do usuário (popup, login, pagamento)  |
-| `tema WordPress`                | Inferido do cabeçalho do style.css do tema                             |
+| Etiqueta de origem                        | Fonte                                                                                                     |
+| ----------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `cabeçalho de resposta`                   | Cabeçalhos de resposta HTTP do documento principal (server / x-powered-by / set-cookie, etc.)             |
+| `cabeçalho de resposta · API`             | Cabeçalhos de resposta de alguma requisição XHR / fetch da página atual                                   |
+| `cabeçalho de resposta · iframe`          | Cabeçalhos de resposta do documento principal de um iframe aninhado                                       |
+| `monitoramento dinâmico`                  | Recursos / scripts carregados dinamicamente coletados continuamente por content script + MutationObserver |
+| `monitoramento dinâmico · após interação` | Recursos carregados após ação do usuário (popup, login, pagamento)                                        |
+| `tema WordPress`                          | Inferido do cabeçalho do style.css do tema                                                                |
 
 **Clique em qualquer etiqueta de origem** para abrir um painel pela parte inferior, exibindo o subconjunto de dados JSON brutos correspondente a **essa tecnologia nessa origem**. Isso mostra diretamente os cabeçalhos de resposta brutos, a lista de URLs de recursos ou o snapshot dinâmico, sem precisar procurar no JSON completo.
 

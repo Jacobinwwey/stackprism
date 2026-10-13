@@ -3,8 +3,9 @@ import pkg from '../package.json' with { type: 'json' }
 
 export default defineManifest({
   manifest_version: 3,
-  name: 'StackPrism',
-  description: 'StackPrism 用于检测网页前端、后端、CDN、SaaS、广告营销、统计、登录、支付、网站程序和主题模板线索。',
+  name: '__MSG_appName__',
+  description: '__MSG_appDesc__',
+  default_locale: 'zh_CN',
   version: pkg.version,
   permissions: ['activeTab', 'scripting', 'tabs', 'storage', 'webRequest', 'webNavigation'],
   host_permissions: ['<all_urls>'],

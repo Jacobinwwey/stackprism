@@ -11,7 +11,7 @@ const README_URLS: Record<string, string> = {
   pt: 'https://github.com/setube/stackprism/blob/main/i18n/README.pt.md',
   it: 'https://github.com/setube/stackprism/blob/main/i18n/README.it.md',
   cs: 'https://github.com/setube/stackprism/blob/main/i18n/README.cs.md',
-  pl: 'https://github.com/setube/stackprism/blob/main/i18n/README.pl.md',
+  pl: 'https://github.com/setube/stackprism/blob/main/i18n/README.pl.md'
 }
 
 export default defineConfig({
@@ -36,29 +36,44 @@ export default defineConfig({
           { text: 'GitHub', link: README_URLS.root }
         ],
         sidebar: {
-          '/guide/': [{ text: '使用指南', items: [
-            { text: '概述', link: '/guide/' },
-            { text: '安装与启用', link: '/guide/install' },
-            { text: '基本使用', link: '/guide/basic-usage' },
-            { text: '结果解读', link: '/guide/results' },
-            { text: '辅助工具', link: '/guide/tools' }
-          ]}],
-          '/config/': [{ text: '配置指南', items: [
-            { text: '概述', link: '/config/' },
-            { text: '识别开关', link: '/config/categories' },
-            { text: '禁用指定技术', link: '/config/disabled-technologies' },
-            { text: '自定义弹窗样式', link: '/config/custom-css' },
-            { text: '自定义规则', link: '/config/custom-rules' },
-            { text: '规则 JSON 导入导出', link: '/config/json-export' }
-          ]}],
-          '/dev/': [{ text: '开发手册', items: [
-            { text: '概述', link: '/dev/' },
-            { text: '架构概览', link: '/dev/architecture' },
-            { text: '规则文件格式', link: '/dev/rule-format' },
-            { text: '检测流程', link: '/dev/detection-flow' },
-            { text: '贡献规则', link: '/dev/contribute-rules' },
-            { text: '构建与发布', link: '/dev/release' }
-          ]}]
+          '/guide/': [
+            {
+              text: '使用指南',
+              items: [
+                { text: '概述', link: '/guide/' },
+                { text: '安装与启用', link: '/guide/install' },
+                { text: '基本使用', link: '/guide/basic-usage' },
+                { text: '结果解读', link: '/guide/results' },
+                { text: '辅助工具', link: '/guide/tools' }
+              ]
+            }
+          ],
+          '/config/': [
+            {
+              text: '配置指南',
+              items: [
+                { text: '概述', link: '/config/' },
+                { text: '识别开关', link: '/config/categories' },
+                { text: '禁用指定技术', link: '/config/disabled-technologies' },
+                { text: '自定义弹窗样式', link: '/config/custom-css' },
+                { text: '自定义规则', link: '/config/custom-rules' },
+                { text: '规则 JSON 导入导出', link: '/config/json-export' }
+              ]
+            }
+          ],
+          '/dev/': [
+            {
+              text: '开发手册',
+              items: [
+                { text: '概述', link: '/dev/' },
+                { text: '架构概览', link: '/dev/architecture' },
+                { text: '规则文件格式', link: '/dev/rule-format' },
+                { text: '检测流程', link: '/dev/detection-flow' },
+                { text: '贡献规则', link: '/dev/contribute-rules' },
+                { text: '构建与发布', link: '/dev/release' }
+              ]
+            }
+          ]
         },
         docFooter: { prev: '上一页', next: '下一页' },
         outline: { label: '本页目录', level: [2, 3] },
@@ -82,29 +97,44 @@ export default defineConfig({
           { text: 'GitHub', link: README_URLS.en }
         ],
         sidebar: {
-          '/en/guide/': [{ text: 'User Guide', items: [
-            { text: 'Overview', link: '/en/guide/' },
-            { text: 'Install & Enable', link: '/en/guide/install' },
-            { text: 'Basic Usage', link: '/en/guide/basic-usage' },
-            { text: 'Understanding Results', link: '/en/guide/results' },
-            { text: 'Tools', link: '/en/guide/tools' }
-          ]}],
-          '/en/config/': [{ text: 'Configuration', items: [
-            { text: 'Overview', link: '/en/config/' },
-            { text: 'Category Toggles', link: '/en/config/categories' },
-            { text: 'Disable Technologies', link: '/en/config/disabled-technologies' },
-            { text: 'Custom CSS', link: '/en/config/custom-css' },
-            { text: 'Custom Rules', link: '/en/config/custom-rules' },
-            { text: 'JSON Export', link: '/en/config/json-export' }
-          ]}],
-          '/en/dev/': [{ text: 'Developer Guide', items: [
-            { text: 'Overview', link: '/en/dev/' },
-            { text: 'Architecture', link: '/en/dev/architecture' },
-            { text: 'Rule Format', link: '/en/dev/rule-format' },
-            { text: 'Detection Flow', link: '/en/dev/detection-flow' },
-            { text: 'Contributing Rules', link: '/en/dev/contribute-rules' },
-            { text: 'Build & Release', link: '/en/dev/release' }
-          ]}]
+          '/en/guide/': [
+            {
+              text: 'User Guide',
+              items: [
+                { text: 'Overview', link: '/en/guide/' },
+                { text: 'Install & Enable', link: '/en/guide/install' },
+                { text: 'Basic Usage', link: '/en/guide/basic-usage' },
+                { text: 'Understanding Results', link: '/en/guide/results' },
+                { text: 'Tools', link: '/en/guide/tools' }
+              ]
+            }
+          ],
+          '/en/config/': [
+            {
+              text: 'Configuration',
+              items: [
+                { text: 'Overview', link: '/en/config/' },
+                { text: 'Category Toggles', link: '/en/config/categories' },
+                { text: 'Disable Technologies', link: '/en/config/disabled-technologies' },
+                { text: 'Custom CSS', link: '/en/config/custom-css' },
+                { text: 'Custom Rules', link: '/en/config/custom-rules' },
+                { text: 'JSON Export', link: '/en/config/json-export' }
+              ]
+            }
+          ],
+          '/en/dev/': [
+            {
+              text: 'Developer Guide',
+              items: [
+                { text: 'Overview', link: '/en/dev/' },
+                { text: 'Architecture', link: '/en/dev/architecture' },
+                { text: 'Rule Format', link: '/en/dev/rule-format' },
+                { text: 'Detection Flow', link: '/en/dev/detection-flow' },
+                { text: 'Contributing Rules', link: '/en/dev/contribute-rules' },
+                { text: 'Build & Release', link: '/en/dev/release' }
+              ]
+            }
+          ]
         },
         docFooter: { prev: 'Previous', next: 'Next' },
         outline: { label: 'On this page', level: [2, 3] },
@@ -127,29 +157,44 @@ export default defineConfig({
           { text: 'GitHub', link: README_URLS['zh-TW'] }
         ],
         sidebar: {
-          '/zh-TW/guide/': [{ text: '使用指南', items: [
-            { text: '概述', link: '/zh-TW/guide/' },
-            { text: '安裝與啟用', link: '/zh-TW/guide/install' },
-            { text: '基本使用', link: '/zh-TW/guide/basic-usage' },
-            { text: '結果解讀', link: '/zh-TW/guide/results' },
-            { text: '輔助工具', link: '/zh-TW/guide/tools' }
-          ]}],
-          '/zh-TW/config/': [{ text: '配置指南', items: [
-            { text: '概述', link: '/zh-TW/config/' },
-            { text: '識別開關', link: '/zh-TW/config/categories' },
-            { text: '停用指定技術', link: '/zh-TW/config/disabled-technologies' },
-            { text: '自定義彈窗樣式', link: '/zh-TW/config/custom-css' },
-            { text: '自定義規則', link: '/zh-TW/config/custom-rules' },
-            { text: '規則 JSON 匯入匯出', link: '/zh-TW/config/json-export' }
-          ]}],
-          '/zh-TW/dev/': [{ text: '開發手冊', items: [
-            { text: '概述', link: '/zh-TW/dev/' },
-            { text: '架構概覽', link: '/zh-TW/dev/architecture' },
-            { text: '規則文件格式', link: '/zh-TW/dev/rule-format' },
-            { text: '偵測流程', link: '/zh-TW/dev/detection-flow' },
-            { text: '貢獻規則', link: '/zh-TW/dev/contribute-rules' },
-            { text: '建置與發布', link: '/zh-TW/dev/release' }
-          ]}]
+          '/zh-TW/guide/': [
+            {
+              text: '使用指南',
+              items: [
+                { text: '概述', link: '/zh-TW/guide/' },
+                { text: '安裝與啟用', link: '/zh-TW/guide/install' },
+                { text: '基本使用', link: '/zh-TW/guide/basic-usage' },
+                { text: '結果解讀', link: '/zh-TW/guide/results' },
+                { text: '輔助工具', link: '/zh-TW/guide/tools' }
+              ]
+            }
+          ],
+          '/zh-TW/config/': [
+            {
+              text: '配置指南',
+              items: [
+                { text: '概述', link: '/zh-TW/config/' },
+                { text: '識別開關', link: '/zh-TW/config/categories' },
+                { text: '停用指定技術', link: '/zh-TW/config/disabled-technologies' },
+                { text: '自定義彈窗樣式', link: '/zh-TW/config/custom-css' },
+                { text: '自定義規則', link: '/zh-TW/config/custom-rules' },
+                { text: '規則 JSON 匯入匯出', link: '/zh-TW/config/json-export' }
+              ]
+            }
+          ],
+          '/zh-TW/dev/': [
+            {
+              text: '開發手冊',
+              items: [
+                { text: '概述', link: '/zh-TW/dev/' },
+                { text: '架構概覽', link: '/zh-TW/dev/architecture' },
+                { text: '規則文件格式', link: '/zh-TW/dev/rule-format' },
+                { text: '偵測流程', link: '/zh-TW/dev/detection-flow' },
+                { text: '貢獻規則', link: '/zh-TW/dev/contribute-rules' },
+                { text: '建置與發布', link: '/zh-TW/dev/release' }
+              ]
+            }
+          ]
         },
         docFooter: { prev: '上一頁', next: '下一頁' },
         outline: { label: '本頁目錄', level: [2, 3] },
@@ -172,29 +217,44 @@ export default defineConfig({
           { text: 'GitHub', link: README_URLS.ja }
         ],
         sidebar: {
-          '/ja/guide/': [{ text: '使用ガイド', items: [
-            { text: '概要', link: '/ja/guide/' },
-            { text: 'インストールと有効化', link: '/ja/guide/install' },
-            { text: '基本的な使い方', link: '/ja/guide/basic-usage' },
-            { text: '結果の見方', link: '/ja/guide/results' },
-            { text: 'ツール', link: '/ja/guide/tools' }
-          ]}],
-          '/ja/config/': [{ text: '設定ガイド', items: [
-            { text: '概要', link: '/ja/config/' },
-            { text: 'カテゴリ切替', link: '/ja/config/categories' },
-            { text: '技術の無効化', link: '/ja/config/disabled-technologies' },
-            { text: 'カスタム CSS', link: '/ja/config/custom-css' },
-            { text: 'カスタムルール', link: '/ja/config/custom-rules' },
-            { text: 'JSON エクスポート', link: '/ja/config/json-export' }
-          ]}],
-          '/ja/dev/': [{ text: '開発ハンドブック', items: [
-            { text: '概要', link: '/ja/dev/' },
-            { text: 'アーキテクチャ概要', link: '/ja/dev/architecture' },
-            { text: 'ルールファイル形式', link: '/ja/dev/rule-format' },
-            { text: '検出フロー', link: '/ja/dev/detection-flow' },
-            { text: 'ルールへの貢献', link: '/ja/dev/contribute-rules' },
-            { text: 'ビルドとリリース', link: '/ja/dev/release' }
-          ]}]
+          '/ja/guide/': [
+            {
+              text: '使用ガイド',
+              items: [
+                { text: '概要', link: '/ja/guide/' },
+                { text: 'インストールと有効化', link: '/ja/guide/install' },
+                { text: '基本的な使い方', link: '/ja/guide/basic-usage' },
+                { text: '結果の見方', link: '/ja/guide/results' },
+                { text: 'ツール', link: '/ja/guide/tools' }
+              ]
+            }
+          ],
+          '/ja/config/': [
+            {
+              text: '設定ガイド',
+              items: [
+                { text: '概要', link: '/ja/config/' },
+                { text: 'カテゴリ切替', link: '/ja/config/categories' },
+                { text: '技術の無効化', link: '/ja/config/disabled-technologies' },
+                { text: 'カスタム CSS', link: '/ja/config/custom-css' },
+                { text: 'カスタムルール', link: '/ja/config/custom-rules' },
+                { text: 'JSON エクスポート', link: '/ja/config/json-export' }
+              ]
+            }
+          ],
+          '/ja/dev/': [
+            {
+              text: '開発ハンドブック',
+              items: [
+                { text: '概要', link: '/ja/dev/' },
+                { text: 'アーキテクチャ概要', link: '/ja/dev/architecture' },
+                { text: 'ルールファイル形式', link: '/ja/dev/rule-format' },
+                { text: '検出フロー', link: '/ja/dev/detection-flow' },
+                { text: 'ルールへの貢献', link: '/ja/dev/contribute-rules' },
+                { text: 'ビルドとリリース', link: '/ja/dev/release' }
+              ]
+            }
+          ]
         },
         docFooter: { prev: '前のページ', next: '次のページ' },
         outline: { label: 'このページの内容', level: [2, 3] },
@@ -217,29 +277,44 @@ export default defineConfig({
           { text: 'GitHub', link: README_URLS.fr }
         ],
         sidebar: {
-          '/fr/guide/': [{ text: "Guide d'utilisation", items: [
-            { text: 'Vue d\'ensemble', link: '/fr/guide/' },
-            { text: 'Installation', link: '/fr/guide/install' },
-            { text: 'Utilisation de base', link: '/fr/guide/basic-usage' },
-            { text: 'Comprendre les résultats', link: '/fr/guide/results' },
-            { text: 'Outils', link: '/fr/guide/tools' }
-          ]}],
-          '/fr/config/': [{ text: 'Configuration', items: [
-            { text: 'Vue d\'ensemble', link: '/fr/config/' },
-            { text: 'Catégories', link: '/fr/config/categories' },
-            { text: 'Désactiver des technologies', link: '/fr/config/disabled-technologies' },
-            { text: 'CSS personnalisé', link: '/fr/config/custom-css' },
-            { text: 'Règles personnalisées', link: '/fr/config/custom-rules' },
-            { text: 'Export JSON', link: '/fr/config/json-export' }
-          ]}],
-          '/fr/dev/': [{ text: 'Guide développeur', items: [
-            { text: 'Vue d\'ensemble', link: '/fr/dev/' },
-            { text: 'Architecture', link: '/fr/dev/architecture' },
-            { text: 'Format des règles', link: '/fr/dev/rule-format' },
-            { text: 'Flux de détection', link: '/fr/dev/detection-flow' },
-            { text: 'Contribuer des règles', link: '/fr/dev/contribute-rules' },
-            { text: 'Build & Release', link: '/fr/dev/release' }
-          ]}]
+          '/fr/guide/': [
+            {
+              text: "Guide d'utilisation",
+              items: [
+                { text: "Vue d'ensemble", link: '/fr/guide/' },
+                { text: 'Installation', link: '/fr/guide/install' },
+                { text: 'Utilisation de base', link: '/fr/guide/basic-usage' },
+                { text: 'Comprendre les résultats', link: '/fr/guide/results' },
+                { text: 'Outils', link: '/fr/guide/tools' }
+              ]
+            }
+          ],
+          '/fr/config/': [
+            {
+              text: 'Configuration',
+              items: [
+                { text: "Vue d'ensemble", link: '/fr/config/' },
+                { text: 'Catégories', link: '/fr/config/categories' },
+                { text: 'Désactiver des technologies', link: '/fr/config/disabled-technologies' },
+                { text: 'CSS personnalisé', link: '/fr/config/custom-css' },
+                { text: 'Règles personnalisées', link: '/fr/config/custom-rules' },
+                { text: 'Export JSON', link: '/fr/config/json-export' }
+              ]
+            }
+          ],
+          '/fr/dev/': [
+            {
+              text: 'Guide développeur',
+              items: [
+                { text: "Vue d'ensemble", link: '/fr/dev/' },
+                { text: 'Architecture', link: '/fr/dev/architecture' },
+                { text: 'Format des règles', link: '/fr/dev/rule-format' },
+                { text: 'Flux de détection', link: '/fr/dev/detection-flow' },
+                { text: 'Contribuer des règles', link: '/fr/dev/contribute-rules' },
+                { text: 'Build & Release', link: '/fr/dev/release' }
+              ]
+            }
+          ]
         },
         docFooter: { prev: 'Précédent', next: 'Suivant' },
         outline: { label: 'Sur cette page', level: [2, 3] },
@@ -262,29 +337,44 @@ export default defineConfig({
           { text: 'GitHub', link: README_URLS.de }
         ],
         sidebar: {
-          '/de/guide/': [{ text: 'Benutzerhandbuch', items: [
-            { text: 'Übersicht', link: '/de/guide/' },
-            { text: 'Installation', link: '/de/guide/install' },
-            { text: 'Grundlegende Nutzung', link: '/de/guide/basic-usage' },
-            { text: 'Ergebnisse verstehen', link: '/de/guide/results' },
-            { text: 'Werkzeuge', link: '/de/guide/tools' }
-          ]}],
-          '/de/config/': [{ text: 'Konfiguration', items: [
-            { text: 'Übersicht', link: '/de/config/' },
-            { text: 'Kategorieschalter', link: '/de/config/categories' },
-            { text: 'Technologien deaktivieren', link: '/de/config/disabled-technologies' },
-            { text: 'Eigenes CSS', link: '/de/config/custom-css' },
-            { text: 'Eigene Regeln', link: '/de/config/custom-rules' },
-            { text: 'JSON-Export', link: '/de/config/json-export' }
-          ]}],
-          '/de/dev/': [{ text: 'Entwicklerhandbuch', items: [
-            { text: 'Übersicht', link: '/de/dev/' },
-            { text: 'Architektur', link: '/de/dev/architecture' },
-            { text: 'Regelformat', link: '/de/dev/rule-format' },
-            { text: 'Erkennungsablauf', link: '/de/dev/detection-flow' },
-            { text: 'Regeln beitragen', link: '/de/dev/contribute-rules' },
-            { text: 'Build & Release', link: '/de/dev/release' }
-          ]}]
+          '/de/guide/': [
+            {
+              text: 'Benutzerhandbuch',
+              items: [
+                { text: 'Übersicht', link: '/de/guide/' },
+                { text: 'Installation', link: '/de/guide/install' },
+                { text: 'Grundlegende Nutzung', link: '/de/guide/basic-usage' },
+                { text: 'Ergebnisse verstehen', link: '/de/guide/results' },
+                { text: 'Werkzeuge', link: '/de/guide/tools' }
+              ]
+            }
+          ],
+          '/de/config/': [
+            {
+              text: 'Konfiguration',
+              items: [
+                { text: 'Übersicht', link: '/de/config/' },
+                { text: 'Kategorieschalter', link: '/de/config/categories' },
+                { text: 'Technologien deaktivieren', link: '/de/config/disabled-technologies' },
+                { text: 'Eigenes CSS', link: '/de/config/custom-css' },
+                { text: 'Eigene Regeln', link: '/de/config/custom-rules' },
+                { text: 'JSON-Export', link: '/de/config/json-export' }
+              ]
+            }
+          ],
+          '/de/dev/': [
+            {
+              text: 'Entwicklerhandbuch',
+              items: [
+                { text: 'Übersicht', link: '/de/dev/' },
+                { text: 'Architektur', link: '/de/dev/architecture' },
+                { text: 'Regelformat', link: '/de/dev/rule-format' },
+                { text: 'Erkennungsablauf', link: '/de/dev/detection-flow' },
+                { text: 'Regeln beitragen', link: '/de/dev/contribute-rules' },
+                { text: 'Build & Release', link: '/de/dev/release' }
+              ]
+            }
+          ]
         },
         docFooter: { prev: 'Zurück', next: 'Weiter' },
         outline: { label: 'Auf dieser Seite', level: [2, 3] },
@@ -307,29 +397,44 @@ export default defineConfig({
           { text: 'GitHub', link: README_URLS.pt }
         ],
         sidebar: {
-          '/pt/guide/': [{ text: 'Guia de uso', items: [
-            { text: 'Visão geral', link: '/pt/guide/' },
-            { text: 'Instalação', link: '/pt/guide/install' },
-            { text: 'Uso básico', link: '/pt/guide/basic-usage' },
-            { text: 'Entendendo os resultados', link: '/pt/guide/results' },
-            { text: 'Ferramentas', link: '/pt/guide/tools' }
-          ]}],
-          '/pt/config/': [{ text: 'Configuração', items: [
-            { text: 'Visão geral', link: '/pt/config/' },
-            { text: 'Categorias', link: '/pt/config/categories' },
-            { text: 'Desativar tecnologias', link: '/pt/config/disabled-technologies' },
-            { text: 'CSS personalizado', link: '/pt/config/custom-css' },
-            { text: 'Regras personalizadas', link: '/pt/config/custom-rules' },
-            { text: 'Exportar JSON', link: '/pt/config/json-export' }
-          ]}],
-          '/pt/dev/': [{ text: 'Manual do desenvolvedor', items: [
-            { text: 'Visão geral', link: '/pt/dev/' },
-            { text: 'Arquitetura', link: '/pt/dev/architecture' },
-            { text: 'Formato de regras', link: '/pt/dev/rule-format' },
-            { text: 'Fluxo de detecção', link: '/pt/dev/detection-flow' },
-            { text: 'Contribuir regras', link: '/pt/dev/contribute-rules' },
-            { text: 'Build & Release', link: '/pt/dev/release' }
-          ]}]
+          '/pt/guide/': [
+            {
+              text: 'Guia de uso',
+              items: [
+                { text: 'Visão geral', link: '/pt/guide/' },
+                { text: 'Instalação', link: '/pt/guide/install' },
+                { text: 'Uso básico', link: '/pt/guide/basic-usage' },
+                { text: 'Entendendo os resultados', link: '/pt/guide/results' },
+                { text: 'Ferramentas', link: '/pt/guide/tools' }
+              ]
+            }
+          ],
+          '/pt/config/': [
+            {
+              text: 'Configuração',
+              items: [
+                { text: 'Visão geral', link: '/pt/config/' },
+                { text: 'Categorias', link: '/pt/config/categories' },
+                { text: 'Desativar tecnologias', link: '/pt/config/disabled-technologies' },
+                { text: 'CSS personalizado', link: '/pt/config/custom-css' },
+                { text: 'Regras personalizadas', link: '/pt/config/custom-rules' },
+                { text: 'Exportar JSON', link: '/pt/config/json-export' }
+              ]
+            }
+          ],
+          '/pt/dev/': [
+            {
+              text: 'Manual do desenvolvedor',
+              items: [
+                { text: 'Visão geral', link: '/pt/dev/' },
+                { text: 'Arquitetura', link: '/pt/dev/architecture' },
+                { text: 'Formato de regras', link: '/pt/dev/rule-format' },
+                { text: 'Fluxo de detecção', link: '/pt/dev/detection-flow' },
+                { text: 'Contribuir regras', link: '/pt/dev/contribute-rules' },
+                { text: 'Build & Release', link: '/pt/dev/release' }
+              ]
+            }
+          ]
         },
         docFooter: { prev: 'Anterior', next: 'Próximo' },
         outline: { label: 'Nesta página', level: [2, 3] },
@@ -352,29 +457,44 @@ export default defineConfig({
           { text: 'GitHub', link: README_URLS.it }
         ],
         sidebar: {
-          '/it/guide/': [{ text: "Guida all'uso", items: [
-            { text: 'Panoramica', link: '/it/guide/' },
-            { text: 'Installazione', link: '/it/guide/install' },
-            { text: 'Uso di base', link: '/it/guide/basic-usage' },
-            { text: 'Capire i risultati', link: '/it/guide/results' },
-            { text: 'Strumenti', link: '/it/guide/tools' }
-          ]}],
-          '/it/config/': [{ text: 'Configurazione', items: [
-            { text: 'Panoramica', link: '/it/config/' },
-            { text: 'Categorie', link: '/it/config/categories' },
-            { text: 'Disabilitare tecnologie', link: '/it/config/disabled-technologies' },
-            { text: 'CSS personalizzato', link: '/it/config/custom-css' },
-            { text: 'Regole personalizzate', link: '/it/config/custom-rules' },
-            { text: 'Esporta JSON', link: '/it/config/json-export' }
-          ]}],
-          '/it/dev/': [{ text: 'Manuale di sviluppo', items: [
-            { text: 'Panoramica', link: '/it/dev/' },
-            { text: 'Architettura', link: '/it/dev/architecture' },
-            { text: 'Formato delle regole', link: '/it/dev/rule-format' },
-            { text: 'Flusso di rilevamento', link: '/it/dev/detection-flow' },
-            { text: 'Contribuire regole', link: '/it/dev/contribute-rules' },
-            { text: 'Build & Release', link: '/it/dev/release' }
-          ]}]
+          '/it/guide/': [
+            {
+              text: "Guida all'uso",
+              items: [
+                { text: 'Panoramica', link: '/it/guide/' },
+                { text: 'Installazione', link: '/it/guide/install' },
+                { text: 'Uso di base', link: '/it/guide/basic-usage' },
+                { text: 'Capire i risultati', link: '/it/guide/results' },
+                { text: 'Strumenti', link: '/it/guide/tools' }
+              ]
+            }
+          ],
+          '/it/config/': [
+            {
+              text: 'Configurazione',
+              items: [
+                { text: 'Panoramica', link: '/it/config/' },
+                { text: 'Categorie', link: '/it/config/categories' },
+                { text: 'Disabilitare tecnologie', link: '/it/config/disabled-technologies' },
+                { text: 'CSS personalizzato', link: '/it/config/custom-css' },
+                { text: 'Regole personalizzate', link: '/it/config/custom-rules' },
+                { text: 'Esporta JSON', link: '/it/config/json-export' }
+              ]
+            }
+          ],
+          '/it/dev/': [
+            {
+              text: 'Manuale di sviluppo',
+              items: [
+                { text: 'Panoramica', link: '/it/dev/' },
+                { text: 'Architettura', link: '/it/dev/architecture' },
+                { text: 'Formato delle regole', link: '/it/dev/rule-format' },
+                { text: 'Flusso di rilevamento', link: '/it/dev/detection-flow' },
+                { text: 'Contribuire regole', link: '/it/dev/contribute-rules' },
+                { text: 'Build & Release', link: '/it/dev/release' }
+              ]
+            }
+          ]
         },
         docFooter: { prev: 'Precedente', next: 'Successivo' },
         outline: { label: 'In questa pagina', level: [2, 3] },
@@ -397,29 +517,44 @@ export default defineConfig({
           { text: 'GitHub', link: README_URLS.cs }
         ],
         sidebar: {
-          '/cs/guide/': [{ text: 'Uživatelský průvodce', items: [
-            { text: 'Přehled', link: '/cs/guide/' },
-            { text: 'Instalace', link: '/cs/guide/install' },
-            { text: 'Základní použití', link: '/cs/guide/basic-usage' },
-            { text: 'Výsledky', link: '/cs/guide/results' },
-            { text: 'Nástroje', link: '/cs/guide/tools' }
-          ]}],
-          '/cs/config/': [{ text: 'Konfigurace', items: [
-            { text: 'Přehled', link: '/cs/config/' },
-            { text: 'Přepínače kategorií', link: '/cs/config/categories' },
-            { text: 'Zakázat technologie', link: '/cs/config/disabled-technologies' },
-            { text: 'Vlastní CSS', link: '/cs/config/custom-css' },
-            { text: 'Vlastní pravidla', link: '/cs/config/custom-rules' },
-            { text: 'Export JSON', link: '/cs/config/json-export' }
-          ]}],
-          '/cs/dev/': [{ text: 'Vývojářský manuál', items: [
-            { text: 'Přehled', link: '/cs/dev/' },
-            { text: 'Architektura', link: '/cs/dev/architecture' },
-            { text: 'Formát pravidel', link: '/cs/dev/rule-format' },
-            { text: 'Tok detekce', link: '/cs/dev/detection-flow' },
-            { text: 'Přispívat pravidla', link: '/cs/dev/contribute-rules' },
-            { text: 'Build & Release', link: '/cs/dev/release' }
-          ]}]
+          '/cs/guide/': [
+            {
+              text: 'Uživatelský průvodce',
+              items: [
+                { text: 'Přehled', link: '/cs/guide/' },
+                { text: 'Instalace', link: '/cs/guide/install' },
+                { text: 'Základní použití', link: '/cs/guide/basic-usage' },
+                { text: 'Výsledky', link: '/cs/guide/results' },
+                { text: 'Nástroje', link: '/cs/guide/tools' }
+              ]
+            }
+          ],
+          '/cs/config/': [
+            {
+              text: 'Konfigurace',
+              items: [
+                { text: 'Přehled', link: '/cs/config/' },
+                { text: 'Přepínače kategorií', link: '/cs/config/categories' },
+                { text: 'Zakázat technologie', link: '/cs/config/disabled-technologies' },
+                { text: 'Vlastní CSS', link: '/cs/config/custom-css' },
+                { text: 'Vlastní pravidla', link: '/cs/config/custom-rules' },
+                { text: 'Export JSON', link: '/cs/config/json-export' }
+              ]
+            }
+          ],
+          '/cs/dev/': [
+            {
+              text: 'Vývojářský manuál',
+              items: [
+                { text: 'Přehled', link: '/cs/dev/' },
+                { text: 'Architektura', link: '/cs/dev/architecture' },
+                { text: 'Formát pravidel', link: '/cs/dev/rule-format' },
+                { text: 'Tok detekce', link: '/cs/dev/detection-flow' },
+                { text: 'Přispívat pravidla', link: '/cs/dev/contribute-rules' },
+                { text: 'Build & Release', link: '/cs/dev/release' }
+              ]
+            }
+          ]
         },
         docFooter: { prev: 'Předchozí', next: 'Další' },
         outline: { label: 'Na této stránce', level: [2, 3] },
@@ -442,29 +577,44 @@ export default defineConfig({
           { text: 'GitHub', link: README_URLS.pl }
         ],
         sidebar: {
-          '/pl/guide/': [{ text: 'Przewodnik użytkownika', items: [
-            { text: 'Przegląd', link: '/pl/guide/' },
-            { text: 'Instalacja', link: '/pl/guide/install' },
-            { text: 'Podstawowe użycie', link: '/pl/guide/basic-usage' },
-            { text: 'Rozumienie wyników', link: '/pl/guide/results' },
-            { text: 'Narzędzia', link: '/pl/guide/tools' }
-          ]}],
-          '/pl/config/': [{ text: 'Konfiguracja', items: [
-            { text: 'Przegląd', link: '/pl/config/' },
-            { text: 'Przełączniki kategorii', link: '/pl/config/categories' },
-            { text: 'Wyłącz technologie', link: '/pl/config/disabled-technologies' },
-            { text: 'Własny CSS', link: '/pl/config/custom-css' },
-            { text: 'Własne reguły', link: '/pl/config/custom-rules' },
-            { text: 'Eksport JSON', link: '/pl/config/json-export' }
-          ]}],
-          '/pl/dev/': [{ text: 'Podręcznik deweloperski', items: [
-            { text: 'Przegląd', link: '/pl/dev/' },
-            { text: 'Architektura', link: '/pl/dev/architecture' },
-            { text: 'Format reguł', link: '/pl/dev/rule-format' },
-            { text: 'Przepływ detekcji', link: '/pl/dev/detection-flow' },
-            { text: 'Udostępnianie reguł', link: '/pl/dev/contribute-rules' },
-            { text: 'Build & Release', link: '/pl/dev/release' }
-          ]}]
+          '/pl/guide/': [
+            {
+              text: 'Przewodnik użytkownika',
+              items: [
+                { text: 'Przegląd', link: '/pl/guide/' },
+                { text: 'Instalacja', link: '/pl/guide/install' },
+                { text: 'Podstawowe użycie', link: '/pl/guide/basic-usage' },
+                { text: 'Rozumienie wyników', link: '/pl/guide/results' },
+                { text: 'Narzędzia', link: '/pl/guide/tools' }
+              ]
+            }
+          ],
+          '/pl/config/': [
+            {
+              text: 'Konfiguracja',
+              items: [
+                { text: 'Przegląd', link: '/pl/config/' },
+                { text: 'Przełączniki kategorii', link: '/pl/config/categories' },
+                { text: 'Wyłącz technologie', link: '/pl/config/disabled-technologies' },
+                { text: 'Własny CSS', link: '/pl/config/custom-css' },
+                { text: 'Własne reguły', link: '/pl/config/custom-rules' },
+                { text: 'Eksport JSON', link: '/pl/config/json-export' }
+              ]
+            }
+          ],
+          '/pl/dev/': [
+            {
+              text: 'Podręcznik deweloperski',
+              items: [
+                { text: 'Przegląd', link: '/pl/dev/' },
+                { text: 'Architektura', link: '/pl/dev/architecture' },
+                { text: 'Format reguł', link: '/pl/dev/rule-format' },
+                { text: 'Przepływ detekcji', link: '/pl/dev/detection-flow' },
+                { text: 'Udostępnianie reguł', link: '/pl/dev/contribute-rules' },
+                { text: 'Build & Release', link: '/pl/dev/release' }
+              ]
+            }
+          ]
         },
         docFooter: { prev: 'Poprzedni', next: 'Następny' },
         outline: { label: 'Na tej stronie', level: [2, 3] },

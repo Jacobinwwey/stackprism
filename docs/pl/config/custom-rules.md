@@ -4,14 +4,14 @@ Reguły niestandardowe służą do uzupełnienia luk w wbudowanej bazie reguł l
 
 ## Wypełnianie formularza
 
-| Pole                    | Wymagane | Opis                                                                                                              |
-| ----------------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
-| **Nazwa technologii**   | Tak      | Nazwa wyświetlana w oknie podręcznym, np. `MyCMS`                                                                 |
-| **Kategoria**           |          | Wybierz jedną z wbudowanych kategorii (23) lub wpisz własną. Domyślnie „Pozostałe biblioteki". Pole obsługuje swobodne wpisywanie. |
-| **Opis typu**           |          | Adnotacja dla własnych potrzeb, np. `Enterprise CMS`, `Płatności zewnętrzne`. Wyświetlana jako prefiks evidence; może być pusta. |
-| **Poziom pewności**     |          | Wysoka / Średnia / Niska. Domyślnie „Średnia"                                                                     |
-| **Metoda dopasowania**  |          | Słowo kluczowe / Wyrażenie regularne. Domyślnie „Wyrażenie regularne"                                             |
-| **URL oficjalnej strony / repozytorium** |  | Musi zaczynać się od `http://` lub `https://`. Po podaniu nazwa technologii w oknie staje się klikalna. |
+| Pole                                     | Wymagane | Opis                                                                                                                               |
+| ---------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **Nazwa technologii**                    | Tak      | Nazwa wyświetlana w oknie podręcznym, np. `MyCMS`                                                                                  |
+| **Kategoria**                            |          | Wybierz jedną z wbudowanych kategorii (23) lub wpisz własną. Domyślnie „Pozostałe biblioteki". Pole obsługuje swobodne wpisywanie. |
+| **Opis typu**                            |          | Adnotacja dla własnych potrzeb, np. `Enterprise CMS`, `Płatności zewnętrzne`. Wyświetlana jako prefiks evidence; może być pusta.   |
+| **Poziom pewności**                      |          | Wysoka / Średnia / Niska. Domyślnie „Średnia"                                                                                      |
+| **Metoda dopasowania**                   |          | Słowo kluczowe / Wyrażenie regularne. Domyślnie „Wyrażenie regularne"                                                              |
+| **URL oficjalnej strony / repozytorium** |          | Musi zaczynać się od `http://` lub `https://`. Po podaniu nazwa technologii w oknie staje się klikalna.                            |
 
 Poniżej znajdują się cztery obszary:
 

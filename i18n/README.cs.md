@@ -1,11 +1,5 @@
 <div align="center">
 
-[简体中文](../README.md) · [English](README.en.md) · [繁體中文](README.zh-Hant.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · **Čeština** · [Polski](README.pl.md)
-
-</div>
-
-<div align="center">
-
 <img src="../public/icons/icon256.png" alt="StackPrism" width="160" height="160" />
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/cagpdifljieeiajlhlcboelglkalofak?label=Chrome%20Web%20Store&color=FBBC04)](https://chromewebstore.google.com/detail/stackprism/cagpdifljieeiajlhlcboelglkalofak)
@@ -19,6 +13,12 @@
 # StackPrism — Detektor technologického stacku webu
 
 > Sbírá stopy ze 6 dimenzí — globální proměnné za běhu, DOM, URL zdrojů, hlavičky odpovědí, dynamické načítání a JS copyrightové komentáře — pro identifikaci a kategorizaci technologií pohánějících jakýkoliv web.
+
+<div align="center">
+
+[简体中文](../README.md) · [English](README.en.md) · [繁體中文](README.zh-Hant.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · **Čeština** · [Polski](README.pl.md)
+
+</div>
 
 [Úvod](#úvod) • [Funkce](#funkce) • [Systém pravidel](#systém-pravidel) • [Omezení](#omezení) • [Přispívání](#přispívání) • [Sponzoři](SPONSORS.md) • [Historie hvězd](#historie-hvězd) • [Licence](#licence)
 
@@ -68,9 +68,9 @@ Jazyk lze také přepnout ručně tlačítkem 🌐 v záhlaví vyskakovacího ok
 ```bash
 git clone https://github.com/setube/stackprism.git
 cd stackprism
-pnpm install
-pnpm run build            # Chrome / Edge
-pnpm run build:firefox    # Firefox
+bun install
+bun run build            # Chrome / Edge
+bun run build:firefox    # Firefox
 ```
 
 **Chrome / Edge:**
@@ -84,17 +84,17 @@ pnpm run build:firefox    # Firefox
 
 1. Otevřete `about:debugging#/runtime/this-firefox`
 2. Klikněte na „Načíst dočasný doplněk" a vyberte `dist-firefox/manifest.json`
-3. Nebo spusťte `pnpm run build:firefox` a dvakrát klikněte na `.xpi` v `release/`
+3. Nebo spusťte `bun run build:firefox` a dvakrát klikněte na `.xpi` v `release/`
 
 ### Vývoj
 
 ```bash
-pnpm run dev           # Vývojářský režim + HMR
-pnpm run typecheck     # Typová kontrola vue-tsc
-pnpm run lint          # ESLint
-pnpm run build         # Produkční sestavení (včetně předkompilace pravidel)
-pnpm run build:firefox # Sestavení Firefoxu + balení .xpi
-pnpm run docs:dev      # Náhled dokumentace VitePress
+bun run dev           # Vývojářský režim + HMR
+bun run typecheck     # Typová kontrola vue-tsc
+bun run lint          # ESLint
+bun run build         # Produkční sestavení (včetně předkompilace pravidel)
+bun run build:firefox # Sestavení Firefoxu + balení .xpi
+bun run docs:dev      # Náhled dokumentace VitePress
 ```
 
 ## Systém pravidel
@@ -148,7 +148,7 @@ StackPrism obsahuje 2000+ detekčních pravidel napříč 50+ kategoriemi, ale f
 - **Příspěvky pravidel** — klikněte na „Odeslat příspěvek pravidla" v Nastavení nebo přímo odešlete PR na [`public/rules/`](public/rules/)
 - **Diskuse a návrhy** — [Discussions](https://github.com/setube/stackprism/discussions)
 
-Před odesláním kódu spusťte `pnpm run typecheck && pnpm run lint && pnpm run build` a ujistěte se, že všechny tři procházejí.
+Před odesláním kódu spusťte `bun run typecheck && bun run lint && bun run build` a ujistěte se, že všechny tři procházejí.
 
 ## Historie hvězd
 

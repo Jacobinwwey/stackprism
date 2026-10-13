@@ -28,18 +28,18 @@ Ogni regola è un oggetto:
 }
 ```
 
-| Campo        | Tipo                     | Obbligatorio | Descrizione                                                                          |
-| ------------ | ------------------------ | ------------ | ------------------------------------------------------------------------------------ |
-| `name`       | string                   | Sì           | Nome visualizzato nel popup                                                          |
-| `category`   | string                   |              | Categoria, predefinita `其他库`                                                      |
-| `kind`       | string                   |              | Descrizione del tipo, predefinita `自定义规则`                                       |
-| `confidence` | `"高"` / `"中"` / `"低"` |              | Predefinita `"中"`                                                                   |
-| `matchType`  | `"keyword"` / `"regex"`  |              | Predefinita `"regex"`                                                                |
-| `patterns`   | string[]                 | Uno dei tre  | Almeno uno tra patterns / selectors / globals deve essere non vuoto                 |
-| `selectors`  | string[]                 | Uno dei tre  | Lista di selettori CSS                                                               |
-| `globals`    | string[]                 | Uno dei tre  | Lista di variabili globali (`window.x.y` si scrive `x.y`)                           |
+| Campo        | Tipo                     | Obbligatorio | Descrizione                                                                                       |
+| ------------ | ------------------------ | ------------ | ------------------------------------------------------------------------------------------------- |
+| `name`       | string                   | Sì           | Nome visualizzato nel popup                                                                       |
+| `category`   | string                   |              | Categoria, predefinita `其他库`                                                                   |
+| `kind`       | string                   |              | Descrizione del tipo, predefinita `自定义规则`                                                    |
+| `confidence` | `"高"` / `"中"` / `"低"` |              | Predefinita `"中"`                                                                                |
+| `matchType`  | `"keyword"` / `"regex"`  |              | Predefinita `"regex"`                                                                             |
+| `patterns`   | string[]                 | Uno dei tre  | Almeno uno tra patterns / selectors / globals deve essere non vuoto                               |
+| `selectors`  | string[]                 | Uno dei tre  | Lista di selettori CSS                                                                            |
+| `globals`    | string[]                 | Uno dei tre  | Lista di variabili globali (`window.x.y` si scrive `x.y`)                                         |
 | `matchIn`    | string[]                 |              | Qualsiasi combinazione di `url` / `resources` / `html` / `headers` / `dynamic`, predefinito tutto |
-| `url`        | string                   |              | Deve iniziare con `http(s)://`, può essere vuoto                                    |
+| `url`        | string                   |              | Deve iniziare con `http(s)://`, può essere vuoto                                                  |
 
 ## Pulsanti operativi
 
@@ -75,14 +75,14 @@ All'importazione l'intero array viene analizzato prima; se un campo di qualsiasi
 
 `CUSTOM_RULE_LIMITS.rules` predefinito a 100. Superarlo causa il rifiuto. Tutti i limiti in [`src/types/settings.ts`](https://github.com/setube/stackprism/blob/main/src/types/settings.ts):
 
-| Campo                                   | Limite    |
-| --------------------------------------- | --------- |
-| Numero totale di regole                 | 100       |
-| name                                    | 80 char   |
-| category                                | 40 char   |
-| kind                                    | 40 char   |
-| Singolo pattern / selector / global     | 240 char  |
+| Campo                                          | Limite      |
+| ---------------------------------------------- | ----------- |
+| Numero totale di regole                        | 100         |
+| name                                           | 80 char     |
+| category                                       | 40 char     |
+| kind                                           | 40 char     |
+| Singolo pattern / selector / global            | 240 char    |
 | Lunghezza array patterns / selectors / globals | 80 ciascuno |
-| Lunghezza array matchIn                 | 8         |
-| url                                     | 240 char  |
-| customCss                               | 10000 char|
+| Lunghezza array matchIn                        | 8           |
+| url                                            | 240 char    |
+| customCss                                      | 10000 char  |

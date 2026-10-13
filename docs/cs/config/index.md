@@ -24,10 +24,10 @@ Konkrétní omezení jsou definována v `CUSTOM_RULE_LIMITS` v souboru `src/type
 
 ## Kdy se změny projeví
 
-| Změna                                             | Kdy se projeví                                        |
-| ------------------------------------------------- | ----------------------------------------------------- |
-| Přepínače detekce / zakázané technologie / vlastní CSS | Ihned po opětovném otevření vyskakovacího okna   |
-| Vlastní pravidla                                  | Po uložení při příštím obnovení stránky + opětovném otevření vyskakovacího okna |
-| Import JSON                                       | Totéž co výše                                         |
+| Změna                                                  | Kdy se projeví                                                                  |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| Přepínače detekce / zakázané technologie / vlastní CSS | Ihned po opětovném otevření vyskakovacího okna                                  |
+| Vlastní pravidla                                       | Po uložení při příštím obnovení stránky + opětovném otevření vyskakovacího okna |
+| Import JSON                                            | Totéž co výše                                                                   |
 
 Po kliknutí na „Uložit nastavení" se data okamžitě zapíší do úložiště; stránku nastavení není potřeba obnovovat.

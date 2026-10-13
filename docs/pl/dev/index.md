@@ -12,20 +12,20 @@ Ta część dokumentacji jest przeznaczona dla osób, które chcą przejrzeć ko
 
 ## Przegląd stosu technologicznego
 
-Główna część projektu to Vite 5 + Vue 3 + TypeScript + `@crxjs/vite-plugin` 2.x. Skrypt tła to Manifest V3 ESM service worker; menedżerem pakietów jest pnpm.
+Główna część projektu to Vite 8 + Vue 3 + TypeScript + `@crxjs/vite-plugin` 3.x. Skrypt tła to Manifest V3 ESM service worker; menedżerem pakietów jest bun.
 
 Reguły są przechowywane w `public/rules/` i podzielone na wiele plików JSON według kierunku: reguły stron, reguły nagłówków odpowiedzi, ekosystem WordPress/Drupal itp. Podczas budowania reguły są wstępnie przetwarzane i wstrzykiwane są pola `__hints` / `__legacyHints` / `__keywordCombined` do przyspieszenia dopasowania.
 
 ## Często używane polecenia
 
 ```bash
-pnpm install            # instalacja zależności
-pnpm run dev            # uruchomienie serwera dev Vite z HMR dla rozszerzenia
-pnpm run build          # budowanie do dist/, gotowe do załadowania w Chrome
-pnpm run typecheck      # ścisłe sprawdzanie typów przez vue-tsc
-pnpm run lint           # sprawdzanie ESLint
-pnpm run docs:dev       # lokalne podgląd tej dokumentacji
-pnpm run docs:build     # budowanie statycznej dokumentacji
+bun install            # instalacja zależności
+bun run dev            # uruchomienie serwera dev Vite z HMR dla rozszerzenia
+bun run build          # budowanie do dist/, gotowe do załadowania w Chrome
+bun run typecheck      # ścisłe sprawdzanie typów przez vue-tsc
+bun run lint           # sprawdzanie ESLint
+bun run docs:dev       # lokalne podgląd tej dokumentacji
+bun run docs:build     # budowanie statycznej dokumentacji
 ```
 
 W trybie dev strony rozszerzenia obsługują hot reload. Zmiany w popup / settings / help zazwyczaj odświeżają się automatycznie; po zmianach w `src/background/` lub content script należy ręcznie odświeżyć kartę rozszerzenia na `chrome://extensions/`.
@@ -34,11 +34,11 @@ W trybie dev strony rozszerzenia obsługują hot reload. Zmiany w popup / settin
 
 Trzy niezależne wejścia SPA, każde budowane osobno:
 
-| Wejście  | Plik                         | Opis                                                           |
-| -------- | ---------------------------- | -------------------------------------------------------------- |
+| Wejście  | Plik                         | Opis                                                                 |
+| -------- | ---------------------------- | -------------------------------------------------------------------- |
 | popup    | `src/ui/popup/index.html`    | Małe okno 440px × 600px wyświetlane po kliknięciu ikony rozszerzenia |
-| settings | `src/ui/settings/index.html` | Strona opcji otwierana z poziomu szczegółów rozszerzenia       |
-| help     | `src/ui/help/index.html`     | Osobna karta z instrukcją obsługi                              |
+| settings | `src/ui/settings/index.html` | Strona opcji otwierana z poziomu szczegółów rozszerzenia             |
+| help     | `src/ui/help/index.html`     | Osobna karta z instrukcją obsługi                                    |
 
 ## Powiązane linki
 

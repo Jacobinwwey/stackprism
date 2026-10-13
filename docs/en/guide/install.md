@@ -29,26 +29,26 @@ Suitable for developers or users who want to track the latest main branch.
 ```bash
 git clone https://github.com/setube/stackprism.git
 cd stackprism
-pnpm install
-pnpm run build
+bun install
+bun run build
 ```
 
 The build output lands in `dist/`. Load the `dist/` directory in `chrome://extensions/` with Developer mode enabled.
 
-After modifying source files, re-run `pnpm run build`, then click the refresh button on the extension card in the extensions page to load the new version.
+After modifying source files, re-run `bun run build`, then click the refresh button on the extension card in the extensions page to load the new version.
 
 ## Enabling and Permissions
 
 On first install the extension requests the following permissions:
 
-| Permission   | Purpose                                                                  |
-| ------------ | ------------------------------------------------------------------------ |
-| `tabs`       | Read the current tab's URL and title                                     |
-| `activeTab`  | Inject detection scripts into the active page                            |
-| `scripting`  | Inject page-detector / page-source-search into the page's MAIN world     |
-| `storage`    | Persist settings, cache detection results, and theme preference          |
-| `webRequest` | Intercept response headers to collect server / x-powered-by, etc.       |
-| `<all_urls>` | Run on all http(s) pages                                                 |
+| Permission   | Purpose                                                              |
+| ------------ | -------------------------------------------------------------------- |
+| `tabs`       | Read the current tab's URL and title                                 |
+| `activeTab`  | Inject detection scripts into the active page                        |
+| `scripting`  | Inject page-detector / page-source-search into the page's MAIN world |
+| `storage`    | Persist settings, cache detection results, and theme preference      |
+| `webRequest` | Intercept response headers to collect server / x-powered-by, etc.    |
+| `<all_urls>` | Run on all http(s) pages                                             |
 
 Detection does not rely on any external API. Rule files are bundled locally with the extension, and detection results stay within browser memory and extension storage.
 
