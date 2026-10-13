@@ -100,6 +100,30 @@
               "selectors": ["[data-abuse-proto*='https://sites.google.com/']"]
             }
           ]
+        },
+        {
+          "defaults": {
+            "category": "智能体浏览",
+            "kind": "AI 站点索引",
+            "confidence": "中",
+            "matchIn": ["html"]
+          },
+          "rules": [
+            {
+              "name": "llms.txt",
+              "url": "https://llmstxt.org/",
+              "matchType": "regex",
+              "patterns": [
+                "href=[\"'][^\"'>]*llms(?:-full)?\\.txt",
+                "rel=[\"']?llms-sitemap"
+              ],
+              "selectors": [
+                "link[rel='llms-sitemap']",
+                "link[rel='describedby'][href*='llms.txt']",
+                "link[rel='llms.txt']"
+              ]
+            }
+          ]
         }
       ]
     }
