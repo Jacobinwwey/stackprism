@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-  import { onMounted, ref } from 'vue'
+  import { onMounted, ref, watchEffect } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { ExternalLink, Settings2 } from 'lucide-vue-next'
   import RippleButton from '@/ui/components/RippleButton.vue'
@@ -31,6 +31,11 @@
   const { t, locale } = useI18n()
 
   const version = ref('')
+
+  watchEffect(() => {
+    document.title = t('help.title')
+    document.documentElement.lang = locale.value
+  })
 
   const openSettings = () => {
     const settingsPage = chrome.runtime.getManifest().options_ui?.page

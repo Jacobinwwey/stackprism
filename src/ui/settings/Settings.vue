@@ -165,7 +165,7 @@
 </template>
 
 <script setup lang="ts">
-  import { onMounted, reactive, ref, watch, computed } from 'vue'
+  import { onMounted, reactive, ref, watch, computed, watchEffect } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { BookOpen, ExternalLink, Inbox, Monitor, Moon, Pencil, RotateCcw, Save, Sun, Trash2 } from 'lucide-vue-next'
   import Select from '@/ui/components/Select.vue'
@@ -182,6 +182,11 @@
   import { cycleTheme, getStoredTheme, setStoredTheme, themeLabel, type ThemeMode } from '@/utils/theme'
 
   const { t, tm, locale } = useI18n()
+
+  watchEffect(() => {
+    document.title = t('settings.title')
+    document.documentElement.lang = locale.value
+  })
 
   const tCat = (zhCat: string): string => {
     if (!zhCat) return zhCat
