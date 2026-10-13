@@ -281,7 +281,7 @@
         "rules": [
           {
             "name": "Lodash",
-            "patterns": ["lodash(?:\\.min)?\\.js|lodash-es"],
+            "patterns": ["lodash(?:\\.min)?\\.js|lodash-es", "__lodash_hash_undefined__"],
             "globals": ["_.runInContext"],
             "versionFrom": "_.VERSION"
           },
@@ -692,6 +692,12 @@
             "name": "tsparticles",
             "matchIn": ["html"],
             "selectors": ["canvas.tsparticles-canvas-el"]
+          },
+          {
+            "name": "medium-zoom",
+            "url": "https://github.com/francoischalifour/medium-zoom",
+            "matchIn": ["html"],
+            "classNames": ["medium-zoom-image"]
           }
         ]
       }
