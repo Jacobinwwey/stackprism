@@ -4,7 +4,7 @@ Cette section couvre uniquement l'utilisation au quotidien : comment installer l
 
 ## Chapitres
 
-- [Installation](./install.md) — trois modes d'installation (Chrome Web Store, Edge Add-ons, chargement local)
+- [Installation](./install.md) — installation directe depuis Chrome Web Store, Edge Add-ons ou Firefox Add-ons, avec option Release / locale
 - [Utilisation de base](./basic-usage.md) — à quoi servent les cinq zones de la popup
 - [Interpréter les résultats](./results.md) — niveau de confiance, preuves, source, bouton de correction
 - [Outils auxiliaires](./tools.md) — recherche dans le code source, panneau des indices bruts, copie du rapport complet

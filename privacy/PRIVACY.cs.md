@@ -70,7 +70,7 @@ Rozšíření je plně open source; kdokoli může auditovat zdrojový kód a ov
 
 https://github.com/setube/stackprism
 
-Licence open source je [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+Licence open source je [MIT](https://opensource.org/licenses/MIT).
 
 ## Kontakt
 

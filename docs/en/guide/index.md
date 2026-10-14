@@ -4,7 +4,7 @@ This section covers everyday usage: how to install the extension, what each part
 
 ## Sections
 
-- [Install & Enable](./install.md) — three installation methods (Chrome Web Store, Edge Add-ons, local unpacked)
+- [Install & Enable](./install.md) — install from Chrome Web Store, Edge Add-ons, or Firefox Add-ons, or use a Release/local build
 - [Basic Usage](./basic-usage.md) — what the five areas of the popup do
 - [Understanding Results](./results.md) — confidence levels, evidence, sources, and the correction button
 - [Tools](./tools.md) — page source search, raw clues panel, copy full tech-stack report

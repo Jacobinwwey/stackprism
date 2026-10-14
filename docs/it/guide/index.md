@@ -4,7 +4,7 @@ Questa sezione tratta solo l'uso quotidiano: come installare, cosa significa ogn
 
 ## Sezioni
 
-- [Installazione e attivazione](./install.md) — tre metodi di installazione (Chrome Web Store, Edge Store, caricamento locale)
+- [Installazione e attivazione](./install.md) — installazione diretta da Chrome Web Store, Edge Add-ons o Firefox Add-ons, oltre a Release / build locale
 - [Uso di base](./basic-usage.md) — cosa fanno le cinque aree del popup
 - [Interpretazione dei risultati](./results.md) — come leggere confidenza, prove, origine e il pulsante di correzione
 - [Strumenti ausiliari](./tools.md) — ricerca nel sorgente della pagina, pannello indizi grezzi, copia report completo dello stack tecnologico

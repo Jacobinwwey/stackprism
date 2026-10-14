@@ -70,7 +70,7 @@ StackPrism / 棧稜鏡（以下簡稱「本擴充套件」）是一款基於 Chr
 
 https://github.com/setube/stackprism
 
-開放原始碼協議為 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)。
+開放原始碼協議為 [MIT](https://opensource.org/licenses/MIT)。
 
 ## 聯絡方式
 

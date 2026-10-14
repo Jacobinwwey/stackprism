@@ -2,6 +2,14 @@
 
 StackPrism je určen pro prohlížeče na jádře Chromium (Chrome, Edge, Brave, Opera, Vivaldi, Arc aj.) a vyžaduje podporu Manifest V3.
 
+## Instalace z obchodu s rozšířeními
+
+- [Chrome Web Store](https://chromewebstore.google.com/detail/stackprism/cagpdifljieeiajlhlcboelglkalofak)
+- [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/stackprism/ojgmhlogaoiegdonnlnibeoikbleccno)
+- [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/stackprism/)
+
+Pokud prohlížeč nelze rozpoznat automaticky, vyberte odpovídající obchod.
+
 ## Způsob 1: Stažení CRX ze stránky Release
 
 1. Otevřete [GitHub Releases](https://github.com/setube/stackprism/releases)

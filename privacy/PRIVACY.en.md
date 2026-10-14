@@ -70,7 +70,7 @@ The Extension is fully open source; anyone can audit the source code to verify t
 
 https://github.com/setube/stackprism
 
-Licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+Licensed under [MIT](https://opensource.org/licenses/MIT).
 
 ## Contact
 

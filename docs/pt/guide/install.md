@@ -2,6 +2,14 @@
 
 StackPrism é compatível com navegadores baseados em Chromium (Chrome, Edge, Brave, Opera, Vivaldi, Arc, etc.) e requer suporte a Manifest V3.
 
+## Instalar por uma loja de extensões
+
+- [Chrome Web Store](https://chromewebstore.google.com/detail/stackprism/cagpdifljieeiajlhlcboelglkalofak)
+- [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/stackprism/ojgmhlogaoiegdonnlnibeoikbleccno)
+- [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/stackprism/)
+
+Se o navegador não for identificado automaticamente, escolha a loja correspondente.
+
 ## Método 1: Baixar o crx do Release
 
 1. Acesse [GitHub Releases](https://github.com/setube/stackprism/releases)

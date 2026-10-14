@@ -4,7 +4,7 @@ Ta część dokumentacji dotyczy codziennego użytkowania: jak zainstalować roz
 
 ## Rozdziały
 
-- [Instalacja i aktywacja](./install.md) — trzy metody instalacji (Chrome Web Store, sklep Edge, ładowanie lokalne)
+- [Instalacja i aktywacja](./install.md) — bezpośrednią instalację z Chrome Web Store, Edge Add-ons lub Firefox Add-ons oraz Release / lokalny build
 - [Podstawowe użytkowanie](./basic-usage.md) — pięć obszarów okna podręcznego i ich funkcje
 - [Interpretacja wyników](./results.md) — jak czytać poziom pewności, dowody, źródła i przycisk korekty
 - [Narzędzia pomocnicze](./tools.md) — wyszukiwanie w źródle strony, panel surowych wskazówek, kopiowanie pełnego raportu stosu technologicznego

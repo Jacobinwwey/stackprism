@@ -2,6 +2,14 @@
 
 StackPrism targets Chromium-based browsers (Chrome, Edge, Brave, Opera, Vivaldi, Arc, etc.) and requires Manifest V3 support.
 
+## Install from an extension store
+
+- [Chrome Web Store](https://chromewebstore.google.com/detail/stackprism/cagpdifljieeiajlhlcboelglkalofak)
+- [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/stackprism/ojgmhlogaoiegdonnlnibeoikbleccno)
+- [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/stackprism/)
+
+If the browser cannot be identified automatically, choose the matching store.
+
 ## Option 1: Download the crx from a Release
 
 1. Open [GitHub Releases](https://github.com/setube/stackprism/releases)

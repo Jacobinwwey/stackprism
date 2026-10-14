@@ -70,7 +70,7 @@ L'extension est entièrement open source et n'importe qui peut auditer le code s
 
 https://github.com/setube/stackprism
 
-La licence open source est [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+La licence open source est [MIT](https://opensource.org/licenses/MIT).
 
 ## Contact
 

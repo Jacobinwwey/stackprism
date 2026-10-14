@@ -4,7 +4,7 @@ Dieser Abschnitt behandelt ausschließlich die tägliche Nutzung: Installation, 
 
 ## Kapitel
 
-- [Installation & Aktivierung](./install.md) — drei Installationswege (Chrome Web Store, Edge Store, lokales Laden)
+- [Installation & Aktivierung](./install.md) — direkte Installation aus Chrome Web Store, Edge Add-ons oder Firefox Add-ons sowie Release / lokales Laden
 - [Grundlegende Nutzung](./basic-usage.md) — die fünf Bereiche des Popups und ihre Funktion
 - [Ergebnisse interpretieren](./results.md) — Konfidenz, Belege, Quellen und Korrekturschaltfläche
 - [Hilfswerkzeuge](./tools.md) — Quellcode-Suche, Rohdaten-Panel, vollständigen Tech-Stack-Bericht kopieren

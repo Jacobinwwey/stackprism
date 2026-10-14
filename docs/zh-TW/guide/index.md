@@ -4,7 +4,7 @@
 
 ## 章節
 
-- [安裝與啟用](./install.md) — 三種安裝方式（Chrome Web Store、Edge 商店、本地載入）
+- [安裝與啟用](./install.md) — 從 Chrome Web Store、Edge Add-ons 或 Firefox Add-ons 直接安裝，也可以使用 Release 或本機建置
 - [基本使用](./basic-usage.md) — 彈窗裡五個區域是做什麼的
 - [結果解讀](./results.md) — 可信度、證據、來源、糾正按鈕怎麼看
 - [輔助工具](./tools.md) — 網頁原始碼搜尋、原始線索面板、複製完整技術棧報告

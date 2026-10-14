@@ -70,7 +70,7 @@ StackPrism（以下「本拡張機能」）は、Chrome / Edge Manifest V3 ベ�
 
 https://github.com/setube/stackprism
 
-オープンソースライセンスは [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) です。
+オープンソースライセンスは [MIT](https://opensource.org/licenses/MIT) です。
 
 ## お問い合わせ
 

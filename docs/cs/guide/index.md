@@ -4,7 +4,7 @@ Tato skupina dokumentů se věnuje každodennímu používání: jak nainstalova
 
 ## Kapitoly
 
-- [Instalace a aktivace](./install.md) — tři způsoby instalace (Chrome Web Store, obchod Edge, lokální načtení)
+- [Instalace a aktivace](./install.md) — přímou instalaci z Chrome Web Store, Edge Add-ons nebo Firefox Add-ons, případně Release / lokální build
 - [Základní použití](./basic-usage.md) — co dělají pět oblastí vyskakovacího okna
 - [Interpretace výsledků](./results.md) — jak číst spolehlivost, důkazy, zdroje a tlačítko pro opravu
 - [Pomocné nástroje](./tools.md) — vyhledávání ve zdrojovém kódu stránky, panel surových stop, kopírování kompletní zprávy o technologickém stacku

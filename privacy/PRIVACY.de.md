@@ -70,7 +70,7 @@ Diese Erweiterung ist vollständig Open Source. Jeder kann den Quellcode prüfen
 
 https://github.com/setube/stackprism
 
-Die Open-Source-Lizenz ist [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+Die Open-Source-Lizenz ist [MIT](https://opensource.org/licenses/MIT).
 
 ## Kontakt
 

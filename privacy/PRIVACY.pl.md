@@ -70,7 +70,7 @@ Rozszerzenie jest w pełni open source — każdy może przejrzeć kod źródło
 
 https://github.com/setube/stackprism
 
-Licencja: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+Licencja: [MIT](https://opensource.org/licenses/MIT).
 
 ## Kontakt
 

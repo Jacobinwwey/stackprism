@@ -70,7 +70,7 @@ L'Estensione è completamente open source; chiunque può verificare il codice so
 
 https://github.com/setube/stackprism
 
-La licenza open source è [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+La licenza open source è [MIT](https://opensource.org/licenses/MIT).
 
 ## Contatti
 

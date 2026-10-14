@@ -2,6 +2,14 @@
 
 StackPrism は Chromium カーネルを使用するブラウザー（Chrome、Edge、Brave、Opera、Vivaldi、Arc など）向けで、Manifest V3 に対応したブラウザーが必要です。
 
+## 拡張機能ストアからインストール
+
+- [Chrome Web Store](https://chromewebstore.google.com/detail/stackprism/cagpdifljieeiajlhlcboelglkalofak)
+- [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/stackprism/ojgmhlogaoiegdonnlnibeoikbleccno)
+- [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/stackprism/)
+
+ブラウザーを自動判別できない場合は、対応するストアを選択してください。
+
 ## 方法 1：Release から crx をダウンロード
 
 1. [GitHub Releases](https://github.com/setube/stackprism/releases) を開く

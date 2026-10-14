@@ -363,6 +363,17 @@
   import { SUPPORTED_LOCALES, setStoredLocale, type SupportedLocale } from '@/i18n'
   import { formatTechStackReport } from '@/utils/format-tech-stack'
 
+  const props = withDefaults(
+    defineProps<{
+      initialTheme?: ThemeMode
+      isolatedTheme?: boolean
+    }>(),
+    { isolatedTheme: false }
+  )
+  const emit = defineEmits<{
+    (event: 'theme-change', theme: ThemeMode): void
+  }>()
+
   const { t, locale, tm } = useI18n({ useScope: 'global' })
 
   const repoUrl = computed(() => getReadmeUrl(locale.value))
@@ -687,8 +698,12 @@
   }
 
   const toggleTheme = async () => {
-    const next = cycleTheme(theme.value)
+    const next = props.isolatedTheme ? (theme.value === 'dark' ? 'light' : 'dark') : cycleTheme(theme.value)
     theme.value = next
+    if (props.isolatedTheme) {
+      emit('theme-change', next)
+      return
+    }
     await setStoredTheme(next)
   }
 
@@ -1430,7 +1445,7 @@
 
   onMounted(async () => {
     version.value = chrome.runtime.getManifest?.()?.version || ''
-    theme.value = await getStoredTheme()
+    theme.value = props.initialTheme || (await getStoredTheme())
     state.settings = await loadSettings()
     applyCustomCss(state.settings.customCss)
     chrome.storage.onChanged.addListener(onStorageChange)
@@ -1444,7 +1459,7 @@
 </script>
 
 <style lang="scss">
-  body {
+  .popup-host {
     width: var(--popup-width);
     height: 600px;
     font-size: 13px;

@@ -1,4 +1,88 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig, type HeadConfig, type TransformContext } from 'vitepress'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const REPO_ROOT = path.resolve(fileURLToPath(new URL('.', import.meta.url)), '../..')
+const SITE_URL = 'https://stackprism.wenzi.games'
+const LOCALE_CODES = ['zh-CN', 'en', 'zh-TW', 'ja', 'fr', 'de', 'pt', 'it', 'cs', 'pl'] as const
+const LOCALE_META: Record<(typeof LOCALE_CODES)[number], { lang: string; title: string; description: string }> = {
+  'zh-CN': { lang: 'zh-CN', title: '网页技术栈识别器', description: 'StackPrism 是一个浏览器扩展，用于识别网站使用的前端框架、运行时、分析服务和安全线索。' },
+  en: { lang: 'en', title: 'Web Technology Stack Identifier', description: 'StackPrism is a browser extension for identifying frontend frameworks, runtimes, analytics, and security signals used by websites.' },
+  'zh-TW': { lang: 'zh-TW', title: '網頁技術堆疊識別器', description: 'StackPrism 是一個瀏覽器擴充功能，用來識別網站使用的前端框架、執行環境、分析服務與安全線索。' },
+  ja: { lang: 'ja', title: 'ウェブ技術スタック識別ツール', description: 'StackPrism はウェブサイトのフロントエンド、ランタイム、分析サービス、セキュリティの手がかりを識別するブラウザー拡張機能です。' },
+  fr: { lang: 'fr', title: 'Identificateur de stack web', description: 'StackPrism identifie les frameworks frontend, runtimes, services analytics et signaux de sécurité utilisés par les sites web.' },
+  de: { lang: 'de', title: 'Identifikator für Web-Technologie-Stacks', description: 'StackPrism erkennt Frontend-Frameworks, Runtimes, Analytics-Dienste und Sicherheitssignale von Websites.' },
+  pt: { lang: 'pt', title: 'Identificador de stack de tecnologia web', description: 'StackPrism identifica frameworks frontend, runtimes, serviços de analytics e sinais de segurança usados por sites.' },
+  it: { lang: 'it', title: 'Identificatore dello stack web', description: 'StackPrism identifica framework frontend, runtime, servizi di analytics e segnali di sicurezza usati dai siti web.' },
+  cs: { lang: 'cs', title: 'Identifikátor webového technologického stacku', description: 'StackPrism rozpoznává frontendové frameworky, runtime, analytické služby a bezpečnostní signály webů.' },
+  pl: { lang: 'pl', title: 'Identyfikator technologii webowych', description: 'StackPrism rozpoznaje frameworki frontendu, runtime, usługi analityczne i sygnały bezpieczeństwa witryn.' }
+}
+
+function normalizePage(page: string): string {
+  return page.replace(/\\/g, '/').replace(/^\/+|\/+$/g, '').replace(/\.md$/, '')
+}
+
+function pageRoute(page: string): { locale: (typeof LOCALE_CODES)[number]; relative: string } {
+  const normalized = normalizePage(page)
+  const first = normalized.split('/')[0]
+  if (LOCALE_CODES.includes(first as (typeof LOCALE_CODES)[number]) && first !== 'zh-CN') {
+    return { locale: first as (typeof LOCALE_CODES)[number], relative: normalized.slice(first.length).replace(/^\/+/, '') }
+  }
+  return { locale: 'zh-CN', relative: normalized }
+}
+
+function publicPath(locale: (typeof LOCALE_CODES)[number], relative: string): string {
+  const prefix = locale === 'zh-CN' ? '' : `/${locale}`
+  if (!relative || relative === 'index') return `${prefix}/`
+  if (relative.endsWith('/index')) return `${prefix}/${relative.slice(0, -6)}/`
+  return `${prefix}/${relative}.html`
+}
+
+function buildSeoHead(context: TransformContext): HeadConfig[] {
+  const { locale, relative } = pageRoute(context.page)
+  const meta = LOCALE_META[locale]
+  const route = publicPath(locale, relative)
+  const canonical = `${SITE_URL}${route}`
+  const title = context.pageData.frontmatter.title || context.title || `StackPrism · ${meta.title}`
+  const description = context.pageData.frontmatter.description || meta.description
+  const isHome = !relative || relative === 'index'
+  const head: HeadConfig[] = [
+    ['link', { rel: 'canonical', href: canonical }],
+    ['meta', { name: 'robots', content: 'index,follow,max-image-preview:large' }],
+    ['meta', { property: 'og:type', content: isHome ? 'website' : 'article' }],
+    ['meta', { property: 'og:site_name', content: 'StackPrism' }],
+    ['meta', { property: 'og:title', content: title }],
+    ['meta', { property: 'og:description', content: description }],
+    ['meta', { property: 'og:url', content: canonical }],
+    ['meta', { property: 'og:locale', content: meta.lang.replace('-', '_') }],
+    ['meta', { property: 'og:image', content: `${SITE_URL}/og-image.png` }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:title', content: title }],
+    ['meta', { name: 'twitter:description', content: description }],
+    ['meta', { name: 'twitter:image', content: `${SITE_URL}/og-image.png` }]
+  ]
+
+  for (const alternateLocale of LOCALE_CODES) {
+    head.push(['link', { rel: 'alternate', hreflang: alternateLocale === 'zh-CN' ? 'x-default' : LOCALE_META[alternateLocale].lang, href: `${SITE_URL}${publicPath(alternateLocale, relative)}` }])
+  }
+
+  if (isHome) {
+    head.push([
+      'script',
+      { type: 'application/ld+json' },
+      JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+          { '@type': 'Organization', '@id': `${SITE_URL}/#organization`, name: 'StackPrism', url: SITE_URL, logo: `${SITE_URL}/icon.svg`, sameAs: ['https://github.com/setube/stackprism'] },
+          { '@type': 'WebSite', '@id': `${SITE_URL}/#website`, url: SITE_URL, name: 'StackPrism', description, publisher: { '@id': `${SITE_URL}/#organization` } },
+          { '@type': 'SoftwareApplication', name: 'StackPrism', applicationCategory: 'DeveloperApplication', operatingSystem: 'Chrome, Edge, Firefox', url: SITE_URL, description, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' } }
+        ]
+      })
+    ])
+  }
+
+  return head
+}
 
 // 各语言 README 链接
 const README_URLS: Record<string, string> = {
@@ -15,9 +99,21 @@ const README_URLS: Record<string, string> = {
 }
 
 export default defineConfig({
+  vite: {
+    define: {
+      __VUE_PROD_DEVTOOLS__: false
+    },
+    resolve: {
+      alias: {
+        '@': path.resolve(REPO_ROOT, 'src')
+      }
+    }
+  },
   lang: 'zh-CN',
   title: 'StackPrism',
   description: '网页技术栈检测扩展 · 使用文档',
+  sitemap: { hostname: SITE_URL },
+  transformHead: buildSeoHead,
   lastUpdated: true,
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/icon.svg' }],
@@ -81,7 +177,7 @@ export default defineConfig({
         darkModeSwitchLabel: '主题',
         sidebarMenuLabel: '菜单',
         returnToTopLabel: '回到顶部',
-        footer: { message: '基于 CC BY-NC-SA 4.0 协议发布', copyright: 'Copyright © 2026 StackPrism' }
+        footer: { message: '基于 MIT 协议发布', copyright: 'Copyright © 2026 StackPrism' }
       }
     },
     en: {
@@ -142,7 +238,7 @@ export default defineConfig({
         darkModeSwitchLabel: 'Theme',
         sidebarMenuLabel: 'Menu',
         returnToTopLabel: 'Return to top',
-        footer: { message: 'Released under CC BY-NC-SA 4.0', copyright: 'Copyright © 2026 StackPrism' }
+        footer: { message: 'Released under MIT', copyright: 'Copyright © 2026 StackPrism' }
       }
     },
     'zh-TW': {
@@ -202,7 +298,7 @@ export default defineConfig({
         darkModeSwitchLabel: '主題',
         sidebarMenuLabel: '選單',
         returnToTopLabel: '回到頂部',
-        footer: { message: '基於 CC BY-NC-SA 4.0 協議發布', copyright: 'Copyright © 2026 StackPrism' }
+        footer: { message: '基於 MIT 協議發布', copyright: 'Copyright © 2026 StackPrism' }
       }
     },
     ja: {
@@ -262,7 +358,7 @@ export default defineConfig({
         darkModeSwitchLabel: 'テーマ',
         sidebarMenuLabel: 'メニュー',
         returnToTopLabel: 'トップに戻る',
-        footer: { message: 'CC BY-NC-SA 4.0 ライセンスの下で公開', copyright: 'Copyright © 2026 StackPrism' }
+        footer: { message: 'MIT ライセンスの下で公開', copyright: 'Copyright © 2026 StackPrism' }
       }
     },
     fr: {
@@ -322,7 +418,7 @@ export default defineConfig({
         darkModeSwitchLabel: 'Thème',
         sidebarMenuLabel: 'Menu',
         returnToTopLabel: 'Retour en haut',
-        footer: { message: 'Publié sous licence CC BY-NC-SA 4.0', copyright: 'Copyright © 2026 StackPrism' }
+        footer: { message: 'Publié sous licence MIT', copyright: 'Copyright © 2026 StackPrism' }
       }
     },
     de: {
@@ -382,7 +478,7 @@ export default defineConfig({
         darkModeSwitchLabel: 'Design',
         sidebarMenuLabel: 'Menü',
         returnToTopLabel: 'Nach oben',
-        footer: { message: 'Veröffentlicht unter CC BY-NC-SA 4.0', copyright: 'Copyright © 2026 StackPrism' }
+        footer: { message: 'Veröffentlicht unter MIT', copyright: 'Copyright © 2026 StackPrism' }
       }
     },
     pt: {
@@ -442,7 +538,7 @@ export default defineConfig({
         darkModeSwitchLabel: 'Tema',
         sidebarMenuLabel: 'Menu',
         returnToTopLabel: 'Voltar ao topo',
-        footer: { message: 'Publicado sob CC BY-NC-SA 4.0', copyright: 'Copyright © 2026 StackPrism' }
+        footer: { message: 'Publicado sob MIT', copyright: 'Copyright © 2026 StackPrism' }
       }
     },
     it: {
@@ -502,7 +598,7 @@ export default defineConfig({
         darkModeSwitchLabel: 'Tema',
         sidebarMenuLabel: 'Menu',
         returnToTopLabel: 'Torna su',
-        footer: { message: 'Pubblicato sotto CC BY-NC-SA 4.0', copyright: 'Copyright © 2026 StackPrism' }
+        footer: { message: 'Pubblicato sotto MIT', copyright: 'Copyright © 2026 StackPrism' }
       }
     },
     cs: {
@@ -562,7 +658,7 @@ export default defineConfig({
         darkModeSwitchLabel: 'Motiv',
         sidebarMenuLabel: 'Nabídka',
         returnToTopLabel: 'Zpět nahoru',
-        footer: { message: 'Vydáno pod CC BY-NC-SA 4.0', copyright: 'Copyright © 2026 StackPrism' }
+        footer: { message: 'Vydáno pod MIT', copyright: 'Copyright © 2026 StackPrism' }
       }
     },
     pl: {
@@ -622,7 +718,7 @@ export default defineConfig({
         darkModeSwitchLabel: 'Motyw',
         sidebarMenuLabel: 'Menu',
         returnToTopLabel: 'Powrót na górę',
-        footer: { message: 'Wydane na licencji CC BY-NC-SA 4.0', copyright: 'Copyright © 2026 StackPrism' }
+        footer: { message: 'Wydane na licencji MIT', copyright: 'Copyright © 2026 StackPrism' }
       }
     }
   },

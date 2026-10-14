@@ -2,8 +2,11 @@ import DefaultTheme from 'vitepress/theme'
 import type { Theme } from 'vitepress'
 import { watch, nextTick } from 'vue'
 import { useRoute } from 'vitepress'
+import { createAppI18n, SUPPORTED_LOCALES, type SupportedLocale } from '../../../src/i18n'
 import './style.css'
+import './stackprism.css'
 import IssueFeedback from './IssueFeedback.vue'
+import StackPrismHome from './StackPrismHome.vue'
 
 // 根据当前路径找到对应语言的菜单项并加上 active 标记
 function markCurrentLang() {
@@ -29,11 +32,24 @@ function markCurrentLang() {
 export default {
   extends: DefaultTheme,
   enhanceApp({ app, router }) {
+    const popupI18n = createAppI18n('zh-CN')
+    if (typeof window !== 'undefined') app.use(popupI18n)
     app.component('IssueFeedback', IssueFeedback)
+    app.component('StackPrismHome', StackPrismHome)
+    const syncPopupLocale = () => {
+      if (typeof window === 'undefined') return
+      const segment = window.location.pathname.split('/').filter(Boolean)[0] || 'zh-CN'
+      const locale = SUPPORTED_LOCALES.some(item => item.code === segment) ? segment : 'zh-CN'
+      popupI18n.global.locale.value = locale as SupportedLocale
+    }
     if (typeof window !== 'undefined') {
       router.onAfterRouteChanged = () => {
-        nextTick(markCurrentLang)
+        nextTick(() => {
+          markCurrentLang()
+          syncPopupLocale()
+        })
       }
+      nextTick(syncPopupLocale)
     }
   },
   setup() {

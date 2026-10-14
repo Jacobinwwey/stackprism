@@ -2,6 +2,14 @@
 
 StackPrism est destiné aux navigateurs basés sur Chromium (Chrome, Edge, Brave, Opera, Vivaldi, Arc, etc.) avec support de Manifest V3.
 
+## Installer depuis un store d’extensions
+
+- [Chrome Web Store](https://chromewebstore.google.com/detail/stackprism/cagpdifljieeiajlhlcboelglkalofak)
+- [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/stackprism/ojgmhlogaoiegdonnlnibeoikbleccno)
+- [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/stackprism/)
+
+Si le navigateur ne peut pas être identifié automatiquement, choisissez le store correspondant.
+
 ## Méthode 1 : télécharger le fichier crx depuis les Releases
 
 1. Ouvrez [GitHub Releases](https://github.com/setube/stackprism/releases)

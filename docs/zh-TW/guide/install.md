@@ -2,6 +2,14 @@
 
 StackPrism 面向 Chromium 核心瀏覽器（Chrome、Edge、Brave、Opera、Vivaldi、Arc 等），需要瀏覽器支援 Manifest V3。
 
+## 從擴充功能商店安裝
+
+- [Chrome Web Store](https://chromewebstore.google.com/detail/stackprism/cagpdifljieeiajlhlcboelglkalofak)
+- [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/stackprism/ojgmhlogaoiegdonnlnibeoikbleccno)
+- [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/stackprism/)
+
+如果無法自動辨識目前的瀏覽器，請選擇對應的商店。
+
 ## 方式一：從 Release 下載 crx
 
 1. 開啟 [GitHub Releases](https://github.com/setube/stackprism/releases)

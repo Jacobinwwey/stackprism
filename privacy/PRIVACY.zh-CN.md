@@ -70,7 +70,7 @@ StackPrism / 栈棱镜(以下简称「本扩展」)是一款基于 Chrome / Edge
 
 https://github.com/setube/stackprism
 
-开源协议为 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)。
+开源协议为 [MIT](https://opensource.org/licenses/MIT)。
 
 ## 联系方式
 

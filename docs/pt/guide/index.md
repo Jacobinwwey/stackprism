@@ -4,7 +4,7 @@ Esta seção cobre o uso diário: como instalar, o que cada área do popup signi
 
 ## Seções
 
-- [Instalação e ativação](./install.md) — três métodos de instalação (Chrome Web Store, Edge Store, carregamento local)
+- [Instalação e ativação](./install.md) — instalação direta pela Chrome Web Store, Edge Add-ons ou Firefox Add-ons, além de Release / build local
 - [Uso básico](./basic-usage.md) — o que fazem as cinco áreas do popup
 - [Interpretando resultados](./results.md) — como ler confiança, evidências, origem e o botão de correção
 - [Ferramentas auxiliares](./tools.md) — pesquisa no código-fonte da página, painel de dados brutos, copiar relatório completo da stack
