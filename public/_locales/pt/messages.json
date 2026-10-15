@@ -4,7 +4,7 @@
     "description": "Extension name"
   },
   "appDesc": {
-    "message": "Detecta tecnologias de frontend, backend, CDN, SaaS, publicidade, análise, autenticação, pagamento e CMS em páginas web.",
+    "message": "O StackPrism identifica a stack tecnológica das páginas web: frameworks frontend, bibliotecas, runtimes, CMS, analytics e sinais de segurança.",
     "description": "Extension description"
   }
 }

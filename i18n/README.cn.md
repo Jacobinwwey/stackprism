@@ -4,9 +4,11 @@
 
 # StackPrism / 栈棱镜 —— 网页技术栈识别浏览器扩展
 
-> 从页面运行时、DOM、资源 URL、响应头、动态加载和源码版权注释 6 个维度收集线索,把站点用的前后端栈分门别类列清楚。
+> 使用支持 Chrome、Edge 和 Firefox 的 Manifest V3 浏览器扩展，识别网页背后的技术栈。
 
-**简体中文** · [English](../README.md) · [繁體中文](i18n/README.zh-Hant.md) · [日本語](i18n/README.ja.md) · [Français](i18n/README.fr.md) · [Deutsch](i18n/README.de.md) · [Português](i18n/README.pt.md) · [Italiano](i18n/README.it.md) · [Čeština](i18n/README.cs.md) · [Polski](i18n/README.pl.md)
+<a href="https://trendshift.io/repositories/27604?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-27604" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/27604/daily?language=TypeScript" alt="setube%2Fstackprism | Trendshift" width="250" height="55"/></a>
+
+[English](../README.md) · **简体中文** · [繁體中文](i18n/README.zh-Hant.md) · [日本語](i18n/README.ja.md) · [Français](i18n/README.fr.md) · [Deutsch](i18n/README.de.md) · [Português](i18n/README.pt.md) · [Italiano](i18n/README.it.md) · [Čeština](i18n/README.cs.md) · [Polski](i18n/README.pl.md)
 
 [简介](#简介) • [功能特性](#功能特性) • [规则维护](#规则维护) • [注意事项](#注意事项) • [参与共建](#参与共建) • [赞助者](SPONSORS.md) • [星标趋势](#星标趋势) • [开源协议](#开源协议)
 

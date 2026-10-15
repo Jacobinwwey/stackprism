@@ -4,9 +4,11 @@
 
 # StackPrism — Rilevatore di Stack Tecnologici Web
 
-> Raccoglie indizi da 6 dimensioni — variabili globali a runtime, DOM, URL delle risorse, intestazioni di risposta, caricamento dinamico e commenti di copyright JS — per identificare e categorizzare le tecnologie che alimentano qualsiasi sito web.
+> Identifica lo stack tecnologico di ogni pagina con un’estensione Manifest V3 per Chrome, Edge e Firefox.
 
-[简体中文](README.cn.md) · [English](../README.md) · [繁體中文](README.zh-Hant.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · **Italiano** · [Čeština](README.cs.md) · [Polski](README.pl.md)
+<a href="https://trendshift.io/repositories/27604?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-27604" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/27604/daily?language=TypeScript" alt="setube%2Fstackprism | Trendshift" width="250" height="55"/></a>
+
+[English](../README.md) · [简体中文](README.cn.md) · [繁體中文](README.zh-Hant.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · **Italiano** · [Čeština](README.cs.md) · [Polski](README.pl.md)
 
 [Introduzione](#introduzione) • [Funzionalità](#funzionalità) • [Sistema di Regole](#sistema-di-regole) • [Avvertenze](#avvertenze) • [Contribuire](#contribuire) • [Sponsor](SPONSORS.md) • [Cronologia Stelle](#cronologia-stelle) • [Licenza](#licenza)
 

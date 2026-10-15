@@ -111,7 +111,7 @@ export default defineConfig({
   },
   lang: 'zh-CN',
   title: 'StackPrism',
-  description: '网页技术栈检测扩展 · 使用文档',
+  description: 'StackPrism 网页技术栈识别器与浏览器扩展文档。',
   sitemap: { hostname: SITE_URL },
   transformHead: buildSeoHead,
   lastUpdated: true,

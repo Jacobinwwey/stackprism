@@ -4,9 +4,11 @@
 
 # StackPrism — Web テックスタック検出ツール
 
-> 6つの次元（ランタイムグローバル変数、DOM、リソースURL、レスポンスヘッダー、動的読み込み、JSコピーライトコメント）から手がかりを収集し、任意のウェブサイトを動かす技術を識別・分類します。
+> Chrome、Edge、Firefox 対応の Manifest V3 拡張機能で、ウェブページの技術スタックを識別します。
 
-[简体中文](README.cn.md) · [English](../README.md) · [繁體中文](README.zh-Hant.md) · **日本語** · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · [Čeština](README.cs.md) · [Polski](README.pl.md)
+<a href="https://trendshift.io/repositories/27604?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-27604" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/27604/daily?language=TypeScript" alt="setube%2Fstackprism | Trendshift" width="250" height="55"/></a>
+
+[English](../README.md) · [简体中文](README.cn.md) · [繁體中文](README.zh-Hant.md) · **日本語** · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · [Čeština](README.cs.md) · [Polski](README.pl.md)
 
 [はじめに](#はじめに) • [機能](#機能) • [ルールシステム](#ルールシステム) • [注意事項](#注意事項) • [コントリビュート](#コントリビュート) • [スポンサー](SPONSORS.md) • [スター履歴](#スター履歴) • [ライセンス](#ライセンス)
 

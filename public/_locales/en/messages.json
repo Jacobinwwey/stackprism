@@ -4,7 +4,7 @@
     "description": "Extension name"
   },
   "appDesc": {
-    "message": "Detects frontend, backend, CDN, SaaS, analytics, advertising, auth, payment, CMS, and theme technology clues on web pages.",
+    "message": "Identify the web technology stack behind any page — frontend frameworks, libraries, runtimes, CMS, analytics, and security signals.",
     "description": "Extension description"
   }
 }

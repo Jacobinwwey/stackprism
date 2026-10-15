@@ -4,9 +4,11 @@
 
 # StackPrism — Web Tech Stack Detector
 
-> Collects clues from 6 dimensions — runtime globals, DOM, resource URLs, response headers, dynamic loading, and JS copyright comments — to identify and categorize the technologies powering any website.
+> Identify the web technology stack behind any page with a Manifest V3 browser extension for Chrome, Edge, and Firefox.
 
-[简体中文](i18n/README.cn.md) · **English** · [繁體中文](i18n/README.zh-Hant.md) · [日本語](i18n/README.ja.md) · [Français](i18n/README.fr.md) · [Deutsch](i18n/README.de.md) · [Português](i18n/README.pt.md) · [Italiano](i18n/README.it.md) · [Čeština](i18n/README.cs.md) · [Polski](i18n/README.pl.md)
+<a href="https://trendshift.io/repositories/27604?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-27604" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/27604/daily?language=TypeScript" alt="setube%2Fstackprism | Trendshift" width="250" height="55"/></a>
+
+**English** · [简体中文](i18n/README.cn.md) · [繁體中文](i18n/README.zh-Hant.md) · [日本語](i18n/README.ja.md) · [Français](i18n/README.fr.md) · [Deutsch](i18n/README.de.md) · [Português](i18n/README.pt.md) · [Italiano](i18n/README.it.md) · [Čeština](i18n/README.cs.md) · [Polski](i18n/README.pl.md)
 
 [Introduction](#introduction) • [Features](#features) • [Rule System](#rule-system) • [Caveats](#caveats) • [Contributing](#contributing) • [Sponsors](SPONSORS.md) • [Star History](#star-history) • [License](#license)
 

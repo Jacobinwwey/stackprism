@@ -4,9 +4,11 @@
 
 # StackPrism — Detektor Stosu Technologicznego
 
-> Zbiera wskazówki z 6 wymiarów — zmienne globalne środowiska wykonawczego, DOM, adresy URL zasobów, nagłówki odpowiedzi, dynamiczne ładowanie i komentarze praw autorskich JS — aby identyfikować i kategoryzować technologie używane przez dowolną stronę internetową.
+> Identyfikuj stos technologiczny każdej strony za pomocą rozszerzenia Manifest V3 dla Chrome, Edge i Firefox.
 
-[简体中文](README.cn.md) · [English](../README.md) · [繁體中文](README.zh-Hant.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · [Čeština](README.cs.md) · **Polski**
+<a href="https://trendshift.io/repositories/27604?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-27604" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/27604/daily?language=TypeScript" alt="setube%2Fstackprism | Trendshift" width="250" height="55"/></a>
+
+[English](../README.md) · [简体中文](README.cn.md) · [繁體中文](README.zh-Hant.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · [Čeština](README.cs.md) · **Polski**
 
 [Wprowadzenie](#wprowadzenie) • [Funkcje](#funkcje) • [System Reguł](#system-reguł) • [Zastrzeżenia](#zastrzeżenia) • [Wkład](#wkład) • [Sponsorzy](SPONSORS.md) • [Historia Gwiazdek](#historia-gwiazdek) • [Licencja](#licencja)
 

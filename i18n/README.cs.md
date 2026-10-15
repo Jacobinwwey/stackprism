@@ -4,9 +4,11 @@
 
 # StackPrism — Detektor technologického stacku webu
 
-> Sbírá stopy ze 6 dimenzí — globální proměnné za běhu, DOM, URL zdrojů, hlavičky odpovědí, dynamické načítání a JS copyrightové komentáře — pro identifikaci a kategorizaci technologií pohánějících jakýkoliv web.
+> Poznejte technologický stack každé stránky pomocí rozšíření Manifest V3 pro Chrome, Edge a Firefox.
 
-[简体中文](README.cn.md) · [English](../README.md) · [繁體中文](README.zh-Hant.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · **Čeština** · [Polski](README.pl.md)
+<a href="https://trendshift.io/repositories/27604?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-27604" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/27604/daily?language=TypeScript" alt="setube%2Fstackprism | Trendshift" width="250" height="55"/></a>
+
+[English](../README.md) · [简体中文](README.cn.md) · [繁體中文](README.zh-Hant.md) · [日本語](README.ja.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · **Čeština** · [Polski](README.pl.md)
 
 [Úvod](#úvod) • [Funkce](#funkce) • [Systém pravidel](#systém-pravidel) • [Omezení](#omezení) • [Přispívání](#přispívání) • [Sponzoři](SPONSORS.md) • [Historie hvězd](#historie-hvězd) • [Licence](#licence)
 

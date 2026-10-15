@@ -4,11 +4,11 @@
 
 # StackPrism — 網頁技術棧偵測器
 
-> 從 6 個維度蒐集線索——執行期全域變數、DOM、資源 URL、回應標頭、動態載入以及 JS 版權註解——識別並分類任何網站所使用的技術。
+> 使用支援 Chrome、Edge 和 Firefox 的 Manifest V3 瀏覽器擴充功能，識別網頁背後的技術堆疊。
 
-[简体中文](README.cn.md) · [English](../README.md) · **繁體中文** · [日本語](README.ja.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · [Čeština](README.cs.md) · [Polski](README.pl.md)
+<a href="https://trendshift.io/repositories/27604?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-27604" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/27604/daily?language=TypeScript" alt="setube%2Fstackprism | Trendshift" width="250" height="55"/></a>
 
-</div>
+[English](../README.md) · [简体中文](README.cn.md) · **繁體中文** · [日本語](README.ja.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md) · [Italiano](README.it.md) · [Čeština](README.cs.md) · [Polski](README.pl.md)
 
 [簡介](#簡介) • [功能](#功能) • [規則系統](#規則系統) • [注意事項](#注意事項) • [貢獻](#貢獻) • [贊助者](SPONSORS.md) • [Star 趨勢](#star-趨勢) • [授權](#授權)
 

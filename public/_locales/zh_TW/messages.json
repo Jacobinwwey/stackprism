@@ -4,7 +4,7 @@
     "description": "Extension name"
   },
   "appDesc": {
-    "message": "偵測網頁前端、後端、CDN、SaaS、廣告行銷、統計、登入、支付、網站程式和主題模板線索。",
+    "message": "StackPrism 是一款支援 Chrome、Edge 和 Firefox 的瀏覽器擴充功能，用來識別網頁使用的前端框架、技術函式庫、執行環境、CMS、分析服務與安全線索。",
     "description": "Extension description"
   }
 }

@@ -4,7 +4,7 @@
     "description": "Extension name"
   },
   "appDesc": {
-    "message": "检测网页前端、后端、CDN、SaaS、广告营销、统计、登录、支付、网站程序和主题模板线索。",
+    "message": "StackPrism 是一款 Chrome、Edge 和 Firefox 浏览器扩展，用于识别网页使用的前端框架、技术库、运行时、CMS、分析服务和安全线索。",
     "description": "Extension description"
   }
 }

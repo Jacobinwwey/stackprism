@@ -4,7 +4,7 @@
     "description": "Extension name"
   },
   "appDesc": {
-    "message": "Webページのフロントエンド、バックエンド、CDN、SaaS、広告、分析、認証、決済、CMSなどの技術を検出します。",
+    "message": "StackPrism は Chrome、Edge、Firefox 対応のブラウザー拡張機能です。ウェブページのフロントエンド、ライブラリ、ランタイム、CMS、分析、セキュリティを識別します。",
     "description": "Extension description"
   }
 }
