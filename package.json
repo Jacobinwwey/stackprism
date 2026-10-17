@@ -33,7 +33,7 @@
     "lucide-vue-next": "^1.0.0",
     "prettier": "^3.9.10",
     "sass-embedded": "^1.105.1",
-    "typescript": "^7.0.2",
+    "typescript": "~5.9.3",
     "typescript-eslint": "^8.71.2",
     "vite": "^8",
     "vite-tsconfig-paths": "^5",

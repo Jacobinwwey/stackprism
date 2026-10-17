@@ -1,5 +1,5 @@
-const fs = require('fs')
-const f = 'D:/压缩/tech-detector-extension/src/i18n/evidence_translations.json'
+import fs from 'node:fs'
+const f = new URL('./evidence_translations.json', import.meta.url)
 const d = {}
 Object.assign(d, {
   'Server 响应头包含 PostgREST': 'Server response header contains PostgREST',
@@ -210,7 +210,6 @@ Object.assign(d, {
   '响应 URL 指向 Beehiiv': 'Response URL points to Beehiiv',
   '响应 URL 指向 Better Stack 状态页': 'Response URL points to Better Stack status page'
 })
-fs.writeFileSync(f, JSON.stringify(d, null, 2), 'utf8')
 Object.assign(d, {
   '响应 URL 指向 BigDataCloud IP Geolocation': 'Response URL points to BigDataCloud IP Geolocation',
   '响应 URL 指向 BigMarker': 'Response URL points to BigMarker',

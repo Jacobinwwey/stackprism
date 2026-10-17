@@ -41,7 +41,7 @@ const fallbackT: TFn = key => {
 export const buildCorrectionIssueUrl = (
   tech: TechnologyRecord,
   ctx: CorrectionContext = {},
-  t: TFn = fallbackT,
+  _t: TFn = fallbackT,
   locale?: string
 ): string => {
   const feedbackUrl = new URL(`${DOCS_URL}/feedback`)
@@ -54,7 +54,7 @@ export const buildCorrectionIssueUrl = (
   return feedbackUrl.toString()
 }
 
-export const buildRuleContributionUrl = (name?: string, category?: string, t: TFn = fallbackT, locale?: string): string => {
+export const buildRuleContributionUrl = (name?: string, category?: string, _t: TFn = fallbackT, locale?: string): string => {
   const trimmedName = (name ?? '').trim()
   const trimmedCategory = (category ?? '').trim()
   const feedbackUrl = new URL(`${DOCS_URL}/feedback`)
