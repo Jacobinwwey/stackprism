@@ -58,6 +58,7 @@
               },
               {
                 "name": "jQuery",
+                "matchIn": ["resources"],
                 "patterns": ["jquery(?:-\\d|\\.)"]
               },
               {
