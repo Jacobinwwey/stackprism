@@ -17,7 +17,9 @@
 
 复用结论：页面检测器仅新增导出与协作式时间预算；规则归一化、预编译与原扩展共享，响应头匹配、规则预筛、去重直接使用既有实现。未创建第二套指纹引擎。
 
-发布前验证：35/35 单测、13/13 真实 Chrome 集成测试、ESLint、vue-tsc 与扩展生产构建通过。实际 npm tarball 在仓库外离线安装，SDK/CLI 浏览器 smoke 和严格 NodeNext 消费者编译（未使用 skipLibCheck）通过。Windows x64、Node 22.19.0、Bun 1.3.11、Chrome 154；其他 OS／浏览器未验证。
+发布前验证：36/36 单测、13/13 真实 Chrome 集成测试、ESLint、vue-tsc、扩展生产构建与 VitePress 构建通过。实际 npm tarball 在仓库外离线安装，SDK/CLI 浏览器 smoke 和严格 NodeNext 消费者编译（未使用 skipLibCheck）通过。Windows x64、Node 22.19.0、Bun 1.3.11、Chrome 154；其他 OS／浏览器未验证。自动审查后追加动态快照 jQuery 回归、精确 fallback 文案断言，并移除翻译脚本提前写入；不重写已推送历史。
+
+已提交上游：页面原因 [PR 30](https://github.com/setube/stackprism/pull/30)、jQuery [PR 31](https://github.com/setube/stackprism/pull/31)、工具链 [PR 32](https://github.com/setube/stackprism/pull/32)、CLI/SDK draft [PR 33](https://github.com/setube/stackprism/pull/33)。
 
 Bing 发布候选实测：最终 `https://cn.bing.com/`、HTTP 200、8/8 检查、38 个响应、0 跳过／失败；耗时 3125 ms，包含 1000 ms 观察窗口。单次采样不构成准确率或性能基准。
 
@@ -40,7 +42,9 @@ Four branches start from upstream `c1a42d4`, using conventional subjects, DCO si
 
 Core reuse is verified: the page detector only gains an export and cooperative deadline checks. Rule normalization and precompilation are shared with the extension; header matching, prefiltering and deduplication use the existing implementations. There is no second fingerprint engine.
 
-Pre-publication validation: 35/35 unit tests, 13/13 real-Chrome integration tests, ESLint, vue-tsc and extension production build pass. An actual npm tarball installs offline outside the repository; SDK/CLI browser smoke and strict NodeNext consumer compilation without skipLibCheck pass. Tested on Windows x64, Node 22.19.0, Bun 1.3.11 and Chrome 154; other operating systems and engines are unverified.
+Pre-publication validation: 36/36 unit tests, 13/13 real-Chrome integration tests, ESLint, vue-tsc, extension production build and VitePress build pass. An actual npm tarball installs offline outside the repository; SDK/CLI browser smoke and strict NodeNext consumer compilation without skipLibCheck pass. Tested on Windows x64, Node 22.19.0, Bun 1.3.11 and Chrome 154; other operating systems and engines are unverified. Follow-up commits add the dynamic-snapshot jQuery regression, assert exact fallback messages and remove premature translation output; published history is not rewritten.
+
+Submitted upstream: page reasons [PR 30](https://github.com/setube/stackprism/pull/30), jQuery [PR 31](https://github.com/setube/stackprism/pull/31), toolchain [PR 32](https://github.com/setube/stackprism/pull/32), CLI/SDK draft [PR 33](https://github.com/setube/stackprism/pull/33).
 
 Bing candidate run: final URL `https://cn.bing.com/`, HTTP 200, 8/8 checks, 38 responses, zero skipped/failed. Detection took 3125 ms including the 1000 ms observation window. One sample is neither an accuracy study nor a performance benchmark.
 
