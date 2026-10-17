@@ -91,6 +91,7 @@
         {
           "name": "jQuery",
           "confidence": "高",
+          "matchIn": ["resources"],
           "patterns": ["jquery(?:-\\d|\\.)"],
           "globals": ["jQuery"],
           "versionFrom": "jQuery.fn.jquery"
