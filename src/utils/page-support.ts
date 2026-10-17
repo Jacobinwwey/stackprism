@@ -4,6 +4,7 @@ const OBSERVABLE_REQUEST_PROTOCOLS = new Set(['http:', 'https:', 'ws:', 'wss:'])
 export type PageSupport = {
   supported: boolean
   reason: string
+  reasonCode?: 'noPage' | 'browserBuiltin' | 'extensionPage' | 'about' | 'viewSource' | 'devtools' | 'localFile' | 'dataBlob' | 'unsupportedProtocol'
 }
 
 const getProtocol = (url: unknown): string => {
@@ -23,22 +24,22 @@ export const isObservableRequestUrl = (url: unknown): boolean => OBSERVABLE_REQU
 
 export const checkPageSupport = (url: unknown): PageSupport => {
   const protocol = getProtocol(url)
-  if (!protocol) return { supported: false, reason: '当前标签页还没有加载网页。' }
-  if (protocol === 'chrome:') return { supported: false, reason: 'Chrome 浏览器内置页面无法注入检测脚本。' }
-  if (protocol === 'edge:') return { supported: false, reason: 'Edge 浏览器内置页面无法注入检测脚本。' }
+  if (!protocol) return { supported: false, reason: '当前标签页还没有加载网页。', reasonCode: 'noPage' }
+  if (protocol === 'chrome:') return { supported: false, reason: 'Chrome 浏览器内置页面无法注入检测脚本。', reasonCode: 'browserBuiltin' }
+  if (protocol === 'edge:') return { supported: false, reason: 'Edge 浏览器内置页面无法注入检测脚本。', reasonCode: 'browserBuiltin' }
   if (protocol === 'brave:' || protocol === 'opera:' || protocol === 'vivaldi:') {
-    return { supported: false, reason: '浏览器内置页面无法注入检测脚本。' }
+    return { supported: false, reason: '浏览器内置页面无法注入检测脚本。', reasonCode: 'browserBuiltin' }
   }
   if (protocol === 'chrome-extension:' || protocol === 'moz-extension:' || protocol === 'safari-web-extension:') {
-    return { supported: false, reason: '扩展程序内部页面无法识别。' }
+    return { supported: false, reason: '扩展程序内部页面无法识别。', reasonCode: 'extensionPage' }
   }
-  if (protocol === 'about:') return { supported: false, reason: '浏览器内部页面无法注入检测脚本。' }
-  if (protocol === 'view-source:') return { supported: false, reason: '查看源码页面不支持检测。' }
+  if (protocol === 'about:') return { supported: false, reason: '浏览器内部页面无法注入检测脚本。', reasonCode: 'about' }
+  if (protocol === 'view-source:') return { supported: false, reason: '查看源码页面不支持检测。', reasonCode: 'viewSource' }
   if (protocol === 'devtools:' || protocol === 'chrome-search:' || protocol === 'chrome-untrusted:') {
-    return { supported: false, reason: '当前页面不支持检测。' }
+    return { supported: false, reason: '当前页面不支持检测。', reasonCode: 'devtools' }
   }
-  if (protocol === 'file:') return { supported: false, reason: '本地文件页面暂不检测。' }
-  if (protocol === 'data:' || protocol === 'blob:') return { supported: false, reason: '当前页面类型不支持检测。' }
-  if (!DETECTABLE_PROTOCOLS.has(protocol)) return { supported: false, reason: '当前页面类型不支持检测。' }
+  if (protocol === 'file:') return { supported: false, reason: '本地文件页面暂不检测。', reasonCode: 'localFile' }
+  if (protocol === 'data:' || protocol === 'blob:') return { supported: false, reason: '当前页面类型不支持检测。', reasonCode: 'dataBlob' }
+  if (!DETECTABLE_PROTOCOLS.has(protocol)) return { supported: false, reason: '当前页面类型不支持检测。', reasonCode: 'unsupportedProtocol' }
   return { supported: true, reason: '' }
 }
