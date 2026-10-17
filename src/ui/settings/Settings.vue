@@ -177,9 +177,9 @@
   import { applyCustomCss } from '@/utils/apply-custom-css'
   import { cleanCustomRules, cleanStringArray, defaultSettings, normalizeSettings } from '@/utils/normalize-settings'
   import { buildRuleContributionUrl } from '@/utils/build-issue-url'
-  import { REPOSITORY_URL, SETTINGS_STORAGE_KEY, STATUS_HIDE_DELAY, getReadmeUrl } from '@/utils/constants'
+  import { SETTINGS_STORAGE_KEY, STATUS_HIDE_DELAY, getReadmeUrl } from '@/utils/constants'
   import { ALLOWED_CONFIDENCES, ALLOWED_MATCH_TARGETS, ALLOWED_MATCH_TYPES, CUSTOM_RULE_LIMITS } from '@/types/settings'
-  import { cycleTheme, getStoredTheme, setStoredTheme, themeLabel, type ThemeMode } from '@/utils/theme'
+  import { cycleTheme, getStoredTheme, setStoredTheme, type ThemeMode } from '@/utils/theme'
 
   const { t, tm, locale } = useI18n()
 

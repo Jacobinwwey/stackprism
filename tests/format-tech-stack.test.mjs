@@ -1,17 +1,12 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { test } from 'node:test'
-import ts from 'typescript'
+import { transform } from 'esbuild'
 
 const loadFormatter = async () => {
   const source = await readFile(new URL('../src/utils/format-tech-stack.ts', import.meta.url), 'utf8')
-  const { outputText } = ts.transpileModule(source, {
-    compilerOptions: {
-      module: ts.ModuleKind.ES2022,
-      target: ts.ScriptTarget.ES2022
-    }
-  })
-  const encoded = Buffer.from(outputText, 'utf8').toString('base64')
+  const { code } = await transform(source, { loader: 'ts', format: 'esm', target: 'es2022' })
+  const encoded = Buffer.from(code, 'utf8').toString('base64')
   return import(`data:text/javascript;base64,${encoded}`)
 }
 

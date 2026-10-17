@@ -1,5 +1,5 @@
-const fs = require('fs')
-const f = 'D:/压缩/tech-detector-extension/src/i18n/evidence_translations.json'
+import fs from 'node:fs'
+const f = new URL('./evidence_translations.json', import.meta.url)
 const d = {}
 Object.assign(d, {
   'Server 响应头包含 PostgREST': 'Server response header contains PostgREST',
