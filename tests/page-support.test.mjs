@@ -8,6 +8,17 @@ const { code } = await transform(source, { loader: 'ts', format: 'esm', target: 
 const { checkPageSupport } = await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`)
 
 test('unsupported protocols expose the localization key already consumed by the popup', () => {
+  const fallbackReasons = {
+    noPage: '当前标签页还没有加载网页。',
+    browserBuiltin: '浏览器内置页面无法注入检测脚本。',
+    extensionPage: '扩展程序内部页面无法识别。',
+    about: '浏览器内部页面无法注入检测脚本。',
+    viewSource: '查看源码页面不支持检测。',
+    devtools: '当前页面不支持检测。',
+    localFile: '本地文件页面暂不检测。',
+    dataBlob: '当前页面类型不支持检测。',
+    unsupportedProtocol: '当前页面类型不支持检测。'
+  }
   for (const [url, reasonCode] of [
     ['', 'noPage'],
     ['chrome://settings', 'browserBuiltin'],
@@ -30,7 +41,12 @@ test('unsupported protocols expose the localization key already consumed by the 
   ]) {
     assert.equal(checkPageSupport(url).supported, false)
     assert.equal(checkPageSupport(url).reasonCode, reasonCode)
-    assert.ok(checkPageSupport(url).reason)
+    const reason = url.startsWith('chrome:')
+      ? 'Chrome 浏览器内置页面无法注入检测脚本。'
+      : url.startsWith('edge:')
+        ? 'Edge 浏览器内置页面无法注入检测脚本。'
+        : fallbackReasons[reasonCode]
+    assert.equal(checkPageSupport(url).reason, reason)
   }
   for (const url of ['http://example.com', 'https://example.com']) {
     assert.deepEqual(checkPageSupport(url), { supported: true, reason: '' })
