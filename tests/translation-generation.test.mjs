@@ -16,6 +16,7 @@ test('translation generator runs as ESM and writes beside its module from anothe
     await exec(process.execPath, [script], { cwd: path.dirname(directory) })
     const translations = JSON.parse(await readFile(path.join(directory, 'evidence_translations.json'), 'utf8'))
     assert.equal(translations['Server 响应头包含 PostgREST'], 'Server response header contains PostgREST')
+    assert.equal(translations['存在 x-runtime 响应头'], 'x-runtime response header present')
   } finally {
     // mkdtemp owns this exact directory; never remove the repository's translations.
     await rm(directory, { recursive: true, force: true })
