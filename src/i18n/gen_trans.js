@@ -210,7 +210,6 @@ Object.assign(d, {
   '响应 URL 指向 Beehiiv': 'Response URL points to Beehiiv',
   '响应 URL 指向 Better Stack 状态页': 'Response URL points to Better Stack status page'
 })
-fs.writeFileSync(f, JSON.stringify(d, null, 2), 'utf8')
 Object.assign(d, {
   '响应 URL 指向 BigDataCloud IP Geolocation': 'Response URL points to BigDataCloud IP Geolocation',
   '响应 URL 指向 BigMarker': 'Response URL points to BigMarker',
