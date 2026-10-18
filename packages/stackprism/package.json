@@ -1,5 +1,5 @@
 {
-  "name": "@jacobinwwey/stackprism",
+  "name": "@stackprism/sdk",
   "version": "0.2.0",
   "description": "StackPrism browser technology detection SDK and CLI",
   "license": "MIT",
@@ -27,7 +27,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Jacobinwwey/stackprism.git",
+    "url": "https://github.com/setube/stackprism.git",
     "directory": "packages/stackprism"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
