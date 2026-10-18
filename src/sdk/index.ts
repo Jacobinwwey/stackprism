@@ -6,7 +6,14 @@ import { probePageResources, selectPageDetectorRules } from '../background/page-
 import type { PageDetectionResult, TechnologyRecord } from '../types/rules'
 import { DetectionDeadline } from './deadline.js'
 import { SubresourceHeaders, SUBRESOURCE_RESPONSE_LIMIT, type CapturedNetwork } from './subresource-headers.js'
-import { StackPrismError, type DetectedTechnology, type DetectionOptions, type DetectionReport, type ScanOptions } from './types.js'
+import {
+  StackPrismError,
+  type DetectedTechnology,
+  type DetectionOptions,
+  type DetectionReport,
+  type PageObservation,
+  type ScanOptions
+} from './types.js'
 
 export { StackPrismError } from './types.js'
 export type {
@@ -16,6 +23,7 @@ export type {
   DetectionOptions,
   DetectionReport,
   NetworkResponseDetection,
+  PageObservation,
   ScanOptions
 } from './types.js'
 
@@ -55,11 +63,15 @@ const validateUrl = (value: string): string => {
 }
 
 const validatePage = (page: Page): void => {
-  if (!page || typeof page.evaluate !== 'function' || typeof page.mainFrame !== 'function') {
+  if (!page || ['evaluate', 'mainFrame', 'isClosed', 'url', 'on', 'off'].some(method => typeof page[method as keyof Page] !== 'function')) {
     throw new StackPrismError('INVALID_ARGUMENT', 'Expected a Playwright Page')
   }
   if (page.isClosed()) throw new StackPrismError('PAGE_CLOSED', 'Page is closed')
-  validateUrl(page.url())
+}
+
+const validateDetectionOptions = (options: DetectionOptions): void => {
+  if (!options || typeof options !== 'object' || Array.isArray(options))
+    throw new StackPrismError('INVALID_ARGUMENT', 'Expected an options object')
 }
 
 const wrapFailure = (error: unknown, page?: Page): StackPrismError => {
@@ -149,6 +161,7 @@ const buildReport = (
       httpStatus,
       unobserved: [
         'iframe_internals',
+        ...(httpStatus === null ? ['response_headers'] : []),
         ...(network === null ? ['subresource_headers'] : []),
         'continuous_mutations',
         'bundle_license_sampling',
@@ -181,9 +194,9 @@ const buildReport = (
 
 /** Inspect a settled caller-owned page. Never navigates, refetches headers, or closes the page/browser. */
 export async function detectPage(page: Page, options: DetectionOptions = {}): Promise<DetectionReport> {
-  if (!options || typeof options !== 'object' || Array.isArray(options))
-    throw new StackPrismError('INVALID_ARGUMENT', 'Expected an options object')
+  validateDetectionOptions(options)
   validatePage(page)
+  validateUrl(page.url())
   const deadline = new DetectionDeadline(options.timeoutMs, options.signal)
   try {
     const rules = await deadline.run(loadRules)
@@ -197,10 +210,116 @@ export async function detectPage(page: Page, options: DetectionOptions = {}): Pr
   }
 }
 
+// A navigation response precedes its document commit. Consume it at commit so a
+// late attachment or same-URL reload can never inherit an older document's headers.
+const createPageObservation = (page: Page, rules: BundledRules, deadline: DetectionDeadline): PageObservation => {
+  if (page.isClosed()) throw new StackPrismError('PAGE_CLOSED', 'Page closed before observation started')
+  const subresourceHeaders = new SubresourceHeaders(page, rules.headers)
+  let documentResponse: Response | null = null
+  let pendingNavigation: Response | null = null
+  let generation = 0
+  let committedAt = performance.now()
+  let consumed = false
+  let disposed = false
+  const onResponse = (response: Response) => {
+    if (response.request().isNavigationRequest() && response.frame() === page.mainFrame()) pendingNavigation = response
+  }
+  const onNavigation = (frame: Frame) => {
+    if (frame !== page.mainFrame()) return
+    generation++
+    if (pendingNavigation) {
+      documentResponse = pendingNavigation.url().split('#')[0] === frame.url().split('#')[0] ? pendingNavigation : null
+    } else if (!/^https?:/i.test(frame.url())) {
+      documentResponse = null
+    }
+    // History/hash navigation has no new response and keeps the current document's headers.
+    pendingNavigation = null
+    committedAt = performance.now()
+  }
+  const onClose = () => deadline.interrupt(new StackPrismError('PAGE_CLOSED', 'Page closed during observation'))
+  page.on('response', onResponse)
+  page.on('framenavigated', onNavigation)
+  page.on('close', onClose)
+  const dispose = () => {
+    if (disposed) return
+    disposed = true
+    subresourceHeaders.dispose()
+    page.off('response', onResponse)
+    page.off('framenavigated', onNavigation)
+    page.off('close', onClose)
+    // Wake any header read/evaluation wait, including disposal by the caller.
+    deadline.interrupt(new StackPrismError('OBSERVATION_CLOSED', 'Observation is closed'))
+    deadline.dispose()
+  }
+  return {
+    dispose,
+    async detect() {
+      deadline.remaining()
+      if (consumed) throw new StackPrismError('OBSERVATION_CLOSED', 'Observation can only be detected once')
+      consumed = true
+      const initialGeneration = generation
+      const response = documentResponse
+      const observationMs = Math.max(0, Math.round(performance.now() - committedAt))
+      try {
+        validateUrl(page.url())
+        if (pendingNavigation) throw new StackPrismError('PAGE_CHANGED', 'Wait for main document navigation to settle')
+        const network = await deadline.run(() => subresourceHeaders.finish())
+        const responseHeaders = response ? await deadline.run(() => response.headersArray()) : []
+        const snapshot = await collectSnapshot(page, rules, deadline)
+        if (generation !== initialGeneration || pendingNavigation || documentResponse !== response) {
+          throw new StackPrismError('PAGE_CHANGED', 'Main document changed during observed detection')
+        }
+        const headerRecord = response
+          ? buildHeaderRecord(
+              {
+                url: response.url(),
+                type: 'main_frame',
+                method: response.request().method(),
+                statusCode: response.status(),
+                responseHeaders
+              },
+              rules.headers,
+              {}
+            )
+          : null
+        deadline.remaining()
+        return buildReport(snapshot, headerRecord?.technologies ?? [], response?.status() ?? null, rules, deadline, {
+          ...network,
+          observationMs
+        })
+      } catch (error) {
+        throw wrapFailure(error, page)
+      } finally {
+        dispose()
+      }
+    }
+  }
+}
+
+/**
+ * Attach before caller-controlled navigation; await readiness, then call detect() once.
+ * The total budget includes caller waiting. Completion, abort, expiry or dispose detaches
+ * listeners without navigating/closing the page or cancelling caller Playwright operations.
+ */
+export async function observePage(page: Page, options: DetectionOptions = {}): Promise<PageObservation> {
+  validateDetectionOptions(options)
+  validatePage(page)
+  let observation: PageObservation | undefined
+  const deadline = new DetectionDeadline(options.timeoutMs, options.signal, () => observation?.dispose())
+  try {
+    const rules = await deadline.run(loadRules)
+    deadline.remaining()
+    observation = createPageObservation(page, rules, deadline)
+    return observation
+  } catch (error) {
+    deadline.dispose()
+    throw wrapFailure(error, page)
+  }
+}
+
 /** Launch installed Chrome, navigate once, inspect the main document, then close the owned browser. */
 export async function scanUrl(url: string, options: ScanOptions = {}): Promise<DetectionReport> {
-  if (!options || typeof options !== 'object' || Array.isArray(options))
-    throw new StackPrismError('INVALID_ARGUMENT', 'Expected an options object')
+  validateDetectionOptions(options)
   const target = validateUrl(url)
   if (options.executablePath !== undefined && (typeof options.executablePath !== 'string' || !options.executablePath.trim())) {
     throw new StackPrismError('INVALID_ARGUMENT', 'executablePath must be a nonempty string')
@@ -209,15 +328,11 @@ export async function scanUrl(url: string, options: ScanOptions = {}): Promise<D
   if (!Number.isSafeInteger(observationMs) || observationMs < 0 || observationMs > 5000) {
     throw new StackPrismError('INVALID_ARGUMENT', 'observationMs must be an integer between 0 and 5000')
   }
-  const deadline = new DetectionDeadline(options.timeoutMs, options.signal)
+  let observation: PageObservation | undefined
+  const deadline = new DetectionDeadline(options.timeoutMs, options.signal, () => observation?.dispose())
   let browser: Browser | undefined
   let launching: Promise<Browser> | undefined
   let page: Page | undefined
-  let subresourceHeaders: SubresourceHeaders | undefined
-  let latestNavigationResponse: Response | undefined
-  const recordNavigationResponse = (response: Response) => {
-    if (response.request().isNavigationRequest() && response.frame() === page!.mainFrame()) latestNavigationResponse = response
-  }
   try {
     const rules = await deadline.run(loadRules)
     launching = chromium.launch({
@@ -232,8 +347,7 @@ export async function scanUrl(url: string, options: ScanOptions = {}): Promise<D
       throw new StackPrismError('BROWSER_LAUNCH_FAILED', 'Could not launch Chrome; install Chrome or set executablePath', { cause: error })
     }
     page = await deadline.run(() => browser!.newPage())
-    subresourceHeaders = new SubresourceHeaders(page, rules.headers)
-    page.on('response', recordNavigationResponse)
+    observation = createPageObservation(page, rules, deadline)
     let response: Response | null
     try {
       response = await deadline.run(() => page!.goto(target, { waitUntil: 'load', timeout: deadline.remaining() }))
@@ -251,29 +365,11 @@ export async function scanUrl(url: string, options: ScanOptions = {}): Promise<D
     page.on('framenavigated', onNavigation)
     try {
       await deadline.wait(observationMs)
-      const network = await deadline.run(() => subresourceHeaders!.finish())
-      const responseHeaders = await deadline.run(() => response.headersArray())
-      const snapshot = await collectSnapshot(page, rules, deadline)
-      if (
-        navigated ||
-        latestNavigationResponse !== response ||
-        new URL(snapshot.url).href.split('#')[0] !== new URL(response.url()).href.split('#')[0]
-      ) {
+      const report = await observation.detect()
+      if (navigated || report.url.split('#')[0] !== response.url().split('#')[0]) {
         throw new StackPrismError('PAGE_CHANGED', 'Main document changed after navigation')
       }
-      const headerRecord = buildHeaderRecord(
-        {
-          url: response.url(),
-          type: 'main_frame',
-          method: response.request().method(),
-          statusCode: response.status(),
-          responseHeaders
-        },
-        rules.headers,
-        {}
-      )
-      deadline.remaining()
-      return buildReport(snapshot, headerRecord.technologies, response.status(), rules, deadline, { ...network, observationMs })
+      return { ...report, network: { ...report.network, observationMs } }
     } finally {
       page.off('framenavigated', onNavigation)
     }
@@ -281,8 +377,7 @@ export async function scanUrl(url: string, options: ScanOptions = {}): Promise<D
     throw wrapFailure(error, page)
   } finally {
     deadline.dispose()
-    subresourceHeaders?.dispose()
-    page?.off('response', recordNavigationResponse)
+    observation?.dispose()
     // A cancelled launch can resolve after the caller's deadline; still reap its browser.
     browser ??= await launching?.catch(() => undefined)
     await browser?.close()
