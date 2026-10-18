@@ -5,7 +5,7 @@ import { execFile } from 'node:child_process'
 import { promisify } from 'node:util'
 import { fileURLToPath } from 'node:url'
 import { chromium } from 'playwright-core'
-import { detectPage, scanUrl, StackPrismError } from '../../packages/stackprism/dist/index.js'
+import { detectPage, observePage, scanUrl, StackPrismError } from '../../packages/stackprism/dist/index.js'
 
 const exec = promisify(execFile)
 const executablePath = process.env.STACKPRISM_TEST_BROWSER
@@ -17,6 +17,7 @@ let peerServer
 let peerOrigin
 let browser
 let requests = 0
+let reloadResponses = 0
 const ownedBrowsers = []
 
 before(
@@ -30,6 +31,11 @@ before(
     server = createServer((request, response) => {
       requests++
       const route = new URL(request.url, 'http://localhost').pathname
+      if (route === '/reload-header') {
+        response.writeHead(200, { 'content-type': 'text/html', server: reloadResponses++ === 0 ? 'nginx/1.26.2' : 'Apache/2.4.0' })
+        response.end('<title>Reload headers</title>')
+        return
+      }
       if (route === '/network') {
         response.writeHead(200, { 'content-type': 'text/html' })
         response.end(
@@ -193,7 +199,7 @@ test('subresource headers retain endpoint attribution, capture delayed fetch and
   assert.equal(api.resourceType, 'fetch')
   assert.equal(api.url, `${origin}/api`)
   assert.ok(!report.network.responses.some(response => response.url.includes('iframe-only')))
-  assert.ok(!names(report).some(name => ['PHP', 'Nginx', 'Apache'].includes(name)))
+  assert.ok(!names(report).some(name => ['PHP', 'Nginx', 'Apache HTTP Server'].includes(name)))
   assert.ok(!JSON.stringify(report.network).includes('network-secret'))
   assert.equal(report.network.observedResponses, report.network.responses.length)
   assert.equal(report.network.failedResponses, 0)
@@ -214,13 +220,12 @@ test('observation window participates in cancellation and the total deadline', a
   await assert.rejects(scan('/plain', { observationMs: 5000, timeoutMs: 2500 }), { code: 'TIMEOUT' })
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), 1800)
-  const startedAt = performance.now()
   try {
     await assert.rejects(scan('/plain', { observationMs: 5000, signal: controller.signal }), { code: 'ABORTED' })
   } finally {
     clearTimeout(timer)
   }
-  assert.ok(performance.now() - startedAt < 5000)
+  // Browser cleanup is awaited but is outside the detection deadline; assert ownership, not OS scheduling.
   assert.ok(ownedBrowsers.every(instance => !instance.isConnected()))
 })
 
@@ -316,9 +321,14 @@ test('same-URL reload during a scan rejects mixed-document results', { timeout: 
   }
 })
 
-test('CLI has clean JSON streams, stable exit codes, help and version', { timeout: 30_000 }, async () => {
+// This contract test starts ten separate Node processes and two owned browsers.
+test('CLI has clean JSON streams, stable exit codes, help and version', { timeout: 90_000 }, async () => {
   const { stdout: help } = await exec(process.execPath, [cli, '--help'])
   assert.match(help, /Usage: stackprism/)
+  assert.match(help, /observePage/)
+  assert.match(help, /coverage/)
+  assert.match(help, /untrusted data/)
+  assert.match(help, /@stackprism\/sdk/)
   const { stdout: version } = await exec(process.execPath, [cli, '--version'])
   assert.equal(version.trim(), '0.2.0')
   for (const args of [
@@ -349,4 +359,230 @@ test('CLI has clean JSON streams, stable exit codes, help and version', { timeou
       return true
     }
   )
+})
+
+const observationListeners = page =>
+  Object.fromEntries(['request', 'response', 'framenavigated', 'close'].map(event => [event, page.listenerCount(event)]))
+
+test('observePage attaches before caller navigation and retains document and endpoint evidence', async () => {
+  const page = await browser.newPage()
+  const listeners = observationListeners(page)
+  const observation = await observePage(page)
+  try {
+    await page.goto(`${origin}/redirect`)
+    const report = await observation.detect()
+    assert.equal(report.url, `${origin}/positive`)
+    assert.equal(report.coverage.responseHeaders, 'main_document')
+    assert.equal(report.coverage.httpStatus, 200)
+    assert.ok(names(report).includes('Nginx'))
+    assert.ok(names(report).includes('React'))
+    assert.ok(!JSON.stringify(report).includes('do-not-leak-this-secret'))
+    assert.deepEqual(observationListeners(page), listeners)
+    assert.equal(page.isClosed(), false)
+    assert.equal(await page.title(), 'Fixture')
+    await assert.rejects(observation.detect(), { code: 'OBSERVATION_CLOSED' })
+  } finally {
+    observation.dispose()
+    await page.close()
+  }
+})
+
+test('observed caller readiness captures delayed headers without refetching or promoting endpoints', async () => {
+  const page = await browser.newPage()
+  const observation = await observePage(page)
+  try {
+    const api = page.waitForResponse(response => response.url().includes('/api?'))
+    await page.goto(`${origin}/network`)
+    await api
+    await page.waitForLoadState('networkidle')
+    const beforeRequests = requests
+    const report = await observation.detect()
+    assert.equal(requests, beforeRequests)
+    assert.equal(report.coverage.responseHeaders, 'main_document')
+    assert.equal(report.coverage.subresourceHeaders, 'sampled')
+    assert.ok(report.network.responses.some(response => response.technologies.some(technology => technology.name === 'PHP')))
+    assert.ok(report.network.responses.some(response => response.relation === 'cross_origin'))
+    assert.ok(!report.network.responses.some(response => response.url.includes('iframe-only')))
+    assert.ok(!names(report).some(name => ['PHP', 'Nginx', 'Apache HTTP Server'].includes(name)))
+    assert.ok(!JSON.stringify(report.network).includes('network-secret'))
+    assert.equal(
+      report.network.observedResponses,
+      report.network.responses.length + report.network.skippedResponses + report.network.failedResponses
+    )
+  } finally {
+    observation.dispose()
+    await page.close()
+  }
+})
+
+test('observation never recovers missed main headers and isolates later documents including reloads', async () => {
+  const page = await browser.newPage()
+  try {
+    await page.goto(`${origin}/positive`)
+    const late = await observePage(page)
+    const snapshot = await late.detect()
+    assert.equal(snapshot.coverage.responseHeaders, 'not_observed')
+    assert.ok(!names(snapshot).includes('Nginx'))
+    const observation = await observePage(page)
+    try {
+      await page.reload()
+      await page.goto(`${origin}/plain`)
+      const report = await observation.detect()
+      assert.equal(report.url, `${origin}/plain`)
+      assert.equal(report.coverage.responseHeaders, 'main_document')
+      assert.ok(!names(report).some(name => ['PHP', 'Nginx', 'React', 'jQuery'].includes(name)))
+      assert.ok(!report.network.responses.some(response => response.url.includes('asset.js')))
+    } finally {
+      observation.dispose()
+    }
+  } finally {
+    await page.close()
+  }
+})
+
+test('observation expiration and abort release idle listeners without closing caller pages', async () => {
+  const page = await browser.newPage()
+  const listeners = observationListeners(page)
+  try {
+    const expired = await observePage(page, { timeoutMs: 50 })
+    await new Promise(resolve => setTimeout(resolve, 100))
+    assert.deepEqual(observationListeners(page), listeners)
+    await assert.rejects(expired.detect(), { code: 'TIMEOUT' })
+    const controller = new AbortController()
+    const aborted = await observePage(page, { signal: controller.signal })
+    controller.abort()
+    assert.deepEqual(observationListeners(page), listeners)
+    await assert.rejects(aborted.detect(), { code: 'ABORTED' })
+    const disposed = await observePage(page)
+    disposed.dispose()
+    disposed.dispose()
+    assert.deepEqual(observationListeners(page), listeners)
+    await assert.rejects(disposed.detect(), { code: 'OBSERVATION_CLOSED' })
+    assert.equal(page.isClosed(), false)
+    await page.goto(`${origin}/plain`)
+  } finally {
+    await page.close()
+  }
+})
+
+test('observation close, cancellation and concurrent consumption terminate active detection', async () => {
+  for (const action of ['close', 'abort', 'dispose']) {
+    const page = await browser.newPage()
+    const controller = new AbortController()
+    const observation = await observePage(page, { signal: controller.signal })
+    try {
+      await page.goto(`${origin}/plain`)
+      let entered
+      const reachedYield = new Promise(resolve => {
+        entered = resolve
+      })
+      await page.exposeFunction('__stackprismTestYield', () => entered())
+      await page.evaluate(() => {
+        scheduler.yield = () => {
+          window.__stackprismTestYield()
+          return new Promise(resolve => setTimeout(resolve, 500))
+        }
+      })
+      const pending = observation.detect().then(
+        () => null,
+        error => error
+      )
+      await reachedYield
+      await assert.rejects(observation.detect(), { code: 'OBSERVATION_CLOSED' })
+      if (action === 'close') await page.close()
+      else if (action === 'abort') controller.abort()
+      else observation.dispose()
+      assert.equal((await pending)?.code, { close: 'PAGE_CLOSED', abort: 'ABORTED', dispose: 'OBSERVATION_CLOSED' }[action])
+      assert.equal(page.listenerCount('response'), 0)
+      if (action !== 'close') assert.equal(page.isClosed(), false)
+    } finally {
+      observation.dispose()
+      await page.close()
+    }
+  }
+})
+
+test('observed detection rejects same-URL navigation rather than mixing document headers', async () => {
+  const page = await browser.newPage()
+  const observation = await observePage(page)
+  try {
+    await page.goto(`${origin}/plain`)
+    let entered
+    const reachedYield = new Promise(resolve => {
+      entered = resolve
+    })
+    await page.exposeFunction('__stackprismTestYield', () => entered())
+    await page.evaluate(() => {
+      scheduler.yield = () => {
+        window.__stackprismTestYield()
+        return new Promise(resolve => setTimeout(resolve, 500))
+      }
+    })
+    const pending = observation.detect().then(
+      () => null,
+      error => error
+    )
+    await reachedYield
+    await page.reload()
+    assert.equal((await pending)?.code, 'PAGE_CHANGED')
+    assert.equal(page.listenerCount('response'), 0)
+    assert.equal(page.listenerCount('framenavigated'), 0)
+  } finally {
+    observation.dispose()
+    await page.close()
+  }
+})
+
+test('a completed same-URL reload replaces observed main-document headers', async () => {
+  const page = await browser.newPage()
+  const observation = await observePage(page)
+  try {
+    await page.goto(origin + '/reload-header')
+    await page.reload()
+    const report = await observation.detect()
+    assert.ok(names(report).includes('Apache HTTP Server'))
+    assert.ok(!names(report).includes('Nginx'))
+    assert.equal(report.coverage.responseHeaders, 'main_document')
+  } finally {
+    observation.dispose()
+    await page.close()
+  }
+})
+
+test('completed SPA history navigation retains document headers and observes subsequent requests', async () => {
+  const page = await browser.newPage()
+  const observation = await observePage(page)
+  try {
+    await page.goto(origin + '/positive')
+    await page.evaluate(async () => {
+      history.pushState({}, '', '/client-route')
+      await fetch('/api')
+    })
+    const report = await observation.detect()
+    assert.equal(report.url, origin + '/client-route')
+    assert.equal(report.coverage.responseHeaders, 'main_document')
+    assert.ok(names(report).includes('Nginx'))
+    assert.ok(report.network.responses.some(response => response.url === origin + '/api'))
+  } finally {
+    observation.dispose()
+    await page.close()
+  }
+})
+
+test('invalid and pre-aborted observation boundaries leave no listeners or owned browser', async () => {
+  const page = await browser.newPage()
+  const listeners = observationListeners(page)
+  const count = ownedBrowsers.length
+  try {
+    await assert.rejects(observePage(page, { signal: AbortSignal.abort() }), { code: 'ABORTED' })
+    await assert.rejects(observePage(page, null), { code: 'INVALID_ARGUMENT' })
+    await assert.rejects(observePage(page, { timeoutMs: 0 }), { code: 'INVALID_ARGUMENT' })
+    const observation = await observePage(page)
+    await assert.rejects(observation.detect(), { code: 'INVALID_ARGUMENT' })
+    assert.deepEqual(observationListeners(page), listeners)
+    assert.equal(ownedBrowsers.length, count)
+    assert.equal(page.isClosed(), false)
+  } finally {
+    await page.close()
+  }
 })

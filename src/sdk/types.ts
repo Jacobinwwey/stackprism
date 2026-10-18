@@ -6,6 +6,14 @@ export interface DetectionOptions {
   signal?: AbortSignal
 }
 
+/** A bounded, single-use observation of a caller-owned page. Never navigates or closes it. */
+export interface PageObservation {
+  /** Finish network sampling and inspect the settled page once. Navigation during detection fails with PAGE_CHANGED. */
+  detect(): Promise<DetectionReport>
+  /** Detach listeners and interrupt pending detection; safe to call repeatedly. */
+  dispose(): void
+}
+
 export interface ScanOptions extends DetectionOptions {
   /** Installed Chromium executable. Defaults to the installed Chrome channel; no download. */
   executablePath?: string
@@ -58,6 +66,7 @@ export interface DetectionReport {
     cssVariableCount: number
   }
   network: {
+    /** scanUrl: configured post-load window; observePage: sampled time since the latest main-frame commit. */
     observationMs: number
     responseLimit: number
     observedResponses: number
@@ -73,6 +82,7 @@ export type DetectionErrorCode =
   | 'NAVIGATION_FAILED'
   | 'PAGE_CHANGED'
   | 'PAGE_CLOSED'
+  | 'OBSERVATION_CLOSED'
   | 'TIMEOUT'
   | 'ABORTED'
   | 'DETECTION_FAILED'
